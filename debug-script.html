@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Script</title>
+</head>
+<body>
+    <h1>Debug Script Loading</h1>
+    <p>Controlla la console per vedere se script.min.js viene caricato correttamente.</p>
+    
+    <div class="hamburger">
+        <span>Hamburger Test</span>
+    </div>
+    
+    <ul class="nav-menu">
+        <li><a href="#test" class="nav-link">Test Link</a></li>
+    </ul>
+    
+    <script>
+        console.log('=== DEBUG SCRIPT LOADING ===');
+        console.log('Script inline caricato');
+        
+        // Test se gli elementi esistono
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded');
+            
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            console.log('Hamburger trovato:', !!hamburger);
+            console.log('NavMenu trovato:', !!navMenu);
+            console.log('NavLinks trovati:', navLinks.length);
+            
+            // Test se le funzioni del sito esistono
+            console.log('window.FrancoSite:', typeof window.FrancoSite);
+            
+            if (hamburger) {
+                hamburger.addEventListener('click', function() {
+                    console.log('Hamburger cliccato nel debug!');
+                });
+            }
+        });
+    </script>
+    
+    <!-- Carica script.min.js -->
+    <script src="script.min.js" defer></script>
+    
+    <script>
+        // Test dopo il caricamento di script.min.js
+        window.addEventListener('load', function() {
+            console.log('=== DOPO CARICAMENTO script.min.js ===');
+            console.log('window.FrancoSite dopo caricamento:', typeof window.FrancoSite);
+            
+            // Test se le funzioni sono disponibili
+            if (window.FrancoSite) {
+                console.log('Funzioni disponibili:', Object.keys(window.FrancoSite));
+            }
+        });
+    </script>
+</body>
+</html>

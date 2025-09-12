@@ -71,14 +71,7 @@
       window.gtag = window.gtag || function() {
         console.log('Analytics disabled - gtag call:', arguments);
       };
-    </script>
-    
-    <!-- Preload critical Inter font files directly -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
-    
-    <!-- Optimized Google Fonts loading to prevent CLS -->
+    </script><!-- Optimized Google Fonts loading to prevent CLS -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
     
@@ -97,7 +90,7 @@
     <link rel="preload" href="icons/copertina-youtube-URfog.webp" as="image" fetchpriority="high">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.min.css">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -514,9 +507,7 @@
                 <div class="contact-info">
                     <h3 data-translate="contact-info-title">Richiedi Informazioni</h3>
                 <p data-translate="form-contact-description">Richiedi una consulenza completamente gratuita per valutare le tue esigenze di sicurezza. Sopralluogo e preventivo senza impegno. Verrai ricontattato telefonicamente da uno dei nostri operatori il più presto possibile.</p>
-                    
 
-                    
                     <div class="contact-item">
                         <div class="contact-icon">📧</div>
                         <div class="contact-details">
@@ -545,9 +536,7 @@
                             <label for="email" data-translate="form-email-label" class="sr-only">Email</label>
                             <input type="email" id="email" name="email" autocomplete="email" data-translate-placeholder="form-email-placeholder" placeholder="Email" required>
                         </div>
-                        
 
-                        
                         <div class="form-group">
                             <label for="servizio" data-translate="form-service-label" class="sr-only">Servizio di interesse</label>
                             <select id="servizio" name="servizio">
@@ -634,7 +623,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="script.js"></script>
+    <script src="script.min.js"></script>
     <script src="js/utm-tracking.js" defer></script>
     
     <!-- Stili per i bottoni delle certificazioni -->

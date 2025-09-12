@@ -74,13 +74,10 @@
     </script>
     
     <!-- Preload critical CSS -->
-    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    <link rel="preload" href="styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.min.css"></noscript>
     
-    <!-- Preload critical Inter font files directly -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Font preload ottimizzato per ridurre CLS -->
     
     <!-- Optimized Google Fonts loading to prevent CLS -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -195,6 +192,52 @@
       ]
     }
     </script>
+
+<style>
+/* CLS Prevention Styles */
+.logo-image {
+    width: 50px !important;
+    height: 50px !important;
+    display: block;
+}
+
+.service-icon img {
+    width: 80px !important;
+    height: 80px !important;
+    display: block;
+}
+
+.hero-container {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    contain: layout style;
+}
+
+.nav-menu {
+    min-height: 40px;
+    contain: layout style;
+}
+
+/* Prevent layout shifts during image loading */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Stabilize carousel dimensions */
+.partnership-carousel {
+    min-height: 160px;
+    contain: layout style;
+}
+
+.allarmi-carousel .carousel-container {
+    min-height: 400px;
+    contain: layout style;
+}
+</style>
 </head>
 <body>
     <header class="header">
@@ -525,7 +568,7 @@
                     <div class="service-image">
                         <!-- Lite YouTube Embed -->
                         <div class="lite-youtube-embed" data-id="e60ahMosEiI" data-title="Sistema di Videosorveglianza CIVIS - Sicurezza Avanzata" aria-label="Video dimostrativo del sistema di videosorveglianza CIVIS">
-                            <img src="icons/CIVIS-copertina.webp" alt="Anteprima video sistema videosorveglianza CIVIS" class="video-thumbnail" loading="lazy" width="1280" height="720">
+                            <img src="icons/CIVIS-copertina-optimized.webp" alt="Anteprima video sistema videosorveglianza CIVIS" class="video-thumbnail" loading="lazy" width="380" height="253">
                             <button type="button" class="play-btn" aria-label="Riproduci video">
                                 <svg width="68" height="48" viewBox="0 0 68 48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg>
                             </button>
@@ -551,7 +594,7 @@
                             "@type": "VideoObject",
                             "name": "Sistema di Videosorveglianza CIVIS - Sicurezza Avanzata",
                             "description": "Presentazione del sistema di videosorveglianza professionale CIVIS con tecnologia 4K, visione notturna, rilevamento intelligente e controllo remoto. Soluzione completa per la sicurezza di abitazioni, uffici e attività commerciali con monitoraggio h24 e notifiche in tempo reale",
-                            "thumbnailUrl": "https://www.fbtotalsecurity.com/icons/CIVIS-copertina.webp",
+                            "thumbnailUrl": "https://www.fbtotalsecurity.com/icons/CIVIS-copertina-optimized.webp",
                             "uploadDate": "2024-01-15",
                             "duration": "PT0M6S",
                             "embedUrl": "https://www.youtube.com/embed/e60ahMosEiI",
@@ -597,10 +640,10 @@
                         <div class="allarmi-carousel">
                             <div class="carousel-container">
                                 <div class="carousel-slide active">
-                                    <img src="icons/placeholder1-svg-ITLgroup.webp" alt="Sistema di Allarmi - Componenti" class="carousel-img" loading="lazy" width="400" height="300">
+                                    <img src="icons/placeholder1-svg-ITLgroup-optimized.webp" alt="Sistema di Allarmi - Componenti" class="carousel-img" loading="lazy" width="283" height="266">
                                 </div>
                                 <div class="carousel-slide">
-                                    <img src="icons/placeholder2-svg-ITLgroup.webp" alt="Sistema di Allarmi - Installazione" class="carousel-img" loading="lazy" width="400" height="300">
+                                    <img src="icons/placeholder2-svg-ITLgroup-optimized.webp" alt="Sistema di Allarmi - Installazione" class="carousel-img" loading="lazy" width="343" height="266">
                                 </div>
                             </div>
                             <div class="carousel-controls">
@@ -821,7 +864,7 @@
         </div>
     </footer>
 
-    <script src="script.js" defer></script>
+    <script src="script.min.js" defer></script>
     <script src="js/utm-tracking.js" defer></script>
     
     <!-- Lite YouTube Embed Script -->

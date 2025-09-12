@@ -1,55 +1,3 @@
-
-// DOM Query Cache per ridurre forced reflow
-const domCache = new Map();
-const cacheTimeout = 16; // ~60fps
-
-function getCachedDOMProperty(element, property, getter) {
-    const key = `${element.tagName}-${element.className}-${property}`;
-    const cached = domCache.get(key);
-    
-    if (cached && Date.now() - cached.timestamp < cacheTimeout) {
-        return cached.value;
-    }
-    
-    const value = getter();
-    domCache.set(key, { value, timestamp: Date.now() });
-    return value;
-}
-
-// Batch DOM reads and writes
-const domOperations = {
-    reads: [],
-    writes: [],
-    
-    read(fn) {
-        this.reads.push(fn);
-        this.schedule();
-    },
-    
-    write(fn) {
-        this.writes.push(fn);
-        this.schedule();
-    },
-    
-    schedule() {
-        if (this.scheduled) return;
-        this.scheduled = true;
-        
-        requestAnimationFrame(() => {
-            // Execute all reads first
-            this.reads.forEach(fn => fn());
-            this.reads = [];
-            
-            // Then execute all writes
-            this.writes.forEach(fn => fn());
-            this.writes = [];
-            
-            this.scheduled = false;
-        });
-    },
-    
-    scheduled: false
-};
 // Utility functions to prevent forced reflows
 function debounce(func, wait) {
     let timeout;
@@ -245,7 +193,7 @@ function initHeaderScroll() {
     // Fallback for older browsers
     if (!window.IntersectionObserver) {
         let ticking = false;
-        window.addEventListener("scroll", function() {
+        window.addEventListener('scroll', function() {
             if (!ticking) {
                 requestAnimationFrame(() => {
                     const scrollTop = window.pageYOffset;

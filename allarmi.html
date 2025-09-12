@@ -71,14 +71,7 @@
       window.gtag = window.gtag || function() {
         console.log('Analytics disabled - gtag call:', arguments);
       };
-    </script>
-    
-    <!-- Preload critical Inter font files directly -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
-    
-    <!-- Optimized Google Fonts loading to prevent CLS -->
+    </script><!-- Optimized Google Fonts loading to prevent CLS -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
     
@@ -97,7 +90,7 @@
     <link rel="preload" href="icons/placeholder1-svg-ITLgroup.webp" as="image" fetchpriority="high">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.min.css">
     
     <style>
         /* Stili per i bottoni delle certificazioni */
@@ -464,7 +457,7 @@
                     </div>
                 </div>
                 <div class="service-image">
-                    <img src="icons/placeholder1-svg-ITLgroup.webp" alt="Sistema di Allarmi ITL Group" class="service-img" style="width: 100%; height: auto;" width="600" height="400">
+                    <img src="icons/placeholder1-svg-ITLgroup-optimized.webp" alt="Sistema di Allarmi ITL Group" class="service-img" style="width: 100%; height: auto;" width="283" height="266">
                 </div>
             </div>
         </div>
@@ -586,7 +579,7 @@
         <div class="container">
             <div class="service-content">
                 <div class="service-image">
-                    <img src="icons/placeholder2-svg-ITLgroup.webp" alt="Tipologie di Sistemi Allarme ITL Group" class="service-img" style="width: 100%; height: auto;" width="600" height="400">
+                    <img src="icons/placeholder2-svg-ITLgroup-optimized.webp" alt="Tipologie di Sistemi Allarme ITL Group" class="service-img" style="width: 100%; height: auto;" width="343" height="266">
                 </div>
                 <div class="service-text">
                     <h3 data-translate="allarmi-types-title">Tipologie di Sistemi</h3>
@@ -708,9 +701,7 @@
                 <div class="contact-info">
                     <h2 data-translate="contact-title">Richiedi Informazioni</h2>
                 <p data-translate="form-contact-description">Richiedi una consulenza completamente gratuita per valutare le tue esigenze di sicurezza. Sopralluogo e preventivo senza impegno. Verrai ricontattato telefonicamente da uno dei nostri operatori il più presto possibile.</p>
-                    
 
-                    
                     <div class="contact-item">
                         <div class="contact-icon">📧</div>
                         <div class="contact-details">
@@ -726,7 +717,6 @@
                             <p>Corso Sempione, Milano (MI)</p>
                         </div>
                     </div>
-                    
 
                 </div>
                 
@@ -741,9 +731,7 @@
                             <label for="email" data-translate="form-email">Email</label>
                             <input type="email" id="email" name="email" autocomplete="email" required>
                         </div>
-                        
 
-                        
                         <div class="form-group">
                             <label for="messaggio" data-translate="form-message">Messaggio</label>
                             <textarea id="messaggio" name="messaggio" rows="5" data-translate-placeholder="form-message-placeholder" placeholder="Descrivi le tue esigenze di sicurezza..."></textarea>
@@ -827,7 +815,7 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="script.js"></script>
+    <script src="script.min.js"></script>
     <script src="js/utm-tracking.js" defer></script>
     
     <!-- JavaScript per il carosello installazione -->

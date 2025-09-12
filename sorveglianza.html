@@ -78,14 +78,7 @@
       window.gtag = window.gtag || function() {
         console.log('Analytics disabled - gtag call:', arguments);
       };
-    </script>
-    
-    <!-- Preload critical Inter font files directly -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
-    
-    <!-- Optimized Google Fonts loading to prevent CLS -->
+    </script><!-- Optimized Google Fonts loading to prevent CLS -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
     
@@ -104,7 +97,7 @@
     <link rel="preload" href="icons/CIVIS-copertina.webp" as="image" fetchpriority="high">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.min.css">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -468,7 +461,7 @@
                 <div class="service-image">
                     <!-- Lite YouTube Embed -->
                     <div class="lite-youtube-embed" data-id="e60ahMosEiI" data-title="Sistema di Videosorveglianza CIVIS - Sicurezza Avanzata" aria-label="Video dimostrativo del sistema di videosorveglianza CIVIS">
-                        <img src="icons/CIVIS-copertina.webp" alt="Anteprima video sistema videosorveglianza CIVIS" class="video-thumbnail" loading="lazy" width="1280" height="720">
+                        <img src="icons/CIVIS-copertina-optimized.webp" alt="Anteprima video sistema videosorveglianza CIVIS" class="video-thumbnail" loading="lazy" width="380" height="253">
                         <button type="button" class="play-btn" aria-label="Riproduci video">
                             <svg width="68" height="48" viewBox="0 0 68 48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg>
                         </button>
@@ -496,7 +489,7 @@
                         "@type": "VideoObject",
                         "name": "Sistema di Videosorveglianza CIVIS - Sicurezza Avanzata",
                         "description": "Presentazione del sistema di videosorveglianza professionale CIVIS con tecnologia 4K, visione notturna, rilevamento intelligente e controllo remoto. Soluzione completa per la sicurezza di abitazioni, uffici e attività commerciali con monitoraggio h24 e notifiche in tempo reale",
-                        "thumbnailUrl": "https://www.fbtotalsecurity.com/icons/CIVIS-copertina.webp",
+                        "thumbnailUrl": "https://www.fbtotalsecurity.com/icons/CIVIS-copertina-optimized.webp",
                         "uploadDate": "2024-01-15",
                         "duration": "PT0M6S",
                         "embedUrl": "https://www.youtube.com/embed/e60ahMosEiI",
@@ -613,7 +606,6 @@
                     </div>
                 </div>
             </div>
-            
 
         </div>
     </section>
@@ -726,9 +718,7 @@
                 <div class="contact-info">
                     <h2 data-translate="sorveglianza-contact-title">Richiedi Informazioni</h2>
                 <p data-translate="form-contact-description">Richiedi una consulenza completamente gratuita per valutare le tue esigenze di sicurezza. Sopralluogo e preventivo senza impegno. Verrai ricontattato telefonicamente da uno dei nostri operatori il più presto possibile.</p>
-                    
 
-                    
                     <div class="contact-item">
                         <div class="contact-icon">📧</div>
                         <div class="contact-details">
@@ -744,7 +734,6 @@
                             <p>Corso Sempione, Milano (MI)</p>
                         </div>
                     </div>
-                    
 
                 </div>
                 
@@ -843,7 +832,7 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="script.js"></script>
+    <script src="script.min.js"></script>
     <script src="js/utm-tracking.js" defer></script>
 </body>
 </html>

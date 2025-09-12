@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Navbar</title>
+    <style>
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-menu li {
+            margin: 0 1rem;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background: #f0f0f0;
+        }
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+            }
+            .nav-menu.active {
+                left: 0;
+            }
+            .nav-menu li {
+                margin: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <h2>FB Total Security</h2>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#servizi" class="nav-link">Servizi</a></li>
+                <li><a href="#chi-siamo" class="nav-link">Chi Siamo</a></li>
+                <li><a href="#contatti" class="nav-link">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main style="margin-top: 100px; padding: 2rem;">
+        <h1>Test Navbar</h1>
+        <p>Clicca sul menu hamburger per testare la navbar mobile.</p>
+        <p>Clicca sui link della navbar per testare la funzionalità.</p>
+        
+        <section id="home" style="height: 500px; background: #f0f0f0; margin: 2rem 0; padding: 2rem;">
+            <h2>Sezione Home</h2>
+        </section>
+        
+        <section id="servizi" style="height: 500px; background: #e0e0e0; margin: 2rem 0; padding: 2rem;">
+            <h2>Sezione Servizi</h2>
+        </section>
+        
+        <section id="chi-siamo" style="height: 500px; background: #d0d0d0; margin: 2rem 0; padding: 2rem;">
+            <h2>Sezione Chi Siamo</h2>
+        </section>
+        
+        <section id="contatti" style="height: 500px; background: #c0c0c0; margin: 2rem 0; padding: 2rem;">
+            <h2>Sezione Contatti</h2>
+        </section>
+    </main>
+
+    <script>
+        console.log('Script caricato!');
+        
+        // Test semplice della navbar
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM caricato!');
+            
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            console.log('Hamburger:', hamburger);
+            console.log('NavMenu:', navMenu);
+            console.log('NavLinks:', navLinks);
+            
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function() {
+                    console.log('Hamburger cliccato!');
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+            }
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    console.log('Link cliccato:', this.textContent);
+                    // Chiudi il menu mobile se aperto
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
