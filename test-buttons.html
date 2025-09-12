@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Bottoni</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" style="padding: 2rem; background: #000;">
+        <h1 style="color: white; text-align: center;">Test Bottoni Service-Link</h1>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <img src="icons/nebbiogeni.webp" alt="Icona Nebbiogeni" width="55" height="55">
+                </div>
+                <h3>Sistemi Nebbiogeni</h3>
+                <p>Test descrizione per verificare il funzionamento del bottone.</p>
+                <a href="nebbiogeni.html" class="service-link" onclick="alert('Bottone cliccato! Reindirizzamento a nebbiogeni.html'); return true;">Scopri di più</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <img src="icons/serramenti.webp" alt="Icona Serramenti" width="55" height="55">
+                </div>
+                <h3>Serramenti Blindati</h3>
+                <p>Test descrizione per verificare il funzionamento del bottone.</p>
+                <a href="serramenti.html" class="service-link" onclick="alert('Bottone cliccato! Reindirizzamento a serramenti.html'); return true;">Scopri di più</a>
+            </div>
+        </div>
+        
+        <div style="margin-top: 2rem; text-align: center;">
+            <p style="color: white;">Se i bottoni sopra funzionano, il problema è nel JavaScript della pagina principale.</p>
+            <a href="chi-siamo.html" style="color: #4caf50;">Torna alla pagina chi-siamo</a>
+        </div>
+    </div>
+    
+    <script>
+        console.log('Test page loaded');
+        
+        // Test se i bottoni sono cliccabili
+        document.querySelectorAll('.service-link').forEach((link, index) => {
+            link.addEventListener('click', function(e) {
+                console.log(`Bottone ${index + 1} cliccato:`, this.href);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Bottoni Chi Siamo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" style="padding: 2rem; background: #000; min-height: 100vh;">
+        <h1 style="color: white; text-align: center; margin-bottom: 3rem;">Debug Bottoni Chi Siamo</h1>
+        
+        <!-- Replica esatta della sezione Le Nostre Specializzazioni -->
+        <section class="services-overview">
+            <div class="container">
+                <h3 class="section-title">Le Nostre Specializzazioni</h3>
+                <p class="section-subtitle">Quattro aree di eccellenza per la tua sicurezza totale</p>
+                <div class="services-grid">
+                    <div class="service-card nebbiogeni-card">
+                        <div class="service-icon">
+                            <img src="icons/nebbiogeni.webp" alt="Icona Nebbiogeni" width="55" height="55">
+                        </div>
+                        <h3>Sistemi Nebbiogeni</h3>
+                        <p>Tecnologia all'avanguardia per la protezione immediata contro intrusioni.</p>
+                        <a href="nebbiogeni.html" class="service-link" onclick="console.log('Bottone Nebbiogeni cliccato!'); alert('Bottone Nebbiogeni funziona!');">Scopri di più</a>
+                    </div>
+                    <div class="service-card serramenti-card">
+                        <div class="service-icon">
+                            <img src="icons/serramenti.webp" alt="Icona Serramenti" width="55" height="55">
+                        </div>
+                        <h3>Serramenti Blindati</h3>
+                        <p>Porte blindate, finestre di sicurezza e serramenti antieffrazione di ultima generazione.</p>
+                        <a href="serramenti.html" class="service-link" onclick="console.log('Bottone Serramenti cliccato!'); alert('Bottone Serramenti funziona!');">Scopri di più</a>
+                    </div>
+                    <div class="service-card sorveglianza-card">
+                        <div class="service-icon">
+                            <img src="icons/sorveglianza.webp" alt="Icona Videosorveglianza" width="55" height="55">
+                        </div>
+                        <h3>Videosorveglianza</h3>
+                        <p>Sistemi di videosorveglianza intelligenti con tecnologie AI integrate.</p>
+                        <a href="sorveglianza.html" class="service-link" onclick="console.log('Bottone Sorveglianza cliccato!'); alert('Bottone Sorveglianza funziona!');">Scopri di più</a>
+                    </div>
+                    <div class="service-card allarmi-card">
+                        <div class="service-icon">
+                            <img src="icons/allarmi.webp" alt="Icona Allarmi" width="55" height="55">
+                        </div>
+                        <h3>Sistemi di Allarme</h3>
+                        <p>Allarmi wireless e filari di ultima generazione con sensori intelligenti.</p>
+                        <a href="allarmi.html" class="service-link" onclick="console.log('Bottone Allarmi cliccato!'); alert('Bottone Allarmi funziona!');">Scopri di più</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div style="margin-top: 3rem; text-align: center; padding: 2rem; background: #1a1a1a; border-radius: 10px;">
+            <h2 style="color: #4caf50; margin-bottom: 1rem;">Test Results</h2>
+            <p style="color: white; margin-bottom: 1rem;">Se i bottoni sopra funzionano, il problema è nel JavaScript della pagina originale.</p>
+            <p style="color: white; margin-bottom: 1rem;">Se non funzionano, il problema è nei CSS o nella struttura HTML.</p>
+            <a href="chi-siamo.html" style="color: #4caf50; text-decoration: underline;">Torna alla pagina chi-siamo originale</a>
+        </div>
+    </div>
+    
+    <!-- Include lo stesso JavaScript della pagina originale -->
+    <script src="script.js"></script>
+    
+    <script>
+        console.log('🔍 Debug page loaded');
+        console.log('🔍 Checking service-link elements:');
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceLinks = document.querySelectorAll('.service-link');
+            console.log('🔍 Found service-link elements:', serviceLinks.length);
+            
+            serviceLinks.forEach((link, index) => {
+                console.log(`🔍 Link ${index + 1}:`, {
+                    href: link.href,
+                    text: link.textContent,
+                    classes: link.className,
+                    style: window.getComputedStyle(link).pointerEvents
+                });
+                
+                // Test click event
+                link.addEventListener('click', function(e) {
+                    console.log(`✅ Click detected on link ${index + 1}:`, this.href);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

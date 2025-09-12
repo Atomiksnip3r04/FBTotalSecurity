@@ -1,0 +1,231 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.fbtotalsecurity.com/#organization",
+      "name": "Franco Di Benedetto - Sistemi di Sicurezza",
+      "url": "https://www.fbtotalsecurity.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.fbtotalsecurity.com/logo.png",
+        "width": 300,
+        "height": 100
+      },
+      "description": "Agente plurimandatario specializzato in sistemi di sicurezza: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza nel settore sicurezza.",
+      "founder": {
+        "@type": "Person",
+        "name": "Franco Di Benedetto",
+        "jobTitle": "Agente Plurimandatario Sicurezza"
+      },
+      "foundingDate": "2000",
+      "areaServed": {
+        "@type": "Place",
+        "name": "Milano e provincia e Monza e Brianza e provincia"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+39-333-123-4567",
+        "contactType": "customer service",
+        "email": "postmaster@fbtotalsecurity.com",
+        "availableLanguage": "Italian"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Milano",
+        "addressRegion": "Lazio",
+        "addressCountry": "IT"
+      },
+      "sameAs": [
+        "https://www.facebook.com/francodibenedettosicurezza",
+        "https://www.linkedin.com/in/francodibenedetto"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.fbtotalsecurity.com/#website",
+      "url": "https://www.fbtotalsecurity.com",
+        "name": "Franco Di Benedetto - Sistemi di Sicurezza",
+      "description": "Sito ufficiale di Franco Di Benedetto, specialista in sistemi di sicurezza: nebbiogeni, serramenti blindati, videosorveglianza e allarmi.",
+      "publisher": {
+        "@id": "https://www.fbtotalsecurity.com/#organization"
+      },
+      "inLanguage": "it-IT",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.fbtotalsecurity.com/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.fbtotalsecurity.com/#webpage",
+      "url": "https://www.fbtotalsecurity.com",
+        "name": "Franco Di Benedetto - Sistemi di Sicurezza | Nebbiogeni, Serramenti, Sorveglianza, Allarmi",
+      "isPartOf": {
+        "@id": "https://www.fbtotalsecurity.com/#website"
+      },
+      "about": {
+        "@id": "https://www.fbtotalsecurity.com/#organization"
+      },
+      "description": "Franco Di Benedetto - Agente plurimandatario specializzato in sistemi di sicurezza, nebbiogeni, serramenti blindati, sorveglianza e allarmi. Soluzioni professionali per la tua sicurezza.",
+      "breadcrumb": {
+        "@id": "https://www.fbtotalsecurity.com/#breadcrumb"
+      },
+      "inLanguage": "it-IT",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": ["https://www.fbtotalsecurity.com"]
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.fbtotalsecurity.com/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.fbtotalsecurity.com"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.fbtotalsecurity.com/#nebbiogeni",
+      "name": "Sistemi Nebbiogeni",
+      "description": "Installazione e manutenzione di sistemi nebbiogeni professionali per protezione antifurto. Nebbia atossica che riduce la visibilità a zero in meno di 10 secondi.",
+      "provider": {
+        "@id": "https://www.fbtotalsecurity.com/#organization"
+      },
+      "areaServed": {
+          "@type": "Place",
+          "name": "Milano e provincia e Monza e Brianza e provincia"
+        },
+      "serviceType": "Security System Installation",
+      "category": "Sistemi di Sicurezza"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.fbtotalsecurity.com/#serramenti",
+      "name": "Serramenti di Sicurezza",
+      "description": "Installazione di porte blindate, serramenti antieffrazione e sistemi di chiusura ad alta sicurezza. Certificazioni classe 3, 4 e 5.",
+      "provider": {
+        "@id": "https://www.fbtotalsecurity.com/#organization"
+      },
+      "areaServed": {
+        "@type": "Place",
+        "name": "Milano e provincia e Monza e Brianza e provincia"
+      },
+      "serviceType": "Security Door Installation",
+      "category": "Serramenti Blindati"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.fbtotalsecurity.com/#sorveglianza",
+      "name": "Sistemi di Videosorveglianza",
+      "description": "Installazione di telecamere IP 4K, sistemi di registrazione digitale e monitoraggio remoto 24/7. Analisi video intelligente e archiviazione cloud.",
+      "provider": {
+        "@id": "https://www.fbtotalsecurity.com/#organization"
+      },
+      "areaServed": {
+        "@type": "Place",
+        "name": "Milano e provincia e Monza e Brianza e provincia"
+      },
+      "serviceType": "Video Surveillance Installation",
+      "category": "Videosorveglianza"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.fbtotalsecurity.com/#allarmi",
+      "name": "Sistemi di Allarme",
+      "description": "Installazione di centrali antifurto wireless e filari, sensori perimetrali e volumetrici, collegamento con istituti di vigilanza.",
+      "provider": {
+        "@id": "https://www.fbtotalsecurity.com/#organization"
+      },
+      "areaServed": {
+        "@type": "Place",
+        "name": "Milano e provincia e Monza e Brianza e provincia"
+      },
+      "serviceType": "Alarm System Installation",
+      "category": "Sistemi di Allarme"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.fbtotalsecurity.com/#person",
+      "name": "Franco Di Benedetto",
+      "jobTitle": "Agente Plurimandatario Sistemi di Sicurezza",
+      "description": "Specialista in sistemi di sicurezza con oltre 20 anni di esperienza. Agente plurimandatario certificato per nebbiogeni, serramenti blindati, videosorveglianza e allarmi.",
+      "url": "https://www.fbtotalsecurity.com",
+      "telephone": "+39-333-123-4567",
+      "email": "postmaster@fbtotalsecurity.com",
+      "worksFor": {
+        "@id": "https://www.fbtotalsecurity.com/#organization"
+      },
+      "knowsAbout": [
+        "Sistemi di Sicurezza",
+        "Nebbiogeni",
+        "Serramenti Blindati",
+        "Videosorveglianza",
+        "Sistemi di Allarme",
+        "Protezione Antifurto",
+        "Sicurezza Domestica",
+        "Sicurezza Aziendale"
+      ],
+      "hasOccupation": {
+        "@type": "Occupation",
+        "name": "Agente Plurimandatario Sicurezza",
+        "occupationLocation": {
+          "@type": "Place",
+          "name": "Milano e Provincia"
+        },
+        "skills": [
+          "Installazione Sistemi di Sicurezza",
+          "Consulenza Sicurezza",
+          "Manutenzione Impianti",
+          "Progettazione Sicurezza"
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.fbtotalsecurity.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Che cos'è un sistema nebbiogeno?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un sistema nebbiogeno è un dispositivo di sicurezza che rilascia istantaneamente una densa nebbia atossica per ridurre la visibilità a zero e scoraggiare i malintenzionati dall'entrare nei locali protetti."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quanto tempo ci vuole per installare un sistema di allarme?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "L'installazione di un sistema di allarme richiede generalmente 1-2 giorni lavorativi, a seconda della complessità dell'impianto e delle dimensioni dell'immobile da proteggere."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Le porte blindate sono davvero efficaci?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sì, le porte blindate certificate classe 3, 4 o 5 offrono un'eccellente protezione contro i tentativi di effrazione. Sono testate secondo standard europei rigorosi e rappresentano un deterrente molto efficace."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "È possibile controllare la videosorveglianza da remoto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Assolutamente sì. I nostri sistemi di videosorveglianza IP permettono il controllo remoto tramite smartphone, tablet o computer, con notifiche push in tempo reale e archiviazione cloud sicura."
+          }
+        }
+      ]
+    }
+  ]
+}

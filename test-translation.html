@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Traduzione</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .lang-btn { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; cursor: pointer; }
+        .lang-btn.active { background: #0056b3; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <h1>Test Sistema di Traduzione</h1>
+    
+    <div class="language-selector">
+        <button class="lang-btn active" data-lang="it">Italiano</button>
+        <button class="lang-btn" data-lang="en">English</button>
+    </div>
+    
+    <div class="test-section">
+        <h2 data-translate="hero-title">Testo da tradurre</h2>
+        <p data-translate="hero-subtitle">Questo è un paragrafo di test</p>
+        <button data-translate="hero-cta">Bottone di test</button>
+    </div>
+    
+    <div class="test-section">
+        <h3>Debug Info:</h3>
+        <div id="debug-info"></div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Additional debug info
+        document.addEventListener('DOMContentLoaded', function() {
+            const debugDiv = document.getElementById('debug-info');
+            
+            function updateDebugInfo() {
+                const langButtons = document.querySelectorAll('.lang-btn');
+                const translateElements = document.querySelectorAll('[data-translate]');
+                const currentLang = localStorage.getItem('selectedLanguage') || 'it';
+                
+                debugDiv.innerHTML = `
+                    <p><strong>Bottoni lingua trovati:</strong> ${langButtons.length}</p>
+                    <p><strong>Elementi da tradurre:</strong> ${translateElements.length}</p>
+                    <p><strong>Lingua corrente:</strong> ${currentLang}</p>
+                    <p><strong>Translations object exists:</strong> ${typeof translations !== 'undefined'}</p>
+                    <p><strong>Italian translations:</strong> ${typeof translations !== 'undefined' && translations.it ? Object.keys(translations.it).length : 'N/A'}</p>
+                    <p><strong>English translations:</strong> ${typeof translations !== 'undefined' && translations.en ? Object.keys(translations.en).length : 'N/A'}</p>
+                `;
+            }
+            
+            updateDebugInfo();
+            
+            // Update debug info when language changes
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('lang-btn')) {
+                    setTimeout(updateDebugInfo, 100);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
