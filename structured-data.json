@@ -33,7 +33,7 @@
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Milano",
-        "addressRegion": "Lazio",
+        "addressRegion": "Lombardia",
         "addressCountry": "IT"
       },
       "sameAs": [

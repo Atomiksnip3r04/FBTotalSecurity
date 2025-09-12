@@ -8,7 +8,7 @@
     <!-- Homepage -->
     <url>
         <loc>https://www.fbtotalsecurity.com/</loc>
-        <lastmod>2024-01-28</lastmod>
+        <lastmod>2025-01-17</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
         <xhtml:link rel="alternate" hreflang="it" href="https://www.fbtotalsecurity.com/?lang=it" />
@@ -19,9 +19,9 @@
     <!-- Servizi Nebbiogeni -->
     <url>
         <loc>https://www.fbtotalsecurity.com/nebbiogeni.html</loc>
-        <lastmod>2024-01-28</lastmod>
+        <lastmod>2025-01-17</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="it" href="https://www.fbtotalsecurity.com/nebbiogeni.html?lang=it" />
         <xhtml:link rel="alternate" hreflang="en" href="https://www.fbtotalsecurity.com/nebbiogeni.html?lang=en" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.fbtotalsecurity.com/nebbiogeni.html" />
@@ -30,9 +30,9 @@
     <!-- Serramenti di Sicurezza -->
     <url>
         <loc>https://www.fbtotalsecurity.com/serramenti.html</loc>
-        <lastmod>2024-01-28</lastmod>
+        <lastmod>2025-01-17</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="it" href="https://www.fbtotalsecurity.com/serramenti.html?lang=it" />
         <xhtml:link rel="alternate" hreflang="en" href="https://www.fbtotalsecurity.com/serramenti.html?lang=en" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.fbtotalsecurity.com/serramenti.html" />
@@ -41,9 +41,9 @@
     <!-- Sorveglianza -->
     <url>
         <loc>https://www.fbtotalsecurity.com/sorveglianza.html</loc>
-        <lastmod>2024-01-28</lastmod>
+        <lastmod>2025-01-17</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="it" href="https://www.fbtotalsecurity.com/sorveglianza.html?lang=it" />
         <xhtml:link rel="alternate" hreflang="en" href="https://www.fbtotalsecurity.com/sorveglianza.html?lang=en" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.fbtotalsecurity.com/sorveglianza.html" />
@@ -52,9 +52,9 @@
     <!-- Sistemi di Allarme -->
     <url>
         <loc>https://www.fbtotalsecurity.com/allarmi.html</loc>
-        <lastmod>2024-01-28</lastmod>
+        <lastmod>2025-01-17</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="it" href="https://www.fbtotalsecurity.com/allarmi.html?lang=it" />
         <xhtml:link rel="alternate" hreflang="en" href="https://www.fbtotalsecurity.com/allarmi.html?lang=en" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.fbtotalsecurity.com/allarmi.html" />
@@ -63,12 +63,32 @@
     <!-- Contatti -->
     <url>
         <loc>https://www.fbtotalsecurity.com/#contatti</loc>
-        <lastmod>2024-01-28</lastmod>
+        <lastmod>2025-01-17</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-        <xhtml:link rel="alternate" hreflang="it" href="https://www.fbtotalsecurity.com/?lang=it#contatti" />
-        <xhtml:link rel="alternate" hreflang="en" href="https://www.fbtotalsecurity.com/?lang=en#contatti" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.fbtotalsecurity.com/#contatti" />
+        <priority>0.6</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.fbtotalsecurity.com/#contatti?lang=it"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.fbtotalsecurity.com/#contatti?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.fbtotalsecurity.com/#contatti"/>
     </url>
     
+    <url>
+        <loc>https://www.fbtotalsecurity.com/chi-siamo.html</loc>
+        <lastmod>2025-01-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.fbtotalsecurity.com/chi-siamo.html?lang=it"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.fbtotalsecurity.com/chi-siamo.html?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.fbtotalsecurity.com/chi-siamo.html"/>
+    </url>
+    
+    <url>
+        <loc>https://www.fbtotalsecurity.com/termini-condizioni.html</loc>
+        <lastmod>2025-01-17</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+        <xhtml:link rel="alternate" hreflang="it" href="https://www.fbtotalsecurity.com/termini-condizioni.html?lang=it"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.fbtotalsecurity.com/termini-condizioni.html?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.fbtotalsecurity.com/termini-condizioni.html"/>
+    </url>
+
 </urlset>
