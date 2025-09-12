@@ -49,8 +49,8 @@ body {
     /* Force hardware acceleration */
     transform: translateZ(0);
     will-change: auto;
-    /* Font size adjustment for fallback fonts to match Inter */
-    font-size-adjust: 0.5;
+    /* Font optimization for better rendering */
+    font-display: swap;
 }
 
 /* Typography */
@@ -144,11 +144,13 @@ a {
     left: 0;
     right: 0;
     height: 80px;
+    min-height: 80px; /* Ensure consistent height */
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%) !important;
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(76, 175, 80, 0.2);
     z-index: 9999;
     transition: all 0.3s ease;
+    contain: layout style; /* Optimize rendering and prevent CLS */
 }
 
 .header.scrolled {
@@ -244,9 +246,11 @@ a {
     white-space: nowrap;
     /* Prevent CLS by reserving space */
     min-height: 40px;
-    contain: layout style;
+    height: 40px; /* Fixed height to prevent layout shifts */
+    contain: layout style size; /* Enhanced containment */
     /* Stabilize dimensions during loading */
     transform: translateZ(0);
+    will-change: transform; /* Optimize for animations */
 }
 
 .nav-link {
