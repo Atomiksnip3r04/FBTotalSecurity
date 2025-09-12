@@ -77,6 +77,11 @@
     <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="styles.css"></noscript>
     
+    <!-- Preload critical Inter font files directly -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
+    
     <!-- Optimized Google Fonts loading to prevent CLS -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
@@ -897,17 +902,20 @@
         const totalSlidesAllarmi = slidesAllarmi.length;
 
         function showSlideAllarmi(index) {
-            // Rimuovi classe active da tutti gli slide e indicatori
-            slidesAllarmi.forEach(slide => slide.classList.remove('active'));
-            indicatorsAllarmi.forEach(indicator => indicator.classList.remove('active'));
-            
-            // Aggiungi classe active allo slide e indicatore corrente
-            if (slidesAllarmi[index]) {
-                slidesAllarmi[index].classList.add('active');
-            }
-            if (indicatorsAllarmi[index]) {
-                indicatorsAllarmi[index].classList.add('active');
-            }
+            // Batch DOM operations to prevent forced reflows
+            requestAnimationFrame(() => {
+                // Use transform instead of CSS classes for better performance
+                const container = document.querySelector('.allarmi-carousel .carousel-container');
+                if (container) {
+                    const translateX = -index * 100;
+                    container.style.transform = `translateX(${translateX}%)`;
+                }
+                
+                // Update indicators efficiently
+                indicatorsAllarmi.forEach((indicator, i) => {
+                    indicator.classList.toggle('active', i === index);
+                });
+            });
         }
 
         function changeSlideAllarmi(direction) {

@@ -73,14 +73,20 @@
       };
     </script>
     
-    <!-- Fonts -->
+    <!-- Preload critical Inter font files directly -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Optimized Google Fonts loading to prevent CLS -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    
     <!-- Resource Hints for Performance -->
     <!-- <link rel="dns-prefetch" href="//www.google-analytics.com"> -->
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=optional" rel="stylesheet"></noscript>
     <link rel="prefetch" href="index.html">
     <link rel="prefetch" href="nebbiogeni.html">
     <link rel="prefetch" href="sorveglianza.html">
@@ -920,17 +926,20 @@
         const totalSlidesSerramenti = slidesSerramenti.length;
 
         function showSlideSerramenti(index) {
-            // Rimuovi classe active da tutti gli slide e indicatori
-            slidesSerramenti.forEach(slide => slide.classList.remove('active'));
-            indicatorsSerramenti.forEach(indicator => indicator.classList.remove('active'));
-            
-            // Aggiungi classe active allo slide e indicatore corrente
-            if (slidesSerramenti[index]) {
-                slidesSerramenti[index].classList.add('active');
-            }
-            if (indicatorsSerramenti[index]) {
-                indicatorsSerramenti[index].classList.add('active');
-            }
+            // Batch DOM operations to prevent forced reflows
+            requestAnimationFrame(() => {
+                // Use transform instead of CSS classes for better performance
+                const container = document.querySelector('.serramenti-carousel .carousel-container');
+                if (container) {
+                    const translateX = -index * 100;
+                    container.style.transform = `translateX(${translateX}%)`;
+                }
+                
+                // Update indicators efficiently
+                indicatorsSerramenti.forEach((indicator, i) => {
+                    indicator.classList.toggle('active', i === index);
+                });
+            });
         }
 
         function changeSlideSerramenti(direction) {

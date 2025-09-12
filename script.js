@@ -143,43 +143,67 @@ function updateActiveNavLink(targetId) {
     });
 }
 
-// Header Scroll Effect - Optimized to reduce layout thrashing
+// Header Scroll Effect - Using IntersectionObserver to eliminate forced reflows
 function initHeaderScroll() {
     const header = document.querySelector('.header');
-    let lastScrollTop = 0;
-    let ticking = false;
     
-    function updateHeader() {
-        // Batch all DOM reads to prevent forced reflows
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Batch DOM writes to prevent layout thrashing
-        requestAnimationFrame(() => {
-            // Add/remove scrolled class
-            if (scrollTop > 100) {
-                header.classList.add('scrolled');
-            } else {
+    // Create sentinel elements for different scroll thresholds
+    const scrollSentinel = document.createElement('div');
+    scrollSentinel.style.cssText = 'position: absolute; top: 100px; height: 1px; width: 1px; pointer-events: none;';
+    document.body.appendChild(scrollSentinel);
+    
+    const hideSentinel = document.createElement('div');
+    hideSentinel.style.cssText = 'position: absolute; top: 200px; height: 1px; width: 1px; pointer-events: none;';
+    document.body.appendChild(hideSentinel);
+    
+    // Observer for scrolled class (100px threshold)
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
                 header.classList.remove('scrolled');
+            } else {
+                header.classList.add('scrolled');
             }
-            
-            // Hide/show header on scroll
-            if (scrollTop > lastScrollTop && scrollTop > 200) {
-                header.style.transform = 'translateY(-100%)';
+        });
+    }, { rootMargin: '0px 0px 0px 0px' });
+    
+    // Observer for header hide/show (200px threshold)
+    let lastY = 0;
+    const hideObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const currentY = entry.boundingClientRect.y;
+            if (!entry.isIntersecting) {
+                if (currentY < lastY) {
+                    // Scrolling down
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    // Scrolling up
+                    header.style.transform = 'translateY(0)';
+                }
             } else {
                 header.style.transform = 'translateY(0)';
             }
+            lastY = currentY;
         });
-        
-        lastScrollTop = scrollTop;
-        ticking = false;
-    }
+    }, { rootMargin: '0px 0px 0px 0px' });
     
-    window.addEventListener('scroll', function() {
-        if (!ticking) {
-            requestAnimationFrame(updateHeader);
-            ticking = true;
-        }
-    }, { passive: true });
+    scrollObserver.observe(scrollSentinel);
+    hideObserver.observe(hideSentinel);
+    
+    // Fallback for older browsers
+    if (!window.IntersectionObserver) {
+        let ticking = false;
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const scrollTop = window.pageYOffset;
+                    header.classList.toggle('scrolled', scrollTop > 100);
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+    }
     
     // Cache section positions and navigation links
     let sectionPositions = [];
