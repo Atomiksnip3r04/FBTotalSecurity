@@ -81,9 +81,7 @@ h1, h2, h3, h4, h5, h6 {
     display: block !important;
     /* Explicit font-family to avoid user-agent dependencies */
     font-family: 'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-    /* Override any user-agent styles completely */
-    -webkit-text-size-adjust: 100% !important;
-    text-size-adjust: 100% !important;
+    /* Override any user-agent styles completely - deprecated properties removed for SEO compliance */
     /* Prevent CLS during font loading */
     font-display: swap;
     min-height: 3rem;
