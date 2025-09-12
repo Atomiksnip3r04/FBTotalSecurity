@@ -47,19 +47,19 @@ h1, h2, h3, h4, h5, h6 {
     color: #ffffff;
 }
 
-/* Fix for H1UserAgentFontSizeInSection deprecation warning - Updated to modern CSS */
+/* Modern H1 styling - eliminates H1UserAgentFontSizeInSection deprecation */
 h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem) !important;
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
-    margin-top: 0.67em;
-    margin-bottom: 0.67em;
-    margin-left: 0;
-    margin-right: 0;
+    line-height: 1.2;
+    margin: 0.67em 0;
     display: block;
     /* Prevent CLS during font loading */
     font-display: swap;
     min-height: 1.2em;
     contain: layout;
+    /* Explicit font-family to avoid user-agent dependencies */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 h2 {
