@@ -62,14 +62,14 @@ function trackSocialClicks() {
             const platform = this.getAttribute('aria-label')?.toLowerCase() || 'unknown';
             const href = this.getAttribute('href');
             
-            // Send tracking event to Google Analytics if available
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'social_click', {
-                    'social_network': platform,
-                    'social_action': 'click',
-                    'social_target': href
-                });
-            }
+            // Google Analytics tracking disabled
+            // if (typeof gtag !== 'undefined') {
+            //     gtag('event', 'social_click', {
+            //         'social_network': platform,
+            //         'social_action': 'click',
+            //         'social_target': href
+            //     });
+            // }
             
             // Console log for debugging
             console.log(`Social click tracked: ${platform} - ${href}`);

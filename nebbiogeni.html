@@ -40,18 +40,42 @@
     <link rel="alternate" hreflang="x-default" href="https://www.fbtotalsecurity.com/nebbiogeni.html">
     
     <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics temporarily disabled to prevent net::ERR_ABORTED errors -->
+    <!-- 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3KTWNJ5CQ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       
-      gtag('config', 'G-K3KTWNJ5CQ');
+      gtag('config', 'G-K3KTWNJ5CQ', {
+        send_page_view: false,
+        transport_type: 'beacon',
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false,
+        anonymize_ip: true,
+        cookie_flags: 'SameSite=None;Secure'
+      });
+      
+      // Send initial page view manually
+      gtag('event', 'page_view', {
+        page_title: document.title,
+        page_location: window.location.href
+      });
+    </script>
+    -->
+    
+    <!-- Placeholder for analytics - can be re-enabled when needed -->
+    <script>
+      // Stub gtag function to prevent errors in other scripts
+      window.gtag = window.gtag || function() {
+        console.log('Analytics disabled - gtag call:', arguments);
+      };
     </script>
     
     <!-- Fonts -->
     <!-- Resource Hints for Performance -->
-    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <!-- <link rel="dns-prefetch" href="//www.google-analytics.com"> -->
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
