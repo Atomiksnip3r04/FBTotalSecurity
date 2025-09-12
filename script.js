@@ -10,25 +10,26 @@ document.addEventListener('DOMContentLoaded', function() {
     initLanguageSelector();
 });
 
-// Mobile Menu Functionality
+// Mobile Menu Functionality - Optimized with cached DOM elements
 function initMobileMenu() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
+    const body = document.body; // Cache body element
     
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', function() {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
+            body.classList.toggle('menu-open');
         });
         
-        // Close menu when clicking on a link
+        // Close menu when clicking on a link - cache nav links
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
+                body.classList.remove('menu-open');
             });
         });
         
@@ -37,7 +38,7 @@ function initMobileMenu() {
             if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
+                body.classList.remove('menu-open');
             }
         });
     }
@@ -99,10 +100,16 @@ function initSmoothScrolling() {
     });
 }
 
-// Update Active Navigation Link
+// Update Active Navigation Link - Optimized with cached nav links
+let cachedNavLinksForUpdate = null;
+
 function updateActiveNavLink(targetId) {
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
+    // Cache nav links on first call to avoid repeated DOM queries
+    if (!cachedNavLinksForUpdate) {
+        cachedNavLinksForUpdate = document.querySelectorAll('.nav-link');
+    }
+    
+    cachedNavLinksForUpdate.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === targetId) {
             link.classList.add('active');
@@ -144,8 +151,9 @@ function initHeaderScroll() {
         }
     }, { passive: true });
     
-    // Cache section positions and update them only on resize
+    // Cache section positions and navigation links
     let sectionPositions = [];
+    let cachedNavLinks = [];
     
     function cacheSectionPositions() {
         // Batch all DOM reads in a single frame to prevent forced reflows
@@ -163,6 +171,9 @@ function initHeaderScroll() {
                     bottom: rect.top + scrollTop + rect.height - headerHeight - 50
                 };
             });
+            
+            // Cache navigation links to avoid repeated DOM queries
+            cachedNavLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
         });
     }
     
@@ -170,7 +181,7 @@ function initHeaderScroll() {
     cacheSectionPositions();
     window.addEventListener('resize', debounce(cacheSectionPositions, 250));
     
-    // Throttled active section update
+    // Optimized active section update with cached nav links
     const throttledUpdateActiveSection = throttle(() => {
         const scrollTop = window.pageYOffset;
         let currentSection = '';
@@ -182,9 +193,8 @@ function initHeaderScroll() {
             }
         }
         
-        if (currentSection) {
-            const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
-            navLinks.forEach(link => {
+        if (currentSection && cachedNavLinks.length > 0) {
+            cachedNavLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href') === `#${currentSection}`) {
                     link.classList.add('active');
