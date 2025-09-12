@@ -972,7 +972,7 @@ a {
 }
 
 .feature-large-image {
-    width: 200px;
+    width: 160px;
     height: auto;
     max-width: 100%;
     object-fit: contain;
@@ -990,7 +990,7 @@ a {
     }
     
     .feature-large-image {
-        width: 150px;
+        width: 100px;
     }
 }
 
