@@ -1,8 +1,8 @@
-# Franco Di Benedetto - Sito Web Sistemi di Sicurezza
+# FB Total Security - Sito Web Sistemi di Sicurezza
 
 ## Descrizione
 
-Sito web moderno e professionale per Franco Di Benedetto, agente plurimandatario specializzato in sistemi di sicurezza. Il sito presenta quattro aree di specializzazione principali con design dedicato e ottimizzazione SEO completa.
+Sito web moderno e professionale per FB Total Security, agente plurimandatario specializzato in sistemi di sicurezza. Il sito presenta quattro aree di specializzazione principali con design dedicato e ottimizzazione SEO completa.
 
 ## Caratteristiche Principali
 
@@ -91,7 +91,7 @@ sito_franco_trae/
 - serramenti blindati
 - videosorveglianza
 - allarmi
-- Franco Di Benedetto
+- FB Total Security
 
 ### Secondarie
 - agente plurimandatario sicurezza
@@ -223,7 +223,7 @@ Aggiorna le informazioni di contatto in:
 
 ## Licenza
 
-Questo progetto è sviluppato per Franco Di Benedetto - Sistemi di Sicurezza.
+Questo progetto è sviluppato per FB Total Security - Sistemi di Sicurezza.
 Tutti i diritti riservati © 2024.
 
 ## Contatti Sviluppo

@@ -604,22 +604,19 @@ const translations = {
         'nebbiogeni-hero-cta2': 'Richiedi Preventivo',
         'nebbiogeni-tech-title': 'Tecnologia Nebbiogeni Avanzata',
         'nebbiogeni-tech-description': 'I nostri sistemi nebbiogeni rappresentano la frontiera più avanzata nella protezione antifurto. In caso di intrusione, il sistema rilascia istantaneamente una densa nebbia che riduce la visibilità a zero, costringendo i malintenzionati ad abbandonare immediatamente i locali.',
-        'nebbiogeni-feature-1': 'NEBBIOGENO ANTINTRUSIONE certificato EN 50131-8:2019',
-        'nebbiogeni-feature-2': 'AVVIO RAPIDO (erogazione nebbia in pochi secondi)',
-        'nebbiogeni-feature-3': 'PROTEZIONE VOLUMETRICA',
-        'nebbiogeni-feature-4': 'FLUIDO ATOSSICO e INNOCUO (certificato e senza residui)',
-        'nebbiogeni-feature-5': 'SISTEMI ANTIMANOMISSIONE',
-        'nebbiogeni-feature-6': 'COLLEGABILE A SISTEMI DI ALLARME',
-        'nebbiogeni-feature-7': 'APP DEDICATA PER GESTIONE DA REMOTO',
-        'nebbiogeni-feature-8': 'BATTERIA BACKUP',
-        'nebbiogeni-feature-9': 'MODULABILE per piccoli/grandi ambienti',
-        'nebbiogeni-feature-10': 'UGELLI ORIENTABILI',
-        'nebbiogeni-feature-11': 'INSTALLAZIONE SEMPLIFICATA',
-        'nebbiogeni-feature-12': 'TECNOLOGIA BREVETTATA (caldaia layer, pompa Fog Storm)',
-        'nebbiogeni-feature-13': 'SUPPORTO PRE E POST-VENDITA',
+        'nebbiogeni-feature-1': 'Nebbiogeno antintrusione certificato EN 50131-8:2019',
+        'nebbiogeni-feature-2': 'Avvio rapido (erogazione nebbia in pochi secondi)',
+        'nebbiogeni-feature-3': 'Protezione volumetrica',
+        'nebbiogeni-feature-4': 'Fluido atossico e innocuo (certificato e senza residui)',
+        'nebbiogeni-feature-5': 'Sistemi antimanomissione',
         'nebbiogeni-feature-6': 'Manutenzione programmata inclusa',
         'nebbiogeni-feature-7': 'Certificazioni CE e conformità normative',
-        'nebbiogeni-feature-8': 'Garanzia estesa fino a 5 anni',
+        'nebbiogeni-feature-8': 'Garanzia estesa fino a 2 anni',
+        'nebbiogeni-feature-9': 'Modulabile per piccoli/grandi ambienti',
+        'nebbiogeni-feature-10': 'Ugelli orientabili',
+        'nebbiogeni-feature-11': 'Installazione semplificata',
+        'nebbiogeni-feature-12': 'Tecnologia brevettata (caldaia layer, pompa FOG STORM)',
+        'nebbiogeni-feature-13': 'Supporto pre e post-vendita',
         'nebbiogeni-cta-vantaggi': 'Vantaggi',
         'nebbiogeni-cta-preventivo': 'Preventivo Gratuito',
         'nebbiogeni-why-title': 'Perché Scegliere i Nebbiogeni',
@@ -669,7 +666,7 @@ const translations = {
         'nebbiogeni-partner-info-desc': 'UR Fog è un\'azienda leader mondiale nel mercato dei sistemi di sicurezza nebbiogeni. I loro sistemi bloccano i ladri in pochi secondi, proteggendo da furti in negozi, aziende, case e banche.',
         'nebbiogeni-partner-services-title': 'Servizi e Innovazione',
         'nebbiogeni-contact-title': 'Richiedi Informazioni',
-        'nebbiogeni-contact-description': 'Contattaci per una consulenza gratuita sui sistemi nebbiogeni. I nostri esperti valuteranno le tue esigenze e ti proporranno la soluzione più adatta.',
+        'nebbiogeni-contact-description': 'Contattaci per una consulenza completamente gratuita sui sistemi nebbiogeni. I nostri esperti valuteranno le tue esigenze e ti proporranno la soluzione più adatta. Verrai ricontattato telefonicamente da uno dei nostri operatori il più presto possibile.',
         
         // Serramenti Page
         'serramenti-hero-title': 'Serramenti di Sicurezza Blindati',
@@ -720,7 +717,7 @@ const translations = {
         'serramenti-partner-service-4': 'Assistenza tecnica specializzata',
         'serramenti-partner-service-5': 'Garanzia estesa su tutti i prodotti',
         'serramenti-contact-title': 'Richiedi Informazioni',
-        'serramenti-contact-description': 'Contattaci per una consulenza gratuita sui serramenti blindati. I nostri esperti valuteranno le tue esigenze e ti proporranno la soluzione più adatta.',
+        'serramenti-contact-description': 'Contattaci per una consulenza completamente gratuita sui serramenti blindati. I nostri esperti valuteranno le tue esigenze e ti proporranno la soluzione più adatta. Verrai ricontattato telefonicamente da uno dei nostri operatori il più presto possibile.',
         'serramenti-form-name': 'Nome e Cognome',
         'serramenti-form-email': 'Email',
         'serramenti-form-phone': 'Telefono',
@@ -788,7 +785,7 @@ const translations = {
         'sorveglianza-partner-service-4': 'Supporto tecnico specializzato 24/7',
         'sorveglianza-partner-service-5': 'Garanzia estesa su tutti i prodotti',
         'sorveglianza-contact-title': 'Richiedi Informazioni',
-        'sorveglianza-contact-description': 'Contattaci per una consulenza gratuita sui sistemi di videosorveglianza. I nostri esperti valuteranno le tue esigenze e ti proporranno la soluzione più adatta.',
+        'sorveglianza-contact-description': 'Contattaci per una consulenza completamente gratuita sui sistemi di videosorveglianza. I nostri esperti valuteranno le tue esigenze e ti proporranno la soluzione più adatta. Verrai ricontattato telefonicamente da uno dei nostri operatori il più presto possibile.',
         'sorveglianza-form-name': 'Nome e Cognome',
         'sorveglianza-form-email': 'Email',
         'sorveglianza-form-phone': 'Telefono',
@@ -832,14 +829,15 @@ const translations = {
         
         // Contact Section
         'contact-title': 'Contatta FB Total Security',
-        'contact-subtitle': 'Siamo qui per progettare insieme la tua sicurezza ideale',
+        'contact-subtitle': 'Richiedi una consulenza completamente gratuita per valutare le tue esigenze di sicurezza. Sopralluogo e preventivo senza impegno. Verrai ricontattato telefonicamente da uno dei nostri operatori il più presto possibile.',
+        'form-contact-description': 'Richiedi una consulenza completamente gratuita per valutare le tue esigenze di sicurezza. Sopralluogo e preventivo senza impegno. Verrai ricontattato telefonicamente da uno dei nostri operatori il più presto possibile.',
         'contact-phone-label': 'Telefono',
         'contact-email-label': 'Email',
         'contact-area-label': 'Zona di Servizio',
         'contact-area-text': 'Milano e provincia e Monza e Brianza e provincia',
         'contact-name': 'Nome e Cognome',
         'contact-email': 'Email',
-        'contact-phone': 'Telefono',
+
         'contact-service': 'Servizio di Interesse',
         'contact-service-option-1': 'Sistema Nebbiogeni',
         'contact-service-option-2': 'Serramenti Blindati',
@@ -855,7 +853,7 @@ const translations = {
         'form-title': 'Richiedi Informazioni',
         'form-name-placeholder': 'Nome e Cognome',
         'form-email-placeholder': 'Email',
-        'form-phone-placeholder': 'Telefono',
+
         'form-service-default': 'Seleziona il servizio di interesse',
         'form-service-nebbiogeni': 'Sistemi Nebbiogeni',
         'form-service-serramenti': 'Serramenti di Sicurezza',
@@ -942,7 +940,7 @@ const translations = {
         'allarmi-partner-service-4': 'Assistenza tecnica specializzata 24/7',
         'allarmi-partner-service-5': 'Garanzia estesa su tutti i prodotti',
         'allarmi-contact-title': 'Richiedi Informazioni',
-        'allarmi-contact-description': 'Contattaci per una consulenza gratuita sui sistemi di allarme. I nostri esperti valuteranno le tue esigenze e ti proporranno la soluzione più adatta.',
+        'allarmi-contact-description': 'Contattaci per una consulenza completamente gratuita sui sistemi di allarme. I nostri esperti valuteranno le tue esigenze e ti proporranno la soluzione più adatta. Verrai ricontattato telefonicamente da uno dei nostri operatori il più presto possibile.',
         'allarmi-partner-feature-5': 'Soluzioni Personalizzate',
         'allarmi-partnership-title': 'Partnership Premium',
         'allarmi-partnership-desc': 'Collaboriamo con i leader del settore per offrirti le migliori soluzioni di sicurezza',
@@ -1001,23 +999,23 @@ const translations = {
         'allarmi-installation-6': 'Certificazione di conformità',
         'allarmi-installation-7': 'Assistenza post-vendita',
         'allarmi-installation-8': 'Manutenzione programmata',
-        'contact-description': 'Contattaci per una consulenza gratuita sui sistemi di allarme. I nostri esperti valuteranno le tue esigenze e ti proporranno la soluzione antifurto più adatta.',
-        'contact-phone-title': 'Telefono',
+        'contact-description': 'Contattaci per una consulenza completamente gratuita sui sistemi di allarme. I nostri esperti valuteranno le tue esigenze e ti proporranno la soluzione antifurto più adatta. Verrai ricontattato telefonicamente da uno dei nostri operatori il più presto possibile.',
+
         'contact-email-title': 'Email',
         'contact-address-title': 'Indirizzo',
-        'contact-hours-title': 'Orari',
-        'contact-schedule': 'Lun-Ven: 8:00-18:00<br>Sab: 9:00-13:00',
+
+
         'form-name': 'Nome e Cognome',
         'form-email': 'Email',
-        'form-phone': 'Telefono',
+
         'form-message': 'Messaggio',
         'form-privacy': 'Accetto il trattamento dei dati personali secondo i <a href="termini-condizioni.html" target="_blank" style="color: #4caf50; text-decoration: underline;">Termini e Condizioni</a>',
         'form-submit': 'Invia Richiesta',
-        'footer-name': 'Franco Di Benedetto',
-        'footer-phone': '📞 +39 06 123456789',
+        'footer-name': 'FB Total Security',
+
         'footer-email': '📧 postmaster@fbtotalsecurity.com',
         'footer-address': '📍 Corso Sempione, Milano (MI)',
-        'footer-hours': '🕒 Lun-Ven: 8:00-18:00',
+
         'footer-service-area-title': 'Area di Servizio',
         'footer-service-area-location': 'Milano e provincia e Monza e Brianza e provincia',
         'footer-service-installation': 'Installazione',
@@ -1102,7 +1100,7 @@ const translations = {
         'sorveglianza-partner-service-6': '<strong>Analisi del rischio:</strong> consulenti di sicurezza CIVIS propongono soluzioni dopo un\'attenta analisi del rischio.',
         'sorveglianza-partner-service-7': '<strong>Tecnologia avanzata e esperienza solida:</strong> combinazione di tecnologia all\'avanguardia e professionisti esperti.',
         'sorveglianza-partner-service-8': '<strong>Adattamento sistemi esistenti:</strong> possibilità di collegare sistemi di allarme già esistenti alla Centrale Operativa CIVIS.',
-        'sorveglianza-contact-phone': 'Telefono',
+
         'sorveglianza-contact-email': 'Email',
         
         // Chi Siamo page
@@ -1165,7 +1163,7 @@ const translations = {
         
         // Contact section
         'chi-siamo-contact-title': 'Contatta FB Total Security',
-        'chi-siamo-contact-desc': 'Richiedi una consulenza gratuita per valutare le tue esigenze di sicurezza. Sopralluogo e preventivo senza impegno.',
+        'chi-siamo-contact-desc': 'Richiedi una consulenza completamente gratuita per valutare le tue esigenze di sicurezza. Sopralluogo e preventivo senza impegno. Verrai ricontattato telefonicamente da uno dei nostri operatori il più presto possibile.',
         'chi-siamo-service-area-title': 'Zona di Servizio',
         'chi-siamo-service-area-text': 'Milano e provincia e Monza e Brianza e provincia',
         
@@ -1199,11 +1197,11 @@ const translations = {
         
         // Missing sorveglianza contact and form translations
         'sorveglianza-contact-address': 'Indirizzo',
-        'sorveglianza-contact-hours': 'Orari',
-        'sorveglianza-contact-schedule': 'Lun-Ven: 8:00-18:00<br>Sab: 9:00-13:00',
+
+
         'contact-form-name': 'Nome e Cognome',
         'contact-form-email': 'Email',
-        'contact-form-phone': 'Telefono',
+
         'contact-form-message': 'Messaggio',
         'contact-form-privacy': 'Accetto il trattamento dei dati personali secondo i <a href="termini-condizioni.html" target="_blank" style="color: #4caf50; text-decoration: underline;">Termini e Condizioni</a>',
         'contact-form-submit': 'Invia Richiesta',
@@ -1288,10 +1286,14 @@ const translations = {
         'footer-installation': 'Installazione',
         'footer-maintenance': 'Manutenzione',
         'footer-support': 'Assistenza 24/7',
-        'page-title': 'Nebbiogeni - Sistemi Antifurto | Milano',
-        'page-description': 'Sistemi nebbiogeni professionali per la protezione antifurto. Nebulizzazione istantanea che blocca i ladri e protegge i tuoi beni. Installazione e manutenzione a Milano.',
-        'og-title': 'Nebbiogeni - Sistemi di Nebulizzazione Antifurto',
-        'og-description': 'Sistemi nebbiogeni professionali per la protezione antifurto. Nebulizzazione istantanea che blocca i ladri.',
+        'page-title': 'Sistemi di Sicurezza e Antifurto | FB Total Security Milano',
+        'page-description': 'FB Total Security offre sistemi di sicurezza avanzati: allarmi, videosorveglianza, nebbiogeni e serramenti blindati. Protezione completa per casa e azienda a Milano.',
+        'nebbiogeni-page-title': 'Sistemi Nebbiogeni Professionali - Protezione Antifurto Istantanea | FB Total Security Milano',
+        'nebbiogeni-page-description': 'Scopri i sistemi nebbiogeni UR Fog: tecnologia avanzata di nebulizzazione antifurto che riduce la visibilità a zero in 10 secondi. Protezione certificata per negozi, uffici e abitazioni a Milano. Consulenza gratuita.',
+        'og-title': 'Sistemi di Sicurezza e Antifurto | FB Total Security Milano',
+        'og-description': 'FB Total Security offre sistemi di sicurezza avanzati: allarmi, videosorveglianza, nebbiogeni e serramenti blindati. Protezione completa per casa e azienda a Milano.',
+        'nebbiogeni-og-title': 'Sistemi Nebbiogeni UR Fog - Protezione Antifurto Avanzata',
+        'nebbiogeni-og-description': 'Tecnologia nebbiogeni che riduce la visibilità a zero in 10 secondi. Protezione certificata per la tua attività.',
         'btn-discover': 'Scopri di Più',
         'btn-quote': 'Richiedi Preventivo',
         'security-title': 'Sicurezza Attiva di Nuova Generazione',
@@ -1304,7 +1306,7 @@ const translations = {
         'feature-remote': 'Controllo remoto via smartphone',
         'feature-maintenance': 'Manutenzione programmata inclusa',
         'feature-certifications': 'Certificazioni CE e conformità normative',
-        'feature-warranty': 'Garanzia estesa fino a 5 anni',
+        'feature-warranty': 'Garanzia estesa fino a 2 anni',
         'btn-advantages': 'Vantaggi',
         'btn-free-quote': 'Preventivo Gratuito',
         'partner-urfog-title': 'URfog',
@@ -1347,8 +1349,7 @@ const translations = {
         'slide2-desc': 'Sistemi all\'avanguardia per la massima protezione',
         'btn-prev': 'Precedente',
         'btn-next': 'Successivo',
-        'slide-1': 'Slide 1',
-        'slide-2': 'Slide 2',
+
         'applications-title': 'Applicazioni Ideali',
         'applications-desc': 'I sistemi nebbiogeni sono perfetti per una vasta gamma di ambienti',
         'app-shops': 'Negozi e centri commerciali',
@@ -1373,15 +1374,15 @@ const translations = {
         'partner-feature-6': 'Controllo remoto via smartphone',
         'partner-feature-7': 'Manutenzione programmata inclusa',
         'partner-feature-8': 'Certificazioni CE e conformità normative',
-        'partner-feature-9': 'Garanzia estesa fino a 5 anni',
+        'partner-feature-9': 'Garanzia estesa fino a 2 anni',
         'partner-feature-10': 'Supporto tecnico specializzato 24/7',
         'contact-info-title': 'Informazioni di Contatto',
         'contact-info-desc': 'Contattaci per una consulenza personalizzata sui nostri sistemi di sicurezza',
-        'index-meta-title': 'Franco Di Benedetto - Sistemi Sicurezza | Milano',
+        'index-meta-title': 'FB Total Security - Sistemi Sicurezza | Milano',
         'index-meta-description': 'Sistemi di sicurezza professionali: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Protezione completa per casa e azienda a Milano.',
-        'index-og-title': 'Franco Di Benedetto - Sistemi di Sicurezza',
+        'index-og-title': 'FB Total Security - Sistemi di Sicurezza',
         'index-og-description': 'Soluzioni di sicurezza avanzate per la protezione di casa e azienda',
-        'index-twitter-title': 'Franco Di Benedetto - Sistemi di Sicurezza',
+        'index-twitter-title': 'FB Total Security - Sistemi di Sicurezza',
         'index-twitter-description': 'Sistemi di sicurezza professionali a Milano',
         'nebbiogeni-section-title': 'Sistemi Nebbiogeni',
         'nebbiogeni-section-desc': 'Protezione istantanea con tecnologia nebbiogena avanzata',
@@ -1465,7 +1466,7 @@ const translations = {
         'footer-company-3': 'Termini e Condizioni',
         'footer-contacts-title': 'Contatti',
         'footer-location': '📍 Milano e Provincia',
-        'footer-phone': '📞 +39 XXX XXX XXXX',
+
         'footer-email': '✉️ postmaster@fbtotalsecurity.com',
         'footer-copyright': '© 2024 FB Total Security. Tutti i diritti riservati.'
     },
@@ -1584,17 +1585,14 @@ const translations = {
         'nebbiogeni-feature-3': 'Volumetric protection',
         'nebbiogeni-feature-4': 'Non-toxic and harmless fluid (certified and residue-free)',
         'nebbiogeni-feature-5': 'Anti-tampering systems',
-        'nebbiogeni-feature-6': 'Connectable to alarm systems',
-        'nebbiogeni-feature-7': 'Dedicated app for remote management',
-        'nebbiogeni-feature-8': 'Battery backup',
+        'nebbiogeni-feature-6': 'Scheduled maintenance included',
+        'nebbiogeni-feature-7': 'CE certifications and regulatory compliance',
+        'nebbiogeni-feature-8': 'Extended warranty up to 2 years',
         'nebbiogeni-feature-9': 'Modular for small/large environments',
         'nebbiogeni-feature-10': 'Adjustable nozzles',
         'nebbiogeni-feature-11': 'Simplified installation',
-        'nebbiogeni-feature-12': 'Patented technology (layer boiler, Fog Storm pump)',
+        'nebbiogeni-feature-12': 'Patented technology (layer boiler, FOG STORM pump)',
         'nebbiogeni-feature-13': 'Pre and post-sales support',
-        'nebbiogeni-feature-6': 'Scheduled maintenance included',
-        'nebbiogeni-feature-7': 'CE certifications and regulatory compliance',
-        'nebbiogeni-feature-8': 'Extended warranty up to 5 years',
         'nebbiogeni-cta-vantaggi': 'Advantages',
         'nebbiogeni-cta-preventivo': 'Free Quote',
         'nebbiogeni-why-title': 'Why Choose Fog Systems',
@@ -1644,7 +1642,7 @@ const translations = {
         'nebbiogeni-partner-info-desc': 'UR Fog is a world-leading company in the fog security systems market. Their systems stop thieves in seconds, protecting from theft in shops, businesses, homes and banks.',
         'nebbiogeni-partner-services-title': 'Services and Innovation',
         'nebbiogeni-contact-title': 'Request Information',
-        'nebbiogeni-contact-description': 'Contact us for a free consultation on fog systems. Our experts will evaluate your needs and propose the most suitable solution.',
+        'nebbiogeni-contact-description': 'Contact us for a completely free consultation on fog systems. Our experts will evaluate your needs and propose the most suitable solution. You will be contacted by phone by one of our operators as soon as possible.',
         
         // Serramenti Page
         'serramenti-hero-title': 'Armored Security Doors & Windows',
@@ -1695,7 +1693,7 @@ const translations = {
         'serramenti-partner-service-4': 'Specialized technical assistance',
         'serramenti-partner-service-5': 'Extended warranty on all products',
         'serramenti-contact-title': 'Request Information',
-        'serramenti-contact-description': 'Contact us for a free consultation on armored doors and windows. Our experts will evaluate your needs and propose the most suitable solution.',
+        'serramenti-contact-description': 'Contact us for a completely free consultation on armored doors and windows. Our experts will evaluate your needs and propose the most suitable solution. You will be contacted by phone by one of our operators as soon as possible.',
         'serramenti-form-name': 'Full Name',
         'serramenti-form-email': 'Email',
         'serramenti-form-phone': 'Phone',
@@ -1739,14 +1737,14 @@ const translations = {
         
         // Contact Section
         'contact-title': 'Contact FB Total Security',
-        'contact-subtitle': 'We are here to design your ideal security together',
+        'contact-subtitle': 'Request a completely free consultation to evaluate your security needs. Site inspection and quote without obligation. You will be contacted by phone by one of our operators as soon as possible.',
         'contact-phone-label': 'Phone',
         'contact-email-label': 'Email',
         'contact-area-label': 'Service Area',
         'contact-area-text': 'Milan and province and Monza and Brianza and province',
         'contact-name': 'Full Name',
         'contact-email': 'Email',
-        'contact-phone': 'Phone',
+
         'contact-service': 'Service of Interest',
         'contact-service-option-1': 'Fog Security System',
         'contact-service-option-2': 'Armored Doors',
@@ -1762,7 +1760,7 @@ const translations = {
         'form-title': 'Request Information',
         'form-name-placeholder': 'Name and Surname',
         'form-email-placeholder': 'Email',
-        'form-phone-placeholder': 'Phone',
+
         'form-service-default': 'Select the service of interest',
         'form-service-nebbiogeni': 'Fog Systems',
         'form-service-serramenti': 'Security Doors & Windows',
@@ -1849,7 +1847,7 @@ const translations = {
         'sorveglianza-partner-service-4': 'Specialized 24/7 technical support',
         'sorveglianza-partner-service-5': 'Extended warranty on all products',
         'sorveglianza-contact-title': 'Request Information',
-        'sorveglianza-contact-description': 'Contact us for a free consultation on video surveillance systems. Our experts will evaluate your needs and propose the most suitable solution.',
+        'sorveglianza-contact-description': 'Contact us for a completely free consultation on video surveillance systems. Our experts will evaluate your needs and propose the most suitable solution. You will be contacted by phone by one of our operators as soon as possible.',
         'sorveglianza-form-name': 'Full Name',
         'sorveglianza-form-email': 'Email',
         'sorveglianza-form-phone': 'Phone',
@@ -1917,7 +1915,7 @@ const translations = {
         'allarmi-partner-service-4': 'Specialized 24/7 technical support',
         'allarmi-partner-service-5': 'Extended warranty on all products',
         'allarmi-contact-title': 'Request Information',
-        'allarmi-contact-description': 'Contact us for a free consultation on alarm systems. Our experts will evaluate your needs and propose the most suitable solution.',
+        'allarmi-contact-description': 'Contact us for a completely free consultation on alarm systems. Our experts will evaluate your needs and propose the most suitable solution. You will be contacted by phone by one of our operators as soon as possible.',
         'allarmi-form-name': 'Full Name',
         'allarmi-form-email': 'Email',
         'allarmi-form-phone': 'Phone',
@@ -2067,23 +2065,23 @@ const translations = {
         'allarmi-installation-6': 'Compliance certification',
         'allarmi-installation-7': 'After-sales support',
         'allarmi-installation-8': 'Scheduled maintenance',
-        'contact-description': 'Contact us for a free consultation on alarm systems. Our experts will evaluate your needs and propose the most suitable anti-theft solution.',
-        'contact-phone-title': 'Phone',
+        'contact-description': 'Contact us for a completely free consultation on alarm systems. Our experts will evaluate your needs and propose the most suitable anti-theft solution. You will be contacted by phone by one of our operators as soon as possible.',
+
         'contact-email-title': 'Email',
         'contact-address-title': 'Address',
-        'contact-hours-title': 'Hours',
-        'contact-schedule': 'Mon-Fri: 8:00-18:00<br>Sat: 9:00-13:00',
+
+
         'form-name': 'Full Name',
         'form-email': 'Email',
-        'form-phone': 'Phone',
+
         'form-message': 'Message',
         'form-privacy': 'I accept the processing of personal data according to the <a href="termini-condizioni.html" target="_blank" style="color: #4caf50; text-decoration: underline;">Terms and Conditions</a>',
         'form-submit': 'Send Request',
-        'footer-name': 'Franco Di Benedetto',
-        'footer-phone': '📞 +39 06 123456789',
+        'footer-name': 'FB Total Security',
+
         'footer-email': '📧 postmaster@fbtotalsecurity.com',
         'footer-address': '📍 Corso Sempione, Milan (MI)',
-        'footer-hours': '🕒 Mon-Fri: 8:00-18:00',
+
         'footer-service-area-title': 'Service Area',
         'footer-service-area-location': 'Milan and province and Monza and Brianza and province',
         'footer-service-installation': 'Installation',
@@ -2168,14 +2166,14 @@ const translations = {
         'sorveglianza-partner-service-6': '<strong>Risk analysis:</strong> CIVIS security consultants propose solutions after careful risk analysis.',
         'sorveglianza-partner-service-7': '<strong>Advanced technology and solid experience:</strong> combination of cutting-edge technology and experienced professionals.',
         'sorveglianza-partner-service-8': '<strong>Existing systems adaptation:</strong> possibility to connect existing alarm systems to the CIVIS Operations Center.',
-        'sorveglianza-contact-phone': 'Phone',
+
         'sorveglianza-contact-email': 'Email',
         'sorveglianza-contact-address': 'Address',
         'sorveglianza-contact-hours': 'Hours',
         'sorveglianza-contact-schedule': 'Mon-Fri: 8:00-18:00<br>Sat: 9:00-13:00',
         'contact-form-name': 'Full Name',
         'contact-form-email': 'Email',
-        'contact-form-phone': 'Phone',
+
         'contact-form-message': 'Message',
         'contact-form-privacy': 'I accept the processing of personal data according to the <a href="termini-condizioni.html" target="_blank" style="color: #4caf50; text-decoration: underline;">Terms and Conditions</a>',
         'contact-form-submit': 'Send Request',
@@ -2260,10 +2258,14 @@ const translations = {
         'footer-installation': 'Installation',
         'footer-maintenance': 'Maintenance',
         'footer-support': '24/7 Support',
-        'page-title': 'Fog Systems - Anti-theft Protection | Milan',
-        'page-description': 'Professional fog systems for anti-theft protection. Instant fogging that stops thieves and protects your assets. Installation and maintenance in Milan.',
-        'og-title': 'Fog Systems - Anti-theft Fogging Systems',
-        'og-description': 'Professional fog systems for anti-theft protection. Instant fogging that stops thieves.',
+        'page-title': 'Security and Alarm Systems | FB Total Security Milan',
+        'page-description': 'FB Total Security offers advanced security systems: alarms, video surveillance, fog systems and armored fixtures. Complete protection for home and business in Milan.',
+        'nebbiogeni-page-title': 'Professional Fog Systems - Instant Anti-Theft Protection | FB Total Security Milan',
+        'nebbiogeni-page-description': 'Discover UR Fog systems: advanced fog technology that reduces visibility to zero in 10 seconds. Certified protection for shops, offices and homes in Milan. Free consultation.',
+        'og-title': 'Security and Alarm Systems | FB Total Security Milan',
+        'og-description': 'FB Total Security offers advanced security systems: alarms, video surveillance, fog systems and armored fixtures. Complete protection for home and business in Milan.',
+        'nebbiogeni-og-title': 'UR Fog Systems - Advanced Anti-Theft Protection',
+        'nebbiogeni-og-description': 'Fog technology that reduces visibility to zero in 10 seconds. Certified protection for your business.',
         'btn-discover': 'Discover More',
         'btn-quote': 'Request Quote',
         'security-title': 'Next Generation Active Security',
@@ -2276,7 +2278,7 @@ const translations = {
         'feature-remote': 'Remote control via smartphone',
         'feature-maintenance': 'Scheduled maintenance included',
         'feature-certifications': 'CE certifications and regulatory compliance',
-        'feature-warranty': 'Extended warranty up to 5 years',
+        'feature-warranty': 'Extended warranty up to 2 years',
         'btn-advantages': 'Advantages',
         'btn-free-quote': 'Free Quote',
         'partner-urfog-title': 'URfog',
@@ -2319,8 +2321,7 @@ const translations = {
         'slide2-desc': 'State-of-the-art systems for maximum protection',
         'btn-prev': 'Previous',
         'btn-next': 'Next',
-        'slide-1': 'Slide 1',
-        'slide-2': 'Slide 2',
+
         'applications-title': 'Ideal Applications',
         'applications-desc': 'Fog systems are perfect for a wide range of environments',
         'app-shops': 'Shops and shopping centers',
@@ -2345,15 +2346,15 @@ const translations = {
         'partner-feature-6': 'Remote control via smartphone',
         'partner-feature-7': 'Scheduled maintenance included',
         'partner-feature-8': 'CE certifications and regulatory compliance',
-        'partner-feature-9': 'Extended warranty up to 5 years',
+        'partner-feature-9': 'Extended warranty up to 2 years',
         'partner-feature-10': 'Specialized 24/7 technical support',
         'contact-info-title': 'Contact Information',
         'contact-info-desc': 'Contact us for personalized consultation on our security systems',
-        'index-meta-title': 'Franco Di Benedetto - Security Systems | Milan',
+        'index-meta-title': 'FB Total Security - Security Systems | Milan',
         'index-meta-description': 'Professional security systems: fog systems, armored doors, surveillance and alarms. Complete protection for home and business in Rome.',
-        'index-og-title': 'Franco Di Benedetto - Security Systems',
+        'index-og-title': 'FB Total Security - Security Systems',
         'index-og-description': 'Advanced security solutions for home and business protection',
-        'index-twitter-title': 'Franco Di Benedetto - Security Systems',
+        'index-twitter-title': 'FB Total Security - Security Systems',
         'index-twitter-description': 'Professional security systems in Rome',
         'nebbiogeni-section-title': 'Fog Systems',
         'nebbiogeni-section-desc': 'Instant protection with advanced fog technology',
@@ -2437,9 +2438,10 @@ const translations = {
         'footer-company-3': 'Terms and Conditions',
         'footer-contacts-title': 'Contacts',
         'footer-location': '📍 Milan and Province',
-        'footer-phone': '📞 +39 XXX XXX XXXX',
+
         'footer-email': '✉️ postmaster@fbtotalsecurity.com',
-        'footer-copyright': '© 2024 FB Total Security. All rights reserved.'
+        'footer-copyright': '© 2024 FB Total Security. All rights reserved.',
+        'form-contact-description': 'Fill out the form below to request a free quote or get more information about our security systems. Our team will contact you within 24 hours.'
     }
 };
 
@@ -2451,8 +2453,17 @@ function initLanguageSelector() {
     const currentLang = localStorage.getItem('selectedLanguage') || 'it';
     console.log('🏁 Current language:', currentLang);
     
-    // Set initial language
-    setLanguage(currentLang);
+    // Check if we're on homepage to determine initialization behavior
+    const currentPath = window.location.pathname;
+    const isHomepage = currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('index.html');
+    
+    if (isHomepage) {
+        // Set initial language for homepage (full translation)
+        setLanguage(currentLang);
+    } else {
+        // For non-homepage pages, only update language attributes without translating content
+        updatePageLanguageAttributes(currentLang);
+    }
     updateActiveLanguageButton(currentLang);
     
     // Add event listeners to language buttons
@@ -2476,8 +2487,23 @@ function setLanguage(lang) {
     let translatedCount = 0;
     let missingTranslations = [];
     
+    // Check if we're on homepage to determine if meta tags should be translated
+    const currentPath = window.location.pathname;
+    const isHomepage = currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('index.html');
+    
     elements.forEach(element => {
         const key = element.getAttribute('data-translate');
+        
+        // Skip meta tags translation if not on homepage
+        if (!isHomepage && element.tagName === 'META' && element.hasAttribute('data-translate')) {
+            return;
+        }
+        
+        // Skip title translation if not on homepage
+        if (!isHomepage && element.tagName === 'TITLE') {
+            return;
+        }
+        
         if (translations[lang] && translations[lang][key]) {
             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                 element.placeholder = translations[lang][key];
@@ -2512,8 +2538,13 @@ function setLanguage(lang) {
     // Save language preference
     localStorage.setItem('selectedLanguage', lang);
     
-    // Update meta tags for SEO
-    updateMetaTags(lang);
+    // Update meta tags for SEO (only for homepage)
+    if (isHomepage) {
+        updateMetaTags(lang);
+    } else {
+        // For non-homepage pages, only update HTML lang attribute and hreflang tags
+        updatePageLanguageAttributes(lang);
+    }
 }
 
 function updateActiveLanguageButton(lang) {
@@ -2525,6 +2556,73 @@ function updateActiveLanguageButton(lang) {
             button.classList.add('active');
         }
     });
+}
+
+function updatePageLanguageAttributes(lang) {
+    // Update HTML lang attribute
+    document.documentElement.lang = lang;
+    
+    // Update or create hreflang tags
+    const existingHreflang = document.querySelectorAll('link[hreflang]');
+    existingHreflang.forEach(link => link.remove());
+    
+    // Get current page without query parameters
+    const currentPath = window.location.pathname;
+    const baseUrl = window.location.origin;
+    
+    // Add hreflang for both languages
+    const languages = ['it', 'en'];
+    languages.forEach(language => {
+        const link = document.createElement('link');
+        link.rel = 'alternate';
+        link.hreflang = language;
+        link.href = `${baseUrl}${currentPath}`;
+        document.head.appendChild(link);
+    });
+    
+    // Add x-default hreflang (defaults to Italian)
+    const defaultLink = document.createElement('link');
+    defaultLink.rel = 'alternate';
+    defaultLink.hreflang = 'x-default';
+    defaultLink.href = `${baseUrl}${currentPath}`;
+    document.head.appendChild(defaultLink);
+    
+    // Update canonical URL
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.rel = 'canonical';
+        document.head.appendChild(canonical);
+    }
+    canonical.href = `${baseUrl}${currentPath}`;
+    
+    // Update og:locale
+    let ogLocale = document.querySelector('meta[property="og:locale"]');
+    if (!ogLocale) {
+        ogLocale = document.createElement('meta');
+        ogLocale.setAttribute('property', 'og:locale');
+        document.head.appendChild(ogLocale);
+    }
+    ogLocale.content = lang === 'en' ? 'en_US' : 'it_IT';
+    
+    // Add alternate locales
+    const existingAlternates = document.querySelectorAll('meta[property="og:locale:alternate"]');
+    existingAlternates.forEach(meta => meta.remove());
+    
+    const alternateLocale = lang === 'en' ? 'it_IT' : 'en_US';
+    const ogAlternate = document.createElement('meta');
+    ogAlternate.setAttribute('property', 'og:locale:alternate');
+    ogAlternate.content = alternateLocale;
+    document.head.appendChild(ogAlternate);
+    
+    // Update og:url
+    let ogUrl = document.querySelector('meta[property="og:url"]');
+    if (!ogUrl) {
+        ogUrl = document.createElement('meta');
+        ogUrl.setAttribute('property', 'og:url');
+        document.head.appendChild(ogUrl);
+    }
+    ogUrl.content = `${baseUrl}${currentPath}`;
 }
 
 function updateMetaTags(lang) {
@@ -2566,65 +2664,71 @@ function updateMetaTags(lang) {
     }
     canonical.href = `${baseUrl}${currentPath}`;
     
-    // Update page title based on language
-    const pageTitles = {
-        it: 'FB Total Security - Sicurezza Avanzata | Milano',
-        en: 'FB Total Security - Advanced Security | Milan'
-    };
+    // Update page title based on language (only for homepage)
+    const isHomepage = currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('index.html');
     
-    if (pageTitles[lang]) {
-        document.title = pageTitles[lang];
+    // Title is now managed directly in HTML without JavaScript override
+    
+    // Update meta description (only for homepage)
+    if (isHomepage) {
+        const metaDescriptions = {
+            it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi Milano e provincia.',
+            en: 'Specialists in advanced security systems: fog systems, armored doors, video surveillance and alarms. Over 20 years of experience. Services in Milan and province.'
+        };
+        
+        let metaDesc = document.querySelector('meta[name="description"]');
+        if (!metaDesc) {
+            metaDesc = document.createElement('meta');
+            metaDesc.name = 'description';
+            document.head.appendChild(metaDesc);
+        }
+        metaDesc.content = metaDescriptions[lang] || metaDescriptions['it'];
     }
     
-    // Update meta description
-    const metaDescriptions = {
-        it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi Milano e provincia.',
-        en: 'Specialists in advanced security systems: fog systems, armored doors, video surveillance and alarms. Over 20 years of experience. Services in Milan and province.'
-    };
-    
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (!metaDesc) {
-        metaDesc = document.createElement('meta');
-        metaDesc.name = 'description';
-        document.head.appendChild(metaDesc);
+    // Update meta keywords (only for homepage)
+    if (isHomepage) {
+        const metaKeywords = {
+            it: 'sistemi sicurezza, nebbiogeni, serramenti blindati, videosorveglianza, allarmi, Milano, sicurezza casa, antifurto',
+            en: 'security systems, fog systems, armored doors, video surveillance, alarms, Milan, home security, anti-theft'
+        };
+        
+        let metaKeys = document.querySelector('meta[name="keywords"]');
+        if (!metaKeys) {
+            metaKeys = document.createElement('meta');
+            metaKeys.name = 'keywords';
+            document.head.appendChild(metaKeys);
+        }
+        metaKeys.content = metaKeywords[lang] || metaKeywords['it'];
     }
-    metaDesc.content = metaDescriptions[lang] || metaDescriptions['it'];
     
-    // Update meta keywords
-    const metaKeywords = {
-        it: 'sistemi sicurezza, nebbiogeni, serramenti blindati, videosorveglianza, allarmi, Milano, sicurezza casa, antifurto',
-        en: 'security systems, fog systems, armored doors, video surveillance, alarms, Milan, home security, anti-theft'
-    };
-    
-    let metaKeys = document.querySelector('meta[name="keywords"]');
-    if (!metaKeys) {
-        metaKeys = document.createElement('meta');
-        metaKeys.name = 'keywords';
-        document.head.appendChild(metaKeys);
+    // Update Open Graph tags (only for homepage)
+    if (isHomepage) {
+        const ogTitles = {
+            it: 'FB Total Security - Sistemi di Sicurezza Avanzati',
+            en: 'FB Total Security - Advanced Security Systems'
+        };
+        
+        const metaDescriptions = {
+            it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi Milano e provincia.',
+            en: 'Specialists in advanced security systems: fog systems, armored doors, video surveillance and alarms. Over 20 years of experience. Services in Milan and province.'
+        };
+        
+        let ogTitle = document.querySelector('meta[property="og:title"]');
+        if (!ogTitle) {
+            ogTitle = document.createElement('meta');
+            ogTitle.setAttribute('property', 'og:title');
+            document.head.appendChild(ogTitle);
+        }
+        ogTitle.content = ogTitles[lang] || ogTitles['it'];
+        
+        let ogDesc = document.querySelector('meta[property="og:description"]');
+        if (!ogDesc) {
+            ogDesc = document.createElement('meta');
+            ogDesc.setAttribute('property', 'og:description');
+            document.head.appendChild(ogDesc);
+        }
+        ogDesc.content = metaDescriptions[lang] || metaDescriptions['it'];
     }
-    metaKeys.content = metaKeywords[lang] || metaKeywords['it'];
-    
-    // Update Open Graph tags
-    const ogTitles = {
-        it: 'FB Total Security - Sistemi di Sicurezza Avanzati',
-        en: 'FB Total Security - Advanced Security Systems'
-    };
-    
-    let ogTitle = document.querySelector('meta[property="og:title"]');
-    if (!ogTitle) {
-        ogTitle = document.createElement('meta');
-        ogTitle.setAttribute('property', 'og:title');
-        document.head.appendChild(ogTitle);
-    }
-    ogTitle.content = ogTitles[lang] || ogTitles['it'];
-    
-    let ogDesc = document.querySelector('meta[property="og:description"]');
-    if (!ogDesc) {
-        ogDesc = document.createElement('meta');
-        ogDesc.setAttribute('property', 'og:description');
-        document.head.appendChild(ogDesc);
-    }
-    ogDesc.content = metaDescriptions[lang] || metaDescriptions['it'];
     
     // Update og:locale
     let ogLocale = document.querySelector('meta[property="og:locale"]');
@@ -2654,30 +2758,42 @@ function updateMetaTags(lang) {
     }
     ogUrl.content = `${baseUrl}${currentPath}`;
     
-    // Add Twitter Card meta tags
-    let twitterCard = document.querySelector('meta[name="twitter:card"]');
-    if (!twitterCard) {
-        twitterCard = document.createElement('meta');
-        twitterCard.name = 'twitter:card';
-        twitterCard.content = 'summary_large_image';
-        document.head.appendChild(twitterCard);
+    // Add Twitter Card meta tags (only for homepage)
+    if (isHomepage) {
+        const ogTitles = {
+            it: 'FB Total Security - Sistemi di Sicurezza Avanzati',
+            en: 'FB Total Security - Advanced Security Systems'
+        };
+        
+        const metaDescriptions = {
+            it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi Milano e provincia.',
+            en: 'Specialists in advanced security systems: fog systems, armored doors, video surveillance and alarms. Over 20 years of experience. Services in Milan and province.'
+        };
+        
+        let twitterCard = document.querySelector('meta[name="twitter:card"]');
+        if (!twitterCard) {
+            twitterCard = document.createElement('meta');
+            twitterCard.name = 'twitter:card';
+            twitterCard.content = 'summary_large_image';
+            document.head.appendChild(twitterCard);
+        }
+        
+        let twitterTitle = document.querySelector('meta[name="twitter:title"]');
+        if (!twitterTitle) {
+            twitterTitle = document.createElement('meta');
+            twitterTitle.name = 'twitter:title';
+            document.head.appendChild(twitterTitle);
+        }
+        twitterTitle.content = ogTitles[lang] || ogTitles['it'];
+        
+        let twitterDesc = document.querySelector('meta[name="twitter:description"]');
+        if (!twitterDesc) {
+            twitterDesc = document.createElement('meta');
+            twitterDesc.name = 'twitter:description';
+            document.head.appendChild(twitterDesc);
+        }
+        twitterDesc.content = metaDescriptions[lang] || metaDescriptions['it'];
     }
-    
-    let twitterTitle = document.querySelector('meta[name="twitter:title"]');
-    if (!twitterTitle) {
-        twitterTitle = document.createElement('meta');
-        twitterTitle.name = 'twitter:title';
-        document.head.appendChild(twitterTitle);
-    }
-    twitterTitle.content = ogTitles[lang] || ogTitles['it'];
-    
-    let twitterDesc = document.querySelector('meta[name="twitter:description"]');
-    if (!twitterDesc) {
-        twitterDesc = document.createElement('meta');
-        twitterDesc.name = 'twitter:description';
-        document.head.appendChild(twitterDesc);
-    }
-    twitterDesc.content = metaDescriptions[lang] || metaDescriptions['it'];
 }
 
 // Add CSS for mobile menu and animations
@@ -2801,5 +2917,5 @@ window.FrancoSite = {
 };
 
 // Console welcome message
-console.log('%c🔒 Franco Di Benedetto - Sistemi di Sicurezza', 'color: #667eea; font-size: 16px; font-weight: bold;');
+console.log('%c🔒 FB Total Security - Sistemi di Sicurezza', 'color: #667eea; font-size: 16px; font-weight: bold;');
 console.log('%cSito web ottimizzato per performance e SEO', 'color: #666; font-size: 12px;');

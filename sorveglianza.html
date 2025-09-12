@@ -6,7 +6,7 @@
     <title data-translate="sorveglianza-meta-title">Videosorveglianza - Controllo e Monitoraggio | Milano</title>
     <meta name="description" content="Sistemi di videosorveglianza professionali, telecamere IP, controllo remoto. Monitoraggio 24/7 per casa e ufficio. Installazione a Milano." data-translate="sorveglianza-meta-description">
     <meta name="keywords" content="videosorveglianza, telecamere IP, sistemi controllo, monitoraggio remoto, sicurezza video, Milano">
-    <meta name="author" content="Franco Di Benedetto">
+    <meta name="author" content="FB Total Security">
     
     <!-- Open Graph -->
     <meta property="og:title" content="Videosorveglianza - Sistemi di Controllo e Monitoraggio" data-translate="sorveglianza-og-title">
@@ -15,7 +15,7 @@
     <meta property="og:url" content="https://www.fbtotalsecurity.com/sorveglianza.html">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
     
     <!-- Canonical and hreflang -->
     <link rel="canonical" href="http://localhost:8000/sorveglianza.html">
@@ -50,7 +50,7 @@
                 "postalCode": "20100",
                 "addressCountry": "IT"
             },
-            "telephone": "+39-02-1234567",
+    
             "email": "info@fbtotalsecurity.it"
         },
         "areaServed": {
@@ -123,6 +123,14 @@
             margin-top: 3rem;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Riduce il gap su mobile */
+        @media (max-width: 768px) {
+            .certification-buttons-section {
+                margin-top: 1.5rem;
+                padding-top: 1.5rem;
+            }
         }
 
         .certification-buttons-section h4 {
@@ -447,35 +455,7 @@
             <div class="service-content">
                 <div class="service-image">
                     <div class="image-placeholder">
-                        <svg class="placeholder-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="sorveglianzaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#2e7d32;stop-opacity:0.8" />
-                                    <stop offset="100%" style="stop-color:#4caf50;stop-opacity:0.6" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="400" height="300" fill="#1a1a1a"/>
-                            <!-- Telecamera principale -->
-                            <ellipse cx="200" cy="150" rx="40" ry="25" fill="#2a2a2a" stroke="#2e7d32" stroke-width="3"/>
-                            <circle cx="200" cy="150" r="15" fill="#333" stroke="#4caf50" stroke-width="2"/>
-                            <circle cx="200" cy="150" r="8" fill="#2e7d32"/>
-                            <!-- Supporto -->
-                            <rect x="190" y="175" width="20" height="15" fill="#2a2a2a" stroke="#2e7d32"/>
-                            <rect x="185" y="190" width="30" height="8" fill="#333" stroke="#4caf50"/>
-                            <!-- Campo visivo -->
-                            <path d="M 200 150 L 120 100 L 120 200 Z" fill="url(#sorveglianzaGrad)" opacity="0.3"/>
-                            <path d="M 200 150 L 280 100 L 280 200 Z" fill="url(#sorveglianzaGrad)" opacity="0.3"/>
-                            <!-- Indicatori LED -->
-                            <circle cx="185" cy="140" r="3" fill="#4caf50"/>
-                            <circle cx="215" cy="140" r="3" fill="#2e7d32"/>
-                            <!-- Linee di connessione -->
-                            <line x1="200" y1="190" x2="200" y2="220" stroke="#4caf50" stroke-width="2"/>
-                            <line x1="200" y1="220" x2="350" y2="220" stroke="#4caf50" stroke-width="2"/>
-                            <!-- Monitor -->
-                            <rect x="320" y="200" width="60" height="40" fill="#2a2a2a" stroke="#2e7d32" stroke-width="2"/>
-                            <rect x="325" y="205" width="50" height="30" fill="#333" stroke="#4caf50"/>
-                            <text x="200" y="280" text-anchor="middle" fill="#2e7d32" font-size="14" font-weight="bold">Sistema Videosorveglianza IP</text>
-                        </svg>
+                        <img src="icons/CIVIS-placeholder2.webp" alt="Tipologie di Sistemi di Videosorveglianza" class="service-main-image">
                     </div>
                 </div>
                 <div class="service-text">
@@ -572,32 +552,7 @@
                 </div>
                 <div class="service-image">
                     <div class="image-placeholder">
-                        <svg class="placeholder-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="400" height="300" fill="#1a1a1a"/>
-                            <!-- Tecnico -->
-                            <circle cx="150" cy="120" r="20" fill="#2a2a2a" stroke="#2e7d32" stroke-width="2"/>
-                            <rect x="140" y="140" width="20" height="40" fill="#333" stroke="#4caf50"/>
-                            <rect x="135" y="180" width="10" height="30" fill="#2a2a2a"/>
-                            <rect x="155" y="180" width="10" height="30" fill="#2a2a2a"/>
-                            <!-- Scala -->
-                            <rect x="100" y="100" width="8" height="100" fill="#2a2a2a" stroke="#2e7d32"/>
-                            <rect x="90" y="120" width="28" height="4" fill="#333"/>
-                            <rect x="90" y="140" width="28" height="4" fill="#333"/>
-                            <rect x="90" y="160" width="28" height="4" fill="#333"/>
-                            <!-- Telecamera in installazione -->
-                            <ellipse cx="200" cy="80" rx="25" ry="15" fill="#2a2a2a" stroke="#2e7d32" stroke-width="2"/>
-                            <circle cx="200" cy="80" r="8" fill="#4caf50"/>
-                            <!-- Cavi -->
-                            <path d="M 200 95 Q 220 110 240 120" stroke="#4caf50" stroke-width="3" fill="none"/>
-                            <path d="M 240 120 Q 260 130 280 140" stroke="#4caf50" stroke-width="3" fill="none"/>
-                            <!-- Router/NVR -->
-                            <rect x="270" y="140" width="40" height="20" fill="#2a2a2a" stroke="#2e7d32" stroke-width="2"/>
-                            <circle cx="275" cy="150" r="2" fill="#4caf50"/>
-                            <circle cx="285" cy="150" r="2" fill="#2e7d32"/>
-                            <circle cx="295" cy="150" r="2" fill="#4caf50"/>
-                            <circle cx="305" cy="150" r="2" fill="#2e7d32"/>
-                            <text x="200" y="280" text-anchor="middle" fill="#2e7d32" font-size="14" font-weight="bold">Installazione Professionale</text>
-                        </svg>
+                        <img src="icons/CIVIS-placeholder3-installazione.webp" alt="Installazione Professionale" class="service-main-image">
                     </div>
                 </div>
             </div>
@@ -637,15 +592,9 @@
             <div class="contact-content">
                 <div class="contact-info">
                     <h2 data-translate="sorveglianza-contact-title">Richiedi Informazioni</h2>
-                    <p data-translate="sorveglianza-contact-description">Contattaci per una consulenza gratuita sui sistemi di videosorveglianza. I nostri esperti valuteranno le tue esigenze e ti proporranno la soluzione più adatta.</p>
+                <p data-translate="form-contact-description">Richiedi una consulenza completamente gratuita per valutare le tue esigenze di sicurezza. Sopralluogo e preventivo senza impegno. Verrai ricontattato telefonicamente da uno dei nostri operatori il più presto possibile.</p>
                     
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div class="contact-details">
-                            <h3 data-translate="sorveglianza-contact-phone">Telefono</h3>
-                            <p><a href="tel:+390612345678">+39 06 123456789</a></p>
-                        </div>
-                    </div>
+
                     
                     <div class="contact-item">
                         <div class="contact-icon">📧</div>
@@ -663,13 +612,7 @@
                         </div>
                     </div>
                     
-                    <div class="contact-item">
-                        <div class="contact-icon">🕒</div>
-                        <div class="contact-details">
-                            <h3 data-translate="sorveglianza-contact-hours">Orari</h3>
-                            <p data-translate="sorveglianza-contact-schedule">Lun-Ven: 8:00-18:00<br>Sab: 9:00-13:00</p>
-                        </div>
-                    </div>
+
                 </div>
                 
                 <div class="contact-form">
@@ -683,12 +626,7 @@
                             <label for="email" data-translate="contact-form-email">Email</label>
                             <input type="email" id="email" name="email" required>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="telefono" data-translate="contact-form-phone">Telefono</label>
-                            <input type="tel" id="telefono" name="telefono">
-                        </div>
-                        
+
                         <div class="form-group">
                             <label for="messaggio" data-translate="contact-form-message">Messaggio</label>
                             <textarea id="messaggio" name="messaggio" rows="5" data-translate-placeholder="sorveglianza-form-placeholder" placeholder="Descrivi le tue esigenze di sicurezza..."></textarea>
@@ -711,7 +649,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 data-translate="footer-name">Franco Di Benedetto</h3>
+                    <h3 data-translate="footer-name">FB Total Security</h3>
                     <p data-translate="footer-description">Specialista in sistemi di sicurezza con oltre 20 anni di esperienza. Soluzioni professionali per la protezione di abitazioni e attività commerciali.</p>
                 </div>
                 
@@ -728,10 +666,10 @@
                 <div class="footer-section">
                     <h3 data-translate="footer-contacts-title">Contatti</h3>
                     <ul>
-                        <li data-translate="footer-phone">📞 +39 06 123456789</li>
+
                         <li data-translate="footer-email">📧 postmaster@fbtotalsecurity.com</li>
                         <li data-translate="footer-address">📍 Corso Sempione, Milano (MI)</li>
-                        <li data-translate="footer-hours">🕒 Lun-Ven: 8:00-18:00</li>
+
                     </ul>
                 </div>
                 
@@ -755,7 +693,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p data-translate="footer-copyright">&copy; 2024 Franco Di Benedetto. Tutti i diritti riservati. | P.IVA: 12345678901</p>
+                <p data-translate="footer-copyright">&copy; 2024 FB Total Security. Tutti i diritti riservati. | P.IVA: 12345678901</p>
             </div>
         </div>
     </footer>

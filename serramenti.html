@@ -6,7 +6,7 @@
     <title data-translate="serramenti-meta-title">Serramenti Sicurezza - Porte Blindate | Milano</title>
     <meta name="description" content="Serramenti di sicurezza, porte blindate e infissi antieffrazione. Massima protezione per casa e ufficio. Installazione professionale a Milano." data-translate="serramenti-meta-description">
     <meta name="keywords" content="serramenti sicurezza, porte blindate, infissi antieffrazione, serrature sicurezza, Milano">
-    <meta name="author" content="Franco Di Benedetto">
+    <meta name="author" content="FB Total Security">
     
     <!-- Open Graph -->
     <meta property="og:title" content="Serramenti di Sicurezza - Porte Blindate e Infissi" data-translate="serramenti-og-title">
@@ -15,7 +15,7 @@
     <meta property="og:url" content="https://www.fbtotalsecurity.com/serramenti.html">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
     
     <!-- Canonical and hreflang -->
     <link rel="canonical" href="http://localhost:8000/serramenti.html">
@@ -38,6 +38,14 @@
             margin-top: 3rem;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Riduce il gap su mobile */
+        @media (max-width: 768px) {
+            .certification-buttons-section {
+                margin-top: 1.5rem;
+                padding-top: 1.5rem;
+            }
         }
 
         .certification-buttons-section h4 {
@@ -124,6 +132,106 @@
             transform: translateX(5px);
         }
 
+        /* Stili Carosello Serramenti */
+        .serramenti-carousel {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            pointer-events: none;
+        }
+
+        .carousel-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            pointer-events: all;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-btn:hover {
+            background: #4caf50;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #4caf50;
+            transform: scale(1.2);
+        }
+
+        .indicator:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
         @media (max-width: 768px) {
             .certification-buttons-grid {
                 grid-template-columns: 1fr;
@@ -131,6 +239,24 @@
             
             .cert-btn {
                 padding: 1.2rem;
+            }
+
+            .serramenti-carousel {
+                max-width: 100%;
+            }
+
+            .carousel-container {
+                height: 300px;
+            }
+
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .carousel-controls {
+                padding: 0 10px;
             }
         }
     </style>
@@ -144,8 +270,8 @@
         "description": "Installazione e vendita di porte blindate, infissi antieffrazione e serramenti di sicurezza",
         "provider": {
             "@type": "Person",
-            "name": "Franco Di Benedetto",
-            "telephone": "+39 06 123456789",
+            "name": "FB Total Security",
+    
             "email": "postmaster@fbtotalsecurity.com",
             "address": {
                 "@type": "PostalAddress",
@@ -440,12 +566,39 @@
         <div class="container">
             <div class="service-content">
                 <div class="service-image">
-                    <!-- Galleria prodotti Xecur -->
-                    <div class="product-gallery">
-                        <img src="icons/XECUR-logo-carosello-homepage.webp" alt="Prodotti Xecur - Serramenti di Sicurezza" loading="lazy" class="gallery-image">
-                        <div class="gallery-overlay">
-                            <h4>Gamma Completa Xecur</h4>
-                            <p>Porte blindate, inferriate, grate e persiane di sicurezza certificate</p>
+                    <!-- Carosello Serramenti Alice -->
+                    <div class="serramenti-carousel">
+                        <div class="carousel-container">
+                            <div class="carousel-slide active">
+                                <img src="icons/AliceV1Anta.webp" alt="Alice V1 Anta - Serramento di Sicurezza" loading="lazy">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="icons/AliceV2bAnte.webp" alt="Alice V2 2 Ante - Serramento di Sicurezza" loading="lazy">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="icons/AlicePlusPignaContiaSestoRibassato.webp" alt="Alice Plus Pigna Contia Sesto Ribassato" loading="lazy">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="icons/AlicePlusAlfaTondo3Ante.webp" alt="Alice Plus Alfa Tondo 3 Ante" loading="lazy">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="icons/AliceLightAlfaTondo1.webp" alt="Alice Light Alfa Tondo 1" loading="lazy">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="icons/alicebeta.webp" alt="Alice Beta - Serramento di Sicurezza" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn prev" onclick="changeSlideSerramenti(-1)">‹</button>
+                            <button class="carousel-btn next" onclick="changeSlideSerramenti(1)">›</button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <span class="indicator active" onclick="currentSlideSerramenti(1)"></span>
+                            <span class="indicator" onclick="currentSlideSerramenti(2)"></span>
+                            <span class="indicator" onclick="currentSlideSerramenti(3)"></span>
+                            <span class="indicator" onclick="currentSlideSerramenti(4)"></span>
+                            <span class="indicator" onclick="currentSlideSerramenti(5)"></span>
+                            <span class="indicator" onclick="currentSlideSerramenti(6)"></span>
                         </div>
                     </div>
                 </div>
@@ -521,15 +674,9 @@
             <div class="contact-content">
                 <div class="contact-info">
                     <h2 data-translate="contact-title">Richiedi Informazioni</h2>
-                    <p data-translate="serramenti-contact-desc">Contattaci per una consulenza gratuita sui serramenti di sicurezza. I nostri esperti valuteranno le tue esigenze e ti proporranno la soluzione più adatta.</p>
+                <p data-translate="form-contact-description">Richiedi una consulenza completamente gratuita per valutare le tue esigenze di sicurezza. Sopralluogo e preventivo senza impegno. Verrai ricontattato telefonicamente da uno dei nostri operatori il più presto possibile.</p>
                     
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div class="contact-details">
-                            <h3 data-translate="contact-phone-title">Telefono</h3>
-                            <p><a href="tel:+390612345678">+39 06 123456789</a></p>
-                        </div>
-                    </div>
+
                     
                     <div class="contact-item">
                         <div class="contact-icon">📧</div>
@@ -547,13 +694,7 @@
                         </div>
                     </div>
                     
-                    <div class="contact-item">
-                        <div class="contact-icon">🕒</div>
-                        <div class="contact-details">
-                            <h3 data-translate="contact-hours-title">Orari</h3>
-                            <p data-translate="contact-schedule">Lun-Ven: 8:00-18:00<br>Sab: 9:00-13:00</p>
-                        </div>
-                    </div>
+
                 </div>
                 
                 <div class="contact-form">
@@ -567,9 +708,7 @@
                             <input type="email" id="email" name="email" data-translate-placeholder="form-email-placeholder" placeholder="Email" required>
                         </div>
                         
-                        <div class="form-group">
-                            <input type="tel" id="telefono" name="telefono" data-translate-placeholder="form-phone-placeholder" placeholder="Telefono">
-                        </div>
+
                         
                         <div class="form-group">
                             <select id="servizio" name="servizio">
@@ -603,7 +742,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 data-translate="footer-name">Franco Di Benedetto</h3>
+                    <h3 data-translate="footer-name">FB Total Security</h3>
                     <p data-translate="footer-description">Specialista in sistemi di sicurezza con oltre 20 anni di esperienza. Soluzioni professionali per la protezione di abitazioni e attività commerciali.</p>
                 </div>
                 
@@ -620,10 +759,10 @@
                 <div class="footer-section">
                     <h3 data-translate="footer-contacts-title">Contatti</h3>
                     <ul>
-                        <li data-translate="footer-phone">📞 +39 06 123456789</li>
+
                         <li data-translate="footer-email">📧 postmaster@fbtotalsecurity.com</li>
                         <li data-translate="footer-address">📍 Corso Sempione, Milano (MI)</li>
-                        <li data-translate="footer-hours">🕒 Lun-Ven: 8:00-18:00</li>
+
                     </ul>
                 </div>
                 
@@ -639,12 +778,86 @@
             </div>
             
             <div class="footer-bottom">
-                <p data-translate="footer-copyright">&copy; 2024 Franco Di Benedetto. Tutti i diritti riservati. | P.IVA: 12345678901</p>
+                <p data-translate="footer-copyright">&copy; 2024 FB Total Security. Tutti i diritti riservati. | P.IVA: 12345678901</p>
             </div>
         </div>
     </footer>
 
     <!-- JavaScript -->
     <script src="script.js"></script>
+    
+    <!-- Lite YouTube Embed Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const liteYTEmbeds = document.querySelectorAll('.lite-youtube-embed');
+            
+            liteYTEmbeds.forEach(function(liteYTEmbed) {
+                liteYTEmbed.addEventListener('click', function() {
+                    const videoId = this.getAttribute('data-id');
+                    const iframe = document.createElement('iframe');
+                    
+                    iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`);
+                    iframe.setAttribute('frameborder', '0');
+                    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                    iframe.setAttribute('allowfullscreen', '');
+                    iframe.setAttribute('title', this.getAttribute('data-title'));
+                    iframe.setAttribute('loading', 'lazy');
+                    
+                    // Remove the thumbnail and play button, then add the iframe
+                    this.innerHTML = '';
+                    this.appendChild(iframe);
+                    
+                    // Remove the click event after it's been triggered
+                    this.removeEventListener('click', arguments.callee);
+                });
+            });
+        });
+    </script>
+
+    <!-- JavaScript Carosello Serramenti -->
+    <script>
+        let currentSlideIndexSerramenti = 0;
+        const slidesSerramenti = document.querySelectorAll('.serramenti-carousel .carousel-slide');
+        const indicatorsSerramenti = document.querySelectorAll('.serramenti-carousel .indicator');
+        const totalSlidesSerramenti = slidesSerramenti.length;
+
+        function showSlideSerramenti(index) {
+            // Rimuovi classe active da tutti gli slide e indicatori
+            slidesSerramenti.forEach(slide => slide.classList.remove('active'));
+            indicatorsSerramenti.forEach(indicator => indicator.classList.remove('active'));
+            
+            // Aggiungi classe active allo slide e indicatore corrente
+            if (slidesSerramenti[index]) {
+                slidesSerramenti[index].classList.add('active');
+            }
+            if (indicatorsSerramenti[index]) {
+                indicatorsSerramenti[index].classList.add('active');
+            }
+        }
+
+        function changeSlideSerramenti(direction) {
+            currentSlideIndexSerramenti += direction;
+            
+            if (currentSlideIndexSerramenti >= totalSlidesSerramenti) {
+                currentSlideIndexSerramenti = 0;
+            } else if (currentSlideIndexSerramenti < 0) {
+                currentSlideIndexSerramenti = totalSlidesSerramenti - 1;
+            }
+            
+            showSlideSerramenti(currentSlideIndexSerramenti);
+        }
+
+        function currentSlideSerramenti(index) {
+            currentSlideIndexSerramenti = index - 1;
+            showSlideSerramenti(currentSlideIndexSerramenti);
+        }
+
+        // Auto-slide ogni 5 secondi
+        if (totalSlidesSerramenti > 1) {
+            setInterval(() => {
+                changeSlideSerramenti(1);
+            }, 5000);
+        }
+    </script>
 </body>
 </html>

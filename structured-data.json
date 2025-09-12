@@ -4,7 +4,7 @@
     {
       "@type": "Organization",
       "@id": "https://www.fbtotalsecurity.com/#organization",
-      "name": "Franco Di Benedetto - Sistemi di Sicurezza",
+      "name": "FB Total Security - Sistemi di Sicurezza",
       "url": "https://www.fbtotalsecurity.com",
       "logo": {
         "@type": "ImageObject",
@@ -15,7 +15,7 @@
       "description": "Agente plurimandatario specializzato in sistemi di sicurezza: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza nel settore sicurezza.",
       "founder": {
         "@type": "Person",
-        "name": "Franco Di Benedetto",
+        "name": "FB Total Security",
         "jobTitle": "Agente Plurimandatario Sicurezza"
       },
       "foundingDate": "2000",
@@ -25,7 +25,7 @@
       },
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+39-333-123-4567",
+
         "contactType": "customer service",
         "email": "postmaster@fbtotalsecurity.com",
         "availableLanguage": "Italian"
@@ -45,8 +45,8 @@
       "@type": "WebSite",
       "@id": "https://www.fbtotalsecurity.com/#website",
       "url": "https://www.fbtotalsecurity.com",
-        "name": "Franco Di Benedetto - Sistemi di Sicurezza",
-      "description": "Sito ufficiale di Franco Di Benedetto, specialista in sistemi di sicurezza: nebbiogeni, serramenti blindati, videosorveglianza e allarmi.",
+        "name": "FB Total Security - Sistemi di Sicurezza",
+        "description": "Sito ufficiale di FB Total Security, specialista in sistemi di sicurezza: nebbiogeni, serramenti blindati, videosorveglianza e allarmi.",
       "publisher": {
         "@id": "https://www.fbtotalsecurity.com/#organization"
       },
@@ -61,14 +61,14 @@
       "@type": "WebPage",
       "@id": "https://www.fbtotalsecurity.com/#webpage",
       "url": "https://www.fbtotalsecurity.com",
-        "name": "Franco Di Benedetto - Sistemi di Sicurezza | Nebbiogeni, Serramenti, Sorveglianza, Allarmi",
+        "name": "FB Total Security - Sistemi di Sicurezza | Nebbiogeni, Serramenti, Sorveglianza, Allarmi",
       "isPartOf": {
         "@id": "https://www.fbtotalsecurity.com/#website"
       },
       "about": {
         "@id": "https://www.fbtotalsecurity.com/#organization"
       },
-      "description": "Franco Di Benedetto - Agente plurimandatario specializzato in sistemi di sicurezza, nebbiogeni, serramenti blindati, sorveglianza e allarmi. Soluzioni professionali per la tua sicurezza.",
+      "description": "FB Total Security - Agente plurimandatario specializzato in sistemi di sicurezza, nebbiogeni, serramenti blindati, sorveglianza e allarmi. Soluzioni professionali per la tua sicurezza.",
       "breadcrumb": {
         "@id": "https://www.fbtotalsecurity.com/#breadcrumb"
       },
@@ -159,7 +159,7 @@
       "jobTitle": "Agente Plurimandatario Sistemi di Sicurezza",
       "description": "Specialista in sistemi di sicurezza con oltre 20 anni di esperienza. Agente plurimandatario certificato per nebbiogeni, serramenti blindati, videosorveglianza e allarmi.",
       "url": "https://www.fbtotalsecurity.com",
-      "telephone": "+39-333-123-4567",
+
       "email": "postmaster@fbtotalsecurity.com",
       "worksFor": {
         "@id": "https://www.fbtotalsecurity.com/#organization"
