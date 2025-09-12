@@ -476,7 +476,51 @@
                         </div>
                     </div>
                     <div class="service-image">
-                        <img src="icons/CIVIS-copertina.webp" alt="Sistema di Videosorveglianza CIVIS" class="service-main-image" loading="lazy">
+                        <!-- Lite YouTube Embed -->
+                        <div class="lite-youtube-embed" data-id="e60ahMosEiI" data-title="Sistema di Videosorveglianza CIVIS - Sicurezza Avanzata" aria-label="Video dimostrativo del sistema di videosorveglianza CIVIS">
+                            <img src="icons/CIVIS-copertina.webp" alt="Anteprima video sistema videosorveglianza CIVIS" class="video-thumbnail" loading="lazy" width="1280" height="720">
+                            <button type="button" class="play-btn" aria-label="Riproduci video">
+                                <svg width="68" height="48" viewBox="0 0 68 48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg>
+                            </button>
+                        </div>
+                        
+                        <!-- SEO copy attorno al video -->
+                        <div class="video-description">
+                            <p data-translate="sorveglianza-video-description">Scopri il sistema di videosorveglianza CIVIS, la soluzione professionale per la sicurezza totale. Tecnologia avanzata con risoluzione 4K, visione notturna, rilevamento intelligente e controllo remoto per proteggere efficacemente la tua proprietà. <a href="#contatti" class="text-link">Richiedi una consulenza gratuita</a>.</p>
+                            
+                            <details>
+                                <summary data-translate="video-transcription-title">Trascrizione Video</summary>
+                                <div class="video-transcript" data-translate="sorveglianza-video-transcript">
+                                    <p>Il sistema CIVIS rappresenta l'eccellenza nella videosorveglianza professionale. Con telecamere 4K ad alta risoluzione, garantisce immagini cristalline sia di giorno che di notte grazie alla tecnologia di visione notturna avanzata.</p>
+                                    <p>Il sistema include rilevamento intelligente di movimento, notifiche push istantanee e controllo remoto completo tramite app dedicata. Perfetto per abitazioni, uffici e attività commerciali.</p>
+                                </div>
+                            </details>
+                        </div>
+                        
+                        <!-- Schema.org VideoObject markup -->
+                        <script type="application/ld+json">
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "VideoObject",
+                            "name": "Sistema di Videosorveglianza CIVIS - Sicurezza Avanzata",
+                            "description": "Presentazione del sistema di videosorveglianza professionale CIVIS con tecnologia 4K, visione notturna, rilevamento intelligente e controllo remoto. Soluzione completa per la sicurezza di abitazioni, uffici e attività commerciali con monitoraggio h24 e notifiche in tempo reale",
+                            "thumbnailUrl": "https://www.fbtotalsecurity.com/icons/CIVIS-copertina.webp",
+                            "uploadDate": "2024-01-15",
+                            "duration": "PT0M6S",
+                            "embedUrl": "https://www.youtube.com/embed/e60ahMosEiI",
+                            "contentUrl": "https://www.fbtotalsecurity.com/sorveglianza.html",
+                            "publisher": {
+                                "@type": "Organization",
+                                "name": "FB Total Security",
+                                "logo": {
+                                    "@type": "ImageObject",
+                                    "url": "https://www.fbtotalsecurity.com/icons/logo_sito_franco.webp",
+                                    "width": "112",
+                                    "height": "112"
+                                }
+                            }
+                        }
+                        </script>
                     </div>
                 </div>
             </div>
@@ -502,7 +546,25 @@
                         </div>
                     </div>
                     <div class="service-image">
-                        <img src="icons/placeholder1-svg-ITLgroup.webp" alt="Sistema di Allarmi" class="service-main-image" loading="lazy">
+                        <!-- Carosello Allarmi -->
+                        <div class="allarmi-carousel">
+                            <div class="carousel-container">
+                                <div class="carousel-slide active">
+                                    <img src="icons/placeholder1-svg-ITLgroup.webp" alt="Sistema di Allarmi - Componenti" class="carousel-img" loading="lazy">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="icons/placeholder2-svg-ITLgroup.webp" alt="Sistema di Allarmi - Installazione" class="carousel-img" loading="lazy">
+                                </div>
+                            </div>
+                            <div class="carousel-controls">
+                                <button class="carousel-btn prev-btn" onclick="changeSlideAllarmi(-1)">‹</button>
+                                <button class="carousel-btn next-btn" onclick="changeSlideAllarmi(1)">›</button>
+                            </div>
+                            <div class="carousel-indicators">
+                                <span class="indicator active" onclick="currentSlideAllarmi(1)"></span>
+                                <span class="indicator" onclick="currentSlideAllarmi(2)"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -778,6 +840,52 @@
         }
       ]
     }
+    </script>
+    
+    <!-- JavaScript Carosello Allarmi -->
+    <script>
+        let currentSlideIndexAllarmi = 0;
+        const slidesAllarmi = document.querySelectorAll('.allarmi-carousel .carousel-slide');
+        const indicatorsAllarmi = document.querySelectorAll('.allarmi-carousel .indicator');
+        const totalSlidesAllarmi = slidesAllarmi.length;
+
+        function showSlideAllarmi(index) {
+            // Rimuovi classe active da tutti gli slide e indicatori
+            slidesAllarmi.forEach(slide => slide.classList.remove('active'));
+            indicatorsAllarmi.forEach(indicator => indicator.classList.remove('active'));
+            
+            // Aggiungi classe active allo slide e indicatore corrente
+            if (slidesAllarmi[index]) {
+                slidesAllarmi[index].classList.add('active');
+            }
+            if (indicatorsAllarmi[index]) {
+                indicatorsAllarmi[index].classList.add('active');
+            }
+        }
+
+        function changeSlideAllarmi(direction) {
+            currentSlideIndexAllarmi += direction;
+            
+            if (currentSlideIndexAllarmi >= totalSlidesAllarmi) {
+                currentSlideIndexAllarmi = 0;
+            } else if (currentSlideIndexAllarmi < 0) {
+                currentSlideIndexAllarmi = totalSlidesAllarmi - 1;
+            }
+            
+            showSlideAllarmi(currentSlideIndexAllarmi);
+        }
+
+        function currentSlideAllarmi(index) {
+            currentSlideIndexAllarmi = index - 1;
+            showSlideAllarmi(currentSlideIndexAllarmi);
+        }
+
+        // Auto-slide ogni 5 secondi
+        if (totalSlidesAllarmi > 1) {
+            setInterval(() => {
+                changeSlideAllarmi(1);
+            }, 5000);
+        }
     </script>
 </body>
 </html>
