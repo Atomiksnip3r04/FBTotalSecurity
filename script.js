@@ -44,8 +44,18 @@ function initMobileMenu() {
 }
 
 // Smooth Scrolling for Navigation Links
+// Smooth Scrolling for Navigation Links - Optimized to reduce layout thrashing
 function initSmoothScrolling() {
     const navLinks = document.querySelectorAll('a[href^="#"]');
+    let cachedHeaderHeight = null;
+    
+    // Cache header height and update on resize
+    function updateHeaderHeight() {
+        cachedHeaderHeight = document.querySelector('.header').offsetHeight;
+    }
+    
+    updateHeaderHeight();
+    window.addEventListener('resize', debounce(updateHeaderHeight, 250));
     
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -55,7 +65,8 @@ function initSmoothScrolling() {
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
+                // Use cached header height to avoid layout thrashing
+                const headerHeight = cachedHeaderHeight || document.querySelector('.header').offsetHeight;
                 const targetPosition = targetSection.offsetTop - headerHeight - 20;
                 
                 window.scrollTo({
@@ -81,12 +92,13 @@ function updateActiveNavLink(targetId) {
     });
 }
 
-// Header Scroll Effect
+// Header Scroll Effect - Optimized to reduce layout thrashing
 function initHeaderScroll() {
     const header = document.querySelector('.header');
     let lastScrollTop = 0;
+    let ticking = false;
     
-    window.addEventListener('scroll', function() {
+    function updateHeader() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
         // Add/remove scrolled class
@@ -104,36 +116,61 @@ function initHeaderScroll() {
         }
         
         lastScrollTop = scrollTop;
+        ticking = false;
+    }
+    
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(updateHeader);
+            ticking = true;
+        }
+    }, { passive: true });
+    
+    // Cache section positions and update them only on resize
+    let sectionPositions = [];
+    
+    function cacheSectionPositions() {
+        const sections = document.querySelectorAll('section[id]');
+        const headerHeight = header.offsetHeight;
         
-        // Update active section in navigation
-        updateActiveSection();
-    });
+        sectionPositions = Array.from(sections).map(section => ({
+            id: section.getAttribute('id'),
+            top: section.offsetTop - headerHeight - 50,
+            bottom: section.offsetTop + section.offsetHeight - headerHeight - 50
+        }));
+    }
+    
+    // Cache positions on load and resize
+    cacheSectionPositions();
+    window.addEventListener('resize', debounce(cacheSectionPositions, 250));
+    
+    // Throttled active section update
+    const throttledUpdateActiveSection = throttle(() => {
+        const scrollTop = window.pageYOffset;
+        let currentSection = '';
+        
+        for (const section of sectionPositions) {
+            if (scrollTop >= section.top && scrollTop < section.bottom) {
+                currentSection = section.id;
+                break;
+            }
+        }
+        
+        if (currentSection) {
+            const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    }, 100);
+    
+    window.addEventListener('scroll', throttledUpdateActiveSection, { passive: true });
 }
 
-// Update Active Section Based on Scroll Position
-function updateActiveSection() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
-    const headerHeight = document.querySelector('.header').offsetHeight;
-    
-    let currentSection = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - headerHeight - 50;
-        const sectionHeight = section.offsetHeight;
-        
-        if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
-            currentSection = section.getAttribute('id');
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) {
-            link.classList.add('active');
-        }
-    });
-}
+// Function removed - replaced with optimized version in initHeaderScroll
 
 // Scroll Animations
 function initScrollAnimations() {
@@ -850,9 +887,14 @@ const translations = {
         
         // Contact Form
         'form-title': 'Richiedi Informazioni',
+        'form-name-label': 'Nome e Cognome',
+        'form-email-label': 'Email',
+        'form-phone-label': 'Telefono',
+        'form-message-label': 'Messaggio',
         'form-name-placeholder': 'Nome e Cognome',
         'form-email-placeholder': 'Email',
 
+        'form-service-label': 'Servizio di interesse',
         'form-service-default': 'Seleziona il servizio di interesse',
         'form-service-nebbiogeni': 'Sistemi Nebbiogeni',
         'form-service-serramenti': 'Serramenti di Sicurezza',
@@ -872,6 +914,7 @@ const translations = {
         'footer-service-allarmi': 'Sistemi di Allarme',
         'footer-contacts-title': 'Contatti',
         'footer-info-title': 'Informazioni',
+        'footer-social-title': 'Seguici su',
         'footer-copyright': '© 2024 FB Total Security. Tutti i diritti riservati. | P.IVA: 12345678901',
         'footer-company': 'FB Total Security',
         'footer-company-desc': 'Creatori di sicurezza dal 2003. Specializzati in sistemi di protezione avanzati per aziende e privati.',
@@ -1195,6 +1238,8 @@ const translations = {
         
         // Missing sorveglianza contact and form translations
         'sorveglianza-contact-address': 'Indirizzo',
+        'sorveglianza-video-description': 'Scopri il sistema di videosorveglianza CIVIS, la soluzione professionale per la sicurezza totale. Tecnologia avanzata con risoluzione 4K, visione notturna, rilevamento intelligente e controllo remoto per proteggere efficacemente la tua proprietà. <a href="#contatti" class="text-link">Richiedi una consulenza gratuita</a>.',
+        'sorveglianza-video-transcript': '<p>Il sistema CIVIS rappresenta l\'eccellenza nella videosorveglianza professionale. Con telecamere 4K ad alta risoluzione, garantisce immagini cristalline sia di giorno che di notte grazie alla tecnologia di visione notturna avanzata.</p><p>Il sistema include rilevamento intelligente di movimento, notifiche push istantanee e controllo remoto completo tramite app dedicata. Perfetto per abitazioni, uffici e attività commerciali.</p>',
 
 
         'contact-form-name': 'Nome e Cognome',
@@ -1755,9 +1800,14 @@ const translations = {
         
         // Contact Form
         'form-title': 'Request Information',
+        'form-name-label': 'Name and Surname',
+        'form-email-label': 'Email',
+        'form-phone-label': 'Phone',
+        'form-message-label': 'Message',
         'form-name-placeholder': 'Name and Surname',
         'form-email-placeholder': 'Email',
 
+        'form-service-label': 'Service of interest',
         'form-service-default': 'Select the service of interest',
         'form-service-nebbiogeni': 'Fog Systems',
         'form-service-serramenti': 'Security Doors & Windows',
@@ -1777,6 +1827,7 @@ const translations = {
         'footer-service-allarmi': 'Alarm Systems',
         'footer-contacts-title': 'Contacts',
         'footer-info-title': 'Information',
+        'footer-social-title': 'Follow Us',
         'footer-copyright': '© 2024 FB Total Security. All rights reserved. | VAT: 12345678901',
         'footer-company': 'FB Total Security',
         'footer-company-desc': 'Security creators since 2003. Specialized in advanced protection systems for businesses and individuals.',
@@ -2164,6 +2215,8 @@ const translations = {
 
         'sorveglianza-contact-email': 'Email',
         'sorveglianza-contact-address': 'Address',
+        'sorveglianza-video-description': 'Discover the CIVIS video surveillance system, the professional solution for total security. Advanced technology with 4K resolution, night vision, intelligent detection and remote control to effectively protect your property. <a href="#contatti" class="text-link">Request a free consultation</a>.',
+        'sorveglianza-video-transcript': '<p>The CIVIS system represents excellence in professional video surveillance. With 4K high-resolution cameras, it guarantees crystal-clear images both day and night thanks to advanced night vision technology.</p><p>The system includes intelligent motion detection, instant push notifications and complete remote control via dedicated app. Perfect for homes, offices and commercial activities.</p>',
         'sorveglianza-contact-hours': 'Hours',
         'sorveglianza-contact-schedule': 'Mon-Fri: 8:00-18:00<br>Sat: 9:00-13:00',
         'contact-form-name': 'Full Name',

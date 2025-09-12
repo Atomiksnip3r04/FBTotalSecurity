@@ -49,7 +49,14 @@
       gtag('config', 'G-K3KTWNJ5CQ');
     </script>
     
-    <link rel="stylesheet" href="styles.css">
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    
+    <!-- Preload and async load Google Fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    
     <!-- Resource Hints for Performance -->
     <link rel="dns-prefetch" href="//www.google-analytics.com">
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
@@ -59,10 +66,10 @@
     <link rel="prefetch" href="serramenti.html">
     <link rel="prefetch" href="sorveglianza.html">
     <link rel="prefetch" href="allarmi.html">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="prefetch" href="chi-siamo.html">
     
     <!-- Preload Critical Images for LCP -->
-    <link rel="preload" href="icons/logo_sito_franco.webp" as="image" fetchpriority="high">
+    <link rel="preload" href="icons/logo_sito_franco_small.webp" as="image" fetchpriority="high">
     <link rel="preload" href="icons/nebbiogeni.webp" as="image" fetchpriority="high">
     <link rel="preload" href="icons/serramenti.webp" as="image" fetchpriority="high">
     <link rel="preload" href="icons/sorveglianza.webp" as="image" fetchpriority="high">
@@ -166,7 +173,7 @@
             <div class="nav-container">
                 <div class="logo">
                     <a href="index.html" class="logo-link">
-                        <img src="icons/logo_sito_franco.webp" alt="FB Total Security Logo" class="logo-image" loading="eager">
+                        <img src="icons/logo_sito_franco_small.webp" alt="FB Total Security Logo" class="logo-image" loading="eager" width="47" height="40">
                         <div class="logo-text">
                             <span class="logo-title">FB Total Security</span>
                             <p class="tagline" data-translate="tagline">Creatori di Sicurezza</p>
@@ -289,10 +296,10 @@
                         <img src="icons/CIVIS-logo-carosello-homepage.svg" alt="CIVIS Logo" loading="lazy" />
                     </div>
                     <div class="partner-logo">
-                        <img src="icons/itlgroup-logo-carosello-homepage.webp" alt="ITL Group Logo" loading="lazy" />
+                        <img src="icons/itlgroup-logo-carosello-homepage_small.webp" alt="ITL Group Logo" loading="lazy" width="67" height="26" />
                     </div>
                     <div class="partner-logo">
-                        <img src="icons/XECUR-logo-carosello-homepage.webp" alt="Xecur SRL Logo" loading="lazy" />
+                        <img src="icons/XECUR-logo-carosello-homepage_small.webp" alt="Xecur SRL Logo" loading="lazy" width="49" height="26" />
                     </div>
                     <div class="partner-logo">
                         <img src="icons/URfog-logo-carosello-homepage.webp" alt="UR Fog Logo" loading="lazy" />
@@ -302,10 +309,10 @@
                         <img src="icons/CIVIS-logo-carosello-homepage.svg" alt="CIVIS Logo" loading="lazy" />
                     </div>
                     <div class="partner-logo">
-                        <img src="icons/itlgroup-logo-carosello-homepage.webp" alt="ITL Group Logo" loading="lazy" />
+                        <img src="icons/itlgroup-logo-carosello-homepage_small.webp" alt="ITL Group Logo" loading="lazy" width="67" height="26" />
                     </div>
                     <div class="partner-logo">
-                        <img src="icons/XECUR-logo-carosello-homepage.webp" alt="Xecur SRL Logo" loading="lazy" />
+                        <img src="icons/XECUR-logo-carosello-homepage_small.webp" alt="Xecur SRL Logo" loading="lazy" width="49" height="26" />
                     </div>
                     <div class="partner-logo">
                         <img src="icons/URfog-logo-carosello-homepage.webp" alt="UR Fog Logo" loading="lazy" />
@@ -343,7 +350,7 @@
                     <div class="service-image">
                         <!-- Lite YouTube Embed -->
                         <div class="lite-youtube-embed" data-id="NJ-tDx4deRA" data-title="Sistema Nebbiogeni in Azione" aria-label="Video dimostrativo di un sistema nebbiogeno in azione">
-                            <img src="icons/copertina-youtube-URfog.webp" alt="Anteprima video sistema nebbiogeni URfog in azione" class="video-thumbnail" loading="lazy" width="1280" height="720">
+                            <img src="icons/copertina-youtube-URfog_small.webp" alt="Anteprima video sistema nebbiogeni URfog in azione" class="video-thumbnail" loading="lazy" width="380" height="214">
                             <button type="button" class="play-btn" aria-label="Riproduci video">
                                 <svg width="68" height="48" viewBox="0 0 68 48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg>
                             </button>
@@ -366,7 +373,7 @@
                             "@type": "VideoObject",
                             "name": "Sistema Nebbiogeno di Sicurezza in Azione",
                             "description": "Dimostrazione dell'efficacia dei sistemi nebbiogeni di sicurezza che creano una barriera visiva impenetrabile in pochi secondi, proteggendo efficacemente negozi, uffici e abitazioni da intrusioni e furti",
-                            "thumbnailUrl": "https://www.fbtotalsecurity.com/icons/copertina-youtube-URfog.webp",
+                            "thumbnailUrl": "https://www.fbtotalsecurity.com/icons/copertina-youtube-URfog_small.webp",
                         "uploadDate": "2023-06-15",
                         "duration": "PT2M30S",
                         "embedUrl": "https://www.youtube.com/embed/NJ-tDx4deRA",
@@ -376,7 +383,7 @@
                             "name": "FB Total Security",
                             "logo": {
                                 "@type": "ImageObject",
-                                "url": "https://www.fbtotalsecurity.com/icons/logo_sito_franco.webp",
+                                "url": "https://www.fbtotalsecurity.com/icons/logo_sito_franco_small.webp",
                                     "width": "112",
                                     "height": "112"
                                 }
@@ -449,7 +456,7 @@
                             "name": "FB Total Security",
                             "logo": {
                                 "@type": "ImageObject",
-                                "url": "https://www.fbtotalsecurity.com/icons/logo_sito_franco.webp",
+                                "url": "https://www.fbtotalsecurity.com/icons/logo_sito_franco_small.webp",
                                     "width": "112",
                                     "height": "112"
                                 }
@@ -525,7 +532,7 @@
                                 "name": "FB Total Security",
                                 "logo": {
                                     "@type": "ImageObject",
-                                    "url": "https://www.fbtotalsecurity.com/icons/logo_sito_franco.webp",
+                                    "url": "https://www.fbtotalsecurity.com/icons/logo_sito_franco_small.webp",
                                     "width": "112",
                                     "height": "112"
                                 }
@@ -678,7 +685,7 @@
                                     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                                 </svg>
                                 <div>
-                                    <h4 data-translate="contact-email-label">Email</h4>
+                                    <h5 data-translate="contact-email-label">Email</h5>
                                     <p><a href="mailto:postmaster@fbtotalsecurity.com">postmaster@fbtotalsecurity.com</a></p>
                                 </div>
                             </div>
@@ -687,7 +694,7 @@
                                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                                 </svg>
                                 <div>
-                                    <h4 data-translate="contact-area-label">Zona di Servizio</h4>
+                                    <h5 data-translate="contact-area-label">Zona di Servizio</h5>
                                     <p data-translate="contact-area-text">Milano e provincia e Monza e Brianza e provincia</p>
                                 </div>
                             </div>
@@ -696,15 +703,19 @@
                     <form class="contact-form">
                         <h3 data-translate="form-title">Richiedi Informazioni</h3>
                         <div class="form-group">
+                            <label for="nome" data-translate="form-name-label" class="sr-only">Nome e Cognome</label>
                             <input type="text" id="nome" name="nome" autocomplete="name" data-translate-placeholder="form-name-placeholder" placeholder="Nome e Cognome" required>
                         </div>
                         <div class="form-group">
+                            <label for="email" data-translate="form-email-label" class="sr-only">Email</label>
                             <input type="email" id="email" name="email" autocomplete="email" data-translate-placeholder="form-email-placeholder" placeholder="Email" required>
                         </div>
                         <div class="form-group">
+                            <label for="telefono" data-translate="form-phone-label" class="sr-only">Telefono</label>
                             <input type="tel" id="telefono" name="telefono" autocomplete="tel" data-translate-placeholder="form-phone-placeholder" placeholder="Telefono">
                         </div>
                         <div class="form-group">
+                            <label for="servizio" data-translate="form-service-label" class="sr-only">Servizio di interesse</label>
                             <select id="servizio" name="servizio" required>
                                 <option value="" data-translate="form-service-default">Seleziona il servizio di interesse</option>
                                 <option value="nebbiogeni" data-translate="form-service-nebbiogeni">Sistemi Nebbiogeni</option>
@@ -715,6 +726,7 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="messaggio" data-translate="form-message-label" class="sr-only">Messaggio</label>
                             <textarea id="messaggio" name="messaggio" data-translate-placeholder="form-message-placeholder" placeholder="Descrivi le tue esigenze di sicurezza" rows="4"></textarea>
                         </div>
                         <div class="form-group checkbox-group">
@@ -736,8 +748,8 @@
                     <p data-translate="footer-description">Creatori di sicurezza specializzati in sistemi di protezione avanzati. La tua sicurezza è la nostra priorità.</p>
                     <div class="social-links">
                         <h4 data-translate="footer-social-title">Seguici su:</h4>
-                        <a href="https://www.facebook.com/francosicurezza" rel="nofollow" target="_blank" aria-label="Facebook">📘</a>
-                        <a href="https://www.instagram.com/francosicurezza" rel="nofollow" target="_blank" aria-label="Instagram">📷</a>
+                        <a href="https://www.facebook.com/francosicurezza" rel="follow" target="_blank" aria-label="Facebook">📘</a>
+                <a href="https://www.instagram.com/francosicurezza" rel="follow" target="_blank" aria-label="Instagram">📷</a>
                         <a href="https://x.com/FBTotalSecurity" aria-label="FB Total Security su X" rel="me noopener" target="_blank">
                             <svg aria-hidden="true" width="20" height="20" role="img" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
