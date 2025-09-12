@@ -124,21 +124,25 @@ function initHeaderScroll() {
     let ticking = false;
     
     function updateHeader() {
+        // Batch all DOM reads to prevent forced reflows
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
-        // Add/remove scrolled class
-        if (scrollTop > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        
-        // Hide/show header on scroll
-        if (scrollTop > lastScrollTop && scrollTop > 200) {
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            header.style.transform = 'translateY(0)';
-        }
+        // Batch DOM writes to prevent layout thrashing
+        requestAnimationFrame(() => {
+            // Add/remove scrolled class
+            if (scrollTop > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Hide/show header on scroll
+            if (scrollTop > lastScrollTop && scrollTop > 200) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+        });
         
         lastScrollTop = scrollTop;
         ticking = false;
@@ -158,22 +162,30 @@ function initHeaderScroll() {
     function cacheSectionPositions() {
         // Batch all DOM reads in a single frame to prevent forced reflows
         requestAnimationFrame(() => {
-            const sections = document.querySelectorAll('section[id]');
+            // Read all layout properties at once to minimize reflows
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const headerRect = header.getBoundingClientRect();
             const headerHeight = headerRect.height;
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const sections = document.querySelectorAll('section[id]');
             
-            sectionPositions = Array.from(sections).map(section => {
-                const rect = section.getBoundingClientRect();
-                return {
-                    id: section.getAttribute('id'),
-                    top: rect.top + scrollTop - headerHeight - 50,
-                    bottom: rect.top + scrollTop + rect.height - headerHeight - 50
-                };
-            });
+            // Batch all getBoundingClientRect calls
+            const sectionRects = Array.from(sections).map(section => ({
+                element: section,
+                rect: section.getBoundingClientRect(),
+                id: section.getAttribute('id')
+            }));
+            
+            // Process cached measurements without additional DOM reads
+            sectionPositions = sectionRects.map(({ rect, id }) => ({
+                id,
+                top: rect.top + scrollTop - headerHeight - 50,
+                bottom: rect.top + scrollTop + rect.height - headerHeight - 50
+            }));
             
             // Cache navigation links to avoid repeated DOM queries
-            cachedNavLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
+            if (cachedNavLinks.length === 0) {
+                cachedNavLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
+            }
         });
     }
     
