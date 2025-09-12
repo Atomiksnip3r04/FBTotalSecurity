@@ -926,19 +926,19 @@
         const totalSlidesSerramenti = slidesSerramenti.length;
 
         function showSlideSerramenti(index) {
-            // Batch DOM operations to prevent forced reflows
-            requestAnimationFrame(() => {
-                // Use transform instead of CSS classes for better performance
-                const container = document.querySelector('.serramenti-carousel .carousel-container');
-                if (container) {
-                    const translateX = -index * 100;
-                    container.style.transform = `translateX(${translateX}%)`;
-                }
-                
-                // Update indicators efficiently
-                indicatorsSerramenti.forEach((indicator, i) => {
-                    indicator.classList.toggle('active', i === index);
-                });
+            // Remove active class from all slides
+            slidesSerramenti.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Add active class to current slide
+            if (slidesSerramenti[index]) {
+                slidesSerramenti[index].classList.add('active');
+            }
+            
+            // Update indicators
+            indicatorsSerramenti.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === index);
             });
         }
 

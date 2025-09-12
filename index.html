@@ -902,19 +902,19 @@
         const totalSlidesAllarmi = slidesAllarmi.length;
 
         function showSlideAllarmi(index) {
-            // Batch DOM operations to prevent forced reflows
-            requestAnimationFrame(() => {
-                // Use transform instead of CSS classes for better performance
-                const container = document.querySelector('.allarmi-carousel .carousel-container');
-                if (container) {
-                    const translateX = -index * 100;
-                    container.style.transform = `translateX(${translateX}%)`;
-                }
-                
-                // Update indicators efficiently
-                indicatorsAllarmi.forEach((indicator, i) => {
-                    indicator.classList.toggle('active', i === index);
-                });
+            // Remove active class from all slides
+            slidesAllarmi.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Add active class to current slide
+            if (slidesAllarmi[index]) {
+                slidesAllarmi[index].classList.add('active');
+            }
+            
+            // Update indicators
+            indicatorsAllarmi.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === index);
             });
         }
 
