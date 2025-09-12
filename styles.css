@@ -52,11 +52,11 @@ h1 {
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
     line-height: 1.2;
-    margin: 0.67em 0;
+    margin: 1.5rem 0;
     display: block;
     /* Prevent CLS during font loading */
     font-display: swap;
-    min-height: 1.2em;
+    min-height: 3rem;
     contain: layout;
     /* Explicit font-family to avoid user-agent dependencies */
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -470,7 +470,7 @@ a {
     line-height: 1.1;
     /* Prevent layout shift during font loading */
     font-display: swap;
-    min-height: 1.1em;
+    min-height: 4rem;
     contain: layout style;
     /* Additional CLS prevention */
     transform: translateZ(0);
