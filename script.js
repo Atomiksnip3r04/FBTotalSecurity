@@ -78,17 +78,19 @@ function initSmoothScrolling() {
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
-                // Use getBoundingClientRect to avoid forced reflow
-                const header = document.querySelector('.header');
-                const headerRect = header.getBoundingClientRect();
-                const targetRect = targetSection.getBoundingClientRect();
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const targetPosition = targetRect.top + scrollTop - headerRect.height - 20;
+                // Batch DOM reads to minimize forced reflows
+                requestAnimationFrame(() => {
+                    const header = document.querySelector('.header');
+                    const headerRect = header.getBoundingClientRect();
+                    const targetRect = targetSection.getBoundingClientRect();
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    const targetPosition = targetRect.top + scrollTop - headerRect.height - 20;
                 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+                    window.scrollTo({
+                         top: targetPosition,
+                         behavior: 'smooth'
+                     });
+                 });
                 
                 // Update active nav link
                 updateActiveNavLink(targetId);
@@ -146,18 +148,21 @@ function initHeaderScroll() {
     let sectionPositions = [];
     
     function cacheSectionPositions() {
-        const sections = document.querySelectorAll('section[id]');
-        const headerRect = header.getBoundingClientRect();
-        const headerHeight = headerRect.height;
-        
-        sectionPositions = Array.from(sections).map(section => {
-            const rect = section.getBoundingClientRect();
+        // Batch all DOM reads in a single frame to prevent forced reflows
+        requestAnimationFrame(() => {
+            const sections = document.querySelectorAll('section[id]');
+            const headerRect = header.getBoundingClientRect();
+            const headerHeight = headerRect.height;
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            return {
-                id: section.getAttribute('id'),
-                top: rect.top + scrollTop - headerHeight - 50,
-                bottom: rect.top + scrollTop + rect.height - headerHeight - 50
-            };
+            
+            sectionPositions = Array.from(sections).map(section => {
+                const rect = section.getBoundingClientRect();
+                return {
+                    id: section.getAttribute('id'),
+                    top: rect.top + scrollTop - headerHeight - 50,
+                    bottom: rect.top + scrollTop + rect.height - headerHeight - 50
+                };
+            });
         });
     }
     
