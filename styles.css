@@ -90,7 +90,8 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.2 !important;
 }
 
-     /* Ensure consistent box model */
+/* Ensure consistent box model for h1 */
+h1 {
     box-sizing: border-box !important;
 }
 
