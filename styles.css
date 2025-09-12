@@ -398,6 +398,9 @@ a {
     position: relative;
     overflow: hidden;
     padding-top: 120px;
+    /* Optimize for layout stability and reduce CLS */
+    contain: layout style;
+    will-change: auto;
 }
 
 .hero::before {
@@ -419,6 +422,9 @@ a {
     text-align: center;
     position: relative;
     z-index: 2;
+    /* Optimize for layout stability and reduce CLS */
+    contain: layout;
+    transform: translateZ(0);
 }
 
 .hero-title {
@@ -430,6 +436,10 @@ a {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     line-height: 1.1;
+    /* Prevent layout shift during font loading */
+    font-display: swap;
+    min-height: 1.1em;
+    contain: layout;
 }
 
 .hero-subtitle {

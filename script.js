@@ -48,14 +48,27 @@ function initMobileMenu() {
 function initSmoothScrolling() {
     const navLinks = document.querySelectorAll('a[href^="#"]');
     let cachedHeaderHeight = null;
+    let headerElement = null;
     
-    // Cache header height and update on resize
+    // Cache header element and height to reduce DOM queries
     function updateHeaderHeight() {
-        cachedHeaderHeight = document.querySelector('.header').offsetHeight;
+        if (!headerElement) {
+            headerElement = document.querySelector('.header');
+        }
+        if (headerElement) {
+            // Use getBoundingClientRect() instead of offsetHeight to reduce forced reflow
+            const rect = headerElement.getBoundingClientRect();
+            cachedHeaderHeight = rect.height;
+        }
     }
     
-    updateHeaderHeight();
-    window.addEventListener('resize', debounce(updateHeaderHeight, 250));
+    // Use requestAnimationFrame to batch DOM reads
+    function scheduleHeaderUpdate() {
+        requestAnimationFrame(updateHeaderHeight);
+    }
+    
+    scheduleHeaderUpdate();
+    window.addEventListener('resize', debounce(scheduleHeaderUpdate, 250))
     
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
