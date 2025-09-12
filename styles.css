@@ -72,6 +72,18 @@ h3 {
     font-weight: 600;
 }
 
+/* Stili per pagine di debug e test */
+.debug-title {
+    color: white;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.test-title {
+    color: white;
+    text-align: center;
+}
+
 p {
     margin-bottom: 1rem;
     color: #b0b0b0;

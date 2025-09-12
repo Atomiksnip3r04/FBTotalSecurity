@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container" style="padding: 2rem; background: #000; min-height: 100vh;">
-        <h1 style="color: white; text-align: center; margin-bottom: 3rem;">Debug Bottoni Chi Siamo</h1>
+        <h1 class="debug-title">Debug Bottoni Chi Siamo</h1>
         
         <!-- Replica esatta della sezione Le Nostre Specializzazioni -->
         <section class="services-overview">
@@ -76,7 +76,7 @@
                     href: link.href,
                     text: link.textContent,
                     classes: link.className,
-                    style: window.getComputedStyle(link).pointerEvents
+                    pointerEvents: link.style.pointerEvents || 'auto'
                 });
                 
                 // Test click event
