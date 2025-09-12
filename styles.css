@@ -39,9 +39,9 @@ body {
     background: #000000;
     overflow-x: hidden;
     /* Prevent CLS during font loading */
-    font-display: optional;
+    font-display: swap;
     /* Stabilize layout during loading */
-    contain: layout style;
+    contain: layout style size;
     /* Prevent layout shifts */
     min-height: 100vh;
     /* Reserve space for fixed header to prevent CLS */
@@ -49,8 +49,17 @@ body {
     /* Force hardware acceleration */
     transform: translateZ(0);
     will-change: auto;
-    /* Font optimization for better rendering */
-    font-display: swap;
+    /* Additional CLS prevention */
+    box-sizing: border-box;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    /* Stabilize font metrics */
+    font-kerning: normal;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Typography */
@@ -248,7 +257,14 @@ a {
     contain: layout style size; /* Enhanced containment */
     /* Stabilize dimensions during loading */
     transform: translateZ(0);
-    will-change: transform; /* Optimize for animations */
+    will-change: auto; /* Reduce unnecessary compositing */
+    /* Additional stability */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* Prevent text reflow during font loading */
+    font-kerning: normal;
+    text-rendering: optimizeSpeed;
 }
 
 .nav-link {
@@ -546,11 +562,20 @@ a {
     gap: 1.5rem;
     justify-content: center;
     flex-wrap: wrap;
-    /* Prevent CLS during button loading */
-    min-height: 3.5rem;
-    contain: layout style;
+    /* Enhanced CLS prevention for double shifts */
+    min-height: 4rem;
+    min-width: 100%;
+    contain: layout style size;
     transform: translateZ(0);
     align-items: center;
+    /* Additional stability */
+    box-sizing: border-box;
+    padding: 0.5rem 0;
+    /* Prevent text reflow during translation loading */
+    font-kerning: normal;
+    text-rendering: optimizeSpeed;
+    /* Reserve space for button animations */
+    will-change: auto;
 }
 
 /* Services Grid */
@@ -1776,7 +1801,7 @@ a {
         width: 100%;
         height: auto;
         max-height: 60vh;
-        min-height: 200px; /* Prevent CLS by reserving minimum space */
+        min-height: 220px; /* Increased minimum space to prevent CLS */
         background: rgba(30, 30, 30, 0.98);
         flex-direction: column;
         justify-content: flex-start;
@@ -1785,14 +1810,17 @@ a {
         transform: translateY(-100%);
         opacity: 0;
         visibility: hidden;
-        transition: transform 0.3s ease, opacity 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 9998;
         backdrop-filter: blur(10px);
         border-radius: 0 0 20px 20px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        /* Prevent layout shifts during animation */
-        contain: layout style;
-        will-change: transform, opacity;
+        /* Enhanced layout stability */
+        contain: layout style size;
+        will-change: auto;
+        /* Additional CLS prevention */
+        box-sizing: border-box;
+        overflow: hidden;
     }
 
     .nav-menu.active {
