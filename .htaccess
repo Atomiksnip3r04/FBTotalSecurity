@@ -13,8 +13,11 @@ Header always set X-Frame-Options DENY
 # Protezione XSS
 Header always set X-XSS-Protection "1; mode=block"
 
-# Content Security Policy base
-Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';"
+# Cross-Origin-Opener-Policy per isolamento origine
+Header always set Cross-Origin-Opener-Policy "same-origin"
+
+# Content Security Policy completa con Google Analytics e Trusted Types
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; require-trusted-types-for 'script';"
 
 # Referrer Policy
 Header always set Referrer-Policy "strict-origin-when-cross-origin"
