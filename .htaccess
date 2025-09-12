@@ -1,23 +1,25 @@
 # Header di Sicurezza Avanzati - SEO 2025
 # Implementazione basata su SEO.txt
 
-# Forza HTTPS e HSTS
-Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+# HSTS Policy migliorata - PageSpeed Insights 2025
+Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
 
 # Prevenzione MIME type sniffing
 Header always set X-Content-Type-Options nosniff
 
-# Protezione clickjacking
-Header always set X-Frame-Options DENY
+# Protezione clickjacking migliorata - PageSpeed Insights 2025
+Header always set X-Frame-Options SAMEORIGIN
 
 # Protezione XSS
 Header always set X-XSS-Protection "1; mode=block"
 
-# Cross-Origin-Opener-Policy per isolamento origine
+# Cross-Origin-Opener-Policy per isolamento origine - PageSpeed Insights 2025
 Header always set Cross-Origin-Opener-Policy "same-origin"
+Header always set Cross-Origin-Embedder-Policy "require-corp"
+Header always set Cross-Origin-Resource-Policy "same-origin"
 
-# Content Security Policy completa con Google Analytics GA4
-Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://fonts.googleapis.com https://tagmanager.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://tagmanager.google.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://ssl.google-analytics.com https://www.googletagmanager.com https://googletagmanager.com https://region1.google-analytics.com https://stats.g.doubleclick.net; connect-src 'self' https://www.google-analytics.com https://ssl.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://googletagmanager.com;"
+# Content Security Policy migliorata per sicurezza XSS - PageSpeed Insights 2025
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://fonts.googleapis.com https://tagmanager.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://tagmanager.google.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://ssl.google-analytics.com https://www.googletagmanager.com https://googletagmanager.com https://region1.google-analytics.com https://stats.g.doubleclick.net; connect-src 'self' https://www.google-analytics.com https://ssl.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content;"
 
 # Referrer Policy
 Header always set Referrer-Policy "strict-origin-when-cross-origin"
