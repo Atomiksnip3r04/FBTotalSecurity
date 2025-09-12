@@ -2404,6 +2404,9 @@ a {
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
     position: relative;
     overflow: hidden;
+    /* Prevent CLS during carousel loading */
+    contain: layout style;
+    min-height: 400px;
 }
 
 .partnerships-section::before {
@@ -2422,12 +2425,18 @@ a {
     overflow: hidden;
     position: relative;
     width: 100%;
+    /* Reserve space to prevent layout shifts */
+    min-height: 160px;
+    contain: layout style;
 }
 
 .carousel-track {
     display: flex;
     animation: scroll 20s linear infinite;
     width: calc(200% + 2rem);
+    /* Prevent layout shifts during animation */
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 .partner-logo {
@@ -2444,6 +2453,9 @@ a {
     height: 120px;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
+    /* Prevent layout shifts */
+    contain: layout style;
+    transform: translateZ(0);
 }
 
 .partner-logo:hover {
