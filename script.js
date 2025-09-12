@@ -78,9 +78,12 @@ function initSmoothScrolling() {
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
-                // Use cached header height to avoid layout thrashing
-                const headerHeight = cachedHeaderHeight || document.querySelector('.header').offsetHeight;
-                const targetPosition = targetSection.offsetTop - headerHeight - 20;
+                // Use getBoundingClientRect to avoid forced reflow
+                const header = document.querySelector('.header');
+                const headerRect = header.getBoundingClientRect();
+                const targetRect = targetSection.getBoundingClientRect();
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const targetPosition = targetRect.top + scrollTop - headerRect.height - 20;
                 
                 window.scrollTo({
                     top: targetPosition,
@@ -144,13 +147,18 @@ function initHeaderScroll() {
     
     function cacheSectionPositions() {
         const sections = document.querySelectorAll('section[id]');
-        const headerHeight = header.offsetHeight;
+        const headerRect = header.getBoundingClientRect();
+        const headerHeight = headerRect.height;
         
-        sectionPositions = Array.from(sections).map(section => ({
-            id: section.getAttribute('id'),
-            top: section.offsetTop - headerHeight - 50,
-            bottom: section.offsetTop + section.offsetHeight - headerHeight - 50
-        }));
+        sectionPositions = Array.from(sections).map(section => {
+            const rect = section.getBoundingClientRect();
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            return {
+                id: section.getAttribute('id'),
+                top: rect.top + scrollTop - headerHeight - 50,
+                bottom: rect.top + scrollTop + rect.height - headerHeight - 50
+            };
+        });
     }
     
     // Cache positions on load and resize

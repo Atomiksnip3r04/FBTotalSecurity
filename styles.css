@@ -28,6 +28,15 @@ body {
     color: #ffffff;
     background: #000000;
     overflow-x: hidden;
+    /* Prevent CLS during font loading */
+    font-display: swap;
+    /* Stabilize layout during loading */
+    contain: layout style;
+    /* Prevent layout shifts */
+    min-height: 100vh;
+    /* Force hardware acceleration */
+    transform: translateZ(0);
+    will-change: auto;
 }
 
 /* Typography */
@@ -47,6 +56,10 @@ h1 {
     margin-left: 0;
     margin-right: 0;
     display: block;
+    /* Prevent CLS during font loading */
+    font-display: swap;
+    min-height: 1.2em;
+    contain: layout;
 }
 
 h2 {
@@ -423,8 +436,15 @@ a {
     position: relative;
     z-index: 2;
     /* Optimize for layout stability and reduce CLS */
-    contain: layout;
+    contain: layout style;
     transform: translateZ(0);
+    will-change: auto;
+    /* Prevent layout shifts during content loading */
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero-title {
@@ -439,7 +459,12 @@ a {
     /* Prevent layout shift during font loading */
     font-display: swap;
     min-height: 1.1em;
-    contain: layout;
+    contain: layout style;
+    /* Additional CLS prevention */
+    transform: translateZ(0);
+    will-change: auto;
+    /* Reserve space to prevent shifts */
+    padding: 0.5rem 0;
 }
 
 .hero-subtitle {
