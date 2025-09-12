@@ -393,16 +393,7 @@
                 </div>
                 <div class="service-image">
                     <div class="image-placeholder">
-                        <svg class="placeholder-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="sorveglianzaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#4caf50;stop-opacity:0.8" />
-                                    <stop offset="100%" style="stop-color:#66bb6a;stop-opacity:0.6" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="400" height="300" fill="url(#sorveglianzaGrad)" rx="20"/>
-                            <text x="200" y="150" text-anchor="middle" fill="white" font-size="24" font-weight="bold">Sistema di Videosorveglianza</text>
-                        </svg>
+                        <img src="icons/CIVIS-copertina.webp" alt="Sistema di Videosorveglianza CIVIS" class="service-main-image">
                     </div>
                 </div>
             </div>
@@ -619,12 +610,12 @@
                     <form>
                         <div class="form-group">
                             <label for="nome" data-translate="contact-form-name">Nome e Cognome</label>
-                            <input type="text" id="nome" name="nome" required>
+                            <input type="text" id="nome" name="nome" autocomplete="name" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="email" data-translate="contact-form-email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" autocomplete="email" required>
                         </div>
 
                         <div class="form-group">
