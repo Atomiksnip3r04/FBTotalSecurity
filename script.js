@@ -147,7 +147,7 @@ function initSmoothScrolling() {
     }
     
     scheduleHeaderUpdate();
-    window.addEventListener('resize', debounce(scheduleHeaderUpdate, 250))
+    window.addEventListener('resize', debounce(scheduleHeaderUpdate, 250));
     
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -662,22 +662,7 @@ function initLazyLoading() {
 }
 
 // Performance Monitoring
-function initPerformanceMonitoring() {
-    // Monitor page load performance
-    window.addEventListener('load', function() {
-        setTimeout(() => {
-            const perfData = performance.getEntriesByType('navigation')[0];
-            const loadTime = perfData.loadEventEnd - perfData.loadEventStart;
-            
-            if (loadTime > 3000) {
-                console.warn('Page load time is slow:', loadTime + 'ms');
-            }
-        }, 0);
-    });
-}
-
-// Initialize performance monitoring
-initPerformanceMonitoring();
+// Performance monitoring removed to eliminate deprecated API warnings
 
 // Language Translation System
 const translations = {
