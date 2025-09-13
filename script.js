@@ -701,7 +701,10 @@ const translations = {
         'service-allarmi-title': 'Sistemi di Allarme',
         'service-allarmi-desc': 'Allarmi intelligenti connessi per una protezione 24/7',
         'services-cta': 'Richiedi Consulenza Gratuita',
-        'service-link': 'Sistemi Nebbiogeni Milano',
+        'service-nebbiogeni-link': 'Sistemi Nebbiogeni Milano',
+        'service-serramenti-link': 'Serramenti Blindati Milano',
+        'service-sorveglianza-link': 'Videosorveglianza Milano',
+        'service-allarmi-link': 'Sistemi Allarme Milano',
         
         // Partnership
         'partnership-title': 'I Nostri Partner Tecnologici',
@@ -1682,7 +1685,10 @@ const translations = {
         'service-allarmi-title': 'Alarm Systems',
         'service-allarmi-desc': 'Smart connected alarms for 24/7 protection',
         'services-cta': 'Request Free Consultation',
-        'service-link': 'Fog Systems Milan',
+        'service-nebbiogeni-link': 'Fog Systems Milan',
+        'service-serramenti-link': 'Armored Doors Milan',
+        'service-sorveglianza-link': 'Video Surveillance Milan',
+        'service-allarmi-link': 'Alarm Systems Milan',
         
         // Partnership
         'partnership-title': 'Our Technology Partners',
