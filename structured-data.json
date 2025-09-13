@@ -21,7 +21,7 @@
       "foundingDate": "2000",
       "areaServed": {
         "@type": "Place",
-        "name": "Milano e provincia e Monza e Brianza e provincia"
+        "name": "Tutta Italia"
       },
       "contactPoint": {
         "@type": "ContactPoint",
@@ -102,7 +102,7 @@
       },
       "areaServed": {
           "@type": "Place",
-          "name": "Milano e provincia e Monza e Brianza e provincia"
+          "name": "Tutta Italia"
         },
       "serviceType": "Security System Installation",
       "category": "Sistemi di Sicurezza"
@@ -117,7 +117,7 @@
       },
       "areaServed": {
         "@type": "Place",
-        "name": "Milano e provincia e Monza e Brianza e provincia"
+        "name": "Tutta Italia"
       },
       "serviceType": "Security Door Installation",
       "category": "Serramenti Blindati"
@@ -132,7 +132,7 @@
       },
       "areaServed": {
         "@type": "Place",
-        "name": "Milano e provincia e Monza e Brianza e provincia"
+        "name": "Tutta Italia"
       },
       "serviceType": "Video Surveillance Installation",
       "category": "Videosorveglianza"
@@ -147,7 +147,7 @@
       },
       "areaServed": {
         "@type": "Place",
-        "name": "Milano e provincia e Monza e Brianza e provincia"
+        "name": "Tutta Italia"
       },
       "serviceType": "Alarm System Installation",
       "category": "Sistemi di Allarme"
@@ -179,7 +179,7 @@
         "name": "Agente Plurimandatario Sicurezza",
         "occupationLocation": {
           "@type": "Place",
-          "name": "Milano e Provincia"
+          "name": "Tutta Italia"
         },
         "skills": [
           "Installazione Sistemi di Sicurezza",

@@ -692,6 +692,10 @@ const translations = {
         'hero-cta-primary': 'Scopri i Nostri Servizi',
         'hero-cta-secondary': 'Richiedi Preventivo',
         
+        // Mission Section
+        'mission-title': 'La tua sicurezza, la nostra missione',
+        'mission-description': 'In un mondo in continua evoluzione, la protezione dei tuoi beni e dei tuoi cari è una priorità. FB Security nasce con l\'obiettivo di offrirti una tranquillità totale, grazie a un servizio di sicurezza multisettoriale che si adatta a ogni tua esigenza. Dalla vigilanza armata ai sistemi di videosorveglianza più avanzati, dalla protezione fisica di inferriate e grate ai moderni nebbiogeni, ti offriamo una Protezione a 360°. Siamo il tuo partner di fiducia per un\'esistenza sicura, giorno e notte.',
+        
         // Services Overview
         'services-title': 'I Nostri Servizi di Sicurezza',
         'services-subtitle': 'Soluzioni complete per ogni esigenza di protezione',
@@ -1011,7 +1015,7 @@ const translations = {
         'contact-phone-label': 'Telefono',
         'contact-email-label': 'Email',
         'contact-area-label': 'Zona di Servizio',
-        'contact-area-text': 'Milano e provincia e Monza e Brianza e provincia',
+        'contact-area-text': 'Tutta Italia',
         'contact-name': 'Nome e Cognome',
         'contact-email': 'Email',
 
@@ -1199,7 +1203,7 @@ const translations = {
         'footer-address': '📍 Corso Sempione, Milano (MI)',
 
         'footer-service-area-title': 'Area di Servizio',
-        'footer-service-area-location': 'Milano e provincia e Monza e Brianza e provincia',
+        'footer-service-area-location': 'Tutta Italia',
         'footer-service-installation': 'Installazione',
         'footer-service-maintenance': 'Manutenzione',
         'footer-service-support': 'Assistenza 24/7',
@@ -1289,7 +1293,7 @@ const translations = {
         'chi-siamo-meta-title': 'Chi Siamo - FB Total Security | Milano',
         'chi-siamo-meta-description': 'Scopri FB Total Security: agenzia autorizzata e certificata nella sicurezza professionale. Specialisti in nebbiogeni, serramenti blindati, videosorveglianza e allarmi con partnership dirette dai leader del settore.',
         'chi-siamo-og-title': 'Chi Siamo - FB Total Security | Creatori di Sicurezza',
-        'chi-siamo-og-description': 'Scopri FB Total Security, agenzia autorizzata e certificata nella sicurezza professionale a Milano e provincia e Monza e Brianza e provincia con partnership dirette dai leader del settore.',
+        'chi-siamo-og-description': 'Scopri FB Total Security, agenzia autorizzata e certificata nella sicurezza professionale in tutta Italia con partnership dirette dai leader del settore.',
         'chi-siamo-hero-title': 'Chi Siamo',
         'chi-siamo-hero-subtitle': 'FB Total Security: agenzia autorizzata e certificata con partnership dirette dai leader del settore. Scopri i nostri valori e le certificazioni che ci rendono il partner ideale per la tua sicurezza.',
         'chi-siamo-hero-cta1': 'La Nostra Storia',
@@ -1347,11 +1351,11 @@ const translations = {
         'chi-siamo-contact-title': 'Contatta FB Total Security',
         'chi-siamo-contact-desc': 'Richiedi una consulenza completamente gratuita per valutare le tue esigenze di sicurezza. Sopralluogo e preventivo senza impegno. Verrai ricontattato telefonicamente da uno dei nostri operatori il più presto possibile.',
         'chi-siamo-service-area-title': 'Zona di Servizio',
-        'chi-siamo-service-area-text': 'Milano e provincia e Monza e Brianza e provincia',
+        'chi-siamo-service-area-text': 'Tutta Italia',
         
         // Footer additional
         'footer-company-name': 'FB Total Security',
-        'footer-service-area': 'Milano e provincia e Monza e Brianza e provincia',
+        'footer-service-area': 'Tutta Italia',
         'allarmi-form-name': 'Nome e Cognome',
         'allarmi-form-email': 'Email',
         'allarmi-form-phone': 'Telefono',
@@ -1361,7 +1365,7 @@ const translations = {
         
         // Meta tags and components for allarmi.html - Italian
         'allarmi-meta-title': 'Sistemi Allarme - Antifurto e Sicurezza | Milano',
-        'allarmi-meta-description': 'Sistemi di allarme antifurto professionali, sensori wireless, centrali di controllo. Protezione completa per casa e ufficio. Installazione a Milano e provincia.',
+        'allarmi-meta-description': 'Sistemi di allarme antifurto professionali, sensori wireless, centrali di controllo. Protezione completa per casa e ufficio. Installazione in tutta Italia.',
         'allarmi-og-title': 'Sistemi di Allarme - Antifurto e Sicurezza Avanzata',
         'allarmi-og-description': 'Sistemi di allarme antifurto professionali con sensori wireless e controllo remoto.',
         'allarmi-component-1': 'Protezione volumetrica avanzata',
@@ -1648,7 +1652,7 @@ const translations = {
         'footer-company-2': 'Contatti',
         'footer-company-3': 'Termini e Condizioni',
         'footer-contacts-title': 'Contatti',
-        'footer-location': '📍 Milano e Provincia',
+        'footer-location': '📍 Tutta Italia',
 
         'footer-email': '✉️ postmaster@fbtotalsecurity.com',
         'footer-copyright': '© 2024 FB Total Security. Tutti i diritti riservati.'
@@ -1675,6 +1679,10 @@ const translations = {
         'hero-cta': 'Discover Our Services',
         'hero-cta-primary': 'Discover Our Services',
         'hero-cta-secondary': 'Request Quote',
+        
+        // Mission Section
+        'mission-title': 'Your security, our mission',
+        'mission-description': 'In an ever-evolving world, protecting your assets and loved ones is a priority. FB Security was born with the goal of offering you total peace of mind, thanks to a multi-sector security service that adapts to your every need. From armed surveillance to the most advanced video surveillance systems, from physical protection of bars and gratings to modern fog systems, we offer you 360° Protection. We are your trusted partner for a safe existence, day and night.',
         
         // Services Overview
         'services-title': 'Our Security Services',
@@ -1927,7 +1935,7 @@ const translations = {
         'contact-phone-label': 'Phone',
         'contact-email-label': 'Email',
         'contact-area-label': 'Service Area',
-        'contact-area-text': 'Milan and province and Monza and Brianza and province',
+        'contact-area-text': 'All Italy',
         'contact-name': 'Full Name',
         'contact-email': 'Email',
 
@@ -2117,7 +2125,7 @@ const translations = {
         'chi-siamo-meta-title': 'About Us - FB Total Security | Milan',
         'chi-siamo-meta-description': 'Discover FB Total Security: authorized and certified agency in professional security. Specialists in fog systems, armored fixtures, video surveillance and alarms with direct partnerships from industry leaders.',
         'chi-siamo-og-title': 'About Us - FB Total Security | Security Creators',
-        'chi-siamo-og-description': 'Discover FB Total Security, authorized and certified agency in professional security in Milan and province and Monza and Brianza and province with direct partnerships from industry leaders.',
+        'chi-siamo-og-description': 'Discover FB Total Security, authorized and certified agency in professional security throughout Italy with direct partnerships from industry leaders.',
         'chi-siamo-hero-title': 'About Us',
         'chi-siamo-hero-subtitle': 'FB Total Security: authorized and certified agency with direct partnerships from industry leaders. Discover our values and certifications that make us the ideal partner for your security.',
         'chi-siamo-hero-cta1': 'Our Story',
@@ -2175,11 +2183,11 @@ const translations = {
         'chi-siamo-contact-title': 'Contact FB Total Security',
         'chi-siamo-contact-desc': 'Request a free consultation to evaluate your security needs. Site survey and quote without obligation.',
         'chi-siamo-service-area-title': 'Service Area',
-        'chi-siamo-service-area-text': 'Milan and province and Monza and Brianza and province',
+        'chi-siamo-service-area-text': 'All Italy',
         
         // Footer additional - English
         'footer-company-name': 'FB Total Security',
-        'footer-service-area': 'Milan and province and Monza and Brianza and province',
+        'footer-service-area': 'All Italy',
         
         // Meta tags and components for allarmi.html - English
         'allarmi-meta-title': 'Alarm Systems - Anti-theft & Security | Milan',
@@ -2273,7 +2281,7 @@ const translations = {
         'footer-address': '📍 Corso Sempione, Milan (MI)',
 
         'footer-service-area-title': 'Service Area',
-        'footer-service-area-location': 'Milan and province and Monza and Brianza and province',
+        'footer-service-area-location': 'All Italy',
         'footer-service-installation': 'Installation',
         'footer-service-maintenance': 'Maintenance',
         'footer-service-support': '24/7 Support',
@@ -2863,7 +2871,7 @@ function updateMetaTags(lang) {
     // Update meta description (only for homepage)
     if (isHomepage) {
         const metaDescriptions = {
-            it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi Milano e provincia.',
+            it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi in tutta Italia.',
             en: 'Specialists in advanced security systems: fog systems, armored doors, video surveillance and alarms. Over 20 years of experience. Services in Milan and province.'
         };
         
@@ -2900,7 +2908,7 @@ function updateMetaTags(lang) {
         };
         
         const metaDescriptions = {
-            it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi Milano e provincia.',
+            it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi in tutta Italia.',
             en: 'Specialists in advanced security systems: fog systems, armored doors, video surveillance and alarms. Over 20 years of experience. Services in Milan and province.'
         };
         
@@ -2957,7 +2965,7 @@ function updateMetaTags(lang) {
         };
         
         const metaDescriptions = {
-            it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi Milano e provincia.',
+            it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi in tutta Italia.',
             en: 'Specialists in advanced security systems: fog systems, armored doors, video surveillance and alarms. Over 20 years of experience. Services in Milan and province.'
         };
         

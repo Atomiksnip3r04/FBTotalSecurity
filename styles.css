@@ -654,6 +654,72 @@ a {
     margin: 0 auto;
 }
 
+/* Mission Section */
+.mission-section {
+    padding: 10rem 0;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.mission-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(76, 175, 80, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.mission-section .container {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.mission-section .section-title {
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 3rem;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: inline-block;
+}
+
+.mission-section .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #4caf50, transparent);
+    border-radius: 2px;
+}
+
+.mission-section .section-description {
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+    color: #e0e0e0;
+    line-height: 1.8;
+    font-weight: 400;
+    text-align: justify;
+    text-align-last: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: rgba(26, 26, 26, 0.6);
+    border-radius: 20px;
+    border: 1px solid rgba(76, 175, 80, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
 /* Services Grid */
 .services-overview {
     padding: 8rem 0;
@@ -2453,6 +2519,32 @@ a {
     .partner-section,
     .partnerships-section {
         padding-top: 3rem !important;
+    }
+    
+    /* Mission Section Mobile Styles */
+    .mission-section {
+        padding: 5rem 0 !important;
+    }
+    
+    .mission-section .section-title {
+        font-size: clamp(2.2rem, 6vw, 3.2rem) !important;
+        margin-bottom: 2rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .mission-section .section-title::after {
+        width: 80px !important;
+        height: 3px !important;
+        bottom: -10px !important;
+    }
+    
+    .mission-section .section-description {
+        font-size: clamp(1.1rem, 3vw, 1.3rem) !important;
+        padding: 1.5rem !important;
+        text-align: left !important;
+        text-align-last: left !important;
+        line-height: 1.7 !important;
+        border-radius: 15px !important;
     }
     
     .footer {

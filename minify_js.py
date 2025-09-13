@@ -20,8 +20,24 @@ def minify_js(js_content):
     # Rimuovi spazi extra, tab e newline multipli
     js_content = re.sub(r'\s+', ' ', js_content)
     
+    # Proteggi i valori rootMargin e simili prima di rimuovere spazi
+    # Trova e sostituisci temporaneamente i valori rootMargin per proteggerli
+    rootmargin_pattern = r"(rootMargin\s*:\s*['\"])([^'\"]*?)(['\"])"
+    rootmargin_matches = []
+    def protect_rootmargin(match):
+        placeholder = f"__ROOTMARGIN_{len(rootmargin_matches)}__"
+        rootmargin_matches.append(match.group(2))
+        return f"{match.group(1)}{placeholder}{match.group(3)}"
+    
+    js_content = re.sub(rootmargin_pattern, protect_rootmargin, js_content)
+    
     # Rimuovi spazi attorno a operatori e punteggiatura
     js_content = re.sub(r'\s*([{}();,=+\-*/<>!&|?:])\s*', r'\1', js_content)
+    
+    # Ripristina i valori rootMargin protetti
+    for i, original_value in enumerate(rootmargin_matches):
+        placeholder = f"__ROOTMARGIN_{i}__"
+        js_content = js_content.replace(placeholder, original_value)
     
     # Rimuovi spazi attorno alle parentesi
     js_content = re.sub(r'\s*([()\[\]])\s*', r'\1', js_content)
