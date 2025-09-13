@@ -322,11 +322,14 @@ function initHeaderScroll() {
 
 // Function removed - replaced with optimized version in initHeaderScroll
 
+// script.js
+
 // Scroll Animations
 function initScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        // QUI È LA CORREZIONE: Assicurati che ci siano gli spazi tra i valori.
+        rootMargin: '0px 0px -50px 0px' 
     };
     
     const observer = new IntersectionObserver(function(entries) {
@@ -656,7 +659,7 @@ function initLazyLoading() {
                 imageObserver.unobserve(img);
             }
         });
-    });
+    }, { rootMargin: '0px 0px 50px 0px' });
     
     images.forEach(img => imageObserver.observe(img));
 }
@@ -951,8 +954,8 @@ const translations = {
         'sorveglianza-installation-feature-3': 'Configurazione e test completi del sistema',
         'sorveglianza-installation-feature-4': 'Formazione sull\'utilizzo e manutenzione',
         'sorveglianza-installation-cta1': 'Prenota Sopralluogo',
-        'sorveglianza-partner-title': 'Partner CIVIS',
-        'sorveglianza-partner-description': 'Collaboriamo con CIVIS, leader nel settore della videosorveglianza professionale, per garantire prodotti di altissima qualità e tecnologie all\'avanguardia.',
+        'sorveglianza-partner-title': 'I Nostri Partner Tecnologici',
+        'sorveglianza-partner-description': 'Collaboriamo con leader nel settore della videosorveglianza professionale, per garantire prodotti di altissima qualità e tecnologie all\'avanguardia.',
         'sorveglianza-partner-service-1': 'Sistemi di videosorveglianza IP avanzati',
         'sorveglianza-partner-service-2': 'Telecamere con intelligenza artificiale integrata',
         'sorveglianza-partner-service-3': 'Software di gestione professionale',
@@ -1274,11 +1277,11 @@ const translations = {
         'sorveglianza-cta-sopralluogo': 'Prenota Sopralluogo',
         'sorveglianza-cta-assistenza': 'Assistenza Tecnica',
         'sorveglianza-partner-general-title': 'Informazioni Generali',
-        'sorveglianza-partner-general-desc': 'CIVIS è un Istituto di Vigilanza privato con oltre 50 anni di esperienza nel settore della vigilanza e sorveglianza. Offre soluzioni di sicurezza personalizzate per case, negozi, uffici, aziende e pubblica amministrazione.',
+        'sorveglianza-partner-general-desc': 'Collaboriamo con istituti di vigilanza privata leader con oltre 50 anni di esperienza nel settore della vigilanza e sorveglianza. Offriamo soluzioni di sicurezza personalizzate per privati e aziende in tutta Italia.',
         'sorveglianza-partner-services-title': 'Servizi e Innovazione',
-        'sorveglianza-partner-service-6': '<strong>Analisi del rischio:</strong> consulenti di sicurezza CIVIS propongono soluzioni dopo un\'attenta analisi del rischio.',
+        'sorveglianza-partner-service-6': '<strong>Analisi del rischio:</strong> i nostri consulenti di sicurezza propongono soluzioni dopo un\'attenta analisi del rischio.',
         'sorveglianza-partner-service-7': '<strong>Tecnologia avanzata e esperienza solida:</strong> combinazione di tecnologia all\'avanguardia e professionisti esperti.',
-        'sorveglianza-partner-service-8': '<strong>Adattamento sistemi esistenti:</strong> possibilità di collegare sistemi di allarme già esistenti alla Centrale Operativa CIVIS.',
+        'sorveglianza-partner-service-8': '<strong>Adattamento sistemi esistenti:</strong> possibilità di collegare sistemi di allarme già esistenti alla nostra Centrale Operativa.',
 
         'sorveglianza-contact-email': 'Email',
         
@@ -1376,8 +1379,8 @@ const translations = {
         
         // Missing sorveglianza contact and form translations
         'sorveglianza-contact-address': 'Indirizzo',
-        'sorveglianza-video-description': 'Scopri il sistema di videosorveglianza CIVIS, la soluzione professionale per la sicurezza totale. Tecnologia avanzata con risoluzione 4K, visione notturna, rilevamento intelligente e controllo remoto per proteggere efficacemente la tua proprietà. <a href="#contatti" class="text-link">Richiedi una consulenza gratuita</a>.',
-        'sorveglianza-video-transcript': '<p>Il sistema CIVIS rappresenta l\'eccellenza nella videosorveglianza professionale. Con telecamere 4K ad alta risoluzione, garantisce immagini cristalline sia di giorno che di notte grazie alla tecnologia di visione notturna avanzata.</p><p>Il sistema include rilevamento intelligente di movimento, notifiche push istantanee e controllo remoto completo tramite app dedicata. Perfetto per abitazioni, uffici e attività commerciali.</p>',
+        'sorveglianza-video-description': 'Scopri il nostro sistema di videosorveglianza professionale, la soluzione avanzata per la sicurezza totale di privati e aziende in tutta Italia. Tecnologia avanzata con risoluzione 4K, visione notturna, rilevamento intelligente e controllo remoto per proteggere efficacemente la tua proprietà. <a href="#contatti" class="text-link">Richiedi una consulenza gratuita</a>.',
+        'sorveglianza-video-transcript': '<p>Il nostro sistema rappresenta l\'eccellenza nella videosorveglianza professionale per privati e aziende. Con telecamere 4K ad alta risoluzione, garantisce immagini cristalline sia di giorno che di notte grazie alla tecnologia di visione notturna avanzata.</p><p>Il sistema include rilevamento intelligente di movimento, notifiche push istantanee e controllo remoto completo tramite app dedicata. Perfetto per abitazioni, uffici e attività commerciali.</p>',
 
 
         'contact-form-name': 'Nome e Cognome',
@@ -2356,8 +2359,8 @@ const translations = {
 
         'sorveglianza-contact-email': 'Email',
         'sorveglianza-contact-address': 'Address',
-        'sorveglianza-video-description': 'Discover the CIVIS video surveillance system, the professional solution for total security. Advanced technology with 4K resolution, night vision, intelligent detection and remote control to effectively protect your property. <a href="#contatti" class="text-link">Request a free consultation</a>.',
-        'sorveglianza-video-transcript': '<p>The CIVIS system represents excellence in professional video surveillance. With 4K high-resolution cameras, it guarantees crystal-clear images both day and night thanks to advanced night vision technology.</p><p>The system includes intelligent motion detection, instant push notifications and complete remote control via dedicated app. Perfect for homes, offices and commercial activities.</p>',
+        'sorveglianza-video-description': 'Discover our professional video surveillance system, the advanced solution for total security for individuals and businesses throughout Italy. Advanced technology with 4K resolution, night vision, intelligent detection and remote control to effectively protect your property. <a href="#contatti" class="text-link">Request a free consultation</a>.',
+        'sorveglianza-video-transcript': '<p>Our system represents excellence in professional video surveillance for individuals and businesses. With 4K high-resolution cameras, it guarantees crystal-clear images both day and night thanks to advanced night vision technology.</p><p>The system includes intelligent motion detection, instant push notifications and complete remote control via dedicated app. Perfect for homes, offices and commercial activities.</p>',
         'sorveglianza-contact-hours': 'Hours',
         'sorveglianza-contact-schedule': 'Mon-Fri: 8:00-18:00<br>Sat: 9:00-13:00',
         'contact-form-name': 'Full Name',
@@ -3095,13 +3098,50 @@ html {
 // Inject additional styles
 document.head.insertAdjacentHTML('beforeend', additionalStyles);
 
+// Email obfuscation function
+function initEmailObfuscation() {
+    // Find all email elements that need obfuscation
+    const emailElements = document.querySelectorAll('[data-email]');
+    
+    emailElements.forEach(element => {
+        const obfuscatedEmail = element.getAttribute('data-email');
+        if (obfuscatedEmail) {
+            // Convert [at] and [dot] back to @ and .
+            const realEmail = obfuscatedEmail
+                .replace(/\[at\]/g, '@')
+                .replace(/\[dot\]/g, '.');
+            
+            // Update the element content
+            if (element.tagName.toLowerCase() === 'a') {
+                element.href = `mailto:${realEmail}`;
+                element.textContent = realEmail;
+            } else {
+                element.textContent = realEmail;
+            }
+        }
+    });
+    
+    // Also handle any email spans with obfuscated format
+    const emailSpans = document.querySelectorAll('.email-obfuscated');
+    emailSpans.forEach(span => {
+        const text = span.textContent;
+        if (text.includes('[at]') || text.includes('[dot]')) {
+            const realEmail = text
+                .replace(/\[at\]/g, '@')
+                .replace(/\[dot\]/g, '.');
+            span.textContent = realEmail;
+        }
+    });
+}
+
 // Export functions for potential external use
 window.FrancoSite = {
     showNotification,
     updateActiveNavLink,
     validateForm,
     debounce,
-    throttle
+    throttle,
+    initEmailObfuscation
 };
 
 // Console welcome message

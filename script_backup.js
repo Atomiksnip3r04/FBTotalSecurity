@@ -2313,8 +2313,8 @@ const translations = {
 
         'sorveglianza-contact-email': 'Email',
         'sorveglianza-contact-address': 'Address',
-        'sorveglianza-video-description': 'Discover the CIVIS video surveillance system, the professional solution for total security. Advanced technology with 4K resolution, night vision, intelligent detection and remote control to effectively protect your property. <a href="#contatti" class="text-link">Request a free consultation</a>.',
-        'sorveglianza-video-transcript': '<p>The CIVIS system represents excellence in professional video surveillance. With 4K high-resolution cameras, it guarantees crystal-clear images both day and night thanks to advanced night vision technology.</p><p>The system includes intelligent motion detection, instant push notifications and complete remote control via dedicated app. Perfect for homes, offices and commercial activities.</p>',
+        'sorveglianza-video-description': 'Discover our professional video surveillance system, the advanced solution for total security for individuals and businesses throughout Italy. Advanced technology with 4K resolution, night vision, intelligent detection and remote control to effectively protect your property. <a href="#contatti" class="text-link">Request a free consultation</a>.',
+        'sorveglianza-video-transcript': '<p>Our system represents excellence in professional video surveillance for individuals and businesses. With 4K high-resolution cameras, it guarantees crystal-clear images both day and night thanks to advanced night vision technology.</p><p>The system includes intelligent motion detection, instant push notifications and complete remote control via dedicated app. Perfect for homes, offices and commercial activities.</p>',
         'sorveglianza-contact-hours': 'Hours',
         'sorveglianza-contact-schedule': 'Mon-Fri: 8:00-18:00<br>Sat: 9:00-13:00',
         'contact-form-name': 'Full Name',

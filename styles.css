@@ -1295,6 +1295,32 @@ a {
     margin: 0;
 }
 
+/* Email display protection - ensure proper email format */
+.contact-details a[href^="mailto:"] {
+    color: #4caf50;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    word-break: break-all;
+    display: inline-block;
+}
+
+.contact-details a[href^="mailto:"]:hover {
+    color: #66bb6a;
+    text-decoration: underline;
+}
+
+/* Prevent email obfuscation by extensions */
+.contact-details a[href^="mailto:"]::before {
+    content: attr(href);
+    content: "";
+}
+
+.contact-details a[href^="mailto:"] {
+    font-family: 'Inter', monospace;
+    letter-spacing: 0.5px;
+}
+
 /* Contact Form */
 .contact-form {
     background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
