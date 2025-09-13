@@ -81,12 +81,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Preconnect ottimizzati per Cloudflare email-decode.min.js -->
-    <link rel="preconnect" href="https://www.fbtotalsecurity.com">
+    <link rel="preconnect" href="https://www.fbtotalsecurity.com" crossorigin>
     <link rel="preconnect" href="https://ajax.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="//cloudflare-static">
     <link rel="dns-prefetch" href="//ajax.cloudflare.com">
-    <!-- Preload email-decode.min.js per ridurre latenza -->
-    <link rel="preload" href="https://ajax.cloudflare.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js" as="script" crossorigin>
+    <!-- Prefetch per ridurre latenza senza CORS -->
+    <link rel="prefetch" href="https://ajax.cloudflare.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
+
     <link rel="prefetch" href="index.html">
     <link rel="prefetch" href="nebbiogeni.html">
     <link rel="prefetch" href="sorveglianza.html">
