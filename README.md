@@ -224,7 +224,7 @@ Aggiorna le informazioni di contatto in:
 ## Licenza
 
 Questo progetto è sviluppato per FB Total Security - Sistemi di Sicurezza.
-Tutti i diritti riservati © 2024.
+Tutti i diritti riservati © 2025.
 
 ## Contatti Sviluppo
 

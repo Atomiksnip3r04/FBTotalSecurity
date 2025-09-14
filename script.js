@@ -985,7 +985,7 @@ const translations = {
         'footer-contacts-title': 'Contatti',
         'footer-info-title': 'Informazioni',
         'footer-social-title': 'Seguici su',
-        'footer-copyright': '© 2024 FB Total Security. Tutti i diritti riservati. | P.IVA: 12345678901',
+        'footer-copyright': '© 2025 FB Total Security. Tutti i diritti riservati. | P.IVA: 12345678901',
         'footer-created-by': 'Creato da Web Novis',
         'footer-company': 'FB Total Security',
         'footer-company-desc': 'Creatori di sicurezza dal 2003. Specializzati in sistemi di protezione avanzati per aziende e privati.',
@@ -1581,7 +1581,7 @@ const translations = {
         'footer-location': '📍 Tutta Italia',
 
         'footer-email': '✉️ postmaster@fbtotalsecurity.com',
-        'footer-copyright': '© 2024 FB Total Security. Tutti i diritti riservati.',
+        'footer-copyright': '© 2025 FB Total Security. Tutti i diritti riservati.',
         'footer-created-by': 'Creato da Web Novis'
     },
     en: {
@@ -1907,7 +1907,7 @@ const translations = {
         'footer-contacts-title': 'Contacts',
         'footer-info-title': 'Information',
         'footer-social-title': 'Follow Us',
-        'footer-copyright': '© 2024 FB Total Security. All rights reserved. | VAT: 12345678901',
+        'footer-copyright': '© 2025 FB Total Security. All rights reserved. | VAT: 12345678901',
         'footer-created-by': 'Created by Web Novis',
         'footer-company': 'FB Total Security',
         'footer-company-desc': 'Security creators since 2003. Specialized in advanced protection systems for businesses and individuals.',
@@ -2567,7 +2567,7 @@ const translations = {
         'footer-location': '📍 Milan and Province',
 
         'footer-email': '✉️ postmaster@fbtotalsecurity.com',
-        'footer-copyright': '© 2024 FB Total Security. All rights reserved.',
+        'footer-copyright': '© 2025 FB Total Security. All rights reserved.',
         'footer-created-by': 'Created by Web Novis',
         'form-contact-description': 'Fill out the form below to request a free quote or get more information about our security systems. Our team will contact you within 24 hours.'
     }
