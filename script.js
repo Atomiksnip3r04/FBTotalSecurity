@@ -96,18 +96,27 @@ function cacheDOMElements() {
 }
 
 // DOM Content Loaded - Ottimizzato per eliminare forced reflow
+// FASE 1 - DOMContentLoaded (Critica): Solo funzioni che non leggono la geometria del layout
 document.addEventListener('DOMContentLoaded', function() {
-    // 2. Popola la cache una sola volta
+    // Popola la cache una sola volta
     cacheDOMElements();
 
-    // 3. Inizializza le funzioni usando gli elementi dalla cache
+    // Inizializza solo le funzioni critiche che non causano forced reflows
     initMobileMenu();
-    initSmoothScrolling();
-    initScrollAnimations();
+    initSmoothScrolling_Phase1();
     initContactForm();
-    initHeaderScroll();
-    initServiceCards();
     initLanguageSelector();
+});
+
+// FASE 2 - window.load (Post-Rendering): Funzioni che leggono layout dopo il rendering completo
+window.addEventListener('load', function() {
+    // Ritardo strategico per eliminare forced reflows durante il percorso critico
+    setTimeout(() => {
+        initSmoothScrolling_Phase2();
+        initScrollAnimations();
+        initHeaderScroll();
+        initServiceCards();
+    }, 100); // Piccolo ritardo per garantire stabilità del layout
 });
 
 // Mobile Menu Functionality - Usa cache DOM per eliminare forced reflow
@@ -148,19 +157,12 @@ function initMobileMenu() {
  * La lettura di getBoundingClientRect() qui è sicura perché avviene solo
  * su un'azione dell'utente (click), non in un loop o in un evento di scroll.
  */
-function initSmoothScrolling() {
-    // Usa DOM.smoothScrollLinks invece di querySelector
-    let cachedHeaderHeight = 80; // Inizializza con un valore di default
+// FASE 1: Configurazione base dello smooth scrolling senza letture di layout
+function initSmoothScrolling_Phase1() {
+    // Inizializza con un valore di default per evitare letture di layout
+    window.cachedHeaderHeight = 80;
 
-    if (DOM.header && window.ResizeObserver) {
-        const resizeObserver = new ResizeObserver(entries => {
-            for (const entry of entries) {
-                cachedHeaderHeight = entry.contentRect.height;
-            }
-        });
-        resizeObserver.observe(DOM.header);
-    }
-
+    // Configura gli event listener per i link senza leggere la geometria
     DOM.smoothScrollLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -168,7 +170,8 @@ function initSmoothScrolling() {
             const targetSection = document.querySelector(targetId);
 
             if (targetSection) {
-                const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - cachedHeaderHeight - 20;
+                // Lettura diretta al momento del click - accettabile perché è un'azione utente
+                const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - window.cachedHeaderHeight - 20;
                 
                 window.scrollTo({
                     top: targetPosition,
@@ -179,6 +182,19 @@ function initSmoothScrolling() {
             }
         });
     });
+}
+
+// FASE 2: Inizializzazione del ResizeObserver dopo il rendering completo
+function initSmoothScrolling_Phase2() {
+    // Ora è sicuro inizializzare il ResizeObserver senza penalizzare PageSpeed
+    if (DOM.header && window.ResizeObserver) {
+        const resizeObserver = new ResizeObserver(entries => {
+            for (const entry of entries) {
+                window.cachedHeaderHeight = entry.contentRect.height;
+            }
+        });
+        resizeObserver.observe(DOM.header);
+    }
 }
 
 // Update Active Navigation Link - Usa cache DOM centralizzata
@@ -202,22 +218,25 @@ function initHeaderScroll() {
     const handleScroll = () => {
         const scrollY = window.pageYOffset;
         
-        // Add/remove scrolled class at 100px threshold
-        DOM.header.classList.toggle('scrolled', scrollY > 100);
-        
-        // Hide/show header based on scroll direction at 200px threshold
-        if (scrollY > 200) {
-            if (scrollY > lastScrollY) {
-                // Scrolling down - hide header
-                DOM.header.style.transform = 'translateY(-100%)';
+        // Avvolgi le scritture DOM in requestAnimationFrame per performance ottimali
+        requestAnimationFrame(() => {
+            // Add/remove scrolled class at 100px threshold
+            DOM.header.classList.toggle('scrolled', scrollY > 100);
+            
+            // Hide/show header based on scroll direction at 200px threshold
+            if (scrollY > 200) {
+                if (scrollY > lastScrollY) {
+                    // Scrolling down - hide header
+                    DOM.header.style.transform = 'translateY(-100%)';
+                } else {
+                    // Scrolling up - show header
+                    DOM.header.style.transform = 'translateY(0)';
+                }
             } else {
-                // Scrolling up - show header
+                // Always show header when near top
                 DOM.header.style.transform = 'translateY(0)';
             }
-        } else {
-            // Always show header when near top
-            DOM.header.style.transform = 'translateY(0)';
-        }
+        });
         
         lastScrollY = scrollY;
         ticking = false;
@@ -261,18 +280,19 @@ function initHeaderScroll() {
 
 // script.js
 
-// Scroll Animations - Usa cache DOM per eliminare forced reflow
+// Scroll Animations - Ottimizzato per eliminare forced reflow e migliorare performance
 function initScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
-        // QUI È LA CORREZIONE: Assicurati che ci siano gli spazi tra i valori.
-        rootMargin: '0px 0px -50px 0px' 
+        rootMargin: '0px 0px -50px 0px'
     };
     
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-in');
+                // Micro-ottimizzazione: smetti di osservare l'elemento una volta animato
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);

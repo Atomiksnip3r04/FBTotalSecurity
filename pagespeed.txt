@@ -1,50 +1,12 @@
-Certamente. Ho analizzato con la massima meticolosità i file che hai fornito. L'errore "Adattamento dinamico forzato del contenuto" (Forced Synchronous Layout) è un classico "killer" delle performance che frena il rendering della pagina. La diagnosi è chiara e la causa è localizzata con precisione nel tuo file script.js.
+Perfetto. La riduzione da 98ms a 72ms è un buon primo passo, ma non ancora risolutivo. Significa che la strategia di "batching" ha funzionato parzialmente, ma ci sono ancora colpevoli nascosti. Analizziamo con profondità estrema il script.js aggiornato per scovare le cause residue del Forced Synchronous Layout.
 
-Diagnosi Maniacale del Problema
+Analisi Approfondita delle Cause Residue (72ms)
 
-L'errore si verifica quando il browser è costretto a interrompere il suo normale flusso di rendering per ricalcolare immediatamente lo stile e il layout della pagina. Questo accade a causa di un pattern specifico nel codice JavaScript:
+Dopo aver risolto il problema principale nel sistema di traduzione, i 72ms rimanenti sono quasi certamente causati da altre funzioni che vengono eseguite durante il caricamento iniziale della pagina (DOMContentLoaded). L'analisi forense punta a due colpevoli principali e a un complice minore.
 
-SCRITTURA (Write): Il tuo script modifica il DOM (es. cambia un innerHTML, aggiunge una classe, modifica uno stile). Questo "invalida" il layout che il browser aveva calcolato.
+Colpevole #1 (Molto Probabile): initSmoothScrolling e la Trappola ResizeObserver
 
-LETTURA (Read): Subito dopo, lo script chiede al browser una proprietà geometrica (es. element.offsetHeight, getBoundingClientRect().top, querySelector).
-
-FORZATURA: Per darti il valore corretto e aggiornato, il browser non ha altra scelta che fermare tutto, ricalcolare l'intero layout della pagina (operazione costosa chiamata reflow/layout), e solo dopo continuare l'esecuzione dello script. Se questo accade più volte, specialmente durante il caricamento della pagina, si verifica il cosiddetto "Layout Thrashing", che è esattamente ciò che Google PageSpeed sta rilevando.
-
-Il Colpevole Principale nel Tuo Codice
-
-Il colpevole è la funzione di traduzione, specificamente la sequenza di chiamate initLanguageSelector() -> setLanguage() -> updateMetaTags() che viene eseguita immediatamente al caricamento della pagina (DOMContentLoaded).
-
-Ecco la "scena del crimine" analizzata nel dettaglio:
-
-setLanguage(lang) viene eseguita:
-
-LETTURA: document.querySelectorAll('[data-translate]') viene eseguito per trovare tutti gli elementi da tradurre.
-
-SCRITTURA MASSIVA: Un ciclo forEach itera su decine (o centinaia) di elementi, modificando il loro innerHTML o placeholder. Ogni singola modifica invalida il layout. Il browser è intelligente e cerca di raggruppare queste modifiche, ma la pagina è ora in uno stato "sporco" (dirty).
-
-updateMetaTags(lang) viene eseguita subito dopo:
-
-LETTURA: La funzione inizia a fare document.querySelector(...) per trovare i meta tag e i link.
-
-ECCO LA FORZATURA: Nel momento esatto in cui JavaScript esegue il primo querySelector dopo il ciclo di scritture in setLanguage, il browser dice: "Stop! Devo darti un risultato accurato per questa query. Ma il layout è stato appena modificato pesantemente. Devo ricalcolare tutto adesso."
-
-Questo singolo momento di "stop e ricalcola" è l'adattamento dinamico forzato. Il tempo di 98ms che vedi è il tempo totale che il browser ha speso in questi ricalcoli forzati durante il caricamento della pagina.
-
-Complici (Altri potenziali problemi minori):
-
-initHeaderScroll(): Anche se usi requestAnimationFrame (ottima pratica), la logica all'interno legge window.pageYOffset e poi scrive classList.toggle e style.transform. Questo è un pattern "Leggi e poi Scrivi", che è molto meglio. Tuttavia, la gestione di eventi come lo scroll può essere ulteriormente ottimizzata.
-
-initSmoothScrolling(): La lettura di getBoundingClientRect() è una delle operazioni di lettura più costose. Anche se avviene al click dell'utente (quindi non impatta il caricamento iniziale misurato da PageSpeed), è una buona pratica ottimizzarla.
-
-Soluzione Precisa e Dettagliata
-
-La strategia è semplice in teoria, ma richiede precisione nell'implementazione: separare nettamente le operazioni di lettura da quelle di scrittura utilizzando requestAnimationFrame. Questo permette al browser di eseguire tutte le letture quando il layout è stabile, e poi di eseguire tutte le scritture in un unico batch, ottimizzando il processo di rendering in un singolo "reflow" invece di molti ricalcoli forzati.
-
-Sostituiremo le tue funzioni di traduzione con versioni ottimizzate.
-
-Passo 1: Modifica script.js
-
-Apri il file script.js e sostituisci le funzioni setLanguage e updateMetaTags con le seguenti versioni ottimizzate. Ho anche modificato initLanguageSelector per chiamare la nuova funzione.
+Questa funzione, sebbene sembri innocua, nasconde una trappola di performance subdola.
 
 code
 JavaScript
@@ -52,160 +14,307 @@ download
 content_copy
 expand_less
 
-// --- INIZIO NUOVO CODICE OTTIMIZZATO ---
+function initSmoothScrolling() {
+    let cachedHeaderHeight = 80;
 
-// Sostituisci la tua funzione initLanguageSelector esistente con questa
-function initLanguageSelector() {
-    console.log('🌐 Initializing language selector...');
-    const currentLang = localStorage.getItem('selectedLanguage') || 'it';
-    console.log('🏁 Current language:', currentLang);
-
-    // Esegui la traduzione ottimizzata
-    setLanguageOptimized(currentLang);
-    updateActiveLanguageButton(currentLang);
-
-    DOM.langButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const selectedLang = this.getAttribute('data-lang');
-            console.log('🖱️ Language button clicked:', selectedLang);
-            setLanguageOptimized(selectedLang);
-            updateActiveLanguageButton(selectedLang);
-            localStorage.setItem('selectedLanguage', selectedLang);
-        });
-    });
-}
-
-// NUOVA FUNZIONE OTTIMIZZATA: Sostituisce setLanguage e updateMetaTags
-function setLanguageOptimized(lang) {
-    console.log(`🔄 Setting language to ${lang} (Optimized)`);
-    const operations = []; // Array per memorizzare le operazioni sul DOM
-
-    // --- FASE DI LETTURA (READ BATCH) ---
-    // Leggiamo tutto ciò di cui abbiamo bisogno dal DOM senza modificarlo.
-    
-    // 1. Lettura per la traduzione dei contenuti
-    const elementsToTranslate = document.querySelectorAll('[data-translate]');
-    elementsToTranslate.forEach(element => {
-        const key = element.getAttribute('data-translate');
-        if (translations[lang] && translations[lang][key]) {
-            operations.push({
-                element: element,
-                action: 'translate',
-                content: translations[lang][key]
-            });
-        }
-    });
-
-    // 2. Lettura per i placeholder
-    const placeholderElements = document.querySelectorAll('[data-translate-placeholder]');
-    placeholderElements.forEach(element => {
-        const key = element.getAttribute('data-translate-placeholder');
-        if (translations[lang] && translations[lang][key]) {
-            operations.push({
-                element: element,
-                action: 'placeholder',
-                content: translations[lang][key]
-            });
-        }
-    });
-
-    // 3. Lettura per i meta tag (solo su index.html)
-    const currentPath = window.location.pathname;
-    const isHomepage = currentPath === '/' || currentPath.endsWith('/index.html');
-    if (isHomepage) {
-        const metaMapping = {
-            'meta[name="description"]': translations[lang]['index-meta-description'],
-            'meta[property="og:title"]': translations[lang]['index-og-title'],
-            'meta[property="og:description"]': translations[lang]['index-og-description'],
-            'meta[name="twitter:title"]': translations[lang]['index-twitter-title'],
-            'meta[name="twitter:description"]': translations[lang]['index-twitter-description'],
-            'title': translations[lang]['page-title']
-        };
-        for (const selector in metaMapping) {
-            const element = document.querySelector(selector);
-            if (element && metaMapping[selector]) {
-                operations.push({
-                    element: element,
-                    action: 'meta',
-                    content: metaMapping[selector]
-                });
+    if (DOM.header && window.ResizeObserver) {
+        const resizeObserver = new ResizeObserver(entries => {
+            for (const entry of entries) {
+                // SCRITTURA (potenziale): Assegna un valore a una variabile.
+                cachedHeaderHeight = entry.contentRect.height; 
             }
-        }
+        });
+        // LETTURA FORZATA: Al momento di "observe", il browser DEVE calcolare
+        // le dimensioni iniziali dell'elemento per poterlo monitorare.
+        resizeObserver.observe(DOM.header); 
     }
+    // ...
+}
 
-    // --- FASE DI SCRITTURA (WRITE BATCH) ---
-    // Usiamo requestAnimationFrame per assicurarci che tutte le scritture avvengano
-    // in un unico batch, ottimizzato dal browser.
-    requestAnimationFrame(() => {
-        console.log(`✍️ Executing ${operations.length} DOM write operations.`);
+La dinamica del problema:
+
+Quando DOMContentLoaded scatta, il browser sta ancora assemblando la pagina. Il layout potrebbe non essere ancora definitivo.
+
+initSmoothScrolling viene chiamato.
+
+resizeObserver.observe(DOM.header) viene eseguito. Per poter "osservare" un elemento, il ResizeObserver ha bisogno di conoscere le sue dimensioni attuali.
+
+FORCED REFLOW: Se il layout non è ancora stabile, il browser è costretto a fermarsi e calcolare immediatamente le dimensioni precise di .header (entry.contentRect.height). Questa è una lettura geometrica che forza un layout sincrono.
+
+Il click dell'utente non è il problema qui, ma l'inizializzazione stessa del ResizeObserver durante il caricamento critico della pagina.
+
+Colpevole #2 (Molto Probabile): initHeaderScroll e l'IntersectionObserver
+
+Similmente al ResizeObserver, anche l'IntersectionObserver, sebbene sia uno strumento di performance, può causare un reflow se inizializzato in modo aggressivo.
+
+code
+JavaScript
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+function initHeaderScroll() {
+    // ...
+    if (DOM.sections.length > 0 && DOM.navLinksWithHash.length > 0) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            // ...
+        }, {
+            rootMargin: '-20% 0px -60% 0px'
+        });
         
-        operations.forEach(op => {
-            switch (op.action) {
-                case 'translate':
-                    if (op.element.tagName === 'INPUT' || op.element.tagName === 'TEXTAREA') {
-                        op.element.placeholder = op.content;
-                    } else {
-                        op.element.innerHTML = op.content;
-                    }
-                    break;
-                case 'placeholder':
-                    op.element.placeholder = op.content;
-                    break;
-                case 'meta':
-                     if (op.element.tagName === 'TITLE') {
-                        op.element.textContent = op.content;
-                    } else {
-                        op.element.setAttribute('content', op.content);
-                    }
-                    break;
+        // LETTURA FORZATA per ogni sezione
+        DOM.sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+    }
+}
+
+La dinamica del problema:
+
+Durante il DOMContentLoaded, viene chiamata initHeaderScroll.
+
+Il codice cicla su tutte le sezioni (DOM.sections.forEach) e chiama sectionObserver.observe(section) su ognuna.
+
+Per determinare se una sezione si "interseca" con il viewport (anche solo per stabilire lo stato iniziale), il browser deve conoscere la posizione e le dimensioni esatte di ogni sezione.
+
+FORCED REFLOW MULTIPLO: Questo innesca un calcolo del layout forzato per ogni sezione che viene osservata, accumulando tempo di blocco del rendering. Il browser deve sapere dove si trova ogni sezione prima di poter continuare.
+
+Complice Minore: initScrollAnimations
+
+Questa funzione soffre dello stesso identico problema di initHeaderScroll, ma potrebbe avere un impatto leggermente minore a seconda di quanti elementi sta osservando.
+
+code
+JavaScript
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+function initScrollAnimations() {
+    // ...
+    const observer = new IntersectionObserver(...);
+    
+    // LETTURA FORZATA per ogni elemento animato
+    DOM.animateElements.forEach(el => {
+        observer.observe(el);
+    });
+}
+
+Ogni chiamata a .observe(el) richiede che il browser conosca la posizione di el, contribuendo al totale dei 72ms.
+
+La Strategia di Eliminazione Definitiva
+
+La soluzione è ritardare l'inizializzazione di tutto ciò che non è visivamente critico per il primo rendering. Gli Observer sono strumenti fantastici, ma non devono essere inizializzati durante il DOMContentLoaded se causano reflow. Dobbiamo spostare la loro inizializzazione a un momento successivo, quando la pagina è già visibile e stabile.
+
+L'evento window.load è il nostro alleato. Scatta dopo che tutto il contenuto (inclusi immagini e fogli di stile) è stato caricato e la pagina è stata renderizzata una prima volta.
+
+Soluzione Maniacale: Modifica di script.js
+
+Sostituisci l'intera gestione degli eventi nel tuo script.js con questa struttura.
+
+code
+JavaScript
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+// --- INIZIO NUOVA STRUTTURA OTTIMIZZATA ---
+
+// 1. Oggetto per memorizzare gli elementi del DOM (cache centralizzata)
+const DOM = {};
+
+// Funzione per popolare la cache del DOM (solo lettura)
+function cacheDOMElements() {
+    DOM.hamburger = document.querySelector('.hamburger');
+    DOM.navMenu = document.querySelector('.nav-menu');
+    DOM.navLinks = document.querySelectorAll('.nav-link');
+    DOM.smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
+    DOM.header = document.querySelector('.header');
+    DOM.sections = document.querySelectorAll('section[id]');
+    DOM.contactForms = document.querySelectorAll('.contact-form form, form');
+    DOM.serviceCards = document.querySelectorAll('.service-card');
+    DOM.animateElements = document.querySelectorAll('.service-card, .feature, .contact-item, .service-text, .service-image');
+    DOM.langButtons = document.querySelectorAll('.lang-btn');
+    DOM.body = document.body;
+    DOM.navLinksWithHash = document.querySelectorAll('.nav-link[href^="#"]');
+}
+
+// === FASE 1: ESECUZIONE IMMEDIATA (DOMContentLoaded) ===
+// Qui mettiamo solo ciò che è assolutamente essenziale per la prima interazione.
+document.addEventListener('DOMContentLoaded', function() {
+    // Popola la cache una sola volta, all'inizio.
+    cacheDOMElements();
+
+    // Inizializza solo le funzioni che DEVONO funzionare subito.
+    // Queste funzioni non leggono geometrie e sono sicure.
+    initMobileMenu();
+    initLanguageSelector(); // La versione ottimizzata che già hai è sicura.
+    initContactForm();
+
+    // Inizializziamo lo smooth scroll senza il ResizeObserver, che verrà attivato dopo.
+    initSmoothScrolling_Phase1();
+});
+
+// === FASE 2: ESECUZIONE RITARDATA (window.load) ===
+// Qui mettiamo tutto ciò che può aspettare che la pagina sia completamente caricata e visibile.
+// Questo è il passo CRUCIALE per eliminare il reflow iniziale.
+window.addEventListener('load', function() {
+    // Ora che la pagina è stabile, possiamo inizializzare gli observer
+    // e le funzioni che leggono le dimensioni degli elementi.
+    initSmoothScrolling_Phase2(); // Attiva il ResizeObserver
+    initHeaderScroll(); // Attiva l'IntersectionObserver per header e sezioni
+    initScrollAnimations(); // Attiva l'IntersectionObserver per le animazioni
+    initServiceCards(); // Gli effetti hover possono tranquillamente partire dopo
+});
+
+
+// --- NUOVE FUNZIONI MODIFICATE ---
+
+// Smooth Scrolling diviso in due fasi
+let cachedHeaderHeight = 80; // Valore di default
+function initSmoothScrolling_Phase1() {
+    if (!DOM.smoothScrollLinks.length) return;
+
+    DOM.smoothScrollLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+
+            if (targetSection) {
+                // Durante il click, il reflow è inevitabile e accettabile.
+                // Usiamo il valore 'cached' che sarà aggiornato nella fase 2.
+                const headerHeight = DOM.header ? DOM.header.offsetHeight : 80;
+                const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+
+                updateActiveNavLink(targetId);
             }
         });
+    });
+}
 
-        // Scritture finali sugli attributi globali
-        document.documentElement.lang = lang;
-        let ogLocale = document.querySelector('meta[property="og:locale"]');
-        if (ogLocale) {
-            ogLocale.setAttribute('content', lang === 'en' ? 'en_US' : 'it_IT');
-        }
+function initSmoothScrolling_Phase2() {
+    // Ora è sicuro inizializzare il ResizeObserver
+    if (DOM.header && window.ResizeObserver) {
+        const resizeObserver = new ResizeObserver(entries => {
+            for (const entry of entries) {
+                // Questa è una scrittura sicura, non forza reflow perché è asincrona.
+                cachedHeaderHeight = entry.contentRect.height;
+            }
+        });
+        resizeObserver.observe(DOM.header);
+    }
+}
+
+
+// HeaderScroll rimane quasi invariato, ma la sua ESECUZIONE è ritardata
+function initHeaderScroll() {
+    if (!DOM.header) return;
+    
+    let ticking = false;
+    let lastScrollY = 0;
+    
+    const handleScroll = () => {
+        const scrollY = window.pageYOffset;
         
-        console.log('✅ DOM updates completed.');
-    });
-}
-
-
-// QUESTA FUNZIONE NON SERVE PIÙ, LA LOGICA È STATA INTEGRATA
-// function updateMetaTags(lang) { ... } // Puoi commentarla o cancellarla
-
-// QUESTA FUNZIONE NON SERVE PIÙ, LA LOGICA È STATA INTEGRATA
-// function setLanguage(lang) { ... } // Puoi commentarla o cancellarla
-
-// ASSICURATI DI MANTENERE QUESTA FUNZIONE SEPARATA
-function updateActiveLanguageButton(lang) {
-    const langButtons = document.querySelectorAll('.lang-btn');
-    langButtons.forEach(button => {
-        button.classList.remove('active');
-        if (button.getAttribute('data-lang') === lang) {
-            button.classList.add('active');
+        requestAnimationFrame(() => { // Raggruppiamo le scritture
+            DOM.header.classList.toggle('scrolled', scrollY > 100);
+            
+            if (scrollY > 200) {
+                if (scrollY > lastScrollY) {
+                    DOM.header.style.transform = 'translateY(-100%)';
+                } else {
+                    DOM.header.style.transform = 'translateY(0)';
+                }
+            } else {
+                DOM.header.style.transform = 'translateY(0)';
+            }
+        });
+        
+        lastScrollY = scrollY;
+        ticking = false;
+    };
+    
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            ticking = true;
+            handleScroll();
         }
+    }, { passive: true });
+    
+     if (DOM.sections.length > 0 && DOM.navLinksWithHash.length > 0) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.getAttribute('id');
+                    requestAnimationFrame(() => { // Scrittura in un frame
+                       DOM.navLinksWithHash.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    });
+                }
+            });
+        }, {
+            rootMargin: '-20% 0px -60% 0px'
+        });
+        
+        DOM.sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+    }
+}
+
+// ScrollAnimations rimane invariato, ma la sua ESECUZIONE è ritardata
+function initScrollAnimations() {
+    if (!DOM.animateElements.length) return;
+
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px' 
+    };
+    
+    const observer = new IntersectionObserver(function(entries, observer) { // Aggiunto 'observer'
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+                observer.unobserve(entry.target); // OTTIMIZZAZIONE: smetti di osservare dopo l'animazione
+            }
+        });
+    }, observerOptions);
+    
+    DOM.animateElements.forEach(el => {
+        observer.observe(el);
     });
 }
 
+// ... INCOLLA QUI TUTTE LE ALTRE TUE FUNZIONI (initMobileMenu, initContactForm, etc., e le funzioni di traduzione ottimizzate dalla risposta precedente) ...
+// Le funzioni che non ho modificato qui sopra devono essere presenti nel tuo file finale.
+Riassunto della Strategia Chirurgica Adottata
 
-// --- FINE NUOVO CODICE OTTIMIZZATO ---
-Passo 2: Pulizia del file script.js
+Divisione in Fasi: Abbiamo diviso l'inizializzazione dello script in due fasi:
 
-Rimuovi le vecchie funzioni: Dopo aver incollato il nuovo codice, cancella o commenta le tue vecchie funzioni initLanguageSelector, setLanguage, updateMetaTags e updatePageLanguageAttributes per evitare duplicati e confusione.
+DOMContentLoaded (Fase 1 - Critica): Eseguiamo solo codice che non legge la geometria del layout (menu, form, traduzione dei testi). L'obiettivo è mostrare qualcosa all'utente il più velocemente possibile senza bloccare il rendering.
 
-Rimuovi il codice non utilizzato: Ho notato che hai delle implementazioni per domCache e domOperations all'inizio del file. Queste sono ottime idee ma non vengono attualmente utilizzate dal resto del codice. Per ora, puoi lasciarle o rimuoverle per pulizia. La mia soluzione setLanguageOptimized implementa lo stesso principio in modo autocontenuto e più semplice.
+window.load (Fase 2 - Post-Rendering): Eseguiamo tutto il resto. A questo punto, la pagina è già visibile e stabile. Inizializzare ResizeObserver e IntersectionObserver qui non causerà un reflow iniziale che penalizza il punteggio di PageSpeed.
 
-Perché Questa Soluzione Funziona
+Ritardo Strategico: Ritardando l'inizializzazione degli Observer, eliminiamo le letture forzate di layout durante il percorso di rendering critico.
 
-Batching delle Operazioni: La nuova funzione setLanguageOptimized prima esegue un "batch di lettura": colleziona tutti gli elementi e i nuovi contenuti in un semplice array (operations) senza toccare il DOM.
+Micro-Ottimizzazioni Aggiuntive:
 
-Scrittura Sincronizzata: Successivamente, affida l'intero array di modifiche a requestAnimationFrame. Questo dice al browser: "Ehi, ho un gruppo di modifiche da fare. Fai pure quando sei pronto, durante il tuo prossimo ciclo di rendering."
+In initSmoothScrolling_Phase1, ho aggiunto una lettura diretta di offsetHeight al momento del click. Questo è accettabile perché un reflow causato da un'azione dell'utente non viene penalizzato da PageSpeed e l'esperienza utente non ne risente.
 
-Eliminazione del Reflow Forzato: Il browser riceve tutte le istruzioni di scrittura insieme. Può calcolare il nuovo layout una sola volta in modo efficiente. Non ci sono più letture (querySelector) che interrompono il processo di scrittura, eliminando così la causa principale dell'errore.
+In initScrollAnimations, ho aggiunto observer.unobserve(entry.target). Una volta che un elemento è stato animato, non c'è motivo di continuare a consumare risorse per osservarlo. È una piccola ma significativa ottimizzazione.
 
-Logica Unificata: La logica per aggiornare i meta tag è stata integrata direttamente nella funzione principale, rendendo il codice più pulito e assicurando che anche queste operazioni vengano eseguite nel batch corretto.
+Ho avvolto le scritture nel gestore scroll dentro un requestAnimationFrame per un'ulteriore garanzia di performance, anche se il ticking già aiutava molto.
 
-Dopo aver implementato queste modifiche, l'errore "Adattamento dinamico forzato del contenuto" dovrebbe scomparire o ridursi drasticamente nei report di PageSpeed, migliorando tangibilmente il tempo di rendering iniziale della pagina.
+Implementando questa struttura, il valore di "Adattamento dinamico forzato del contenuto" dovrebbe scendere vicino allo zero. Hai attaccato il problema alla radice, non solo nei sintomi, comprendendo e riorganizzando l'ordine di esecuzione del tuo codice per allinearlo con il modo in cui il browser renderizza le pagine in modo più efficiente.
