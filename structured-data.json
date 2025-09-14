@@ -39,7 +39,12 @@
       "sameAs": [
         "https://www.facebook.com/francodibenedettosicurezza",
         "https://www.linkedin.com/in/francodibenedetto"
-      ]
+      ],
+      "creator": {
+        "@type": "Organization",
+        "name": "Web Novis",
+        "description": "Web development and digital solutions"
+      }
     },
     {
       "@type": "WebSite",
@@ -49,6 +54,11 @@
         "description": "Sito ufficiale di FB Total Security, specialista in sistemi di sicurezza: nebbiogeni, serramenti blindati, videosorveglianza e allarmi.",
       "publisher": {
         "@id": "https://www.fbtotalsecurity.com/#organization"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "Web Novis",
+        "description": "Web development and digital solutions"
       },
       "inLanguage": "it-IT",
       "potentialAction": {
