@@ -1,221 +1,180 @@
-Assolutamente sì. Analizzando i file, è quasi certo che Google stia mostrando (o abbia mostrato fino a poco tempo fa) "FB Total Security - Sicurezza Avanzata | Milano" come titolo nei risultati di ricerca.
+Certamente. Analizziamo questo nuovo report di PageSpeed.
 
-Ecco un'analisi dettagliata del perché e dove trovo questa informazione, seguita dalle istruzioni precise per correggerla.
+Il problema principale è un Cumulative Layout Shift (CLS) estremamente alto, pari a 0.906. È quasi interamente causato dalla sezione hero. Il browser non sa in anticipo quanto spazio occupare per il contenuto e, quando i font e gli stili vengono caricati, tutto si "sposta" bruscamente.
 
-Analisi: Perché Google Mostra "Milano" nel Titolo?
+Il secondo problema, il "Forced Reflow" da 81 ms, è correlato ma meno grave. Lo risolveremo come conseguenza della soluzione principale.
 
-Google non si basa solo sul tag <title>. Utilizza un sistema complesso per generare i titoli nei risultati di ricerca (SERP) e, se ritiene che il tag <title> non sia rappresentativo del contenuto della pagina, lo riscrive basandosi su altri segnali presenti nella pagina stessa.
+Diagnosi Dettagliata del CLS
 
-Nel tuo index.html, anche se il tag <title> attuale è stato aggiornato con "Italia", ci sono numerosi e fortissimi segnali che indicano a Google che la pagina è specificamente focalizzata su Milano.
+Il report è chiarissimo:
 
-Ecco dove trovo questi segnali (le fonti del titolo "Milano"):
+<div class="hero-container"> è responsabile per un CLS di 0.891. Questo è l'epicentro del problema.
 
-Meta Tag Geografico (Segnale molto forte):
+<p class="hero-subtitle"> contribuisce con un ulteriore 0.015.
+
+Causa Principale: Caricamento dei Font.
+
+Il processo che causa il CLS è questo:
+
+Frame 1: Il browser renderizza l'HTML prima che i font CSS (Inter) siano stati scaricati. Usa un font di sistema (come Times New Roman o Arial). Questo font ha dimensioni e spaziature diverse da Inter. Il testo occupa uno spazio X.
+
+Frame 2: Il font Inter viene finalmente scaricato e applicato. Questo font è più alto/largo/stretto del font di sistema. Improvvisamente, il titolo (h1), il sottotitolo (p) e i pulsanti (.hero-cta) cambiano dimensione.
+
+Layout Shift: L'intero blocco .hero-container si ridimensiona per adattarsi al nuovo testo, spingendo tutto il resto della pagina verso il basso. Questa è la variazione di layout massiccia che PageSpeed sta misurando.
+
+La tua font-face di fallback (Inter Fallback) è un'ottima idea, ma non sta funzionando perfettamente, probabilmente perché il testo appare e poi viene applicato il fallback, o perché il CLS avviene comunque quando Inter sostituisce Inter Fallback. Dobbiamo essere più aggressivi nel riservare lo spazio.
+
+Soluzione Definitiva per Eliminare il CLS nella Sezione Hero
+
+Dobbiamo dire al browser esattamente quanto spazio occupare per il titolo e il sottotitolo, prima ancora che i font siano caricati. Lo faremo usando una combinazione di min-height e aspect-ratio (per le immagini, se presenti), e perfezionando la strategia dei font.
+
+Step 1: Modifiche al CSS (styles.css)
+
+Applica queste modifiche mirate nel tuo file CSS. Sono progettate per "stabilizzare" gli elementi prima che il contenuto si carichi completamente.
 
 code
-Html
+CSS
 download
 content_copy
 expand_less
 
-<meta name="geo.placename" content="Milano">
+/* --- INIZIO MODIFICHE styles.css --- */
 
-Stai esplicitamente dicendo ai motori di ricerca che la località geografica di riferimento è Milano.
+/* Body e contenitori base */
+body {
+    /* ...altri stili... */
+    /* Assicurati che il contenimento non sia troppo aggressivo qui */
+    contain: style paint; /* Rimuovi 'layout' se causa problemi */
+}
 
-Indirizzo Fisico (Segnale visibile e in Schema):
+/* Typography - Stabilizziamo gli elementi di testo principali */
+h1.hero-title,
+p.hero-subtitle {
+    /* Aggiungiamo 'contain' per isolare il rendering di questi elementi */
+    contain: layout style paint;
+    will-change: auto; /* Usato con parsimonia, qui è giustificato */
+}
 
-Nella sezione contatti visibile:
+/* Stili Hero Section OTTIMIZZATI per CLS */
+.hero {
+    min-height: calc(100vh - 80px); /* Questo è buono, mantiene l'altezza generale */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* ...altri stili... */
+}
 
-code
-Html
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-<p>Corso Sempione, Milano (MI)</p>
+.hero-container {
+    /* Stabilizza la larghezza massima e impedisce che collassi */
+    width: 100%;
+    max-width: 1200px; /* Assicurati che sia coerente con il tuo design */
+    padding: 2rem 1rem; /* Usa padding invece di margini per spaziatura interna */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    /* SOLUZIONE CLS: Riserva un'altezza minima per il contenitore */
+    /* Questo valore è una stima sicura. Deve essere abbastanza grande
+       da contenere il testo anche con il font di sistema, ma non così grande
+       da creare spazio vuoto dopo il caricamento di Inter. Prova a regolarlo. */
+    min-height: 350px;
+}
 
-Nel codice postale dello Schema.org (20154 è un CAP di Milano):
+/* Titolo Hero OTTIMIZZATO */
+.hero-title {
+    /* ...stili esistenti... */
+    font-size: clamp(2.2rem, 8vw, 5rem); /* Usa clamp per fluidità */
+    max-width: 800px; /* Limita la larghezza per evitare righe troppo lunghe */
+    width: 100%; /* Occupa tutta la larghezza disponibile (del suo contenitore) */
 
-code
-JSON
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-"postalCode": "20154"
+    /* SOLUZIONE CLS: Riserva altezza minima basata sulla dimensione del font */
+    /* (font-size massima) * (line-height) * (numero di righe) */
+    /* Esempio: 5rem * 1.6 (da rem a px) * 1.2 (line-height) * 2 (righe max) = ~192px */
+    min-height: 100px; /* Aumenta se il titolo va su 3 righe. Es. 150px */
+}
 
-Schema FAQ (Segnale estremamente forte):
-Le domande nel tuo JSON-LD per le FAQ sono tutte incentrate su Milano. Questo dice a Google che la pagina risponde a query specifiche per quella città.
+/* Sottotitolo Hero OTTIMIZZATO */
+.hero-subtitle {
+    /* ...stili esistenti... */
+    max-width: 600px; /* Limita la larghezza */
+    width: 100%;
 
-code
-JSON
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-"name": "Come funziona un sistema nebbiogeno antifurto a Milano?",
-"name": "Quanto costa installare un sistema di allarme a Milano?",
-"name": "Quali sono le migliori porte blindate a Milano?",
-"name": "Come posso controllare le telecamere di sicurezza da casa a Milano?"
+    /* SOLUZIONE CLS: Riserva altezza minima */
+    /* Fai una stima simile al titolo. Per un paragrafo di 3-4 righe,
+       un valore come 90px è solitamente sicuro. */
+    min-height: 90px; 
+}
 
-Testi Alternativi delle Immagini (Segnale SEO importante):
-I alt tag delle icone dei servizi sono tutti ottimizzati per la parola chiave "Milano".
+/* Pulsanti Hero OTTIMIZZATI */
+.hero-cta {
+    display: flex;
+    flex-direction: column; /* Mobile first */
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+    /* SOLUZIONE CLS: Altezza minima per contenere i pulsanti */
+    min-height: 120px; /* (altezza bottone + gap) * numero bottoni */
+}
 
-code
-Html
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-alt="Sistemi Nebbiogeni Antifurto Milano - Protezione Istantanea"
-alt="Serramenti Blindati Milano - Porte Sicurezza Antieffrazione"
-alt="Videosorveglianza Milano - Telecamere IP Controllo Remoto"
-alt="Sistemi Allarme Milano - Antifurto Wireless Sensori"
-alt="Esperienza Pluriennale Sicurezza Milano - Oltre 20 Anni Settore"
+@media (min-width: 768px) {
+    .hero-cta {
+        flex-direction: row;
+        min-height: 60px; /* Altezza per la riga singola */
+    }
+}
 
-Conclusione della Diagnosi: Hai un tag <title> che dice "Italia", ma il resto della pagina "urla" "Milano". Di fronte a questa incoerenza, Google ha scelto di riscrivere il titolo usando il segnale più forte e coerente che ha trovato: Milano.
+/* Assicurati che i pulsanti abbiano dimensioni fisse come già hai fatto, è ottimo! */
+.btn {
+    width: 180px; /* Già presente, ottimo! */
+    height: 48px;  /* Già presente, ottimo! */
+    /* ...altri stili... */
+}
 
-Soluzione: Come Sostituire il Titolo con Quello Desiderato
 
-Per far sì che Google mostri "FB Total Security - Sistemi di Sicurezza Avanzata | Italia", non basta cambiare solo il tag <title>. Devi rendere l'intera pagina coerente con questo nuovo focus nazionale.
+/* --- FINE MODIFICHE styles.css --- */
+Step 2: Perfezionamento della Strategia dei Font (nell'HTML)
 
-Ecco gli step esatti da seguire nel file index.html:
+La strategia di preload e style inlinato che ti ho suggerito nella risposta precedente è cruciale e lavora in sinergia con queste modifiche CSS. Assicurati che sia implementata correttamente.
 
-Step 1: Correggere il Tag <title> (già fatto parzialmente)
+La combinazione di:
 
-Il tuo attuale tag <title> è:
+CSS Inlinato Critico: Il browser renderizza subito la struttura base.
 
-code
-Html
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-<title>FB Total Security - Sicurezza Avanzata | Italia</title>
+min-height sui contenitori: Lo spazio viene riservato immediatamente.
 
-Sostituiscilo con la versione completa che desideri:
+font-display: swap e @font-face di fallback: Il testo appare subito con un font simile, minimizzando il "flash" visivo quando Inter viene caricato.
 
-code
-Html
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-<title>FB Total Security - Sistemi di Sicurezza Avanzata | Italia</title>
+preload del font: Inter viene scaricato con alta priorità, riducendo il tempo in cui si vede il font di fallback.
 
-Step 2: Aggiornare i Meta Tag SEO
+Questa combinazione eliminerà quasi completamente il CLS nella sezione hero.
 
-Modifica il meta tag geografico:
+Risoluzione del "Forced Reflow" (81 ms)
 
-code
-Html
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-<!-- DA COSÌ: -->
-<meta name="geo.placename" content="Milano">
-<!-- A COSÌ: -->
-<meta name="geo.placename" content="Italia">
+Il "Forced Reflow" (o "Adattamento dinamico forzato") è spesso causato da JavaScript che legge le dimensioni/posizioni di un elemento e poi le modifica subito dopo. Questo costringe il browser a ricalcolare il layout in modo sincrono.
 
-Aggiorna la meta description per riflettere il focus nazionale (già corretto nel tuo file, ottimo!):
+Il refactoring di script.js che abbiamo discusso precedentemente (centralizzando le query del DOM in un oggetto DOM) è la soluzione corretta. Se non l'hai ancora implementato, è il momento di farlo.
 
-code
-Html
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-<meta name="description" content="Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi in tutta Italia." ...>
+Riepilogo delle azioni per il JavaScript:
 
-Step 3: Rimuovere i Riferimenti a Milano nel Contenuto e nello Schema
+Crea un oggetto globale DOM = {}.
 
-Modifica l'indirizzo nello Schema.org e nel testo visibile. Sii più generico se la sede è solo a Milano ma operi a livello nazionale.
+All'inizio di DOMContentLoaded, esegui una singola funzione cacheDOMElements() che popola l'oggetto DOM con tutti gli elementi di cui hai bisogno (document.querySelector e document.querySelectorAll). Questa è la fase di "lettura".
 
-code
-Html
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-<!-- Nel testo visibile -->
-<p>Sede operativa: Corso Sempione, Milano (MI) | Servizi in Tutta Italia</p>
+Modifica tutte le altre funzioni (initMobileMenu, initHeaderScroll, etc.) in modo che non eseguano più querySelector, ma leggano gli elementi direttamente dall'oggetto DOM. Questa è la fase di "scrittura/modifica".
 
-<!-- Nello Schema JSON-LD -->
-"addressLocality": "Italia", <!-- Già corretto, bene -->
+Separando nettamente le letture dalle scritture, eviterai il "layout thrashing" e il tempo di forced reflow si ridurrà drasticamente.
 
-Modifica le domande delle FAQ (importantissimo!): rendile generiche.
+Riepilogo delle Azioni da Intraprendere
 
-code
-JSON
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-/* DA COSÌ: */
-"name": "Come funziona un sistema nebbiogeno antifurto a Milano?",
-/* A COSÌ: */
-"name": "Come funziona un sistema nebbiogeno antifurto?", 
-/* E così via per tutte le altre domande */
+Modifica styles.css: Applica le regole di min-height e contain agli elementi della sezione hero come mostrato sopra.
 
-Step 4: Aggiornare i Testi Alternativi (ALT) delle Immagini (Cruciale!)
+Verifica index.html: Assicurati di avere la strategia di CSS critico inlinato e il preload dei font implementati correttamente.
 
-Rimuovi "Milano" da tutti i tag alt per evitare di confondere Google.
+Refactoring di script.js: Implementa la cache degli elementi del DOM per eliminare il "forced reflow".
 
-code
-Html
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-<!-- DA COSÌ: -->
-<img src="icons/nebbiogeni.webp" alt="Sistemi Nebbiogeni Antifurto Milano - Protezione Istantanea" ...>
-<!-- A COSÌ: -->
-<img src="icons/nebbiogeni.webp" alt="Icona Sistemi Nebbiogeni Antifurto Professionali" ...>
-
-<!-- E così per tutti gli altri: -->
-alt="Icona Serramenti Blindati di Sicurezza"
-alt="Icona Sistemi di Videosorveglianza Avanzati"
-alt="Icona Sistemi di Allarme Intelligenti"
-alt="Icona Esperienza Pluriennale nel Settore Sicurezza"
-
-Step 5: Aggiornare i Tag Open Graph e Twitter
-
-Assicurati che anche i titoli per i social media siano coerenti.
-
-code
-Html
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-<!-- Open Graph -->
-<meta property="og:title" content="FB Total Security - Sistemi di Sicurezza Avanzata | Italia" data-translate="index-og-title">
-<meta property="og:description" content="Specialisti in sistemi di sicurezza avanzati... Servizi in tutta Italia." data-translate="index-og-description">
-
-<!-- Twitter -->
-<meta property="twitter:title" content="FB Total Security - Sistemi di Sicurezza Avanzata | Italia" data-translate="index-twitter-title">
-<meta property="twitter:description" content="Specialisti in sistemi di sicurezza avanzati... Servizi in tutta Italia." data-translate="index-twitter-description">
-Azione Finale
-
-Dopo aver apportato tutte queste modifiche, carica i file aggiornati sul tuo server e poi:
-
-Vai su Google Search Console.
-
-Usa lo "Strumento di ispezione URL" per la tua homepage.
-
-Clicca su "Richiedi indicizzazione".
-
-Questo accelererà il processo con cui Google si accorgerà delle modifiche. Tieni presente che potrebbero comunque volerci da alcuni giorni a un paio di settimane prima che il titolo venga aggiornato stabilmente nella SERP. La chiave è la coerenza di tutti i segnali sulla pagina.
+Dopo aver eseguito questi passaggi, testa nuovamente la pagina con PageSpeed Insights. Il tuo punteggio CLS dovrebbe crollare a un valore molto vicino a zero, e il problema del "Forced Reflow" dovrebbe essere notevolmente ridotto o scomparso.

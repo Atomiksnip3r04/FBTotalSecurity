@@ -73,8 +73,8 @@ body {
     font-kerning: normal;
     text-rendering: optimizeSpeed;
     
-    /* Rimosso transform translateZ(0) che causa CLS */
-    /* Rimosso will-change: auto non necessario */
+    /* Assicurati che il contenimento non sia troppo aggressivo qui */
+    contain: style paint; /* Rimuovi 'layout' se causa problemi */
     
     /* Additional CLS prevention */
     box-sizing: border-box;
@@ -587,26 +587,34 @@ a {
 }
 
 .hero-container {
+    /* Stabilizza la larghezza massima e impedisce che collassi */
+    width: 100%;
     max-width: 1200px;
+    padding: 2rem 1rem; /* Usa padding invece di margini per spaziatura interna */
+    box-sizing: border-box;
     margin: 0 auto;
-    padding: 0 2rem;
     text-align: center;
     position: relative;
     z-index: 2;
-    /* Optimize for layout stability and reduce CLS */
-    contain: layout style;
-    transform: translateZ(0);
-    will-change: auto;
-    /* Prevent layout shifts during content loading */
-    min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
+    /* SOLUZIONE CLS: Riserva un'altezza minima per il contenitore */
+    /* Questo valore è una stima sicura. Deve essere abbastanza grande
+       da contenere il testo anche con il font di sistema, ma non così grande
+       da creare spazio vuoto dopo il caricamento di Inter. */
+    min-height: 350px;
+    
+    /* Optimize for layout stability and reduce CLS */
+    contain: layout style;
+    transform: translateZ(0);
+    will-change: auto;
 }
 
 .hero-title {
-    font-size: clamp(3rem, 6vw, 5rem);
+    font-size: clamp(2.2rem, 8vw, 5rem); /* Usa clamp per fluidità */
     font-weight: 700;
     margin-bottom: 1.5rem;
     background: linear-gradient(135deg, #ffffff, #4caf50);
@@ -614,13 +622,22 @@ a {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     line-height: 1.1;
+    max-width: 800px; /* Limita la larghezza per evitare righe troppo lunghe */
+    width: 100%; /* Occupa tutta la larghezza disponibile (del suo contenitore) */
+
+    /* SOLUZIONE CLS: Riserva altezza minima basata sulla dimensione del font */
+    /* (font-size massima) * (line-height) * (numero di righe) */
+    /* Esempio: 5rem * 1.6 (da rem a px) * 1.2 (line-height) * 2 (righe max) = ~192px */
+    min-height: 100px; /* Aumenta se il titolo va su 3 righe. Es. 150px */
+    
+    /* Aggiungiamo 'contain' per isolare il rendering di questi elementi */
+    contain: layout style paint;
+    will-change: auto; /* Usato con parsimonia, qui è giustificato */
+    
     /* Prevent layout shift during font loading */
     font-display: optional;
-    min-height: 4rem;
-    contain: layout style;
     /* Additional CLS prevention */
     transform: translateZ(0);
-    will-change: auto;
     /* Reserve space to prevent shifts */
     padding: 0.5rem 0;
     /* Stabilize layout dimensions */
@@ -631,27 +648,42 @@ a {
     font-size: clamp(1.2rem, 2.5vw, 1.5rem);
     color: #b0b0b0;
     margin-bottom: 3rem;
-    max-width: 600px;
+    max-width: 600px; /* Limita la larghezza */
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     line-height: 1.6;
-    /* Prevent CLS during loading */
-    min-height: 2rem;
-    contain: layout style;
+    
+    /* SOLUZIONE CLS: Riserva altezza minima */
+    /* Fai una stima simile al titolo. Per un paragrafo di 3-4 righe,
+       un valore come 90px è solitamente sicuro. */
+    min-height: 90px;
+    
+    /* Aggiungiamo 'contain' per isolare il rendering di questi elementi */
+    contain: layout style paint;
+    will-change: auto; /* Usato con parsimonia, qui è giustificato */
     transform: translateZ(0);
 }
 
 .hero-cta {
-    /* Hero-CTA - layout grid fisso */
-    display: grid; /* Cambiato da flex */
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    display: flex;
+    flex-direction: column; /* Mobile first */
     gap: 1.5rem;
-    min-height: 60px;
-    max-width: 500px;
-    contain: layout style;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    
+    /* SOLUZIONE CLS: Altezza minima per contenere i pulsanti */
+    min-height: 120px; /* (altezza bottone + gap) * numero bottoni */
+    contain: layout style;
     margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .hero-cta {
+        flex-direction: row;
+        min-height: 60px; /* Altezza per la riga singola */
+    }
 }
 
 /* Mission Section */
