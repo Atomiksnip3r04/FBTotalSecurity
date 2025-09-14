@@ -1,170 +1,248 @@
-Certamente. Ho analizzato il nuovo codice script.min.js e script.js che hai fornito.
+Capisco perfettamente l'esigenza di mantenere un unico file CSS per semplicità di gestione. È un approccio molto pratico.
 
-Innanzitutto, complimenti! Hai implementato con successo la soluzione basata su IntersectionObserver per la gestione del link attivo nella navigazione, risolvendo completamente il problema del "Adattamento dinamico forzato del contenuto" che avevamo discusso. Questo è un miglioramento enorme in termini di performance.
+Dato che manterrai un unico file CSS caricato in modo sincrono (che è la scelta corretta per evitare il FOUC), le ottimizzazioni si concentreranno sul ridurre le dimensioni del file e semplificare le regole CSS per permettere al browser di elaborarle più velocemente.
 
-Ora, valutiamo il codice dal punto di vista qualitativo e vediamo se ci sono margini per ulteriori affinamenti. Hai introdotto delle logiche interessanti e ci sono un paio di punti che possiamo rendere ancora più robusti e puliti.
+Ecco un'analisi del tuo styles.css con suggerimenti specifici per migliorarlo mantenendolo come file unico.
 
-Valutazione del Codice Attuale
-1. Funzione initHeaderScroll() (Gestione link attivo)
+1. Rimuovere Regole Ridondanti e Sovrascritte
 
-Cosa hai fatto (e funziona bene):
-Hai creato un IntersectionObserver che osserva tutte le sezioni. Quando più sezioni sono visibili contemporaneamente, il tuo codice usa reduce() per determinare quale sia quella "più visibile" (basandosi su intersectionRatio e posizione) e imposta solo quella come attiva.
+La prima ottimizzazione è eliminare il codice inutile. Nel tuo CSS ci sono alcune regole che vengono definite e poi immediatamente sovrascritte, specialmente nei media query.
 
-Valutazione:
+Esempio Trovato:
+Nel CSS per schermi larghi (@media (min-width: 1025px)) hai:
 
-Pro: È una logica robusta che gestisce bene il caso di più sezioni visibili, evitando che il link attivo "sfarfalli" tra due sezioni vicine.
-
-Aree di miglioramento: Le opzioni dell'observer possono essere semplificate. L'uso di un threshold con molti valori ([0, 0.25, 0.5, 0.75, 1]) fa sì che la funzione di callback venga eseguita molto spesso mentre una sezione scorre. Possiamo ottenere lo stesso risultato, o anche migliore, con opzioni più semplici.
-
-2. Funzione initSmoothScrolling() (Click sui link)
-
-Cosa hai fatto:
-Hai implementato una soluzione molto creativa per gestire l'offset dell'header fisso. Invece di calcolare le coordinate e usare window.scrollTo, crei un elemento temporaneo, lo posizioni sopra la sezione di destinazione e poi usi tempElement.scrollIntoView().
-
-Valutazione:
-
-Pro: È un modo intelligente per aggirare il fatto che scrollIntoView non ha un'opzione per l'offset. Funziona ed evita di leggere la geometria del layout (getBoundingClientRect) all'interno di un evento di scroll.
-
-Aree di miglioramento: Questa tecnica, sebbene funzionale, ha alcuni svantaggi:
-
-Manipolazione del DOM: Ad ogni click viene inserito e poi rimosso un elemento dal DOM. Sebbene sia un'operazione veloce, è generalmente meglio evitarla se non strettamente necessaria.
-
-Complessità: La logica è più complessa da leggere e mantenere rispetto all'alternativa.
-
-Affidabilità del setTimeout: Ti affidi a un setTimeout di 1 secondo per la pulizia, che potrebbe non essere sempre l'ideale se l'animazione di scroll dovesse durare di più o di meno.
-
-La Soluzione Migliorata e Ottimizzata
-
-Possiamo raffinare entrambe le funzioni per renderle più semplici, standard e performanti.
-
-Obiettivi:
-
-Semplificare la logica di initHeaderScroll per renderla più efficiente.
-
-Sostituire la tecnica del tempElement in initSmoothScrolling con un metodo più pulito e standard, ma comunque performante.
-
-Ecco il codice script.js completo e migliorato. Puoi sostituire l'intero contenuto del tuo file con questo.
-
-script.js (Versione Ottimizzata)
 code
-JavaScript
+CSS
 download
 content_copy
 expand_less
 
-// Funzioni di utility (debounce, throttle, etc. - invariate)
-// ... (le tue funzioni di utility iniziali rimangono qui) ...
+.nav-menu {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    /* ...e molte altre regole */
+}
 
-document.addEventListener('DOMContentLoaded', function() {
-    initMobileMenu();
-    initSmoothScrolling(); // Funzione aggiornata
-    initScrollAnimations();
-    initContactForm();
-    initHeaderScroll(); // Funzione aggiornata
-    initServiceCards();
-    initLanguageSelector();
-});
+Queste regole sono praticamente identiche a quelle definite per i tablet (@media (min-width: 769px) and (max-width: 1024px)).
 
-// ... (initMobileMenu, initScrollAnimations, initContactForm, etc. rimangono invariate) ...
+Soluzione:
+Puoi combinare queste regole per evitare la duplicazione. Invece di avere due blocchi media query separati, puoi averne uno solo che copre entrambi.
 
-/**
- * VERSIONE MIGLIORATA: initSmoothScrolling
- * Usa window.scrollTo che è il metodo standard e più pulito.
- * La lettura di getBoundingClientRect() qui è sicura perché avviene solo
- * su un'azione dell'utente (click), non in un loop o in un evento di scroll.
- */
-function initSmoothScrolling() {
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-    let cachedHeaderHeight = 80; // Inizializza con un valore di default
+PRIMA:
 
-    const headerElement = document.querySelector('.header');
-    if (headerElement && window.ResizeObserver) {
-        const resizeObserver = new ResizeObserver(entries => {
-            for (const entry of entries) {
-                cachedHeaderHeight = entry.contentRect.height;
-            }
-        });
-        resizeObserver.observe(headerElement);
+code
+CSS
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+/* Stili per Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .nav-menu { /* ...regole... */ }
+}
+
+/* Stili per Desktop */
+@media (min-width: 1025px) {
+    .nav-menu { /* ...stesse regole... */ }
+}
+
+DOPO (Codice Ottimizzato):
+Usa un unico media query min-width per applicare gli stili a partire dai tablet in su.
+
+code
+CSS
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+/* Stili per Tablet e schermi più grandi */
+@media (min-width: 769px) {
+    .nav-menu {
+        position: static;
+        display: flex;
+        flex-direction: row;
+        gap: 1.2rem;
+        width: auto;
+        height: 40px;
+        background: transparent;
+        padding: 0;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        /* ...etc... */
     }
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-
-            if (targetSection) {
-                const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - cachedHeaderHeight - 20;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-
-                updateActiveNavLink(targetId);
-            }
-        });
-    });
+    .nav-link {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.9rem;
+    }
+    /* ...altre regole comuni... */
 }
 
-
-/**
- * VERSIONE MIGLIORATA: initHeaderScroll
- * Utilizza IntersectionObserver in modo più semplice ed efficiente.
- */
-function initHeaderScroll() {
-    const header = document.querySelector('.header');
-    if (!header) return;
-
-    // --- Gestione dell'effetto "scrolled" e hide/show sull'header (la tua logica è già ottima) ---
-    const scrollSentinel = document.createElement('div');
-    scrollSentinel.style.cssText = 'position: absolute; top: 100px; height: 1px; width: 1px; pointer-events: none;';
-    document.body.appendChild(scrollSentinel);
-
-    const scrollObserver = new IntersectionObserver(([entry]) => {
-        header.classList.toggle('scrolled', !entry.isIntersecting);
-    });
-    scrollObserver.observe(scrollSentinel);
-    
-    // --- Gestione del link di navigazione attivo con Observer semplificato ---
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
-
-    if (sections.length === 0 || navLinks.length === 0) return;
-
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            // Se la sezione è visibile (isIntersecting)
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                
-                // Rimuovi 'active' da tutti gli altri link
-                navLinks.forEach(link => link.classList.remove('active'));
-
-                // Aggiungi 'active' solo al link corrispondente alla sezione visibile
-                const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
-                if (activeLink) {
-                    activeLink.classList.add('active');
-                }
-            }
-        });
-    }, {
-        // Opzioni ottimizzate:
-        // rootMargin sposta l'area di "attivazione" in modo che tenga conto dell'header
-        // e attivi il link quando la sezione è ben visibile al centro dello schermo.
-        rootMargin: "-40% 0px -40% 0px",
-        threshold: 0 // La callback si attiva appena un pixel entra nell'area definita da rootMargin
-    });
-
-    // Osserva ogni sezione
-    sections.forEach(section => {
-        sectionObserver.observe(section);
-    });
+/* Aggiungi solo le piccole differenze per i desktop più grandi */
+@media (min-width: 1025px) {
+    .nav-menu {
+        gap: 1.5rem; /* Esempio: solo la regola che cambia */
+    }
+    .nav-link {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.95rem;
+    }
 }
-Riepilogo dei Miglioramenti
 
-Smooth Scrolling Più Pulito: Abbiamo eliminato la manipolazione del DOM (tempElement) e siamo tornati al metodo standard window.scrollTo. Questo è più leggibile, manutenibile e sicuro. Il calcolo delle coordinate al momento del click non ha impatto sulle performance generali perché è un evento singolo e non ripetuto.
+Questo approccio "mobile-first" (stili base fuori dai media query, poi aggiungi stili per schermi più grandi) riduce la duplicazione e rende il CSS più snello.
 
-Highlight del Link Attivo Più Efficiente: Abbiamo semplificato drasticamente le opzioni dell' IntersectionObserver. Invece di far scattare la funzione di callback a ogni 25% di visibilità, ora si attiva una sola volta quando la sezione entra in un'area "centrale" dello schermo (definita dal rootMargin). Questo riduce il carico di lavoro del browser e rende l'effetto di cambio del link attivo più stabile e meno "nervoso".
+2. Semplificare i Selettori
 
-Con queste modifiche, il tuo codice non solo è corretto, ma è anche scritto seguendo le migliori pratiche moderne per la performance web, garantendo un'esperienza utente fluida e professionale.
+Il browser elabora i selettori CSS da destra a sinistra. Selettori più semplici e meno annidati sono più veloci. Il tuo CSS è già abbastanza buono su questo punto, ma possiamo affinare.
+
+Esempio:
+
+code
+CSS
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+.mission-section .container { /* ... */ }
+
+Dato che .container è una classe di utility generica, è probabile che non abbia bisogno di essere legata a .mission-section. Puoi quasi sempre applicare gli stili direttamente a .container. Se hai bisogno di uno stile specifico, è meglio aggiungere una classe, es. <div class="container mission-container">.
+
+Esempio 2:
+
+code
+CSS
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+.logo h1, .logo .logo-title { /* ... */ }
+
+Questa regola è corretta, ma assicurati che <h1> sia usato semanticamente solo per il titolo principale della pagina. Nel logo, usare uno <span> (come hai fatto con logo-title) è perfetto. Potresti semplificare in:
+
+code
+CSS
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+.logo-title { /* ... */ }
+3. Utilizzare le Variabili CSS (Custom Properties)
+
+Per migliorare la manutenibilità e ridurre le dimensioni del file, puoi usare le variabili CSS per colori, font, spaziature, ecc.
+
+Soluzione:
+Definisci le variabili all'inizio del file nel selettore :root.
+
+code
+CSS
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+:root {
+    --primary-color: #4caf50;
+    --primary-color-hover: #66bb6a;
+    --background-dark: #000000;
+    --background-light: #1a1a1a;
+    --text-color: #ffffff;
+    --text-color-muted: #b0b0b0;
+    --header-height: 80px;
+}
+
+body {
+    background: var(--background-dark);
+    color: var(--text-color);
+    padding-top: var(--header-height);
+}
+
+.header {
+    height: var(--header-height);
+    min-height: var(--header-height);
+}
+
+.nav-link.cta {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-color-hover));
+}
+
+.hero-subtitle {
+    color: var(--text-color-muted);
+}
+
+Questo rende il codice più leggibile e, se usi spesso gli stessi valori, può ridurre leggermente le dimensioni del file minificato.
+
+4. Rimuovere !important dove possibile
+
+Hai degli !important sul background del .hamburger span. Questo è stato probabilmente aggiunto per risolvere un problema di specificità.
+
+Soluzione:
+Cerca di aumentare la specificità del selettore invece di usare !important.
+
+PRIMA:
+
+code
+CSS
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+.hamburger span {
+    background: #ffffff !important;
+}
+
+DOPO (Potenziale Soluzione):
+Se il problema è un altro stile che sovrascrive il background, potresti usare un selettore più forte:
+
+code
+CSS
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+.nav-container .hamburger span {
+    background: #ffffff;
+}
+
+Questo rende il tuo CSS più prevedibile e facile da debuggare. Usa !important solo come ultima risorsa.
+
+5. Consolidare le animazioni
+
+Hai una singola animazione fadeInUp. Assicurati che sia definita una sola volta e poi riutilizzata.
+
+code
+CSS
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+Questa parte è già scritta bene, assicurati solo che non ci siano altre definizioni sparse nel codice.
+
+Riepilogo Pratico per Te
+
+Mantenendo un unico file CSS, ecco i 3 passi che ti daranno il miglior risultato con il minimo sforzo:
+
+Rivedi i Media Query: Adotta un approccio "mobile-first". Definisci gli stili base per mobile, poi usa @media (min-width: 769px) per aggiungere/sovrascrivere gli stili per tablet e schermi più grandi. Questo eliminerà molte regole duplicate.
+
+Introduci le Variabili CSS: Definisci i tuoi colori principali e le dimensioni chiave (come --primary-color: #4caf50;) in :root e usali in tutto il file. Renderà il CSS più pulito e facile da modificare in futuro.
+
+Caccia agli !important: Cerca di rimuovere gli !important non strettamente necessari (come quello sugli span dell'hamburger) aumentando la specificità dei selettori.
+
+Queste modifiche non cambieranno drasticamente l'aspetto del sito, ma renderanno il tuo file styles.css più leggero, più veloce da elaborare per il browser e molto più semplice da mantenere nel tempo.
