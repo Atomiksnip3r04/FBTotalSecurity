@@ -2552,103 +2552,123 @@ const translations = {
 // Language Management Functions
 function initLanguageSelector() {
     console.log('🌐 Initializing language selector...');
-    console.log('🔍 Found language buttons:', DOM.langButtons.length);
     const currentLang = localStorage.getItem('selectedLanguage') || 'it';
     console.log('🏁 Current language:', currentLang);
-    
-    // Check if we're on homepage to determine initialization behavior
-    const currentPath = window.location.pathname;
-    const isHomepage = currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('index.html');
-    
-    if (isHomepage) {
-        // Set initial language for homepage (full translation)
-        setLanguage(currentLang);
-    } else {
-        // For non-homepage pages, only update language attributes without translating content
-        updatePageLanguageAttributes(currentLang);
-    }
+
+    // Esegui la traduzione ottimizzata
+    setLanguageOptimized(currentLang);
     updateActiveLanguageButton(currentLang);
-    
-    // Add event listeners to language buttons - usa cache DOM
-    DOM.langButtons.forEach((button, index) => {
-        console.log(`🔘 Adding listener to button ${index + 1}:`, button.getAttribute('data-lang'));
+
+    DOM.langButtons.forEach(button => {
         button.addEventListener('click', function() {
             const selectedLang = this.getAttribute('data-lang');
             console.log('🖱️ Language button clicked:', selectedLang);
-            setLanguage(selectedLang);
+            setLanguageOptimized(selectedLang);
             updateActiveLanguageButton(selectedLang);
             localStorage.setItem('selectedLanguage', selectedLang);
         });
     });
 }
 
-function setLanguage(lang) {
-    console.log('🔄 Setting language to:', lang);
-    const elements = document.querySelectorAll('[data-translate]');
-    console.log('📝 Found elements with data-translate:', elements.length);
+// NUOVA FUNZIONE OTTIMIZZATA: Sostituisce setLanguage e updateMetaTags
+function setLanguageOptimized(lang) {
+    console.log(`🔄 Setting language to ${lang} (Optimized)`);
+    const operations = []; // Array per memorizzare le operazioni sul DOM
+
+    // --- FASE DI LETTURA (READ BATCH) ---
+    // Leggiamo tutto ciò di cui abbiamo bisogno dal DOM senza modificarlo.
     
-    let translatedCount = 0;
-    let missingTranslations = [];
-    
-    // Check if we're on homepage to determine if meta tags should be translated
-    const currentPath = window.location.pathname;
-    const isHomepage = currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('index.html');
-    
-    elements.forEach(element => {
+    // 1. Lettura per la traduzione dei contenuti
+    const elementsToTranslate = document.querySelectorAll('[data-translate]');
+    elementsToTranslate.forEach(element => {
         const key = element.getAttribute('data-translate');
-        
-        // Skip meta tags translation if not on homepage
-        if (!isHomepage && element.tagName === 'META' && element.hasAttribute('data-translate')) {
-            return;
-        }
-        
-        // Skip title translation if not on homepage
-        if (!isHomepage && element.tagName === 'TITLE') {
-            return;
-        }
-        
         if (translations[lang] && translations[lang][key]) {
-            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                element.placeholder = translations[lang][key];
-            } else if (element.tagName === 'OPTION') {
-                element.textContent = translations[lang][key];
-            } else {
-                element.innerHTML = translations[lang][key];
-            }
-            translatedCount++;
-        } else {
-            missingTranslations.push(key);
+            operations.push({
+                element: element,
+                action: 'translate',
+                content: translations[lang][key]
+            });
         }
     });
-    
-    console.log(`✅ Translated ${translatedCount} elements`);
-    if (missingTranslations.length > 0) {
-        console.warn('⚠️ Missing translations for keys:', missingTranslations.slice(0, 10));
-    }
-    
-    // Update placeholders with specific data attribute
+
+    // 2. Lettura per i placeholder
     const placeholderElements = document.querySelectorAll('[data-translate-placeholder]');
     placeholderElements.forEach(element => {
         const key = element.getAttribute('data-translate-placeholder');
         if (translations[lang] && translations[lang][key]) {
-            element.placeholder = translations[lang][key];
+            operations.push({
+                element: element,
+                action: 'placeholder',
+                content: translations[lang][key]
+            });
         }
     });
-    
-    // Update HTML lang attribute
-    document.documentElement.lang = lang;
-    
-    // Save language preference
-    localStorage.setItem('selectedLanguage', lang);
-    
-    // Update meta tags for SEO (only for homepage)
+
+    // 3. Lettura per i meta tag (solo su index.html)
+    const currentPath = window.location.pathname;
+    const isHomepage = currentPath === '/' || currentPath.endsWith('/index.html');
     if (isHomepage) {
-        updateMetaTags(lang);
-    } else {
-        // For non-homepage pages, only update HTML lang attribute and hreflang tags
-        updatePageLanguageAttributes(lang);
+        const metaMapping = {
+            'meta[name="description"]': translations[lang]['index-meta-description'],
+            'meta[property="og:title"]': translations[lang]['index-og-title'],
+            'meta[property="og:description"]': translations[lang]['index-og-description'],
+            'meta[name="twitter:title"]': translations[lang]['index-twitter-title'],
+            'meta[name="twitter:description"]': translations[lang]['index-twitter-description'],
+            'title': translations[lang]['page-title']
+        };
+        for (const selector in metaMapping) {
+            const element = document.querySelector(selector);
+            if (element && metaMapping[selector]) {
+                operations.push({
+                    element: element,
+                    action: 'meta',
+                    content: metaMapping[selector]
+                });
+            }
+        }
     }
+
+    // --- FASE DI SCRITTURA (WRITE BATCH) ---
+    // Usiamo requestAnimationFrame per assicurarci che tutte le scritture avvengano
+    // in un unico batch, ottimizzato dal browser.
+    requestAnimationFrame(() => {
+        console.log(`✍️ Executing ${operations.length} DOM write operations.`);
+        
+        operations.forEach(op => {
+            switch (op.action) {
+                case 'translate':
+                    if (op.element.tagName === 'INPUT' || op.element.tagName === 'TEXTAREA') {
+                        op.element.placeholder = op.content;
+                    } else {
+                        op.element.innerHTML = op.content;
+                    }
+                    break;
+                case 'placeholder':
+                    op.element.placeholder = op.content;
+                    break;
+                case 'meta':
+                     if (op.element.tagName === 'TITLE') {
+                        op.element.textContent = op.content;
+                    } else {
+                        op.element.setAttribute('content', op.content);
+                    }
+                    break;
+            }
+        });
+
+        // Scritture finali sugli attributi globali
+        document.documentElement.lang = lang;
+        let ogLocale = document.querySelector('meta[property="og:locale"]');
+        if (ogLocale) {
+            ogLocale.setAttribute('content', lang === 'en' ? 'en_US' : 'it_IT');
+        }
+        
+        console.log('✅ DOM updates completed.');
+    });
 }
+
+// QUESTA FUNZIONE È STATA SOSTITUITA DA setLanguageOptimized
+// function setLanguage(lang) { ... } // Rimossa per evitare conflitti
 
 function updateActiveLanguageButton(lang) {
     const langButtons = document.querySelectorAll('.lang-btn');
@@ -2728,176 +2748,8 @@ function updatePageLanguageAttributes(lang) {
     ogUrl.content = `${baseUrl}${currentPath}`;
 }
 
-function updateMetaTags(lang) {
-    // Update HTML lang attribute
-    document.documentElement.lang = lang;
-    
-    // Update or create hreflang tags
-    const existingHreflang = document.querySelectorAll('link[hreflang]');
-    existingHreflang.forEach(link => link.remove());
-    
-    // Get current page without query parameters
-    const currentPath = window.location.pathname;
-    const baseUrl = window.location.origin;
-    
-    // Add hreflang for both languages
-    const languages = ['it', 'en'];
-    languages.forEach(language => {
-        const link = document.createElement('link');
-        link.rel = 'alternate';
-        link.hreflang = language;
-        // Use clean URLs without query parameters
-        link.href = `${baseUrl}${currentPath}`;
-        document.head.appendChild(link);
-    });
-    
-    // Add x-default hreflang (defaults to Italian)
-    const defaultLink = document.createElement('link');
-    defaultLink.rel = 'alternate';
-    defaultLink.hreflang = 'x-default';
-    defaultLink.href = `${baseUrl}${currentPath}`;
-    document.head.appendChild(defaultLink);
-    
-    // Update canonical URL
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-        canonical = document.createElement('link');
-        canonical.rel = 'canonical';
-        document.head.appendChild(canonical);
-    }
-    canonical.href = `${baseUrl}${currentPath}`;
-    
-    // Update page title based on language (only for homepage)
-    const isHomepage = currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('index.html');
-    
-    // Title is now managed directly in HTML without JavaScript override
-    
-    // Update meta description (only for homepage)
-    if (isHomepage) {
-        const metaDescriptions = {
-            it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi in tutta Italia.',
-            en: 'Specialists in advanced security systems: fog systems, armored doors, video surveillance and alarms. Over 20 years of experience. Services in Milan and province.'
-        };
-        
-        let metaDesc = document.querySelector('meta[name="description"]');
-        if (!metaDesc) {
-            metaDesc = document.createElement('meta');
-            metaDesc.name = 'description';
-            document.head.appendChild(metaDesc);
-        }
-        metaDesc.content = metaDescriptions[lang] || metaDescriptions['it'];
-    }
-    
-    // Update meta keywords (only for homepage)
-    if (isHomepage) {
-        const metaKeywords = {
-            it: 'sistemi sicurezza, nebbiogeni, serramenti blindati, videosorveglianza, allarmi, Milano, sicurezza casa, antifurto',
-            en: 'security systems, fog systems, armored doors, video surveillance, alarms, Milan, home security, anti-theft'
-        };
-        
-        let metaKeys = document.querySelector('meta[name="keywords"]');
-        if (!metaKeys) {
-            metaKeys = document.createElement('meta');
-            metaKeys.name = 'keywords';
-            document.head.appendChild(metaKeys);
-        }
-        metaKeys.content = metaKeywords[lang] || metaKeywords['it'];
-    }
-    
-    // Update Open Graph tags (only for homepage)
-    if (isHomepage) {
-        const ogTitles = {
-            it: 'FB Total Security - Sistemi di Sicurezza Avanzati',
-            en: 'FB Total Security - Advanced Security Systems'
-        };
-        
-        const metaDescriptions = {
-            it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi in tutta Italia.',
-            en: 'Specialists in advanced security systems: fog systems, armored doors, video surveillance and alarms. Over 20 years of experience. Services in Milan and province.'
-        };
-        
-        let ogTitle = document.querySelector('meta[property="og:title"]');
-        if (!ogTitle) {
-            ogTitle = document.createElement('meta');
-            ogTitle.setAttribute('property', 'og:title');
-            document.head.appendChild(ogTitle);
-        }
-        ogTitle.content = ogTitles[lang] || ogTitles['it'];
-        
-        let ogDesc = document.querySelector('meta[property="og:description"]');
-        if (!ogDesc) {
-            ogDesc = document.createElement('meta');
-            ogDesc.setAttribute('property', 'og:description');
-            document.head.appendChild(ogDesc);
-        }
-        ogDesc.content = metaDescriptions[lang] || metaDescriptions['it'];
-    }
-    
-    // Update og:locale
-    let ogLocale = document.querySelector('meta[property="og:locale"]');
-    if (!ogLocale) {
-        ogLocale = document.createElement('meta');
-        ogLocale.setAttribute('property', 'og:locale');
-        document.head.appendChild(ogLocale);
-    }
-    ogLocale.content = lang === 'en' ? 'en_US' : 'it_IT';
-    
-    // Add alternate locales
-    const existingAlternates = document.querySelectorAll('meta[property="og:locale:alternate"]');
-    existingAlternates.forEach(meta => meta.remove());
-    
-    const alternateLocale = lang === 'en' ? 'it_IT' : 'en_US';
-    const ogAlternate = document.createElement('meta');
-    ogAlternate.setAttribute('property', 'og:locale:alternate');
-    ogAlternate.content = alternateLocale;
-    document.head.appendChild(ogAlternate);
-    
-    // Update og:url
-    let ogUrl = document.querySelector('meta[property="og:url"]');
-    if (!ogUrl) {
-        ogUrl = document.createElement('meta');
-        ogUrl.setAttribute('property', 'og:url');
-        document.head.appendChild(ogUrl);
-    }
-    ogUrl.content = `${baseUrl}${currentPath}`;
-    
-    // Add Twitter Card meta tags (only for homepage)
-    if (isHomepage) {
-        const ogTitles = {
-            it: 'FB Total Security - Sistemi di Sicurezza Avanzati',
-            en: 'FB Total Security - Advanced Security Systems'
-        };
-        
-        const metaDescriptions = {
-            it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi in tutta Italia.',
-            en: 'Specialists in advanced security systems: fog systems, armored doors, video surveillance and alarms. Over 20 years of experience. Services in Milan and province.'
-        };
-        
-        let twitterCard = document.querySelector('meta[name="twitter:card"]');
-        if (!twitterCard) {
-            twitterCard = document.createElement('meta');
-            twitterCard.name = 'twitter:card';
-            twitterCard.content = 'summary_large_image';
-            document.head.appendChild(twitterCard);
-        }
-        
-        let twitterTitle = document.querySelector('meta[name="twitter:title"]');
-        if (!twitterTitle) {
-            twitterTitle = document.createElement('meta');
-            twitterTitle.name = 'twitter:title';
-            document.head.appendChild(twitterTitle);
-        }
-        twitterTitle.content = ogTitles[lang] || ogTitles['it'];
-        
-        let twitterDesc = document.querySelector('meta[name="twitter:description"]');
-        if (!twitterDesc) {
-            twitterDesc = document.createElement('meta');
-            twitterDesc.name = 'twitter:description';
-            document.head.appendChild(twitterDesc);
-        }
-        twitterDesc.content = metaDescriptions[lang] || metaDescriptions['it'];
-    }
-}
+// QUESTA FUNZIONE È STATA SOSTITUITA E INTEGRATA IN setLanguageOptimized
+// function updateMetaTags(lang) { ... } // Rimossa per evitare conflitti
 
 // Add CSS for mobile menu and animations
 const additionalStyles = `

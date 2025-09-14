@@ -1,180 +1,211 @@
-Certamente. Analizziamo questo nuovo report di PageSpeed.
+Certamente. Ho analizzato con la massima meticolosità i file che hai fornito. L'errore "Adattamento dinamico forzato del contenuto" (Forced Synchronous Layout) è un classico "killer" delle performance che frena il rendering della pagina. La diagnosi è chiara e la causa è localizzata con precisione nel tuo file script.js.
 
-Il problema principale è un Cumulative Layout Shift (CLS) estremamente alto, pari a 0.906. È quasi interamente causato dalla sezione hero. Il browser non sa in anticipo quanto spazio occupare per il contenuto e, quando i font e gli stili vengono caricati, tutto si "sposta" bruscamente.
+Diagnosi Maniacale del Problema
 
-Il secondo problema, il "Forced Reflow" da 81 ms, è correlato ma meno grave. Lo risolveremo come conseguenza della soluzione principale.
+L'errore si verifica quando il browser è costretto a interrompere il suo normale flusso di rendering per ricalcolare immediatamente lo stile e il layout della pagina. Questo accade a causa di un pattern specifico nel codice JavaScript:
 
-Diagnosi Dettagliata del CLS
+SCRITTURA (Write): Il tuo script modifica il DOM (es. cambia un innerHTML, aggiunge una classe, modifica uno stile). Questo "invalida" il layout che il browser aveva calcolato.
 
-Il report è chiarissimo:
+LETTURA (Read): Subito dopo, lo script chiede al browser una proprietà geometrica (es. element.offsetHeight, getBoundingClientRect().top, querySelector).
 
-<div class="hero-container"> è responsabile per un CLS di 0.891. Questo è l'epicentro del problema.
+FORZATURA: Per darti il valore corretto e aggiornato, il browser non ha altra scelta che fermare tutto, ricalcolare l'intero layout della pagina (operazione costosa chiamata reflow/layout), e solo dopo continuare l'esecuzione dello script. Se questo accade più volte, specialmente durante il caricamento della pagina, si verifica il cosiddetto "Layout Thrashing", che è esattamente ciò che Google PageSpeed sta rilevando.
 
-<p class="hero-subtitle"> contribuisce con un ulteriore 0.015.
+Il Colpevole Principale nel Tuo Codice
 
-Causa Principale: Caricamento dei Font.
+Il colpevole è la funzione di traduzione, specificamente la sequenza di chiamate initLanguageSelector() -> setLanguage() -> updateMetaTags() che viene eseguita immediatamente al caricamento della pagina (DOMContentLoaded).
 
-Il processo che causa il CLS è questo:
+Ecco la "scena del crimine" analizzata nel dettaglio:
 
-Frame 1: Il browser renderizza l'HTML prima che i font CSS (Inter) siano stati scaricati. Usa un font di sistema (come Times New Roman o Arial). Questo font ha dimensioni e spaziature diverse da Inter. Il testo occupa uno spazio X.
+setLanguage(lang) viene eseguita:
 
-Frame 2: Il font Inter viene finalmente scaricato e applicato. Questo font è più alto/largo/stretto del font di sistema. Improvvisamente, il titolo (h1), il sottotitolo (p) e i pulsanti (.hero-cta) cambiano dimensione.
+LETTURA: document.querySelectorAll('[data-translate]') viene eseguito per trovare tutti gli elementi da tradurre.
 
-Layout Shift: L'intero blocco .hero-container si ridimensiona per adattarsi al nuovo testo, spingendo tutto il resto della pagina verso il basso. Questa è la variazione di layout massiccia che PageSpeed sta misurando.
+SCRITTURA MASSIVA: Un ciclo forEach itera su decine (o centinaia) di elementi, modificando il loro innerHTML o placeholder. Ogni singola modifica invalida il layout. Il browser è intelligente e cerca di raggruppare queste modifiche, ma la pagina è ora in uno stato "sporco" (dirty).
 
-La tua font-face di fallback (Inter Fallback) è un'ottima idea, ma non sta funzionando perfettamente, probabilmente perché il testo appare e poi viene applicato il fallback, o perché il CLS avviene comunque quando Inter sostituisce Inter Fallback. Dobbiamo essere più aggressivi nel riservare lo spazio.
+updateMetaTags(lang) viene eseguita subito dopo:
 
-Soluzione Definitiva per Eliminare il CLS nella Sezione Hero
+LETTURA: La funzione inizia a fare document.querySelector(...) per trovare i meta tag e i link.
 
-Dobbiamo dire al browser esattamente quanto spazio occupare per il titolo e il sottotitolo, prima ancora che i font siano caricati. Lo faremo usando una combinazione di min-height e aspect-ratio (per le immagini, se presenti), e perfezionando la strategia dei font.
+ECCO LA FORZATURA: Nel momento esatto in cui JavaScript esegue il primo querySelector dopo il ciclo di scritture in setLanguage, il browser dice: "Stop! Devo darti un risultato accurato per questa query. Ma il layout è stato appena modificato pesantemente. Devo ricalcolare tutto adesso."
 
-Step 1: Modifiche al CSS (styles.css)
+Questo singolo momento di "stop e ricalcola" è l'adattamento dinamico forzato. Il tempo di 98ms che vedi è il tempo totale che il browser ha speso in questi ricalcoli forzati durante il caricamento della pagina.
 
-Applica queste modifiche mirate nel tuo file CSS. Sono progettate per "stabilizzare" gli elementi prima che il contenuto si carichi completamente.
+Complici (Altri potenziali problemi minori):
+
+initHeaderScroll(): Anche se usi requestAnimationFrame (ottima pratica), la logica all'interno legge window.pageYOffset e poi scrive classList.toggle e style.transform. Questo è un pattern "Leggi e poi Scrivi", che è molto meglio. Tuttavia, la gestione di eventi come lo scroll può essere ulteriormente ottimizzata.
+
+initSmoothScrolling(): La lettura di getBoundingClientRect() è una delle operazioni di lettura più costose. Anche se avviene al click dell'utente (quindi non impatta il caricamento iniziale misurato da PageSpeed), è una buona pratica ottimizzarla.
+
+Soluzione Precisa e Dettagliata
+
+La strategia è semplice in teoria, ma richiede precisione nell'implementazione: separare nettamente le operazioni di lettura da quelle di scrittura utilizzando requestAnimationFrame. Questo permette al browser di eseguire tutte le letture quando il layout è stabile, e poi di eseguire tutte le scritture in un unico batch, ottimizzando il processo di rendering in un singolo "reflow" invece di molti ricalcoli forzati.
+
+Sostituiremo le tue funzioni di traduzione con versioni ottimizzate.
+
+Passo 1: Modifica script.js
+
+Apri il file script.js e sostituisci le funzioni setLanguage e updateMetaTags con le seguenti versioni ottimizzate. Ho anche modificato initLanguageSelector per chiamare la nuova funzione.
 
 code
-CSS
+JavaScript
 download
 content_copy
 expand_less
 
-/* --- INIZIO MODIFICHE styles.css --- */
+// --- INIZIO NUOVO CODICE OTTIMIZZATO ---
 
-/* Body e contenitori base */
-body {
-    /* ...altri stili... */
-    /* Assicurati che il contenimento non sia troppo aggressivo qui */
-    contain: style paint; /* Rimuovi 'layout' se causa problemi */
+// Sostituisci la tua funzione initLanguageSelector esistente con questa
+function initLanguageSelector() {
+    console.log('🌐 Initializing language selector...');
+    const currentLang = localStorage.getItem('selectedLanguage') || 'it';
+    console.log('🏁 Current language:', currentLang);
+
+    // Esegui la traduzione ottimizzata
+    setLanguageOptimized(currentLang);
+    updateActiveLanguageButton(currentLang);
+
+    DOM.langButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const selectedLang = this.getAttribute('data-lang');
+            console.log('🖱️ Language button clicked:', selectedLang);
+            setLanguageOptimized(selectedLang);
+            updateActiveLanguageButton(selectedLang);
+            localStorage.setItem('selectedLanguage', selectedLang);
+        });
+    });
 }
 
-/* Typography - Stabilizziamo gli elementi di testo principali */
-h1.hero-title,
-p.hero-subtitle {
-    /* Aggiungiamo 'contain' per isolare il rendering di questi elementi */
-    contain: layout style paint;
-    will-change: auto; /* Usato con parsimonia, qui è giustificato */
-}
+// NUOVA FUNZIONE OTTIMIZZATA: Sostituisce setLanguage e updateMetaTags
+function setLanguageOptimized(lang) {
+    console.log(`🔄 Setting language to ${lang} (Optimized)`);
+    const operations = []; // Array per memorizzare le operazioni sul DOM
 
-/* Stili Hero Section OTTIMIZZATI per CLS */
-.hero {
-    min-height: calc(100vh - 80px); /* Questo è buono, mantiene l'altezza generale */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* ...altri stili... */
-}
-
-.hero-container {
-    /* Stabilizza la larghezza massima e impedisce che collassi */
-    width: 100%;
-    max-width: 1200px; /* Assicurati che sia coerente con il tuo design */
-    padding: 2rem 1rem; /* Usa padding invece di margini per spaziatura interna */
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    // --- FASE DI LETTURA (READ BATCH) ---
+    // Leggiamo tutto ciò di cui abbiamo bisogno dal DOM senza modificarlo.
     
-    /* SOLUZIONE CLS: Riserva un'altezza minima per il contenitore */
-    /* Questo valore è una stima sicura. Deve essere abbastanza grande
-       da contenere il testo anche con il font di sistema, ma non così grande
-       da creare spazio vuoto dopo il caricamento di Inter. Prova a regolarlo. */
-    min-height: 350px;
-}
+    // 1. Lettura per la traduzione dei contenuti
+    const elementsToTranslate = document.querySelectorAll('[data-translate]');
+    elementsToTranslate.forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[lang] && translations[lang][key]) {
+            operations.push({
+                element: element,
+                action: 'translate',
+                content: translations[lang][key]
+            });
+        }
+    });
 
-/* Titolo Hero OTTIMIZZATO */
-.hero-title {
-    /* ...stili esistenti... */
-    font-size: clamp(2.2rem, 8vw, 5rem); /* Usa clamp per fluidità */
-    max-width: 800px; /* Limita la larghezza per evitare righe troppo lunghe */
-    width: 100%; /* Occupa tutta la larghezza disponibile (del suo contenitore) */
+    // 2. Lettura per i placeholder
+    const placeholderElements = document.querySelectorAll('[data-translate-placeholder]');
+    placeholderElements.forEach(element => {
+        const key = element.getAttribute('data-translate-placeholder');
+        if (translations[lang] && translations[lang][key]) {
+            operations.push({
+                element: element,
+                action: 'placeholder',
+                content: translations[lang][key]
+            });
+        }
+    });
 
-    /* SOLUZIONE CLS: Riserva altezza minima basata sulla dimensione del font */
-    /* (font-size massima) * (line-height) * (numero di righe) */
-    /* Esempio: 5rem * 1.6 (da rem a px) * 1.2 (line-height) * 2 (righe max) = ~192px */
-    min-height: 100px; /* Aumenta se il titolo va su 3 righe. Es. 150px */
-}
-
-/* Sottotitolo Hero OTTIMIZZATO */
-.hero-subtitle {
-    /* ...stili esistenti... */
-    max-width: 600px; /* Limita la larghezza */
-    width: 100%;
-
-    /* SOLUZIONE CLS: Riserva altezza minima */
-    /* Fai una stima simile al titolo. Per un paragrafo di 3-4 righe,
-       un valore come 90px è solitamente sicuro. */
-    min-height: 90px; 
-}
-
-/* Pulsanti Hero OTTIMIZZATI */
-.hero-cta {
-    display: flex;
-    flex-direction: column; /* Mobile first */
-    gap: 1.5rem;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    
-    /* SOLUZIONE CLS: Altezza minima per contenere i pulsanti */
-    min-height: 120px; /* (altezza bottone + gap) * numero bottoni */
-}
-
-@media (min-width: 768px) {
-    .hero-cta {
-        flex-direction: row;
-        min-height: 60px; /* Altezza per la riga singola */
+    // 3. Lettura per i meta tag (solo su index.html)
+    const currentPath = window.location.pathname;
+    const isHomepage = currentPath === '/' || currentPath.endsWith('/index.html');
+    if (isHomepage) {
+        const metaMapping = {
+            'meta[name="description"]': translations[lang]['index-meta-description'],
+            'meta[property="og:title"]': translations[lang]['index-og-title'],
+            'meta[property="og:description"]': translations[lang]['index-og-description'],
+            'meta[name="twitter:title"]': translations[lang]['index-twitter-title'],
+            'meta[name="twitter:description"]': translations[lang]['index-twitter-description'],
+            'title': translations[lang]['page-title']
+        };
+        for (const selector in metaMapping) {
+            const element = document.querySelector(selector);
+            if (element && metaMapping[selector]) {
+                operations.push({
+                    element: element,
+                    action: 'meta',
+                    content: metaMapping[selector]
+                });
+            }
+        }
     }
+
+    // --- FASE DI SCRITTURA (WRITE BATCH) ---
+    // Usiamo requestAnimationFrame per assicurarci che tutte le scritture avvengano
+    // in un unico batch, ottimizzato dal browser.
+    requestAnimationFrame(() => {
+        console.log(`✍️ Executing ${operations.length} DOM write operations.`);
+        
+        operations.forEach(op => {
+            switch (op.action) {
+                case 'translate':
+                    if (op.element.tagName === 'INPUT' || op.element.tagName === 'TEXTAREA') {
+                        op.element.placeholder = op.content;
+                    } else {
+                        op.element.innerHTML = op.content;
+                    }
+                    break;
+                case 'placeholder':
+                    op.element.placeholder = op.content;
+                    break;
+                case 'meta':
+                     if (op.element.tagName === 'TITLE') {
+                        op.element.textContent = op.content;
+                    } else {
+                        op.element.setAttribute('content', op.content);
+                    }
+                    break;
+            }
+        });
+
+        // Scritture finali sugli attributi globali
+        document.documentElement.lang = lang;
+        let ogLocale = document.querySelector('meta[property="og:locale"]');
+        if (ogLocale) {
+            ogLocale.setAttribute('content', lang === 'en' ? 'en_US' : 'it_IT');
+        }
+        
+        console.log('✅ DOM updates completed.');
+    });
 }
 
-/* Assicurati che i pulsanti abbiano dimensioni fisse come già hai fatto, è ottimo! */
-.btn {
-    width: 180px; /* Già presente, ottimo! */
-    height: 48px;  /* Già presente, ottimo! */
-    /* ...altri stili... */
+
+// QUESTA FUNZIONE NON SERVE PIÙ, LA LOGICA È STATA INTEGRATA
+// function updateMetaTags(lang) { ... } // Puoi commentarla o cancellarla
+
+// QUESTA FUNZIONE NON SERVE PIÙ, LA LOGICA È STATA INTEGRATA
+// function setLanguage(lang) { ... } // Puoi commentarla o cancellarla
+
+// ASSICURATI DI MANTENERE QUESTA FUNZIONE SEPARATA
+function updateActiveLanguageButton(lang) {
+    const langButtons = document.querySelectorAll('.lang-btn');
+    langButtons.forEach(button => {
+        button.classList.remove('active');
+        if (button.getAttribute('data-lang') === lang) {
+            button.classList.add('active');
+        }
+    });
 }
 
 
-/* --- FINE MODIFICHE styles.css --- */
-Step 2: Perfezionamento della Strategia dei Font (nell'HTML)
+// --- FINE NUOVO CODICE OTTIMIZZATO ---
+Passo 2: Pulizia del file script.js
 
-La strategia di preload e style inlinato che ti ho suggerito nella risposta precedente è cruciale e lavora in sinergia con queste modifiche CSS. Assicurati che sia implementata correttamente.
+Rimuovi le vecchie funzioni: Dopo aver incollato il nuovo codice, cancella o commenta le tue vecchie funzioni initLanguageSelector, setLanguage, updateMetaTags e updatePageLanguageAttributes per evitare duplicati e confusione.
 
-La combinazione di:
+Rimuovi il codice non utilizzato: Ho notato che hai delle implementazioni per domCache e domOperations all'inizio del file. Queste sono ottime idee ma non vengono attualmente utilizzate dal resto del codice. Per ora, puoi lasciarle o rimuoverle per pulizia. La mia soluzione setLanguageOptimized implementa lo stesso principio in modo autocontenuto e più semplice.
 
-CSS Inlinato Critico: Il browser renderizza subito la struttura base.
+Perché Questa Soluzione Funziona
 
-min-height sui contenitori: Lo spazio viene riservato immediatamente.
+Batching delle Operazioni: La nuova funzione setLanguageOptimized prima esegue un "batch di lettura": colleziona tutti gli elementi e i nuovi contenuti in un semplice array (operations) senza toccare il DOM.
 
-font-display: swap e @font-face di fallback: Il testo appare subito con un font simile, minimizzando il "flash" visivo quando Inter viene caricato.
+Scrittura Sincronizzata: Successivamente, affida l'intero array di modifiche a requestAnimationFrame. Questo dice al browser: "Ehi, ho un gruppo di modifiche da fare. Fai pure quando sei pronto, durante il tuo prossimo ciclo di rendering."
 
-preload del font: Inter viene scaricato con alta priorità, riducendo il tempo in cui si vede il font di fallback.
+Eliminazione del Reflow Forzato: Il browser riceve tutte le istruzioni di scrittura insieme. Può calcolare il nuovo layout una sola volta in modo efficiente. Non ci sono più letture (querySelector) che interrompono il processo di scrittura, eliminando così la causa principale dell'errore.
 
-Questa combinazione eliminerà quasi completamente il CLS nella sezione hero.
+Logica Unificata: La logica per aggiornare i meta tag è stata integrata direttamente nella funzione principale, rendendo il codice più pulito e assicurando che anche queste operazioni vengano eseguite nel batch corretto.
 
-Risoluzione del "Forced Reflow" (81 ms)
-
-Il "Forced Reflow" (o "Adattamento dinamico forzato") è spesso causato da JavaScript che legge le dimensioni/posizioni di un elemento e poi le modifica subito dopo. Questo costringe il browser a ricalcolare il layout in modo sincrono.
-
-Il refactoring di script.js che abbiamo discusso precedentemente (centralizzando le query del DOM in un oggetto DOM) è la soluzione corretta. Se non l'hai ancora implementato, è il momento di farlo.
-
-Riepilogo delle azioni per il JavaScript:
-
-Crea un oggetto globale DOM = {}.
-
-All'inizio di DOMContentLoaded, esegui una singola funzione cacheDOMElements() che popola l'oggetto DOM con tutti gli elementi di cui hai bisogno (document.querySelector e document.querySelectorAll). Questa è la fase di "lettura".
-
-Modifica tutte le altre funzioni (initMobileMenu, initHeaderScroll, etc.) in modo che non eseguano più querySelector, ma leggano gli elementi direttamente dall'oggetto DOM. Questa è la fase di "scrittura/modifica".
-
-Separando nettamente le letture dalle scritture, eviterai il "layout thrashing" e il tempo di forced reflow si ridurrà drasticamente.
-
-Riepilogo delle Azioni da Intraprendere
-
-Modifica styles.css: Applica le regole di min-height e contain agli elementi della sezione hero come mostrato sopra.
-
-Verifica index.html: Assicurati di avere la strategia di CSS critico inlinato e il preload dei font implementati correttamente.
-
-Refactoring di script.js: Implementa la cache degli elementi del DOM per eliminare il "forced reflow".
-
-Dopo aver eseguito questi passaggi, testa nuovamente la pagina con PageSpeed Insights. Il tuo punteggio CLS dovrebbe crollare a un valore molto vicino a zero, e il problema del "Forced Reflow" dovrebbe essere notevolmente ridotto o scomparso.
+Dopo aver implementato queste modifiche, l'errore "Adattamento dinamico forzato del contenuto" dovrebbe scomparire o ridursi drasticamente nei report di PageSpeed, migliorando tangibilmente il tempo di rendering iniziale della pagina.
