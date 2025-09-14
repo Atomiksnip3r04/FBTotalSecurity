@@ -165,6 +165,11 @@
         }
         .nav-menu {
             display: flex; /* Desktop default to prevent CLS */
+            align-items: center; /* Allinea verticalmente gli item */
+            /* --- SOLUZIONE CLS --- */
+            /* Dà un'altezza minima fissa al contenitore dei link per evitare 
+               che si ridimensioni al cambio di font. */
+            min-height: 50px;
         }
         .hamburger {
             display: none; /* Desktop default */
@@ -192,6 +197,13 @@
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
             background-clip: text; 
+            /* --- SOLUZIONE CLS --- */
+            /* Riserva uno spazio verticale minimo che tenga conto di 2 righe di testo 
+               anche su schermi grandi, prevenendo il "salto" verso il basso. */
+            min-height: calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2); 
+            max-width: 800px; 
+            margin-left: auto; 
+            margin-right: auto; 
         }
         .hero-subtitle { 
             font-size: clamp(1.2rem, 2.5vw, 1.5rem); 
@@ -199,6 +211,9 @@
             margin: 0 auto 3rem; 
             max-width: 600px; 
             line-height: 1.6; 
+            /* --- SOLUZIONE CLS --- */
+            /* Riserva uno spazio verticale minimo per circa 3-4 righe di testo. */
+            min-height: calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3); 
         }
         .hero-cta { 
             display: flex; 
