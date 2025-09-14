@@ -1,248 +1,221 @@
-Capisco perfettamente l'esigenza di mantenere un unico file CSS per semplicità di gestione. È un approccio molto pratico.
+Assolutamente sì. Analizzando i file, è quasi certo che Google stia mostrando (o abbia mostrato fino a poco tempo fa) "FB Total Security - Sicurezza Avanzata | Milano" come titolo nei risultati di ricerca.
 
-Dato che manterrai un unico file CSS caricato in modo sincrono (che è la scelta corretta per evitare il FOUC), le ottimizzazioni si concentreranno sul ridurre le dimensioni del file e semplificare le regole CSS per permettere al browser di elaborarle più velocemente.
+Ecco un'analisi dettagliata del perché e dove trovo questa informazione, seguita dalle istruzioni precise per correggerla.
 
-Ecco un'analisi del tuo styles.css con suggerimenti specifici per migliorarlo mantenendolo come file unico.
+Analisi: Perché Google Mostra "Milano" nel Titolo?
 
-1. Rimuovere Regole Ridondanti e Sovrascritte
+Google non si basa solo sul tag <title>. Utilizza un sistema complesso per generare i titoli nei risultati di ricerca (SERP) e, se ritiene che il tag <title> non sia rappresentativo del contenuto della pagina, lo riscrive basandosi su altri segnali presenti nella pagina stessa.
 
-La prima ottimizzazione è eliminare il codice inutile. Nel tuo CSS ci sono alcune regole che vengono definite e poi immediatamente sovrascritte, specialmente nei media query.
+Nel tuo index.html, anche se il tag <title> attuale è stato aggiornato con "Italia", ci sono numerosi e fortissimi segnali che indicano a Google che la pagina è specificamente focalizzata su Milano.
 
-Esempio Trovato:
-Nel CSS per schermi larghi (@media (min-width: 1025px)) hai:
+Ecco dove trovo questi segnali (le fonti del titolo "Milano"):
+
+Meta Tag Geografico (Segnale molto forte):
 
 code
-CSS
+Html
 download
 content_copy
 expand_less
 
-.nav-menu {
-    position: static;
-    display: flex;
-    flex-direction: row;
-    /* ...e molte altre regole */
-}
+<meta name="geo.placename" content="Milano">
 
-Queste regole sono praticamente identiche a quelle definite per i tablet (@media (min-width: 769px) and (max-width: 1024px)).
+Stai esplicitamente dicendo ai motori di ricerca che la località geografica di riferimento è Milano.
 
-Soluzione:
-Puoi combinare queste regole per evitare la duplicazione. Invece di avere due blocchi media query separati, puoi averne uno solo che copre entrambi.
+Indirizzo Fisico (Segnale visibile e in Schema):
 
-PRIMA:
+Nella sezione contatti visibile:
 
 code
-CSS
+Html
 download
 content_copy
 expand_less
 IGNORE_WHEN_COPYING_START
 IGNORE_WHEN_COPYING_END
-/* Stili per Tablet */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .nav-menu { /* ...regole... */ }
-}
+<p>Corso Sempione, Milano (MI)</p>
 
-/* Stili per Desktop */
-@media (min-width: 1025px) {
-    .nav-menu { /* ...stesse regole... */ }
-}
-
-DOPO (Codice Ottimizzato):
-Usa un unico media query min-width per applicare gli stili a partire dai tablet in su.
+Nel codice postale dello Schema.org (20154 è un CAP di Milano):
 
 code
-CSS
+JSON
 download
 content_copy
 expand_less
 IGNORE_WHEN_COPYING_START
 IGNORE_WHEN_COPYING_END
-/* Stili per Tablet e schermi più grandi */
-@media (min-width: 769px) {
-    .nav-menu {
-        position: static;
-        display: flex;
-        flex-direction: row;
-        gap: 1.2rem;
-        width: auto;
-        height: 40px;
-        background: transparent;
-        padding: 0;
-        transform: none;
-        opacity: 1;
-        visibility: visible;
-        /* ...etc... */
-    }
-    .nav-link {
-        padding: 0.4rem 0.6rem;
-        font-size: 0.9rem;
-    }
-    /* ...altre regole comuni... */
-}
+"postalCode": "20154"
 
-/* Aggiungi solo le piccole differenze per i desktop più grandi */
-@media (min-width: 1025px) {
-    .nav-menu {
-        gap: 1.5rem; /* Esempio: solo la regola che cambia */
-    }
-    .nav-link {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.95rem;
-    }
-}
-
-Questo approccio "mobile-first" (stili base fuori dai media query, poi aggiungi stili per schermi più grandi) riduce la duplicazione e rende il CSS più snello.
-
-2. Semplificare i Selettori
-
-Il browser elabora i selettori CSS da destra a sinistra. Selettori più semplici e meno annidati sono più veloci. Il tuo CSS è già abbastanza buono su questo punto, ma possiamo affinare.
-
-Esempio:
+Schema FAQ (Segnale estremamente forte):
+Le domande nel tuo JSON-LD per le FAQ sono tutte incentrate su Milano. Questo dice a Google che la pagina risponde a query specifiche per quella città.
 
 code
-CSS
+JSON
 download
 content_copy
 expand_less
 IGNORE_WHEN_COPYING_START
 IGNORE_WHEN_COPYING_END
-.mission-section .container { /* ... */ }
+"name": "Come funziona un sistema nebbiogeno antifurto a Milano?",
+"name": "Quanto costa installare un sistema di allarme a Milano?",
+"name": "Quali sono le migliori porte blindate a Milano?",
+"name": "Come posso controllare le telecamere di sicurezza da casa a Milano?"
 
-Dato che .container è una classe di utility generica, è probabile che non abbia bisogno di essere legata a .mission-section. Puoi quasi sempre applicare gli stili direttamente a .container. Se hai bisogno di uno stile specifico, è meglio aggiungere una classe, es. <div class="container mission-container">.
-
-Esempio 2:
+Testi Alternativi delle Immagini (Segnale SEO importante):
+I alt tag delle icone dei servizi sono tutti ottimizzati per la parola chiave "Milano".
 
 code
-CSS
+Html
 download
 content_copy
 expand_less
 IGNORE_WHEN_COPYING_START
 IGNORE_WHEN_COPYING_END
-.logo h1, .logo .logo-title { /* ... */ }
+alt="Sistemi Nebbiogeni Antifurto Milano - Protezione Istantanea"
+alt="Serramenti Blindati Milano - Porte Sicurezza Antieffrazione"
+alt="Videosorveglianza Milano - Telecamere IP Controllo Remoto"
+alt="Sistemi Allarme Milano - Antifurto Wireless Sensori"
+alt="Esperienza Pluriennale Sicurezza Milano - Oltre 20 Anni Settore"
 
-Questa regola è corretta, ma assicurati che <h1> sia usato semanticamente solo per il titolo principale della pagina. Nel logo, usare uno <span> (come hai fatto con logo-title) è perfetto. Potresti semplificare in:
+Conclusione della Diagnosi: Hai un tag <title> che dice "Italia", ma il resto della pagina "urla" "Milano". Di fronte a questa incoerenza, Google ha scelto di riscrivere il titolo usando il segnale più forte e coerente che ha trovato: Milano.
+
+Soluzione: Come Sostituire il Titolo con Quello Desiderato
+
+Per far sì che Google mostri "FB Total Security - Sistemi di Sicurezza Avanzata | Italia", non basta cambiare solo il tag <title>. Devi rendere l'intera pagina coerente con questo nuovo focus nazionale.
+
+Ecco gli step esatti da seguire nel file index.html:
+
+Step 1: Correggere il Tag <title> (già fatto parzialmente)
+
+Il tuo attuale tag <title> è:
 
 code
-CSS
+Html
 download
 content_copy
 expand_less
 IGNORE_WHEN_COPYING_START
 IGNORE_WHEN_COPYING_END
-.logo-title { /* ... */ }
-3. Utilizzare le Variabili CSS (Custom Properties)
+<title>FB Total Security - Sicurezza Avanzata | Italia</title>
 
-Per migliorare la manutenibilità e ridurre le dimensioni del file, puoi usare le variabili CSS per colori, font, spaziature, ecc.
-
-Soluzione:
-Definisci le variabili all'inizio del file nel selettore :root.
+Sostituiscilo con la versione completa che desideri:
 
 code
-CSS
+Html
 download
 content_copy
 expand_less
 IGNORE_WHEN_COPYING_START
 IGNORE_WHEN_COPYING_END
-:root {
-    --primary-color: #4caf50;
-    --primary-color-hover: #66bb6a;
-    --background-dark: #000000;
-    --background-light: #1a1a1a;
-    --text-color: #ffffff;
-    --text-color-muted: #b0b0b0;
-    --header-height: 80px;
-}
+<title>FB Total Security - Sistemi di Sicurezza Avanzata | Italia</title>
 
-body {
-    background: var(--background-dark);
-    color: var(--text-color);
-    padding-top: var(--header-height);
-}
+Step 2: Aggiornare i Meta Tag SEO
 
-.header {
-    height: var(--header-height);
-    min-height: var(--header-height);
-}
-
-.nav-link.cta {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-color-hover));
-}
-
-.hero-subtitle {
-    color: var(--text-color-muted);
-}
-
-Questo rende il codice più leggibile e, se usi spesso gli stessi valori, può ridurre leggermente le dimensioni del file minificato.
-
-4. Rimuovere !important dove possibile
-
-Hai degli !important sul background del .hamburger span. Questo è stato probabilmente aggiunto per risolvere un problema di specificità.
-
-Soluzione:
-Cerca di aumentare la specificità del selettore invece di usare !important.
-
-PRIMA:
+Modifica il meta tag geografico:
 
 code
-CSS
+Html
 download
 content_copy
 expand_less
 IGNORE_WHEN_COPYING_START
 IGNORE_WHEN_COPYING_END
-.hamburger span {
-    background: #ffffff !important;
-}
+<!-- DA COSÌ: -->
+<meta name="geo.placename" content="Milano">
+<!-- A COSÌ: -->
+<meta name="geo.placename" content="Italia">
 
-DOPO (Potenziale Soluzione):
-Se il problema è un altro stile che sovrascrive il background, potresti usare un selettore più forte:
+Aggiorna la meta description per riflettere il focus nazionale (già corretto nel tuo file, ottimo!):
 
 code
-CSS
+Html
 download
 content_copy
 expand_less
 IGNORE_WHEN_COPYING_START
 IGNORE_WHEN_COPYING_END
-.nav-container .hamburger span {
-    background: #ffffff;
-}
+<meta name="description" content="Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi in tutta Italia." ...>
 
-Questo rende il tuo CSS più prevedibile e facile da debuggare. Usa !important solo come ultima risorsa.
+Step 3: Rimuovere i Riferimenti a Milano nel Contenuto e nello Schema
 
-5. Consolidare le animazioni
-
-Hai una singola animazione fadeInUp. Assicurati che sia definita una sola volta e poi riutilizzata.
+Modifica l'indirizzo nello Schema.org e nel testo visibile. Sii più generico se la sede è solo a Milano ma operi a livello nazionale.
 
 code
-CSS
+Html
 download
 content_copy
 expand_less
 IGNORE_WHEN_COPYING_START
 IGNORE_WHEN_COPYING_END
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
+<!-- Nel testo visibile -->
+<p>Sede operativa: Corso Sempione, Milano (MI) | Servizi in Tutta Italia</p>
 
-.fade-in-up {
-    animation: fadeInUp 0.8s ease forwards;
-}
+<!-- Nello Schema JSON-LD -->
+"addressLocality": "Italia", <!-- Già corretto, bene -->
 
-Questa parte è già scritta bene, assicurati solo che non ci siano altre definizioni sparse nel codice.
+Modifica le domande delle FAQ (importantissimo!): rendile generiche.
 
-Riepilogo Pratico per Te
+code
+JSON
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+/* DA COSÌ: */
+"name": "Come funziona un sistema nebbiogeno antifurto a Milano?",
+/* A COSÌ: */
+"name": "Come funziona un sistema nebbiogeno antifurto?", 
+/* E così via per tutte le altre domande */
 
-Mantenendo un unico file CSS, ecco i 3 passi che ti daranno il miglior risultato con il minimo sforzo:
+Step 4: Aggiornare i Testi Alternativi (ALT) delle Immagini (Cruciale!)
 
-Rivedi i Media Query: Adotta un approccio "mobile-first". Definisci gli stili base per mobile, poi usa @media (min-width: 769px) per aggiungere/sovrascrivere gli stili per tablet e schermi più grandi. Questo eliminerà molte regole duplicate.
+Rimuovi "Milano" da tutti i tag alt per evitare di confondere Google.
 
-Introduci le Variabili CSS: Definisci i tuoi colori principali e le dimensioni chiave (come --primary-color: #4caf50;) in :root e usali in tutto il file. Renderà il CSS più pulito e facile da modificare in futuro.
+code
+Html
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+<!-- DA COSÌ: -->
+<img src="icons/nebbiogeni.webp" alt="Sistemi Nebbiogeni Antifurto Milano - Protezione Istantanea" ...>
+<!-- A COSÌ: -->
+<img src="icons/nebbiogeni.webp" alt="Icona Sistemi Nebbiogeni Antifurto Professionali" ...>
 
-Caccia agli !important: Cerca di rimuovere gli !important non strettamente necessari (come quello sugli span dell'hamburger) aumentando la specificità dei selettori.
+<!-- E così per tutti gli altri: -->
+alt="Icona Serramenti Blindati di Sicurezza"
+alt="Icona Sistemi di Videosorveglianza Avanzati"
+alt="Icona Sistemi di Allarme Intelligenti"
+alt="Icona Esperienza Pluriennale nel Settore Sicurezza"
 
-Queste modifiche non cambieranno drasticamente l'aspetto del sito, ma renderanno il tuo file styles.css più leggero, più veloce da elaborare per il browser e molto più semplice da mantenere nel tempo.
+Step 5: Aggiornare i Tag Open Graph e Twitter
+
+Assicurati che anche i titoli per i social media siano coerenti.
+
+code
+Html
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+<!-- Open Graph -->
+<meta property="og:title" content="FB Total Security - Sistemi di Sicurezza Avanzata | Italia" data-translate="index-og-title">
+<meta property="og:description" content="Specialisti in sistemi di sicurezza avanzati... Servizi in tutta Italia." data-translate="index-og-description">
+
+<!-- Twitter -->
+<meta property="twitter:title" content="FB Total Security - Sistemi di Sicurezza Avanzata | Italia" data-translate="index-twitter-title">
+<meta property="twitter:description" content="Specialisti in sistemi di sicurezza avanzati... Servizi in tutta Italia." data-translate="index-twitter-description">
+Azione Finale
+
+Dopo aver apportato tutte queste modifiche, carica i file aggiornati sul tuo server e poi:
+
+Vai su Google Search Console.
+
+Usa lo "Strumento di ispezione URL" per la tua homepage.
+
+Clicca su "Richiedi indicizzazione".
+
+Questo accelererà il processo con cui Google si accorgerà delle modifiche. Tieni presente che potrebbero comunque volerci da alcuni giorni a un paio di settimane prima che il titolo venga aggiornato stabilmente nella SERP. La chiave è la coerenza di tutti i segnali sulla pagina.

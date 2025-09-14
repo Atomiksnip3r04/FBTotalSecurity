@@ -76,9 +76,31 @@ function throttle(func, limit) {
     }
 }
 
-// DOM Content Loaded
+// 1. Oggetto per memorizzare gli elementi del DOM (cache centralizzata)
+const DOM = {};
+
+// Funzione per popolare la cache del DOM (solo lettura)
+function cacheDOMElements() {
+    DOM.hamburger = document.querySelector('.hamburger');
+    DOM.navMenu = document.querySelector('.nav-menu');
+    DOM.navLinks = document.querySelectorAll('.nav-link');
+    DOM.smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
+    DOM.header = document.querySelector('.header');
+    DOM.sections = document.querySelectorAll('section[id]');
+    DOM.contactForms = document.querySelectorAll('.contact-form form, form');
+    DOM.serviceCards = document.querySelectorAll('.service-card');
+    DOM.animateElements = document.querySelectorAll('.service-card, .feature, .contact-item, .service-text, .service-image');
+    DOM.langButtons = document.querySelectorAll('.lang-btn');
+    DOM.body = document.body;
+    DOM.navLinksWithHash = document.querySelectorAll('.nav-link[href^="#"]');
+}
+
+// DOM Content Loaded - Ottimizzato per eliminare forced reflow
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functionality
+    // 2. Popola la cache una sola volta
+    cacheDOMElements();
+
+    // 3. Inizializza le funzioni usando gli elementi dalla cache
     initMobileMenu();
     initSmoothScrolling();
     initScrollAnimations();
@@ -88,35 +110,31 @@ document.addEventListener('DOMContentLoaded', function() {
     initLanguageSelector();
 });
 
-// Mobile Menu Functionality - Optimized with cached DOM elements
+// Mobile Menu Functionality - Usa cache DOM per eliminare forced reflow
 function initMobileMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    const body = document.body; // Cache body element
-    
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            body.classList.toggle('menu-open');
+    // Usa DOM.hamburger, DOM.navMenu, etc. invece di querySelector
+    if (DOM.hamburger && DOM.navMenu) {
+        DOM.hamburger.addEventListener('click', function() {
+            DOM.hamburger.classList.toggle('active');
+            DOM.navMenu.classList.toggle('active');
+            DOM.body.classList.toggle('menu-open');
         });
         
-        // Close menu when clicking on a link - cache nav links
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
+        // Close menu when clicking on a link - usa cache nav links
+        DOM.navLinks.forEach(link => {
             link.addEventListener('click', function() {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                body.classList.remove('menu-open');
+                DOM.hamburger.classList.remove('active');
+                DOM.navMenu.classList.remove('active');
+                DOM.body.classList.remove('menu-open');
             });
         });
         
         // Close menu when clicking outside
         document.addEventListener('click', function(e) {
-            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                body.classList.remove('menu-open');
+            if (!DOM.hamburger.contains(e.target) && !DOM.navMenu.contains(e.target)) {
+                DOM.hamburger.classList.remove('active');
+                DOM.navMenu.classList.remove('active');
+                DOM.body.classList.remove('menu-open');
             }
         });
     }
@@ -131,20 +149,19 @@ function initMobileMenu() {
  * su un'azione dell'utente (click), non in un loop o in un evento di scroll.
  */
 function initSmoothScrolling() {
-    const navLinks = document.querySelectorAll('a[href^="#"]');
+    // Usa DOM.smoothScrollLinks invece di querySelector
     let cachedHeaderHeight = 80; // Inizializza con un valore di default
 
-    const headerElement = document.querySelector('.header');
-    if (headerElement && window.ResizeObserver) {
+    if (DOM.header && window.ResizeObserver) {
         const resizeObserver = new ResizeObserver(entries => {
             for (const entry of entries) {
                 cachedHeaderHeight = entry.contentRect.height;
             }
         });
-        resizeObserver.observe(headerElement);
+        resizeObserver.observe(DOM.header);
     }
 
-    navLinks.forEach(link => {
+    DOM.smoothScrollLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
@@ -164,16 +181,9 @@ function initSmoothScrolling() {
     });
 }
 
-// Update Active Navigation Link - Optimized with cached nav links
-let cachedNavLinksForUpdate = null;
-
+// Update Active Navigation Link - Usa cache DOM centralizzata
 function updateActiveNavLink(targetId) {
-    // Cache nav links on first call to avoid repeated DOM queries
-    if (!cachedNavLinksForUpdate) {
-        cachedNavLinksForUpdate = document.querySelectorAll('.nav-link');
-    }
-    
-    cachedNavLinksForUpdate.forEach(link => {
+    DOM.navLinks.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === targetId) {
             link.classList.add('active');
@@ -181,9 +191,9 @@ function updateActiveNavLink(targetId) {
     });
 }
 
-// Header Scroll Effect - Optimized version as per pagespeed.txt recommendations
+// Header Scroll Effect - Usa cache DOM per eliminare forced reflow
 function initHeaderScroll() {
-    const header = document.querySelector('.header');
+    if (!DOM.header) return;
     
     // Simplified scroll handling with throttled scroll listener
     let ticking = false;
@@ -193,20 +203,20 @@ function initHeaderScroll() {
         const scrollY = window.pageYOffset;
         
         // Add/remove scrolled class at 100px threshold
-        header.classList.toggle('scrolled', scrollY > 100);
+        DOM.header.classList.toggle('scrolled', scrollY > 100);
         
         // Hide/show header based on scroll direction at 200px threshold
         if (scrollY > 200) {
             if (scrollY > lastScrollY) {
                 // Scrolling down - hide header
-                header.style.transform = 'translateY(-100%)';
+                DOM.header.style.transform = 'translateY(-100%)';
             } else {
                 // Scrolling up - show header
-                header.style.transform = 'translateY(0)';
+                DOM.header.style.transform = 'translateY(0)';
             }
         } else {
             // Always show header when near top
-            header.style.transform = 'translateY(0)';
+            DOM.header.style.transform = 'translateY(0)';
         }
         
         lastScrollY = scrollY;
@@ -220,18 +230,15 @@ function initHeaderScroll() {
         }
     }, { passive: true });
     
-    // Simplified IntersectionObserver for active section detection - optimized per pagespeed.txt
-    const sections = document.querySelectorAll('section[id]');
-    const cachedNavLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
-    
-    if (sections.length > 0 && cachedNavLinks.length > 0) {
+    // Simplified IntersectionObserver for active section detection - usa cache DOM
+     if (DOM.sections.length > 0 && DOM.navLinksWithHash.length > 0) {
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const sectionId = entry.target.getAttribute('id');
                     
-                    // Update active nav links - simplified approach
-                    cachedNavLinks.forEach(link => {
+                    // Update active nav links - usa cache DOM
+                    DOM.navLinksWithHash.forEach(link => {
                         link.classList.remove('active');
                         if (link.getAttribute('href') === `#${sectionId}`) {
                             link.classList.add('active');
@@ -243,8 +250,8 @@ function initHeaderScroll() {
             rootMargin: '-20% 0px -60% 0px' // Simplified options - removed complex threshold array
         });
         
-        // Observe all sections
-        sections.forEach(section => {
+        // Observe all sections - usa cache DOM
+        DOM.sections.forEach(section => {
             sectionObserver.observe(section);
         });
     }
@@ -254,7 +261,7 @@ function initHeaderScroll() {
 
 // script.js
 
-// Scroll Animations
+// Scroll Animations - Usa cache DOM per eliminare forced reflow
 function initScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -270,18 +277,15 @@ function initScrollAnimations() {
         });
     }, observerOptions);
     
-    // Observe elements for animation
-    const animateElements = document.querySelectorAll('.service-card, .feature, .contact-item, .service-text, .service-image');
-    animateElements.forEach(el => {
+    // Observe elements for animation - usa cache DOM
+    DOM.animateElements.forEach(el => {
         observer.observe(el);
     });
 }
 
-// Service Cards Hover Effects
+// Service Cards Hover Effects - Usa cache DOM
 function initServiceCards() {
-    const serviceCards = document.querySelectorAll('.service-card');
-    
-    serviceCards.forEach(card => {
+    DOM.serviceCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-10px) scale(1.02)';
         });
@@ -292,11 +296,9 @@ function initServiceCards() {
     });
 }
 
-// Contact Form Handling
+// Contact Form Handling - Usa cache DOM
 function initContactForm() {
-    const contactForms = document.querySelectorAll('.contact-form form, form');
-    
-    contactForms.forEach(contactForm => {
+    DOM.contactForms.forEach(contactForm => {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -2550,8 +2552,7 @@ const translations = {
 // Language Management Functions
 function initLanguageSelector() {
     console.log('🌐 Initializing language selector...');
-    const langButtons = document.querySelectorAll('.lang-btn');
-    console.log('🔍 Found language buttons:', langButtons.length);
+    console.log('🔍 Found language buttons:', DOM.langButtons.length);
     const currentLang = localStorage.getItem('selectedLanguage') || 'it';
     console.log('🏁 Current language:', currentLang);
     
@@ -2568,8 +2569,8 @@ function initLanguageSelector() {
     }
     updateActiveLanguageButton(currentLang);
     
-    // Add event listeners to language buttons
-    langButtons.forEach((button, index) => {
+    // Add event listeners to language buttons - usa cache DOM
+    DOM.langButtons.forEach((button, index) => {
         console.log(`🔘 Adding listener to button ${index + 1}:`, button.getAttribute('data-lang'));
         button.addEventListener('click', function() {
             const selectedLang = this.getAttribute('data-lang');

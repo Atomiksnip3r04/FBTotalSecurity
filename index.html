@@ -10,7 +10,7 @@
     <meta name="robots" content="index, follow">
     <meta name="language" content="IT">
     <meta name="geo.region" content="IT-25">
-    <meta name="geo.placename" content="Milano">
+    <meta name="geo.placename" content="Italia">
     
     <!-- Cache Control -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -20,7 +20,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.fbtotalsecurity.com/">
-    <meta property="og:title" content="FB Total Security - Sistemi di Sicurezza Avanzati" data-translate="index-og-title">
+    <meta property="og:title" content="FB Total Security - Sistemi di Sicurezza Avanzata | Italia" data-translate="index-og-title">
     <meta property="og:description" content="Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi in tutta Italia." data-translate="index-og-description">
     <meta property="og:image" content="https://www.fbtotalsecurity.com/images/og-image.jpg">
     <meta property="og:locale" content="it_IT">
@@ -30,7 +30,7 @@
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.fbtotalsecurity.com/">
-    <meta property="twitter:title" content="FB Total Security - Sistemi di Sicurezza Avanzati" data-translate="index-twitter-title">
+    <meta property="twitter:title" content="FB Total Security - Sistemi di Sicurezza Avanzata | Italia" data-translate="index-twitter-title">
     <meta property="twitter:description" content="Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi in tutta Italia." data-translate="index-twitter-description">
     <meta property="twitter:image" content="https://www.fbtotalsecurity.com/images/og-image.jpg">
     
@@ -78,38 +78,167 @@
       };
     </script>
     
-    <!-- Critical CSS inline per eliminare H1UserAgentFontSizeInSection warning -->
+    <!-- === OTTIMIZZAZIONE FONT E CSS PER LCP === -->
+    
+    <!-- 1. Preload diretto dei file WOFF2 del font Inter -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+    <!-- 2. CSS Critico Inline per LCP Immediato -->
     <style>
-        /* Stili critici per H1 - previene FOUC e avviso API deprecata */
-        :where(h1) {
-            font-size: clamp(2.5rem, 5vw, 4rem) !important;
-            font-weight: 700 !important;
-            line-height: 1.2 !important;
-            margin: 1.5rem 0 !important;
-            display: block !important;
-            font-family: 'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-            font-display: swap;
-            min-height: 3rem;
-            contain: layout;
+        /* Font Fallback Metrics per Inter (essenziale per CLS) */
+        @font-face {
+            font-family: 'Inter Fallback';
+            size-adjust: 107%;
+            ascent-override: 90%;
+            descent-override: 22%;
+            line-gap-override: 0%;
+            src: local('Arial'), local('Helvetica'), local('system-ui');
         }
-        /* Stili espliciti per H1 in elementi di sezionamento */
-        :where(section h1, article h1, nav h1, aside h1) {
-            font-size: clamp(2.5rem, 5vw, 4rem) !important;
-            margin: 1.5rem 0 !important;
-            font-weight: 700 !important;
-            line-height: 1.2 !important;
+        
+        /* Definizione @font-face per Inter (ora locale, non da file esterno) */
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        /* CSS Critico per Header e Hero Section */
+        :root { 
+            --primary-color: #4caf50; 
+            --primary-light: #66bb6a; 
+            --text-black: #000; 
+            --white: #ffffff;
+            --gray-light: #b0b0b0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--text-black); 
+            color: var(--white); 
+            font-family: 'Inter', 'Inter Fallback', sans-serif; 
+            line-height: 1.6; 
+            padding-top: 80px; 
+        }
+        .header { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            height: 80px; 
+            background: rgba(0,0,0,0.95); 
+            z-index: 9999; 
+            contain: layout style; 
+        }
+        .nav-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 1rem; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            height: 100%; 
+        }
+        .logo img { 
+            height: 50px; 
+            width: auto; 
+        }
+        .nav-menu { 
+            display: none; 
+        }
+        .hamburger { 
+            display: flex; 
+            flex-direction: column; 
+            cursor: pointer; 
+        }
+        .hero { 
+            min-height: calc(100vh - 80px); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%); 
+            text-align: center; 
+            padding: 0 1rem; 
+        }
+        .hero-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            z-index: 2; 
+        }
+        .hero-title { 
+            font-size: clamp(2.2rem, 8vw, 5rem); 
+            font-weight: 700; 
+            line-height: 1.1; 
+            margin-bottom: 1.5rem; 
+            background: linear-gradient(135deg, #ffffff, #4caf50); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text; 
+        }
+        .hero-subtitle { 
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem); 
+            color: var(--gray-light); 
+            margin: 0 auto 3rem; 
+            max-width: 600px; 
+            line-height: 1.6; 
+        }
+        .hero-cta { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 1.5rem; 
+            justify-content: center; 
+            align-items: center; 
+        }
+        @media (min-width: 768px) { 
+            .hero-cta { flex-direction: row; }
+            .nav-menu { display: flex; }
+            .hamburger { display: none; }
+        }
+        .btn { 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 1rem 2rem; 
+            border-radius: 12px; 
+            font-weight: 600; 
+            text-decoration: none; 
+            width: 180px; 
+            height: 48px; 
+            box-sizing: border-box; 
+        }
+        .btn-primary { 
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light)); 
+            color: var(--text-black); 
+        }
+        .btn-secondary { 
+            background: transparent; 
+            color: var(--primary-color); 
+            border: 2px solid var(--primary-color); 
         }
     </style>
     
-    <!-- Preload critical CSS -->
-    <link rel="preload" href="styles.min.css?v=20250117" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- 3. Caricamento Asincrono del CSS completo -->
+    <link rel="stylesheet" href="styles.min.css?v=20250117" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="styles.min.css?v=20250117"></noscript>
-    
-    <!-- Font preload ottimizzato per ridurre CLS -->
-    
-    <!-- Optimized Google Fonts loading to prevent CLS -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
     
     <!-- Resource Hints for Performance -->
     <!-- <link rel="dns-prefetch" href="//www.google-analytics.com"> -->
@@ -356,7 +485,7 @@ img {
                         <div class="service-icon">
                             <picture>
                                 <source srcset="icons/nebbiogeni.webp" type="image/webp">
-                            <img src="icons/nebbiogeni.webp" alt="Sistemi Nebbiogeni Antifurto Milano - Protezione Istantanea" width="80" height="80" loading="lazy" style="object-fit: contain; aspect-ratio: 1/1;">
+                            <img src="icons/nebbiogeni.webp" alt="Icona Sistemi Nebbiogeni Antifurto Professionali" width="80" height="80" loading="lazy" style="object-fit: contain; aspect-ratio: 1/1;">
                             </picture>
                         </div>
                         <h3 data-translate="service-nebbiogeni-title">Nebbiogeni</h3>
@@ -367,7 +496,7 @@ img {
                         <div class="service-icon">
                             <picture>
                                 <source srcset="icons/serramenti.webp" type="image/webp">
-                            <img src="icons/serramenti.webp" alt="Serramenti Blindati Milano - Porte Sicurezza Antieffrazione" width="80" height="80" loading="lazy" style="object-fit: contain; aspect-ratio: 1/1;">
+                            <img src="icons/serramenti.webp" alt="Icona Serramenti Blindati di Sicurezza" width="80" height="80" loading="lazy" style="object-fit: contain; aspect-ratio: 1/1;">
                             </picture>
                         </div>
                         <h3 data-translate="service-serramenti-title">Serramenti di Sicurezza</h3>
@@ -378,7 +507,7 @@ img {
                         <div class="service-icon">
                             <picture>
                                 <source srcset="icons/sorveglianza.webp" type="image/webp">
-                            <img src="icons/sorveglianza.webp" alt="Videosorveglianza Milano - Telecamere IP Controllo Remoto" width="80" height="80" loading="lazy" style="object-fit: contain; aspect-ratio: 1/1;">
+                            <img src="icons/sorveglianza.webp" alt="Icona Sistemi di Videosorveglianza Avanzati" width="80" height="80" loading="lazy" style="object-fit: contain; aspect-ratio: 1/1;">
                             </picture>
                         </div>
                         <h3 data-translate="service-sorveglianza-title">Sorveglianza</h3>
@@ -389,7 +518,7 @@ img {
                         <div class="service-icon">
                             <picture>
                                 <source srcset="icons/allarmi.webp" type="image/webp">
-                            <img src="icons/allarmi.webp" alt="Sistemi Allarme Milano - Antifurto Wireless Sensori" width="80" height="80" loading="lazy" style="object-fit: contain; aspect-ratio: 1/1;">
+                            <img src="icons/allarmi.webp" alt="Icona Sistemi di Allarme Intelligenti" width="80" height="80" loading="lazy" style="object-fit: contain; aspect-ratio: 1/1;">
                             </picture>
                         </div>
                         <h3 data-translate="service-allarmi-title">Sistemi di Allarme</h3>
@@ -712,17 +841,17 @@ img {
                 <h2 class="section-title" data-translate="why-choose-title">Perchè scegliere FB Total Security</h2>
                 <div class="features-grid">
                     <div class="feature">
-                        <img src="icons/esperienza.webp" alt="Esperienza Pluriennale Sicurezza Milano - Oltre 20 Anni Settore" class="feature-large-image" loading="lazy" width="80" height="80">
+                        <img src="icons/esperienza.webp" alt="Icona Esperienza Pluriennale nel Settore Sicurezza" class="feature-large-image" loading="lazy" width="80" height="80">
                         <h3 data-translate="why-choose-feature-1-title">Anni di Esperienza Multisettoriale</h3>
                         <p data-translate="why-choose-feature-1-desc">Anni di esperienza multisettoriale specializzata nella risoluzione e integrazione delle migliori soluzioni per il cliente</p>
                     </div>
                     <div class="feature">
-                        <img src="icons/tecnologie.webp" alt="Tecnologie Avanzate Sicurezza - Certificazioni Professionali Milano" class="feature-large-image" loading="lazy" width="80" height="80">
+                        <img src="icons/tecnologie.webp" alt="Icona Tecnologie Avanzate e Certificazioni Professionali" class="feature-large-image" loading="lazy" width="80" height="80">
                         <h3 data-translate="why-choose-feature-2-title">Certificazioni Professionali</h3>
                         <p data-translate="why-choose-feature-2-desc">Agenzia autorizzata con partnership dirette con i migliori brand del settore</p>
                     </div>
                     <div class="feature">
-                        <img src="icons/assistenza.webp" alt="Assistenza 24/7 Milano - Supporto Tecnico Continuo Sicurezza" class="feature-large-image" loading="lazy" width="80" height="80">
+                        <img src="icons/assistenza.webp" alt="Icona Assistenza 24/7 e Supporto Tecnico Continuo" class="feature-large-image" loading="lazy" width="80" height="80">
                         <h3 data-translate="why-choose-feature-3-title">Assistenza 24/7</h3>
                         <p data-translate="why-choose-feature-3-desc">Supporto tecnico continuo e interventi di emergenza per garantire sempre la tua sicurezza</p>
                     </div>
@@ -814,7 +943,7 @@ img {
                                 </svg>
                                 <div>
                                     <h3 data-translate="contact-address-title">Indirizzo</h3>
-                                    <p>Corso Sempione, Milano (MI)</p>
+                                    <p>Sede operativa: Corso Sempione, Milano (MI) | Servizi in Tutta Italia</p>
                                 </div>
                             </div>
                             <div class="contact-item">
@@ -959,34 +1088,34 @@ img {
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Come funziona un sistema nebbiogeno antifurto a Milano?",
+          "name": "Come funziona un sistema nebbiogeno antifurto?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Un sistema nebbiogeno antifurto rilascia istantaneamente una densa nebbia atossica che riduce la visibilità a zero in pochi secondi. Questo sistema di sicurezza avanzato scoraggia efficacemente i malintenzionati dall'entrare nei locali protetti, garantendo protezione immediata per case e aziende a Milano."
+            "text": "Un sistema nebbiogeno antifurto rilascia istantaneamente una densa nebbia atossica che riduce la visibilità a zero in pochi secondi. Questo sistema di sicurezza avanzato scoraggia efficacemente i malintenzionati dall'entrare nei locali protetti, garantendo protezione immediata per case e aziende in tutta Italia."
           }
         },
         {
           "@type": "Question",
-          "name": "Quanto costa installare un sistema di allarme a Milano?",
+          "name": "Quanto costa installare un sistema di allarme?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Il costo di installazione di un sistema di allarme a Milano varia in base alle dimensioni dell'immobile e alla complessità dell'impianto. L'installazione richiede generalmente 1-2 giorni lavorativi. Offriamo sopralluoghi gratuiti per fornire preventivi personalizzati senza impegno."
+            "text": "Il costo di installazione di un sistema di allarme varia in base alle dimensioni dell'immobile e alla complessità dell'impianto. L'installazione richiede generalmente 1-2 giorni lavorativi. Offriamo sopralluoghi gratuiti per fornire preventivi personalizzati senza impegno in tutta Italia."
           }
         },
         {
           "@type": "Question",
-          "name": "Quali sono le migliori porte blindate a Milano?",
+          "name": "Quali sono le migliori porte blindate?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Le migliori porte blindate a Milano sono quelle certificate classe 3, 4 o 5 secondo gli standard europei. Offriamo serramenti blindati Xecur con protezione fino al livello RC6, il più alto standard di sicurezza europeo. Sono testate rigorosamente e rappresentano un deterrente estremamente efficace contro le effrazioni."
+            "text": "Le migliori porte blindate sono quelle certificate classe 3, 4 o 5 secondo gli standard europei. Offriamo serramenti blindati Xecur con protezione fino al livello RC6, il più alto standard di sicurezza europeo. Sono testate rigorosamente e rappresentano un deterrente estremamente efficace contro le effrazioni."
           }
         },
         {
           "@type": "Question",
-          "name": "Come posso controllare le telecamere di sicurezza da casa a Milano?",
+          "name": "Come posso controllare le telecamere di sicurezza da casa?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Puoi controllare facilmente le telecamere di sicurezza da remoto tramite smartphone, tablet o computer. I nostri sistemi di videosorveglianza IP a Milano offrono controllo remoto completo con notifiche push in tempo reale, archiviazione cloud sicura e integrazione con intelligenza artificiale per il riconoscimento automatico delle minacce."
+            "text": "Puoi controllare facilmente le telecamere di sicurezza da remoto tramite smartphone, tablet o computer. I nostri sistemi di videosorveglianza IP offrono controllo remoto completo con notifiche push in tempo reale, archiviazione cloud sicura e integrazione con intelligenza artificiale per il riconoscimento automatico delle minacce."
           }
         }
       ]
