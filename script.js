@@ -124,54 +124,40 @@ function initMobileMenu() {
 
 // Smooth Scrolling for Navigation Links
 // Smooth Scrolling for Navigation Links - Optimized to reduce layout thrashing
+/**
+ * VERSIONE MIGLIORATA: initSmoothScrolling
+ * Usa window.scrollTo che è il metodo standard e più pulito.
+ * La lettura di getBoundingClientRect() qui è sicura perché avviene solo
+ * su un'azione dell'utente (click), non in un loop o in un evento di scroll.
+ */
 function initSmoothScrolling() {
     const navLinks = document.querySelectorAll('a[href^="#"]');
-    let cachedHeaderHeight = null;
-    let headerElement = null;
-    
-    // Cache header element and height to reduce DOM queries
-    function updateHeaderHeight() {
-        if (!headerElement) {
-            headerElement = document.querySelector('.header');
-        }
-        if (headerElement) {
-            // Use getBoundingClientRect() instead of offsetHeight to reduce forced reflow
-            const rect = headerElement.getBoundingClientRect();
-            cachedHeaderHeight = rect.height;
-        }
+    let cachedHeaderHeight = 80; // Inizializza con un valore di default
+
+    const headerElement = document.querySelector('.header');
+    if (headerElement && window.ResizeObserver) {
+        const resizeObserver = new ResizeObserver(entries => {
+            for (const entry of entries) {
+                cachedHeaderHeight = entry.contentRect.height;
+            }
+        });
+        resizeObserver.observe(headerElement);
     }
-    
-    // Use requestAnimationFrame to batch DOM reads
-    function scheduleHeaderUpdate() {
-        requestAnimationFrame(updateHeaderHeight);
-    }
-    
-    scheduleHeaderUpdate();
-    window.addEventListener('resize', debounce(scheduleHeaderUpdate, 250));
-    
+
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-            
+
             if (targetSection) {
-                // Batch DOM reads to minimize forced reflows
-                requestAnimationFrame(() => {
-                    const header = document.querySelector('.header');
-                    const headerRect = header.getBoundingClientRect();
-                    const targetRect = targetSection.getBoundingClientRect();
-                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                    const targetPosition = targetRect.top + scrollTop - headerRect.height - 20;
+                const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - cachedHeaderHeight - 20;
                 
-                    window.scrollTo({
-                         top: targetPosition,
-                         behavior: 'smooth'
-                     });
-                 });
-                
-                // Update active nav link
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+
                 updateActiveNavLink(targetId);
             }
         });
@@ -195,129 +181,73 @@ function updateActiveNavLink(targetId) {
     });
 }
 
-// Header Scroll Effect - Using IntersectionObserver to eliminate forced reflows
+// Header Scroll Effect - Optimized version as per pagespeed.txt recommendations
 function initHeaderScroll() {
     const header = document.querySelector('.header');
     
-    // Create sentinel elements for different scroll thresholds
-    const scrollSentinel = document.createElement('div');
-    scrollSentinel.style.cssText = 'position: absolute; top: 100px; height: 1px; width: 1px; pointer-events: none;';
-    document.body.appendChild(scrollSentinel);
+    // Simplified scroll handling with throttled scroll listener
+    let ticking = false;
+    let lastScrollY = 0;
     
-    const hideSentinel = document.createElement('div');
-    hideSentinel.style.cssText = 'position: absolute; top: 200px; height: 1px; width: 1px; pointer-events: none;';
-    document.body.appendChild(hideSentinel);
-    
-    // Observer for scrolled class (100px threshold)
-    const scrollObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                header.classList.remove('scrolled');
+    const handleScroll = () => {
+        const scrollY = window.pageYOffset;
+        
+        // Add/remove scrolled class at 100px threshold
+        header.classList.toggle('scrolled', scrollY > 100);
+        
+        // Hide/show header based on scroll direction at 200px threshold
+        if (scrollY > 200) {
+            if (scrollY > lastScrollY) {
+                // Scrolling down - hide header
+                header.style.transform = 'translateY(-100%)';
             } else {
-                header.classList.add('scrolled');
-            }
-        });
-    }, { rootMargin: '0px 0px 0px 0px' });
-    
-    // Observer for header hide/show (200px threshold)
-    let lastY = 0;
-    const hideObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const currentY = entry.boundingClientRect.y;
-            if (!entry.isIntersecting) {
-                if (currentY < lastY) {
-                    // Scrolling down
-                    header.style.transform = 'translateY(-100%)';
-                } else {
-                    // Scrolling up
-                    header.style.transform = 'translateY(0)';
-                }
-            } else {
+                // Scrolling up - show header
                 header.style.transform = 'translateY(0)';
             }
-            lastY = currentY;
-        });
-    }, { rootMargin: '0px 0px 0px 0px' });
-    
-    scrollObserver.observe(scrollSentinel);
-    hideObserver.observe(hideSentinel);
-    
-    // Fallback for older browsers
-    if (!window.IntersectionObserver) {
-        let ticking = false;
-        window.addEventListener("scroll", function() {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    const scrollTop = window.pageYOffset;
-                    header.classList.toggle('scrolled', scrollTop > 100);
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        }, { passive: true });
-    }
-    
-    // Cache section positions and navigation links
-    let sectionPositions = [];
-    let cachedNavLinks = [];
-    
-    function cacheSectionPositions() {
-        // Batch all DOM reads in a single frame to prevent forced reflows
-        requestAnimationFrame(() => {
-            // Read all layout properties at once to minimize reflows
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const headerRect = header.getBoundingClientRect();
-            const headerHeight = headerRect.height;
-            const sections = document.querySelectorAll('section[id]');
-            
-            // Batch all getBoundingClientRect calls
-            const sectionRects = Array.from(sections).map(section => ({
-                element: section,
-                rect: section.getBoundingClientRect(),
-                id: section.getAttribute('id')
-            }));
-            
-            // Process cached measurements without additional DOM reads
-            sectionPositions = sectionRects.map(({ rect, id }) => ({
-                id,
-                top: rect.top + scrollTop - headerHeight - 50,
-                bottom: rect.top + scrollTop + rect.height - headerHeight - 50
-            }));
-            
-            // Cache navigation links to avoid repeated DOM queries
-            if (cachedNavLinks.length === 0) {
-                cachedNavLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
-            }
-        });
-    }
-    
-    // Cache positions on load and resize
-    cacheSectionPositions();
-    window.addEventListener('resize', debounce(cacheSectionPositions, 250));
-    
-    // Optimized active section update with cached nav links
-    const throttledUpdateActiveSection = throttle(() => {
-        const scrollTop = window.pageYOffset;
-        let currentSection = '';
-        
-        for (const section of sectionPositions) {
-            if (scrollTop >= section.top && scrollTop < section.bottom) {
-                currentSection = section.id;
-                break;
-            }
+        } else {
+            // Always show header when near top
+            header.style.transform = 'translateY(0)';
         }
         
-        if (currentSection && cachedNavLinks.length > 0) {
-            cachedNavLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentSection}`) {
-                    link.classList.add('active');
+        lastScrollY = scrollY;
+        ticking = false;
+    };
+    
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(handleScroll);
+            ticking = true;
+        }
+    }, { passive: true });
+    
+    // Simplified IntersectionObserver for active section detection - optimized per pagespeed.txt
+    const sections = document.querySelectorAll('section[id]');
+    const cachedNavLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
+    
+    if (sections.length > 0 && cachedNavLinks.length > 0) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.getAttribute('id');
+                    
+                    // Update active nav links - simplified approach
+                    cachedNavLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
                 }
             });
-        }
-    }, 100);
-    
-    window.addEventListener('scroll', throttledUpdateActiveSection, { passive: true });
+        }, {
+            rootMargin: '-20% 0px -60% 0px' // Simplified options - removed complex threshold array
+        });
+        
+        // Observe all sections
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+    }
 }
 
 // Function removed - replaced with optimized version in initHeaderScroll
@@ -617,34 +547,7 @@ function showNotification(message, type = 'info') {
     });
 }
 
-// Utility Functions
-
-// Debounce function for performance optimization
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Throttle function for scroll events
-function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    }
-}
+// Utility Functions - Removed duplicate functions (already defined at top of file)
 
 // Lazy Loading for Images (if needed in future)
 function initLazyLoading() {
