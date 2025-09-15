@@ -39,24 +39,8 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     
-    <!-- Facebook Pixel Code -->
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '901001165949446');
-      fbq('track', 'PageView');
-      // Track interesse per pagina chi siamo
-      fbq('track', 'ViewContent', {
-        content_name: 'Chi Siamo',
-        content_category: 'about_page'
-      });
-    </script>
+    <!-- Facebook Pixel Code - Performance Optimized -->
+    <script src="js/facebook-pixel-optimized.js" defer></script>
     <noscript>
       <img height="1" width="1" style="display:none" 
            src="https://www.facebook.com/tr?id=901001165949446&ev=PageView&noscript=1"/>
@@ -113,7 +97,6 @@
     
     <!-- Preload Critical Images for LCP -->
     <link rel="preload" href="icons/logo_sito_franco_small.webp" as="image" fetchpriority="high">
-    <link rel="preload" href="icons/placeholder1-chisiamo.webp" as="image" fetchpriority="high">
     
     <!-- Critical CSS inline per eliminare H1UserAgentFontSizeInSection warning -->
     <style>

@@ -70,19 +70,8 @@
     </script>
     -->
     
-    <!-- Facebook Pixel Code -->
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '901001165949446');
-      fbq('track', 'PageView');
-    </script>
+    <!-- Facebook Pixel Code - Performance Optimized -->
+    <script src="js/facebook-pixel-optimized.js" defer></script>
     <noscript>
       <img height="1" width="1" style="display:none" 
            src="https://www.facebook.com/tr?id=901001165949446&ev=PageView&noscript=1"/>
@@ -165,30 +154,38 @@
             left: 0; 
             right: 0; 
             height: 80px; 
-            background: rgba(0,0,0,0.95); 
+            min-height: 80px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(76, 175, 80, 0.2);
             z-index: 9999; 
+            transition: all 0.3s ease;
             contain: layout style; 
+        }
+        .nav {
+            padding: 1rem 0;
         }
         .nav-container { 
             max-width: 1200px; 
             margin: 0 auto; 
-            padding: 0 1rem; 
+            padding: 0 2rem; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             height: 100%; 
         }
-        .logo img { 
-            height: 50px; 
-            width: auto; 
-        }
+
         .nav-menu {
             display: flex; /* Desktop default to prevent CLS */
+            list-style: none;
+            gap: 1.5rem;
             align-items: center; /* Allinea verticalmente gli item */
+            white-space: nowrap;
             /* --- SOLUZIONE CLS --- */
             /* Dà un'altezza minima fissa al contenitore dei link per evitare 
                che si ridimensioni al cambio di font. */
-            min-height: 50px;
+            min-height: 40px;
+            height: 40px;
         }
         .hamburger {
             display: none; /* Desktop default */
@@ -200,7 +197,7 @@
             justify-content: center; 
             background: linear-gradient(135deg, #000 0%, #1a1a1a 100%); 
             text-align: center; 
-            padding: 0 1rem; 
+            padding: 0 2rem; 
         }
         .hero-container { 
             max-width: 1200px; 
@@ -288,10 +285,6 @@
     
     <!-- Preload Critical Images for LCP -->
     <link rel="preload" href="icons/logo_sito_franco_small.webp" as="image" fetchpriority="high">
-    <link rel="preload" href="icons/nebbiogeni.webp" as="image" fetchpriority="high">
-    <link rel="preload" href="icons/serramenti.webp" as="image" fetchpriority="high">
-    <link rel="preload" href="icons/sorveglianza.webp" as="image" fetchpriority="high">
-    <link rel="preload" href="icons/allarmi.webp" as="image" fetchpriority="high">
     
     <!-- Preload Critical JavaScript removed - script is deferred -->
     
@@ -391,7 +384,7 @@
 /* CLS Prevention Styles */
 .logo-image {
     width: 50px;
-    height: auto;
+    height: 50px;
     aspect-ratio: 47 / 40;
     display: block;
 }
