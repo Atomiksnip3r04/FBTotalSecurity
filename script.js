@@ -170,15 +170,23 @@ function initSmoothScrolling_Phase1() {
             const targetSection = document.querySelector(targetId);
 
             if (targetSection) {
-                // Lettura diretta al momento del click - accettabile perché è un'azione utente
-                const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - window.cachedHeaderHeight - 20;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
+                // Usa il sistema di batching DOM per evitare forced reflow
+                domOperations.read(() => {
+                    const targetPosition = getCachedDOMProperty(
+                        targetSection,
+                        'scrollPosition',
+                        () => targetSection.getBoundingClientRect().top + window.pageYOffset - window.cachedHeaderHeight - 20
+                    );
+                    
+                    domOperations.write(() => {
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        updateActiveNavLink(targetId);
+                    });
                 });
-
-                updateActiveNavLink(targetId);
             }
         });
     });
@@ -218,8 +226,8 @@ function initHeaderScroll() {
     const handleScroll = () => {
         const scrollY = window.pageYOffset;
         
-        // Avvolgi le scritture DOM in requestAnimationFrame per performance ottimali
-        requestAnimationFrame(() => {
+        // Usa il sistema di batching DOM per evitare forced reflow
+        domOperations.write(() => {
             // Add/remove scrolled class at 100px threshold
             DOM.header.classList.toggle('scrolled', scrollY > 100);
             

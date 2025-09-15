@@ -87,14 +87,41 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Traccia scroll profondo (75% della pagina)
+    // Traccia scroll profondo (75% della pagina) - Ottimizzato per evitare forced reflow
     let scrollTracked = false;
-    window.addEventListener('scroll', function() {
-        if (!scrollTracked && (window.scrollY + window.innerHeight) >= document.body.offsetHeight * 0.75) {
+    let cachedBodyHeight = null;
+    let ticking = false;
+    
+    // Cache dell'altezza del body per evitare letture DOM ripetute
+    function updateBodyHeight() {
+        cachedBodyHeight = document.body.offsetHeight;
+    }
+    
+    // Inizializza cache altezza
+    updateBodyHeight();
+    
+    // Aggiorna cache su resize (debounced)
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(updateBodyHeight, 250);
+    });
+    
+    function checkScrollDepth() {
+        if (!scrollTracked && cachedBodyHeight && 
+            (window.scrollY + window.innerHeight) >= cachedBodyHeight * 0.75) {
             fbq('trackCustom', 'DeepScroll', {
                 content_category: 'engagement'
             });
             scrollTracked = true;
+        }
+        ticking = false;
+    }
+    
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(checkScrollDepth);
+            ticking = true;
         }
     });
     
