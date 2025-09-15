@@ -172,14 +172,17 @@ a {
     top: 0;
     left: 0;
     right: 0;
-    height: 80px;
-    min-height: 80px; /* Ensure consistent height */
+    height: 82px;
+    min-height: 82px;
+    max-height: 82px; /* Force consistent height to prevent CLS */
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(76, 175, 80, 0.2);
     z-index: 9999;
-    transition: all 0.3s ease;
-    contain: layout style; /* Optimize rendering and prevent CLS */
+    transition: background 0.3s ease, backdrop-filter 0.3s ease, border-bottom 0.3s ease; /* Remove height from transition */
+    contain: layout style size; /* Enhanced containment for CLS prevention */
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent content overflow that could cause shifts */
 }
 
 .header.scrolled {
@@ -190,16 +193,24 @@ a {
 
 .nav {
     padding: 1rem 0;
+    height: 82px; /* Match header height exactly */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
 }
 
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 40px; /* Fixed padding to match the CLS data (left: 40) */
+    width: 1270px; /* Fixed width to match CLS data */
+    max-width: 1270px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 .logo {
@@ -2239,7 +2250,7 @@ a {
     
     .nav-menu {
         position: fixed;
-        top: 80px;
+        top: 82px; /* Match the new header height */
         left: 0;
         width: 100%;
         height: auto;
@@ -2259,8 +2270,8 @@ a {
         border-radius: 0 0 20px 20px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         /* Enhanced layout stability */
-        contain: layout style;
-        will-change: auto;
+        contain: layout style size;
+        will-change: transform, opacity;
         /* Additional CLS prevention */
         box-sizing: border-box;
         overflow-y: auto;
