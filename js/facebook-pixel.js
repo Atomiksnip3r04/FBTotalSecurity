@@ -92,9 +92,17 @@ document.addEventListener('DOMContentLoaded', function() {
     let cachedBodyHeight = null;
     let ticking = false;
     
-    // Cache dell'altezza del body per evitare letture DOM ripetute
+    // Cache dell'altezza del body per evitare letture DOM ripetute - Ottimizzato per forced reflow
     function updateBodyHeight() {
-        cachedBodyHeight = document.body.offsetHeight;
+        // Usa il sistema di batching DOM per evitare forced reflow
+        if (window.domOperations && window.domOperations.read) {
+            window.domOperations.read(() => {
+                cachedBodyHeight = document.body.offsetHeight;
+            });
+        } else {
+            // Fallback per compatibilità
+            cachedBodyHeight = document.body.offsetHeight;
+        }
     }
     
     // Inizializza cache altezza
