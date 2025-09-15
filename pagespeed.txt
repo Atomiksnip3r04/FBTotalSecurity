@@ -1,320 +1,155 @@
-Perfetto. La riduzione da 98ms a 72ms è un buon primo passo, ma non ancora risolutivo. Significa che la strategia di "batching" ha funzionato parzialmente, ma ci sono ancora colpevoli nascosti. Analizziamo con profondità estrema il script.js aggiornato per scovare le cause residue del Forced Synchronous Layout.
-
-Analisi Approfondita delle Cause Residue (72ms)
-
-Dopo aver risolto il problema principale nel sistema di traduzione, i 72ms rimanenti sono quasi certamente causati da altre funzioni che vengono eseguite durante il caricamento iniziale della pagina (DOMContentLoaded). L'analisi forense punta a due colpevoli principali e a un complice minore.
-
-Colpevole #1 (Molto Probabile): initSmoothScrolling e la Trappola ResizeObserver
-
-Questa funzione, sebbene sembri innocua, nasconde una trappola di performance subdola.
-
-code
-JavaScript
-download
-content_copy
-expand_less
-
-function initSmoothScrolling() {
-    let cachedHeaderHeight = 80;
-
-    if (DOM.header && window.ResizeObserver) {
-        const resizeObserver = new ResizeObserver(entries => {
-            for (const entry of entries) {
-                // SCRITTURA (potenziale): Assegna un valore a una variabile.
-                cachedHeaderHeight = entry.contentRect.height; 
-            }
-        });
-        // LETTURA FORZATA: Al momento di "observe", il browser DEVE calcolare
-        // le dimensioni iniziali dell'elemento per poterlo monitorare.
-        resizeObserver.observe(DOM.header); 
-    }
-    // ...
-}
-
-La dinamica del problema:
-
-Quando DOMContentLoaded scatta, il browser sta ancora assemblando la pagina. Il layout potrebbe non essere ancora definitivo.
-
-initSmoothScrolling viene chiamato.
-
-resizeObserver.observe(DOM.header) viene eseguito. Per poter "osservare" un elemento, il ResizeObserver ha bisogno di conoscere le sue dimensioni attuali.
-
-FORCED REFLOW: Se il layout non è ancora stabile, il browser è costretto a fermarsi e calcolare immediatamente le dimensioni precise di .header (entry.contentRect.height). Questa è una lettura geometrica che forza un layout sincrono.
-
-Il click dell'utente non è il problema qui, ma l'inizializzazione stessa del ResizeObserver durante il caricamento critico della pagina.
-
-Colpevole #2 (Molto Probabile): initHeaderScroll e l'IntersectionObserver
-
-Similmente al ResizeObserver, anche l'IntersectionObserver, sebbene sia uno strumento di performance, può causare un reflow se inizializzato in modo aggressivo.
-
-code
-JavaScript
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-function initHeaderScroll() {
-    // ...
-    if (DOM.sections.length > 0 && DOM.navLinksWithHash.length > 0) {
-        const sectionObserver = new IntersectionObserver((entries) => {
-            // ...
-        }, {
-            rootMargin: '-20% 0px -60% 0px'
-        });
-        
-        // LETTURA FORZATA per ogni sezione
-        DOM.sections.forEach(section => {
-            sectionObserver.observe(section);
-        });
-    }
-}
-
-La dinamica del problema:
-
-Durante il DOMContentLoaded, viene chiamata initHeaderScroll.
-
-Il codice cicla su tutte le sezioni (DOM.sections.forEach) e chiama sectionObserver.observe(section) su ognuna.
-
-Per determinare se una sezione si "interseca" con il viewport (anche solo per stabilire lo stato iniziale), il browser deve conoscere la posizione e le dimensioni esatte di ogni sezione.
-
-FORCED REFLOW MULTIPLO: Questo innesca un calcolo del layout forzato per ogni sezione che viene osservata, accumulando tempo di blocco del rendering. Il browser deve sapere dove si trova ogni sezione prima di poter continuare.
-
-Complice Minore: initScrollAnimations
-
-Questa funzione soffre dello stesso identico problema di initHeaderScroll, ma potrebbe avere un impatto leggermente minore a seconda di quanti elementi sta osservando.
-
-code
-JavaScript
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-function initScrollAnimations() {
-    // ...
-    const observer = new IntersectionObserver(...);
-    
-    // LETTURA FORZATA per ogni elemento animato
-    DOM.animateElements.forEach(el => {
-        observer.observe(el);
-    });
-}
-
-Ogni chiamata a .observe(el) richiede che il browser conosca la posizione di el, contribuendo al totale dei 72ms.
-
-La Strategia di Eliminazione Definitiva
-
-La soluzione è ritardare l'inizializzazione di tutto ciò che non è visivamente critico per il primo rendering. Gli Observer sono strumenti fantastici, ma non devono essere inizializzati durante il DOMContentLoaded se causano reflow. Dobbiamo spostare la loro inizializzazione a un momento successivo, quando la pagina è già visibile e stabile.
-
-L'evento window.load è il nostro alleato. Scatta dopo che tutto il contenuto (inclusi immagini e fogli di stile) è stato caricato e la pagina è stata renderizzata una prima volta.
-
-Soluzione Maniacale: Modifica di script.js
-
-Sostituisci l'intera gestione degli eventi nel tuo script.js con questa struttura.
-
-code
-JavaScript
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-// --- INIZIO NUOVA STRUTTURA OTTIMIZZATA ---
-
-// 1. Oggetto per memorizzare gli elementi del DOM (cache centralizzata)
-const DOM = {};
-
-// Funzione per popolare la cache del DOM (solo lettura)
-function cacheDOMElements() {
-    DOM.hamburger = document.querySelector('.hamburger');
-    DOM.navMenu = document.querySelector('.nav-menu');
-    DOM.navLinks = document.querySelectorAll('.nav-link');
-    DOM.smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
-    DOM.header = document.querySelector('.header');
-    DOM.sections = document.querySelectorAll('section[id]');
-    DOM.contactForms = document.querySelectorAll('.contact-form form, form');
-    DOM.serviceCards = document.querySelectorAll('.service-card');
-    DOM.animateElements = document.querySelectorAll('.service-card, .feature, .contact-item, .service-text, .service-image');
-    DOM.langButtons = document.querySelectorAll('.lang-btn');
-    DOM.body = document.body;
-    DOM.navLinksWithHash = document.querySelectorAll('.nav-link[href^="#"]');
-}
-
-// === FASE 1: ESECUZIONE IMMEDIATA (DOMContentLoaded) ===
-// Qui mettiamo solo ciò che è assolutamente essenziale per la prima interazione.
-document.addEventListener('DOMContentLoaded', function() {
-    // Popola la cache una sola volta, all'inizio.
-    cacheDOMElements();
-
-    // Inizializza solo le funzioni che DEVONO funzionare subito.
-    // Queste funzioni non leggono geometrie e sono sicure.
-    initMobileMenu();
-    initLanguageSelector(); // La versione ottimizzata che già hai è sicura.
-    initContactForm();
-
-    // Inizializziamo lo smooth scroll senza il ResizeObserver, che verrà attivato dopo.
-    initSmoothScrolling_Phase1();
-});
-
-// === FASE 2: ESECUZIONE RITARDATA (window.load) ===
-// Qui mettiamo tutto ciò che può aspettare che la pagina sia completamente caricata e visibile.
-// Questo è il passo CRUCIALE per eliminare il reflow iniziale.
-window.addEventListener('load', function() {
-    // Ora che la pagina è stabile, possiamo inizializzare gli observer
-    // e le funzioni che leggono le dimensioni degli elementi.
-    initSmoothScrolling_Phase2(); // Attiva il ResizeObserver
-    initHeaderScroll(); // Attiva l'IntersectionObserver per header e sezioni
-    initScrollAnimations(); // Attiva l'IntersectionObserver per le animazioni
-    initServiceCards(); // Gli effetti hover possono tranquillamente partire dopo
-});
-
-
-// --- NUOVE FUNZIONI MODIFICATE ---
-
-// Smooth Scrolling diviso in due fasi
-let cachedHeaderHeight = 80; // Valore di default
-function initSmoothScrolling_Phase1() {
-    if (!DOM.smoothScrollLinks.length) return;
-
-    DOM.smoothScrollLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-
-            if (targetSection) {
-                // Durante il click, il reflow è inevitabile e accettabile.
-                // Usiamo il valore 'cached' che sarà aggiornato nella fase 2.
-                const headerHeight = DOM.header ? DOM.header.offsetHeight : 80;
-                const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-
-                updateActiveNavLink(targetId);
-            }
-        });
-    });
-}
-
-function initSmoothScrolling_Phase2() {
-    // Ora è sicuro inizializzare il ResizeObserver
-    if (DOM.header && window.ResizeObserver) {
-        const resizeObserver = new ResizeObserver(entries => {
-            for (const entry of entries) {
-                // Questa è una scrittura sicura, non forza reflow perché è asincrona.
-                cachedHeaderHeight = entry.contentRect.height;
-            }
-        });
-        resizeObserver.observe(DOM.header);
-    }
-}
-
-
-// HeaderScroll rimane quasi invariato, ma la sua ESECUZIONE è ritardata
-function initHeaderScroll() {
-    if (!DOM.header) return;
-    
-    let ticking = false;
-    let lastScrollY = 0;
-    
-    const handleScroll = () => {
-        const scrollY = window.pageYOffset;
-        
-        requestAnimationFrame(() => { // Raggruppiamo le scritture
-            DOM.header.classList.toggle('scrolled', scrollY > 100);
-            
-            if (scrollY > 200) {
-                if (scrollY > lastScrollY) {
-                    DOM.header.style.transform = 'translateY(-100%)';
-                } else {
-                    DOM.header.style.transform = 'translateY(0)';
-                }
-            } else {
-                DOM.header.style.transform = 'translateY(0)';
-            }
-        });
-        
-        lastScrollY = scrollY;
-        ticking = false;
-    };
-    
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            ticking = true;
-            handleScroll();
-        }
-    }, { passive: true });
-    
-     if (DOM.sections.length > 0 && DOM.navLinksWithHash.length > 0) {
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const sectionId = entry.target.getAttribute('id');
-                    requestAnimationFrame(() => { // Scrittura in un frame
-                       DOM.navLinksWithHash.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${sectionId}`) {
-                                link.classList.add('active');
-                            }
-                        });
-                    });
-                }
-            });
-        }, {
-            rootMargin: '-20% 0px -60% 0px'
-        });
-        
-        DOM.sections.forEach(section => {
-            sectionObserver.observe(section);
-        });
-    }
-}
-
-// ScrollAnimations rimane invariato, ma la sua ESECUZIONE è ritardata
-function initScrollAnimations() {
-    if (!DOM.animateElements.length) return;
-
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px' 
-    };
-    
-    const observer = new IntersectionObserver(function(entries, observer) { // Aggiunto 'observer'
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-                observer.unobserve(entry.target); // OTTIMIZZAZIONE: smetti di osservare dopo l'animazione
-            }
-        });
-    }, observerOptions);
-    
-    DOM.animateElements.forEach(el => {
-        observer.observe(el);
-    });
-}
-
-// ... INCOLLA QUI TUTTE LE ALTRE TUE FUNZIONI (initMobileMenu, initContactForm, etc., e le funzioni di traduzione ottimizzate dalla risposta precedente) ...
-// Le funzioni che non ho modificato qui sopra devono essere presenti nel tuo file finale.
-Riassunto della Strategia Chirurgica Adottata
-
-Divisione in Fasi: Abbiamo diviso l'inizializzazione dello script in due fasi:
-
-DOMContentLoaded (Fase 1 - Critica): Eseguiamo solo codice che non legge la geometria del layout (menu, form, traduzione dei testi). L'obiettivo è mostrare qualcosa all'utente il più velocemente possibile senza bloccare il rendering.
-
-window.load (Fase 2 - Post-Rendering): Eseguiamo tutto il resto. A questo punto, la pagina è già visibile e stabile. Inizializzare ResizeObserver e IntersectionObserver qui non causerà un reflow iniziale che penalizza il punteggio di PageSpeed.
-
-Ritardo Strategico: Ritardando l'inizializzazione degli Observer, eliminiamo le letture forzate di layout durante il percorso di rendering critico.
-
-Micro-Ottimizzazioni Aggiuntive:
-
-In initSmoothScrolling_Phase1, ho aggiunto una lettura diretta di offsetHeight al momento del click. Questo è accettabile perché un reflow causato da un'azione dell'utente non viene penalizzato da PageSpeed e l'esperienza utente non ne risente.
-
-In initScrollAnimations, ho aggiunto observer.unobserve(entry.target). Una volta che un elemento è stato animato, non c'è motivo di continuare a consumare risorse per osservarlo. È una piccola ma significativa ottimizzazione.
-
-Ho avvolto le scritture nel gestore scroll dentro un requestAnimationFrame per un'ulteriore garanzia di performance, anche se il ticking già aiutava molto.
-
-Implementando questa struttura, il valore di "Adattamento dinamico forzato del contenuto" dovrebbe scendere vicino allo zero. Hai attaccato il problema alla radice, non solo nei sintomi, comprendendo e riorganizzando l'ordine di esecuzione del tuo codice per allinearlo con il modo in cui il browser renderizza le pagine in modo più efficiente.
+ai-unified-engine.js:60 🚀 AI Unified Engine: Starting comprehensive optimization...
+ai-unified-engine.js:79 🔧 Optimizing meta tags...
+ai-unified-engine.js:125 🧠 Enhancing semantic markup...
+ai-unified-engine.js:217 🔗 Implementing semantic cross-linking...
+ai-unified-engine.js:299 📊 Integrating structured data...
+ai-unified-engine.js:74 ✅ AI Unified Engine: Optimization complete
+script.min.js?v=20250117:1 🔒 FB Total Security-Sistemi di Sicurezza
+script.min.js?v=20250117:1 Sito web ottimizzato per performance e SEO
+script.min.js?v=20250117:1 🌐 Initializing language selector...
+script.min.js?v=20250117:1 🏁 Current language: it
+script.min.js?v=20250117:1 🔄 Setting language to it(Optimized)
+index.html:1 Access to fetch at 'file:///C:/Users/Massi/Documents/sito_franco_trae/ai-seo-enhanced.json' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: chrome, chrome-extension, chrome-untrusted, data, http, https, isolated-app.
+ai-unified-engine.js:318  GET file:///C:/Users/Massi/Documents/sito_franco_trae/ai-seo-enhanced.json net::ERR_FAILED
+loadExternalSchemas @ ai-unified-engine.js:318
+integrateStructuredData @ ai-unified-engine.js:301
+runFullOptimization @ ai-unified-engine.js:72
+init @ ai-unified-engine.js:55
+AIUnifiedEngine @ ai-unified-engine.js:48
+(anonymous) @ ai-unified-engine.js:532
+ai-unified-engine.js:330 Could not load schema ./ai-seo-enhanced.json: TypeError: Failed to fetch
+    at AIUnifiedEngine.loadExternalSchemas (ai-unified-engine.js:318:40)
+    at AIUnifiedEngine.integrateStructuredData (ai-unified-engine.js:301:14)
+    at AIUnifiedEngine.runFullOptimization (ai-unified-engine.js:72:14)
+    at AIUnifiedEngine.init (ai-unified-engine.js:55:18)
+    at new AIUnifiedEngine (ai-unified-engine.js:48:14)
+    at ai-unified-engine.js:532:1
+loadExternalSchemas @ ai-unified-engine.js:330
+await in loadExternalSchemas
+integrateStructuredData @ ai-unified-engine.js:301
+runFullOptimization @ ai-unified-engine.js:72
+init @ ai-unified-engine.js:55
+AIUnifiedEngine @ ai-unified-engine.js:48
+(anonymous) @ ai-unified-engine.js:532
+index.html:1 Access to fetch at 'file:///C:/Users/Massi/Documents/sito_franco_trae/ai-knowledge-base.json' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: chrome, chrome-extension, chrome-untrusted, data, http, https, isolated-app.
+ai-unified-engine.js:318  GET file:///C:/Users/Massi/Documents/sito_franco_trae/ai-knowledge-base.json net::ERR_FAILED
+loadExternalSchemas @ ai-unified-engine.js:318
+await in loadExternalSchemas
+integrateStructuredData @ ai-unified-engine.js:301
+runFullOptimization @ ai-unified-engine.js:72
+init @ ai-unified-engine.js:55
+AIUnifiedEngine @ ai-unified-engine.js:48
+(anonymous) @ ai-unified-engine.js:532
+ai-unified-engine.js:330 Could not load schema ./ai-knowledge-base.json: TypeError: Failed to fetch
+    at AIUnifiedEngine.loadExternalSchemas (ai-unified-engine.js:318:40)
+loadExternalSchemas @ ai-unified-engine.js:330
+await in loadExternalSchemas
+integrateStructuredData @ ai-unified-engine.js:301
+runFullOptimization @ ai-unified-engine.js:72
+init @ ai-unified-engine.js:55
+AIUnifiedEngine @ ai-unified-engine.js:48
+(anonymous) @ ai-unified-engine.js:532
+index.html:1 Access to fetch at 'file:///C:/Users/Massi/Documents/sito_franco_trae/ai-services-schema.json' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: chrome, chrome-extension, chrome-untrusted, data, http, https, isolated-app.
+ai-unified-engine.js:318  GET file:///C:/Users/Massi/Documents/sito_franco_trae/ai-services-schema.json net::ERR_FAILED
+loadExternalSchemas @ ai-unified-engine.js:318
+await in loadExternalSchemas
+integrateStructuredData @ ai-unified-engine.js:301
+runFullOptimization @ ai-unified-engine.js:72
+init @ ai-unified-engine.js:55
+AIUnifiedEngine @ ai-unified-engine.js:48
+(anonymous) @ ai-unified-engine.js:532
+ai-unified-engine.js:330 Could not load schema ./ai-services-schema.json: TypeError: Failed to fetch
+    at AIUnifiedEngine.loadExternalSchemas (ai-unified-engine.js:318:40)
+loadExternalSchemas @ ai-unified-engine.js:330
+await in loadExternalSchemas
+integrateStructuredData @ ai-unified-engine.js:301
+runFullOptimization @ ai-unified-engine.js:72
+init @ ai-unified-engine.js:55
+AIUnifiedEngine @ ai-unified-engine.js:48
+(anonymous) @ ai-unified-engine.js:532
+index.html:1 Access to fetch at 'file:///C:/Users/Massi/Documents/sito_franco_trae/ai-person-eeat.json' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: chrome, chrome-extension, chrome-untrusted, data, http, https, isolated-app.
+ai-unified-engine.js:318  GET file:///C:/Users/Massi/Documents/sito_franco_trae/ai-person-eeat.json net::ERR_FAILED
+loadExternalSchemas @ ai-unified-engine.js:318
+await in loadExternalSchemas
+integrateStructuredData @ ai-unified-engine.js:301
+runFullOptimization @ ai-unified-engine.js:72
+init @ ai-unified-engine.js:55
+AIUnifiedEngine @ ai-unified-engine.js:48
+(anonymous) @ ai-unified-engine.js:532
+ai-unified-engine.js:330 Could not load schema ./ai-person-eeat.json: TypeError: Failed to fetch
+    at AIUnifiedEngine.loadExternalSchemas (ai-unified-engine.js:318:40)
+loadExternalSchemas @ ai-unified-engine.js:330
+await in loadExternalSchemas
+integrateStructuredData @ ai-unified-engine.js:301
+runFullOptimization @ ai-unified-engine.js:72
+init @ ai-unified-engine.js:55
+AIUnifiedEngine @ ai-unified-engine.js:48
+(anonymous) @ ai-unified-engine.js:532
+index.html:1 Access to fetch at 'file:///C:/Users/Massi/Documents/sito_franco_trae/ai-authoritative-sources.json' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: chrome, chrome-extension, chrome-untrusted, data, http, https, isolated-app.
+ai-unified-engine.js:318  GET file:///C:/Users/Massi/Documents/sito_franco_trae/ai-authoritative-sources.json net::ERR_FAILED
+loadExternalSchemas @ ai-unified-engine.js:318
+await in loadExternalSchemas
+integrateStructuredData @ ai-unified-engine.js:301
+runFullOptimization @ ai-unified-engine.js:72
+init @ ai-unified-engine.js:55
+AIUnifiedEngine @ ai-unified-engine.js:48
+(anonymous) @ ai-unified-engine.js:532
+ai-unified-engine.js:330 Could not load schema ./ai-authoritative-sources.json: TypeError: Failed to fetch
+    at AIUnifiedEngine.loadExternalSchemas (ai-unified-engine.js:318:40)
+loadExternalSchemas @ ai-unified-engine.js:330
+await in loadExternalSchemas
+integrateStructuredData @ ai-unified-engine.js:301
+runFullOptimization @ ai-unified-engine.js:72
+init @ ai-unified-engine.js:55
+AIUnifiedEngine @ ai-unified-engine.js:48
+(anonymous) @ ai-unified-engine.js:532
+index.html:1 Access to fetch at 'file:///C:/Users/Massi/Documents/sito_franco_trae/ai-context-sitemap.json' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: chrome, chrome-extension, chrome-untrusted, data, http, https, isolated-app.
+ai-unified-engine.js:318  GET file:///C:/Users/Massi/Documents/sito_franco_trae/ai-context-sitemap.json net::ERR_FAILED
+loadExternalSchemas @ ai-unified-engine.js:318
+await in loadExternalSchemas
+integrateStructuredData @ ai-unified-engine.js:301
+runFullOptimization @ ai-unified-engine.js:72
+init @ ai-unified-engine.js:55
+AIUnifiedEngine @ ai-unified-engine.js:48
+(anonymous) @ ai-unified-engine.js:532
+ai-unified-engine.js:330 Could not load schema ./ai-context-sitemap.json: TypeError: Failed to fetch
+    at AIUnifiedEngine.loadExternalSchemas (ai-unified-engine.js:318:40)
+loadExternalSchemas @ ai-unified-engine.js:330
+await in loadExternalSchemas
+integrateStructuredData @ ai-unified-engine.js:301
+runFullOptimization @ ai-unified-engine.js:72
+init @ ai-unified-engine.js:55
+AIUnifiedEngine @ ai-unified-engine.js:48
+(anonymous) @ ai-unified-engine.js:532
+ai-unified-engine.js:361 🎯 Unified JSON-LD @graph injected with 2 entities
+script.min.js?v=20250117:1 ✍️ Executing 167DOM write operations.
+script.min.js?v=20250117:1 ✅ DOM updates completed.
+fbevents.js:164 [Meta Pixel] - An invalid email address was specified for 'em'. This data will not be sent with any events for this Pixel.
+t @ fbevents.js:164
+w @ fbevents.js:164
+I @ fbevents.js:164
+s @ fbevents.js:313
+u @ fbevents.js:313
+value @ fbevents.js:298
+value @ fbevents.js:298
+value @ fbevents.js:298
+value @ fbevents.js:298
+value @ fbevents.js:298
+value @ fbevents.js:298
+Ja @ fbevents.js:376
+Ma @ fbevents.js:376
+Da @ fbevents.js:376
+Ca @ fbevents.js:376
+xa @ fbevents.js:376
+Na @ fbevents.js:376
+(anonymous) @ fbevents.js:376
+(anonymous) @ fbevents.js:126
+s @ fbevents.js:284
+each @ fbevents.js:284
+value @ fbevents.js:126
+value @ fbevents.js:126
+value @ fbevents.js:114
+plugin @ 901001165949446?v=2.9.229&r=stable&hme=4da26a2e1598cd081171e9b8b0e3bd97fd7c10093fe0828a931452a008126d2c&ex_m=87%2C149%2C129%2C18%2C122%2C61%2C41%2C123%2C68%2C60%2C136%2C76%2C12%2C86%2C26%2C117%2C108%2C66%2C69%2C116%2C133%2C95%2C138%2C6%2C2%2C3%2C5%2C4%2C1%2C77%2C85%2C139%2C213%2C161%2C55%2C218%2C215%2C216%2C48%2C176%2C25%2C65%2C222%2C221%2C164%2C28%2C54%2C7%2C57%2C81%2C82%2C83%2C88%2C112%2C27%2C24%2C115%2C111%2C110%2C130%2C67%2C132%2C131%2C43%2C113%2C53%2C105%2C11%2C135%2C38%2C204%2C206%2C171%2C21%2C22%2C23%2C15%2C16%2C37%2C33%2C35%2C34%2C72%2C78%2C80%2C93%2C121%2C124%2C39%2C94%2C19%2C17%2C99%2C62%2C31%2C126%2C125%2C127%2C118%2C20%2C30%2C52%2C92%2C134%2C63%2C14%2C29%2C186%2C157%2C263%2C202%2C147%2C189%2C182%2C90%2C114%2C71%2C103%2C47%2C40%2C101%2C102%2C107%2C51%2C13%2C109%2C100%2C58%2C42%2C96%2C46%2C49%2C45%2C84%2C137%2C0%2C106%2C10%2C104%2C8%2C50%2C79%2C56%2C128%2C59%2C98%2C75%2C74%2C44%2C119%2C73%2C70%2C64%2C97%2C89%2C36%2C120%2C32%2C91%2C9%2C140:204
+value @ fbevents.js:204
+Sa.a.registerPlugin @ fbevents.js:376
+(anonymous) @ 901001165949446?v=2.9.229&r=stable&hme=4da26a2e1598cd081171e9b8b0e3bd97fd7c10093fe0828a931452a008126d2c&ex_m=87%2C149%2C129%2C18%2C122%2C61%2C41%2C123%2C68%2C60%2C136%2C76%2C12%2C86%2C26%2C117%2C108%2C66%2C69%2C116%2C133%2C95%2C138%2C6%2C2%2C3%2C5%2C4%2C1%2C77%2C85%2C139%2C213%2C161%2C55%2C218%2C215%2C216%2C48%2C176%2C25%2C65%2C222%2C221%2C164%2C28%2C54%2C7%2C57%2C81%2C82%2C83%2C88%2C112%2C27%2C24%2C115%2C111%2C110%2C130%2C67%2C132%2C131%2C43%2C113%2C53%2C105%2C11%2C135%2C38%2C204%2C206%2C171%2C21%2C22%2C23%2C15%2C16%2C37%2C33%2C35%2C34%2C72%2C78%2C80%2C93%2C121%2C124%2C39%2C94%2C19%2C17%2C99%2C62%2C31%2C126%2C125%2C127%2C118%2C20%2C30%2C52%2C92%2C134%2C63%2C14%2C29%2C186%2C157%2C263%2C202%2C147%2C189%2C182%2C90%2C114%2C71%2C103%2C47%2C40%2C101%2C102%2C107%2C51%2C13%2C109%2C100%2C58%2C42%2C96%2C46%2C49%2C45%2C84%2C137%2C0%2C106%2C10%2C104%2C8%2C50%2C79%2C56%2C128%2C59%2C98%2C75%2C74%2C44%2C119%2C73%2C70%2C64%2C97%2C89%2C36%2C120%2C32%2C91%2C9%2C140:148

@@ -138,16 +138,7 @@ class FacebookPixelOptimized {
         // Inizializzazione del pixel con configurazioni ottimizzate
         fbq('init', this.pixelId, {
             // Disabilita Advanced Matching per evitare problemi di privacy
-            em: 'disabled',
-            ph: 'disabled',
-            fn: 'disabled',
-            ln: 'disabled',
-            db: 'disabled',
-            ge: 'disabled',
-            ct: 'disabled',
-            st: 'disabled',
-            zp: 'disabled',
-            country: 'disabled'
+            advanced_matching: {}
         });
         
         // Disabilita il tracking server-side e CAPIG per evitare errori di fetch

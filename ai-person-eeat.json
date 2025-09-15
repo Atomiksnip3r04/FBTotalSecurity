@@ -1,0 +1,214 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person",
+  "name": "Franco Benedetto",
+  "givenName": "Franco",
+  "familyName": "Benedetto",
+  "jobTitle": "Esperto in Sistemi di Sicurezza Avanzati",
+  "description": "Specialista certificato in sistemi di sicurezza con oltre 20 anni di esperienza nel settore. Esperto riconosciuto in nebbiogeni antifurto, serramenti blindati certificati e videosorveglianza intelligente con AI.",
+  "url": "https://www.fbtotalsecurity.com/franco-benedetto",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.fbtotalsecurity.com/images/franco-benedetto.jpg",
+    "caption": "Franco Benedetto - Esperto Sistemi di Sicurezza"
+  },
+  "worksFor": {
+    "@type": "Organization",
+    "@id": "https://www.fbtotalsecurity.com/#organization",
+    "name": "FB Total Security"
+  },
+  "foundingDate": "2000-01-01",
+  "knowsAbout": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Sistemi Nebbiogeni",
+      "description": "Progettazione e installazione sistemi nebbiogeni professionali",
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "name": "Expertise Sicurezza",
+        "author": {
+          "@type": "Person",
+          "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
+        }
+      }
+    },
+    {
+      "@type": "DefinedTerm", 
+      "name": "Serramenti Blindati EN 1627-1630",
+      "description": "Certificazione e installazione serramenti secondo standard europei",
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "name": "Expertise Sicurezza",
+        "author": {
+          "@type": "Person",
+          "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
+        }
+      }
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Videosorveglianza con Intelligenza Artificiale",
+      "description": "Sistemi avanzati con riconoscimento facciale e analisi comportamentale",
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "name": "Expertise Sicurezza",
+        "author": {
+          "@type": "Person",
+          "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
+        }
+      }
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Sistemi di Allarme Wireless",
+      "description": "Progettazione reti di sicurezza wireless professionali",
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "name": "Expertise Sicurezza",
+        "author": {
+          "@type": "Person",
+          "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
+        }
+      }
+    }
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Certificazione Sistemi di Sicurezza Professionale",
+      "description": "Abilitazione professionale per progettazione e installazione sistemi di sicurezza",
+      "credentialCategory": "Professional License",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "Registro Nazionale Installatori Sistemi di Sicurezza"
+      },
+      "validFrom": "2000-01-01",
+      "validIn": {
+        "@type": "Country",
+        "name": "Italia"
+      }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Specializzazione Nebbiogeni Antifurto",
+      "description": "Certificazione avanzata per sistemi nebbiogeni professionali",
+      "credentialCategory": "Professional Certification",
+      "validFrom": "2005-01-01"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Certificazione EN 1627-1630 Serramenti",
+      "description": "Abilitazione installazione serramenti blindati secondo standard europei",
+      "credentialCategory": "Technical Certification",
+      "validFrom": "2010-01-01"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Specializzazione AI per Videosorveglianza",
+      "description": "Formazione avanzata su sistemi intelligenti di videosorveglianza",
+      "credentialCategory": "Technical Training",
+      "validFrom": "2020-01-01"
+    }
+  ],
+  "award": [
+    {
+      "@type": "Award",
+      "name": "Riconoscimento Eccellenza Settore Sicurezza",
+      "description": "Premio per innovazione e qualità nel settore sistemi di sicurezza",
+      "dateReceived": "2015-12-01",
+      "awarder": {
+        "@type": "Organization",
+        "name": "Associazione Italiana Sicurezza"
+      }
+    },
+    {
+      "@type": "Award",
+      "name": "Certificazione Qualità Installazioni",
+      "description": "Riconoscimento per standard qualitativi superiori nelle installazioni",
+      "dateReceived": "2018-06-01"
+    }
+  ],
+  "memberOf": [
+    {
+      "@type": "Organization",
+      "name": "Associazione Nazionale Installatori Sistemi di Sicurezza",
+      "description": "Membro attivo dell'associazione professionale di categoria"
+    },
+    {
+      "@type": "Organization", 
+      "name": "Consorzio Europeo Sicurezza Avanzata",
+      "description": "Partecipazione a network europeo per innovazione sicurezza"
+    }
+  ],
+  "alumniOf": [
+    {
+      "@type": "EducationalOrganization",
+      "name": "Istituto Tecnico Industriale Elettronica",
+      "description": "Formazione tecnica specialistica in elettronica e sistemi"
+    },
+    {
+      "@type": "EducationalOrganization",
+      "name": "Accademia Europea Sicurezza Avanzata",
+      "description": "Formazione post-diploma in sistemi di sicurezza professionali"
+    }
+  ],
+  "hasOccupation": {
+    "@type": "Occupation",
+    "name": "Consulente Sistemi di Sicurezza",
+    "description": "Progettazione, installazione e manutenzione sistemi di sicurezza avanzati",
+    "occupationLocation": {
+      "@type": "Country",
+      "name": "Italia"
+    },
+    "experienceRequirements": "Oltre 20 anni di esperienza professionale",
+    "responsibilities": [
+      "Analisi rischi e vulnerabilità sicurezza",
+      "Progettazione sistemi integrati di protezione", 
+      "Supervisione installazioni certificate",
+      "Formazione tecnica personale specializzato",
+      "Consulenza normative e standard europei"
+    ]
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "professional",
+    "email": "franco.benedetto@fbtotalsecurity.com",
+    "availableLanguage": ["Italian", "English"],
+    "hoursAvailable": "Mo-Fr 09:00-18:00"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/francodibenedetto",
+    "https://www.fbtotalsecurity.com/team/franco-benedetto"
+  ],
+  "additionalProperty": [
+    {
+      "@type": "PropertyValue",
+      "name": "Anni di Esperienza",
+      "value": "20+"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Installazioni Completate",
+      "value": "2000+"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Certificazioni Attive",
+      "value": "8"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Specializzazione Principale",
+      "value": "Sistemi Nebbiogeni e Serramenti Blindati"
+    }
+  ],
+  "publishingPrinciples": {
+    "@type": "CreativeWork",
+    "name": "Principi di Qualità e Trasparenza",
+    "description": "Impegno per informazioni accurate, aggiornate e verificate nel settore sicurezza. Tutte le raccomandazioni basate su esperienza diretta e standard certificati.",
+    "author": {
+      "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
+    }
+  }
+}

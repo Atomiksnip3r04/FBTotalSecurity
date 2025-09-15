@@ -1,0 +1,186 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "@id": "https://francosicurezza.it/ai-knowledge-base",
+  "name": "Knowledge Base Sistemi di Sicurezza Avanzati",
+  "description": "Base di conoscenza specializzata in sistemi di sicurezza, nebbiogeni, serramenti blindati, videosorveglianza e allarmi",
+  "author": {
+    "@type": "Person",
+    "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
+  },
+  "creator": {
+    "@type": "Organization",
+    "@id": "https://www.fbtotalsecurity.com/#organization",
+    "name": "FB Total Security"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://www.fbtotalsecurity.com/#organization"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": "https://www.fbtotalsecurity.com/#website"
+  },
+  "about": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Sistema Nebbiogeno",
+      "description": "Dispositivo di sicurezza avanzato che rilascia istantaneamente una densa nebbia atossica per ridurre la visibilità a zero in meno di 10 secondi. Utilizzato come deterrente contro intrusioni e furti, il sistema nebbiogeno crea una barriera fisica che impedisce ai malintenzionati di orientarsi e proseguire nell'azione criminosa.",
+      "termCode": "NEBBIOGENO",
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "name": "Terminologia Sistemi di Sicurezza",
+        "author": {
+          "@type": "Person",
+          "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
+        }
+      },
+      "sameAs": [
+        "https://it.wikipedia.org/wiki/Sistema_nebbiogeno",
+        "https://www.fbtotalsecurity.com/nebbiogeni"
+      ]
+    },
+    {
+      "@type": "DefinedTerm", 
+      "name": "Serramenti Blindati",
+      "description": "Porte, finestre e infissi di sicurezza progettati per resistere a tentativi di effrazione. Classificati secondo standard europei in classi di resistenza (RC1-RC6), offrono protezione graduata contro diversi livelli di minaccia. I serramenti blindati combinano materiali resistenti, sistemi di chiusura multipli e tecnologie antieffrazione.",
+      "termCode": "SERRAMENTI_BLINDATI",
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet", 
+        "name": "Terminologia Sistemi di Sicurezza"
+      }
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Videosorveglianza Intelligente",
+      "description": "Sistema di monitoraggio video avanzato che utilizza intelligenza artificiale per analisi automatica delle immagini. Include funzionalità come riconoscimento facciale, analisi comportamentale, rilevamento di intrusioni e classificazione automatica di eventi. Le telecamere moderne offrono risoluzione 4K, visione notturna e connettività cloud.",
+      "termCode": "VIDEOSORVEGLIANZA_AI",
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "name": "Terminologia Sistemi di Sicurezza"
+      }
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Sistema di Allarme Wireless",
+      "description": "Rete di sensori e dispositivi di sicurezza che comunicano senza fili per rilevare intrusioni, movimenti sospetti o emergenze. Include sensori perimetrali, volumetrici, bottoni antipanico e centrali di controllo con notifiche smartphone. I sistemi wireless moderni offrono facilità di installazione e flessibilità di configurazione.",
+      "termCode": "ALLARME_WIRELESS",
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "name": "Terminologia Sistemi di Sicurezza"
+      }
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Classe di Resistenza RC",
+      "description": "Standard europeo (EN 1627-1630) che classifica la resistenza di porte e finestre contro tentativi di effrazione. RC1 offre protezione base, RC2-RC3 per uso residenziale, RC4-RC5 per applicazioni commerciali, RC6 per massima sicurezza. Ogni classe specifica tempi di resistenza e strumenti di attacco testati.",
+      "termCode": "CLASSE_RC",
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "name": "Terminologia Sistemi di Sicurezza"
+      },
+      "citation": {
+        "@type": "CreativeWork",
+        "@id": "https://francosicurezza.it/standards/en-1627-series"
+      }
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Riconoscimento Facciale",
+      "description": "Tecnologia biometrica che utilizza algoritmi di intelligenza artificiale per identificare persone attraverso caratteristiche facciali uniche. Nei sistemi di sicurezza permette controllo accessi automatico, identificazione di persone autorizzate e rilevamento di intrusi. Funziona in tempo reale con elevata precisione.",
+      "termCode": "RICONOSCIMENTO_FACCIALE",
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "name": "Terminologia Sistemi di Sicurezza"
+      }
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Analisi Comportamentale",
+      "description": "Tecnologia AI che analizza pattern di movimento e comportamenti per identificare attività sospette o anomale. Rileva automaticamente comportamenti come loitering, attraversamento di perimetri, abbandono oggetti o movimenti inusuali. Riduce falsi allarmi e migliora l'efficacia del sistema di sicurezza.",
+      "termCode": "ANALISI_COMPORTAMENTALE", 
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "name": "Terminologia Sistemi di Sicurezza"
+      }
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Controllo Accessi",
+      "description": "Sistema che regola e monitora l'ingresso e l'uscita di persone da aree protette. Utilizza tecnologie come badge RFID, codici PIN, biometria o smartphone per autenticare utenti autorizzati. Include logging degli accessi, gestione orari e integrazione con altri sistemi di sicurezza.",
+      "termCode": "CONTROLLO_ACCESSI",
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "name": "Terminologia Sistemi di Sicurezza"
+      }
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Monitoraggio Remoto 24/7",
+      "description": "Servizio di sorveglianza continua attraverso centrale operativa professionale che monitora sistemi di sicurezza h24. Include ricezione allarmi, verifica video, coordinamento interventi e comunicazione con forze dell'ordine. Garantisce risposta immediata a qualsiasi evento di sicurezza.",
+      "termCode": "MONITORAGGIO_24_7",
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "name": "Terminologia Sistemi di Sicurezza"
+      }
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Sicurezza Perimetrale",
+      "description": "Protezione del perimetro esterno di una proprietà attraverso barriere fisiche e tecnologiche. Include recinzioni, sensori perimetrali, telecamere termiche, rilevatori di movimento e sistemi di illuminazione automatica. Prima linea di difesa contro intrusioni.",
+      "termCode": "SICUREZZA_PERIMETRALE",
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "name": "Terminologia Sistemi di Sicurezza"
+      }
+    }
+  ],
+  "hasPart": [
+    {
+      "@type": "FAQPage",
+      "name": "FAQ Sistemi di Sicurezza",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qual è la differenza tra un sistema di allarme tradizionale e uno con intelligenza artificiale?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I sistemi di allarme tradizionali si basano su sensori che rilevano movimento o aperture, generando spesso falsi allarmi. I sistemi con AI analizzano pattern comportamentali, riconoscono volti autorizzati e distinguono tra minacce reali e situazioni normali, riducendo drasticamente i falsi allarmi e migliorando l'efficacia della protezione."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Come funziona esattamente un sistema nebbiogeno e perché è così efficace?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un sistema nebbiogeno rilascia istantaneamente una nebbia densa e atossica che riduce la visibilità a meno di 30 cm in 10 secondi. È efficace perché crea disorientamento immediato nei malintenzionati, impedendo loro di localizzare oggetti di valore e costringendoli ad abbandonare il tentativo di furto. La nebbia è completamente sicura per persone e oggetti."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quali sono i vantaggi della videosorveglianza con riconoscimento facciale?",
+          "acceptedAnswer": {
+            "@type": "Answer", 
+            "text": "Il riconoscimento facciale permette identificazione automatica di persone autorizzate, controllo accessi senza chiavi o badge, creazione di blacklist per individui indesiderati, e generazione di alert immediati per presenze non autorizzate. Migliora sicurezza e comodità, eliminando la necessità di dispositivi fisici di accesso."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Come scegliere la classe di resistenza giusta per porte blindate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La scelta dipende dal livello di rischio: RC2 per abitazioni standard, RC3 per case isolate o con beni di valore, RC4 per uffici e negozi, RC5-RC6 per banche e gioiellerie. Ogni classe offre tempi di resistenza crescenti (da 3 a 20 minuti) contro strumenti di effrazione sempre più sofisticati."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "È possibile integrare diversi sistemi di sicurezza in un'unica piattaforma?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sì, i moderni sistemi di sicurezza sono progettati per integrazione completa. Allarmi, videosorveglianza, controllo accessi e nebbiogeni possono essere gestiti da un'unica app mobile, con automazioni intelligenti che attivano risposte coordinate agli eventi di sicurezza."
+          }
+        }
+      ]
+    }
+  ]
+}

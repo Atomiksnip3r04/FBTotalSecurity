@@ -1,0 +1,256 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.fbtotalsecurity.com/#organization",
+      "name": "FB Total Security - Sistemi di Sicurezza Avanzati",
+      "alternateName": [
+        "FB Total Security",
+        "FB Sicurezza",
+        "Franco Benedetto Total Security",
+        "Sistemi Sicurezza Milano",
+        "Nebbiogeni Italia",
+        "Serramenti Blindati Milano"
+      ],
+      "url": "https://www.fbtotalsecurity.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.fbtotalsecurity.com/logo.png",
+        "width": 300,
+        "height": 100
+      },
+      "description": "Agenzia plurimandataria leader in Italia specializzata in sistemi di sicurezza avanzati: nebbiogeni antifurto, serramenti blindati certificati, videosorveglianza intelligente con AI e sistemi di allarme wireless. Oltre 20 anni di esperienza nel settore sicurezza con servizi in tutta Italia.",
+      "slogan": "La tua sicurezza è la nostra missione",
+      "foundingDate": "2000",
+      "numberOfEmployees": "10-50",
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Italia"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Lombardia"
+        },
+        {
+          "@type": "City",
+          "name": "Milano"
+        }
+      ],
+      "serviceArea": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": 45.4642,
+          "longitude": 9.1900
+        },
+        "geoRadius": "500000"
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "email": "postmaster@fbtotalsecurity.com",
+          "availableLanguage": ["Italian", "English"],
+          "hoursAvailable": "Mo-Fr 09:00-18:00"
+        },
+        {
+          "@type": "ContactPoint",
+          "contactType": "emergency",
+          "availableLanguage": "Italian",
+          "hoursAvailable": "24/7"
+        }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Milano",
+        "addressRegion": "Lombardia",
+        "addressCountry": "IT",
+        "postalCode": "20100"
+      },
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=61581141350058",
+        "https://www.linkedin.com/in/francodibenedetto"
+      ],
+      "knowsAbout": [
+        {
+          "@type": "DefinedTerm",
+          "name": "Sistemi Nebbiogeni Antifurto",
+          "description": "Tecnologie di protezione con nebbia densa deterrente",
+          "inDefinedTermSet": {
+            "@type": "DefinedTermSet",
+            "name": "Expertise Sicurezza Avanzata"
+          }
+        },
+        {
+          "@type": "DefinedTerm", 
+          "name": "Serramenti Blindati Certificati",
+          "description": "Porte e finestre con certificazione antieffrazione RC",
+          "inDefinedTermSet": {
+            "@type": "DefinedTermSet",
+            "name": "Expertise Sicurezza Avanzata"
+          }
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Videosorveglianza Intelligente",
+          "description": "Sistemi di monitoraggio con intelligenza artificiale",
+          "inDefinedTermSet": {
+            "@type": "DefinedTermSet", 
+            "name": "Expertise Sicurezza Avanzata"
+          }
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Sistemi Allarme Wireless",
+          "description": "Protezione antintrusione senza fili avanzata",
+          "inDefinedTermSet": {
+            "@type": "DefinedTermSet",
+            "name": "Expertise Sicurezza Avanzata"
+          }
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Catalogo Servizi Sicurezza",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Sistemi Nebbiogeni",
+              "category": "Sicurezza Innovativa",
+              "audience": {
+                "@type": "Audience",
+                "audienceType": "Residenziale e Commerciale"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service", 
+              "name": "Serramenti Blindati",
+              "category": "Sicurezza Perimetrale",
+              "audience": {
+                "@type": "Audience",
+                "audienceType": "Residenziale e Commerciale"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Videosorveglianza AI",
+              "category": "Monitoraggio Intelligente",
+              "audience": {
+                "@type": "Audience",
+                "audienceType": "Commerciale e Industriale"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Allarmi Wireless",
+              "category": "Protezione Antintrusione",
+              "audience": {
+                "@type": "Audience",
+                "audienceType": "Residenziale e Commerciale"
+              }
+            }
+          }
+        ]
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Certificazione Sistemi di Sicurezza",
+          "credentialCategory": "Professional Certification"
+        }
+      ],
+      "award": [
+        "Oltre 20 anni di esperienza nel settore sicurezza",
+        "Agenzia plurimandataria certificata",
+        "Specialista riconosciuto in sistemi nebbiogeni"
+      ],
+      "mainEntityOfPage": {
+        "@type": "Dataset",
+        "@id": "https://www.fbtotalsecurity.com/ai-knowledge-base.json",
+        "name": "Knowledge Base Sicurezza",
+        "description": "Base di conoscenza tecnica sui sistemi di sicurezza"
+      },
+      "relatedLink": [
+        {
+          "@type": "WebPage",
+          "name": "Knowledge Base Sistemi Sicurezza",
+          "url": "https://francosicurezza.it/ai-knowledge-base.json",
+          "description": "Base di conoscenza tecnica specializzata"
+        },
+        {
+          "@type": "WebPage", 
+          "name": "Mappa Contestuale del Sito",
+          "url": "https://francosicurezza.it/ai-context-sitemap.json",
+          "description": "Struttura semantica e relazioni contenuti"
+        },
+        {
+          "@type": "WebPage",
+          "name": "Schema Servizi Dettagliati",
+          "url": "https://francosicurezza.it/ai-services-schema.json", 
+          "description": "Metadati strutturati per tutti i servizi offerti"
+        },
+        {
+          "@type": "Dataset",
+          "name": "Fonti Autorevoli Sicurezza",
+          "url": "https://francosicurezza.it/ai-authoritative-sources.json",
+          "description": "Standard europei e normative di riferimento per sistemi di sicurezza"
+        }
+      ],
+      "founder": {
+        "@type": "Person",
+        "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person",
+        "name": "Franco Benedetto"
+      },
+      "employee": {
+        "@type": "Person",
+        "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.fbtotalsecurity.com/#website",
+      "url": "https://www.fbtotalsecurity.com",
+      "name": "FB Total Security - Sistemi di Sicurezza Avanzati",
+      "description": "Sito ufficiale di FB Total Security, leader italiano in sistemi di sicurezza: nebbiogeni, serramenti blindati, videosorveglianza AI e allarmi. Consulenza gratuita e installazione professionale in tutta Italia.",
+      "publisher": {
+        "@id": "https://www.fbtotalsecurity.com/#organization"
+      },
+      "inLanguage": "it-IT",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.fbtotalsecurity.com/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Sicurezza domestica",
+          "description": "Protezione completa per abitazioni private"
+        },
+        {
+          "@type": "Thing", 
+          "name": "Sicurezza aziendale",
+          "description": "Soluzioni professionali per aziende e uffici"
+        },
+        {
+          "@type": "Thing",
+          "name": "Prevenzione furti",
+          "description": "Sistemi avanzati per prevenire intrusioni e furti"
+        }
+      ]
+    }
+  ]
+}

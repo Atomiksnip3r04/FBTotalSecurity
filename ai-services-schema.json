@@ -1,0 +1,332 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.fbtotalsecurity.com/nebbiogeni#service",
+      "name": "Sistemi Nebbiogeni Antifurto",
+      "description": "Installazione e manutenzione di sistemi nebbiogeni professionali per protezione antifurto. Nebbia densa atossica che riduce la visibilità a zero in 10 secondi, scoraggiando efficacemente i malintenzionati.",
+      "provider": {
+        "@type": "Person",
+        "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
+      },
+      "knowsAbout": [
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://francosicurezza.it/ai-knowledge-base#nebbiogeno"
+        }
+      ],
+      "conformsTo": [
+        {
+          "@type": "CreativeWork",
+          "@id": "https://francosicurezza.it/ai-authoritative-sources#en-50131"
+        }
+      ],
+      "serviceType": "Sicurezza Antifurto",
+      "category": "Sistemi di Sicurezza Attiva",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Italia"
+      },
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": "https://www.fbtotalsecurity.com/nebbiogeni",
+        "serviceSmsNumber": "+39 123 456 7890",
+        "servicePhone": "+39 123 456 7890"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Catalogo Nebbiogeni",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Sistema Nebbiogeno Residenziale",
+              "description": "Protezione per abitazioni fino a 200 mq",
+              "category": "Nebbiogeno Domestico"
+            }
+          },
+          {
+            "@type": "Offer", 
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Sistema Nebbiogeno Commerciale",
+              "description": "Protezione per negozi, uffici e attività commerciali",
+              "category": "Nebbiogeno Professionale"
+            }
+          }
+        ]
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Tempo di attivazione",
+          "value": "< 10 secondi"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Durata nebbia",
+          "value": "45-60 minuti"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Certificazione",
+          "value": "CE, Atossico"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.fbtotalsecurity.com/serramenti#service", 
+      "name": "Serramenti Blindati Certificati",
+      "description": "Installazione di porte blindate, finestre antieffrazione e serramenti di sicurezza certificati secondo standard europei EN 1627-1630. Classi di resistenza da RC2 a RC6.",
+      "provider": {
+        "@type": "Person",
+        "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
+      },
+      "knowsAbout": [
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://francosicurezza.it/ai-knowledge-base#serramenti-blindati"
+        }
+      ],
+      "conformsTo": [
+        {
+          "@type": "CreativeWork",
+          "@id": "https://francosicurezza.it/ai-authoritative-sources#en-1627"
+        },
+        {
+          "@type": "CreativeWork",
+          "@id": "https://francosicurezza.it/ai-authoritative-sources#en-1628"
+        }
+      ],
+      "serviceType": "Protezione Fisica",
+      "category": "Serramenti di Sicurezza",
+      "areaServed": {
+        "@type": "Country", 
+        "name": "Italia"
+      },
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": "https://www.fbtotalsecurity.com/serramenti",
+        "serviceSmsNumber": "+39 123 456 7890",
+        "servicePhone": "+39 123 456 7890"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Catalogo Serramenti Blindati",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Porta Blindata Classe RC2",
+              "description": "Protezione standard per abitazioni residenziali",
+              "category": "Porta Blindata Residenziale",
+              "additionalProperty": {
+                "@type": "PropertyValue",
+                "name": "Classe di Resistenza",
+                "value": "RC2 - EN 1627"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product", 
+              "name": "Porta Blindata Classe RC3",
+              "description": "Protezione avanzata per case isolate e ville",
+              "category": "Porta Blindata Premium",
+              "additionalProperty": {
+                "@type": "PropertyValue",
+                "name": "Classe di Resistenza", 
+                "value": "RC3 - EN 1627"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Finestre Antieffrazione RC2",
+              "description": "Finestre di sicurezza con vetri stratificati",
+              "category": "Finestre di Sicurezza"
+            }
+          }
+        ]
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Standard di Riferimento",
+          "value": "EN 1627-1630"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Garanzia",
+          "value": "10 anni"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Installazione",
+          "value": "Certificata"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.fbtotalsecurity.com/videosorveglianza#service",
+      "name": "Videosorveglianza Intelligente con AI",
+      "description": "Sistemi di videosorveglianza avanzati con intelligenza artificiale: riconoscimento facciale, analisi comportamentale, rilevamento intrusioni automatico e notifiche in tempo reale.",
+      "provider": {
+        "@type": "Person",
+        "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
+      },
+      "knowsAbout": [
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://francosicurezza.it/ai-knowledge-base#videosorveglianza-ai"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://francosicurezza.it/ai-knowledge-base#riconoscimento-facciale"
+        }
+      ],
+      "conformsTo": [
+        {
+          "@type": "CreativeWork",
+          "@id": "https://francosicurezza.it/ai-authoritative-sources#gdpr"
+        }
+      ],
+      "serviceType": "Monitoraggio e Sorveglianza",
+      "category": "Videosorveglianza AI",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Italia"
+      },
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": "https://www.fbtotalsecurity.com/videosorveglianza",
+        "serviceSmsNumber": "+39 123 456 7890",
+        "servicePhone": "+39 123 456 7890"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Catalogo Videosorveglianza AI",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Sistema Videosorveglianza 4K con AI",
+              "description": "Telecamere 4K con riconoscimento facciale e analisi comportamentale",
+              "category": "Videosorveglianza Professionale"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Telecamere Termiche Perimetrali", 
+              "description": "Rilevamento termico per protezione perimetrale h24",
+              "category": "Videosorveglianza Termica"
+            }
+          }
+        ]
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Risoluzione",
+          "value": "4K Ultra HD"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Visione Notturna",
+          "value": "Fino a 50 metri"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "AI Features",
+          "value": "Riconoscimento facciale, Analisi comportamentale"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.fbtotalsecurity.com/allarmi#service",
+      "name": "Sistemi di Allarme Wireless Avanzati",
+      "description": "Installazione di sistemi di allarme wireless di ultima generazione con sensori intelligenti, controllo smartphone e monitoraggio 24/7. Protezione completa per abitazioni e aziende.",
+      "provider": {
+        "@type": "Person",
+        "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
+      },
+      "knowsAbout": [
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://francosicurezza.it/ai-knowledge-base#sistemi-allarme-wireless"
+        }
+      ],
+      "conformsTo": [
+        {
+          "@type": "CreativeWork",
+          "@id": "https://francosicurezza.it/ai-authoritative-sources#en-50131"
+        }
+      ],
+      "serviceType": "Sistema di Allarme",
+      "category": "Allarmi Wireless",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Italia"
+      },
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": "https://www.fbtotalsecurity.com/allarmi",
+        "serviceSmsNumber": "+39 123 456 7890", 
+        "servicePhone": "+39 123 456 7890"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Catalogo Sistemi Allarme",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Kit Allarme Wireless Casa",
+              "description": "Sistema completo per abitazioni fino a 150 mq",
+              "category": "Allarme Residenziale"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Sistema Allarme Aziendale",
+              "description": "Protezione professionale per uffici e negozi",
+              "category": "Allarme Commerciale"
+            }
+          }
+        ]
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Tecnologia",
+          "value": "Wireless 868 MHz"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Controllo",
+          "value": "App Smartphone"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Monitoraggio",
+          "value": "24/7 Centrale Operativa"
+        }
+      ]
+    }
+  ]
+}

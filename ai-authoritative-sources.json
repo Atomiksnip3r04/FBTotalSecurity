@@ -1,0 +1,178 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "@id": "https://francosicurezza.it/ai-authoritative-sources",
+  "name": "Fonti Autorevoli per Sistemi di Sicurezza",
+  "description": "Raccolta di standard, normative e fonti autorevoli per sistemi di sicurezza e protezione",
+  "creator": {
+    "@type": "Organization",
+    "@id": "https://francosicurezza.it/#organization"
+  },
+  "publisher": {
+    "@type": "Organization", 
+    "@id": "https://francosicurezza.it/#organization"
+  },
+  "dateCreated": "2024-01-15",
+  "dateModified": "2024-01-15",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "keywords": ["sicurezza", "standard", "normative", "EN", "ISO", "UNI"],
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Standard Europei Sicurezza"
+    },
+    {
+      "@type": "Thing", 
+      "name": "Normative Antifurto"
+    },
+    {
+      "@type": "Thing",
+      "name": "Certificazioni Sicurezza"
+    }
+  ],
+  "hasPart": [
+    {
+      "@type": "CreativeWork",
+      "@id": "https://francosicurezza.it/standards/en-1627-series",
+      "name": "Serie EN 1627-1630: Resistenza Antieffrazione",
+      "description": "Standard europei per la classificazione della resistenza di porte, finestre e serramenti contro tentativi di effrazione",
+      "url": "https://www.en-standard.eu/bs-en-1627-2011/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "European Committee for Standardization (CEN)",
+        "url": "https://www.cencenelec.eu/"
+      },
+      "datePublished": "2011",
+      "inLanguage": "en",
+      "about": [
+        {
+          "@type": "DefinedTerm",
+          "name": "Classe RC",
+          "description": "Classificazione resistenza antieffrazione"
+        }
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://francosicurezza.it/standards/en-50131-series", 
+      "name": "Serie EN 50131: Sistemi di Allarme",
+      "description": "Standard europei per sistemi di allarme antintrusione - Requisiti di sistema",
+      "url": "https://www.cenelec.eu/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "European Committee for Electrotechnical Standardization (CENELEC)",
+        "url": "https://www.cenelec.eu/"
+      },
+      "datePublished": "2019",
+      "inLanguage": "en",
+      "about": [
+        {
+          "@type": "DefinedTerm",
+          "name": "Grado di Sicurezza",
+          "description": "Classificazione livelli sicurezza sistemi allarme"
+        }
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://francosicurezza.it/standards/uni-10898",
+      "name": "UNI 10898: Impianti di Rivelazione Incendi",
+      "description": "Norma italiana per progettazione, installazione ed esercizio dei sistemi di rivelazione e segnalazione manuale d'incendio",
+      "url": "https://www.uni.com/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Ente Nazionale Italiano di Unificazione (UNI)",
+        "url": "https://www.uni.com/"
+      },
+      "datePublished": "2020",
+      "inLanguage": "it",
+      "about": [
+        {
+          "@type": "DefinedTerm",
+          "name": "Rivelazione Incendi",
+          "description": "Sistemi automatici rivelazione incendi"
+        }
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://francosicurezza.it/standards/iso-27001",
+      "name": "ISO/IEC 27001: Gestione Sicurezza Informazioni",
+      "description": "Standard internazionale per sistemi di gestione della sicurezza delle informazioni (ISMS)",
+      "url": "https://www.iso.org/isoiec-27001-information-security.html",
+      "publisher": {
+        "@type": "Organization",
+        "name": "International Organization for Standardization (ISO)",
+        "url": "https://www.iso.org/"
+      },
+      "datePublished": "2022",
+      "inLanguage": "en",
+      "about": [
+        {
+          "@type": "DefinedTerm",
+          "name": "Cybersecurity",
+          "description": "Sicurezza informatica e protezione dati"
+        }
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://francosicurezza.it/standards/gdpr-compliance",
+      "name": "GDPR - Regolamento Generale Protezione Dati",
+      "description": "Regolamento UE 2016/679 per la protezione dei dati personali e videosorveglianza",
+      "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Unione Europea",
+        "url": "https://europa.eu/"
+      },
+      "datePublished": "2016",
+      "inLanguage": "it",
+      "about": [
+        {
+          "@type": "DefinedTerm",
+          "name": "Privacy Videosorveglianza",
+          "description": "Conformità GDPR per sistemi videosorveglianza"
+        }
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://francosicurezza.it/standards/cei-79-3",
+      "name": "CEI 79-3: Sistemi Videosorveglianza",
+      "description": "Norma italiana per sistemi di videosorveglianza - Guida per l'applicazione",
+      "url": "https://www.ceinorme.it/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Comitato Elettrotecnico Italiano (CEI)",
+        "url": "https://www.ceinorme.it/"
+      },
+      "datePublished": "2018",
+      "inLanguage": "it",
+      "about": [
+        {
+          "@type": "DefinedTerm",
+          "name": "Videosorveglianza",
+          "description": "Progettazione sistemi videosorveglianza"
+        }
+      ]
+    }
+  ],
+  "citation": [
+    {
+      "@type": "WebSite",
+      "name": "European Committee for Standardization",
+      "url": "https://www.cencenelec.eu/"
+    },
+    {
+      "@type": "WebSite", 
+      "name": "International Organization for Standardization",
+      "url": "https://www.iso.org/"
+    },
+    {
+      "@type": "WebSite",
+      "name": "Ente Nazionale Italiano di Unificazione",
+      "url": "https://www.uni.com/"
+    }
+  ]
+}

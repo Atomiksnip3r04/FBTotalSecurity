@@ -1,0 +1,360 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "@id": "https://francosicurezza.it/ai-context-sitemap",
+  "name": "Mappa Contestuale AI - Architettura Semantica del Sito",
+  "description": "Struttura semantica avanzata con pillar pages, topic clusters e spoke pages per ottimizzazione AI SEO",
+  "creator": {
+    "@type": "Organization",
+    "@id": "https://francosicurezza.it/#organization"
+  },
+  "dateCreated": "2024-01-15",
+  "dateModified": "2024-01-15",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "keywords": ["sitemap", "SEO", "topic clusters", "pillar pages", "semantic architecture"],
+  "contentArchitecture": {
+    "@type": "StructuredValue",
+    "name": "Architettura Hub and Spoke",
+    "description": "Struttura semantica basata su pillar pages centrali e spoke pages di supporto",
+    "pillarPages": [
+      {
+        "@type": "WebPage",
+        "@id": "https://francosicurezza.it/#sistemi-sicurezza-pillar",
+        "name": "Sistemi di Sicurezza - Pillar Page",
+        "url": "https://francosicurezza.it/",
+        "description": "Pagina pilastro principale sui sistemi di sicurezza avanzati",
+        "mainEntity": {
+          "@type": "Thing",
+          "name": "Sistemi di Sicurezza Avanzati"
+        },
+        "topicCluster": "sicurezza-avanzata",
+        "semanticWeight": 10,
+        "spokePages": [
+          "https://francosicurezza.it/nebbiogeni.html",
+          "https://francosicurezza.it/serramenti.html", 
+          "https://francosicurezza.it/sorveglianza.html",
+          "https://francosicurezza.it/allarmi.html"
+        ],
+        "relatedConcepts": [
+          "protezione antifurto",
+          "sicurezza domestica",
+          "sicurezza aziendale",
+          "tecnologie innovative"
+        ]
+      }
+    ],
+    "topicClusters": [
+      {
+        "@type": "DefinedTermSet",
+        "@id": "https://francosicurezza.it/#cluster-nebbiogeni",
+        "name": "Cluster Sistemi Nebbiogeni",
+        "description": "Gruppo tematico dedicato ai sistemi nebbiogeni antifurto",
+        "author": {
+          "@type": "Person",
+          "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
+        },
+        "pillarPage": "https://francosicurezza.it/nebbiogeni.html",
+        "primaryKeywords": [
+          "sistemi nebbiogeni",
+          "nebbia antifurto",
+          "deterrente visivo",
+          "protezione istantanea"
+        ],
+        "spokePages": [
+          {
+            "@type": "WebPage",
+            "name": "URfog - Sistema Nebbiogeno Professionale",
+            "url": "https://francosicurezza.it/nebbiogeni.html#urfog",
+            "topicFocus": "prodotto-specifico",
+            "isPartOf": "https://francosicurezza.it/#cluster-nebbiogeni"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Installazione Sistemi Nebbiogeni",
+            "url": "https://francosicurezza.it/nebbiogeni.html#installazione",
+            "topicFocus": "processo-servizio",
+            "about": "https://francosicurezza.it/#cluster-nebbiogeni"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Vantaggi Nebbiogeni vs Allarmi Tradizionali",
+            "url": "https://francosicurezza.it/nebbiogeni.html#vantaggi",
+            "topicFocus": "comparativo-educativo",
+            "mentions": ["https://francosicurezza.it/#cluster-nebbiogeni", "https://francosicurezza.it/#cluster-allarmi"]
+          }
+        ],
+        "relatedClusters": [
+          "cluster-allarmi",
+          "cluster-videosorveglianza"
+        ]
+      },
+      {
+        "@type": "DefinedTermSet",
+        "@id": "https://francosicurezza.it/#cluster-serramenti",
+        "name": "Cluster Serramenti Blindati",
+        "description": "Gruppo tematico per serramenti e porte blindate certificate",
+        "author": {
+          "@type": "Person",
+          "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
+        },
+        "pillarPage": "https://francosicurezza.it/serramenti.html",
+        "primaryKeywords": [
+          "serramenti blindati",
+          "porte blindate",
+          "classe RC",
+          "certificazione antieffrazione"
+        ],
+        "spokePages": [
+          {
+            "@type": "WebPage",
+            "name": "Porte Blindate Classe RC2-RC3",
+            "url": "https://francosicurezza.it/serramenti.html#classi-rc",
+            "topicFocus": "classificazione-tecnica",
+            "about": "https://francosicurezza.it/#cluster-serramenti"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Serramenti XECUR Certificati",
+            "url": "https://francosicurezza.it/serramenti.html#xecur",
+            "topicFocus": "prodotto-specifico",
+            "isPartOf": "https://francosicurezza.it/#cluster-serramenti"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Standard Europei EN 1627-1630",
+            "url": "https://francosicurezza.it/serramenti.html#standard",
+            "topicFocus": "normative-compliance",
+            "conformsTo": "https://schema.org/Standard"
+          }
+        ],
+        "relatedClusters": [
+          "cluster-sicurezza-perimetrale"
+        ]
+      },
+      {
+        "@type": "DefinedTermSet",
+        "@id": "https://francosicurezza.it/#cluster-videosorveglianza",
+        "name": "Cluster Videosorveglianza Intelligente",
+        "description": "Gruppo tematico per sistemi di videosorveglianza con AI",
+        "author": {
+          "@type": "Person",
+          "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
+        },
+        "pillarPage": "https://francosicurezza.it/sorveglianza.html",
+        "primaryKeywords": [
+          "videosorveglianza AI",
+          "telecamere intelligenti",
+          "riconoscimento facciale",
+          "analisi comportamentale"
+        ],
+        "spokePages": [
+          {
+            "@type": "WebPage",
+            "name": "Telecamere CIVIS con AI",
+            "url": "https://francosicurezza.it/sorveglianza.html#civis",
+            "topicFocus": "prodotto-specifico",
+            "isPartOf": "https://francosicurezza.it/#cluster-videosorveglianza"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Monitoraggio Remoto 24/7",
+            "url": "https://francosicurezza.it/sorveglianza.html#monitoraggio",
+            "topicFocus": "servizio-continuativo",
+            "serviceType": "MonitoringService"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Conformità GDPR Videosorveglianza",
+            "url": "https://francosicurezza.it/sorveglianza.html#gdpr",
+            "topicFocus": "compliance-privacy",
+            "conformsTo": "https://schema.org/LegalDocument"
+          }
+        ],
+        "relatedClusters": [
+          "cluster-allarmi",
+          "cluster-ai-security"
+        ]
+      },
+      {
+        "@type": "DefinedTermSet",
+        "@id": "https://francosicurezza.it/#cluster-allarmi",
+        "name": "Cluster Sistemi di Allarme",
+        "description": "Gruppo tematico per sistemi di allarme wireless e antintrusione",
+        "author": {
+          "@type": "Person",
+          "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
+        },
+        "pillarPage": "https://francosicurezza.it/allarmi.html",
+        "primaryKeywords": [
+          "allarmi wireless",
+          "sistemi antintrusione",
+          "sensori movimento",
+          "centrale allarme"
+        ],
+        "spokePages": [
+          {
+            "@type": "WebPage",
+            "name": "Allarmi Wireless Professionali",
+            "url": "https://francosicurezza.it/allarmi.html#wireless",
+            "topicFocus": "tecnologia-wireless",
+            "about": "https://francosicurezza.it/#cluster-allarmi"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Sensori Perimetrali Avanzati",
+            "url": "https://francosicurezza.it/allarmi.html#sensori",
+            "topicFocus": "componenti-sistema",
+            "hasPart": "https://francosicurezza.it/#cluster-allarmi"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Integrazione con App Mobile",
+            "url": "https://francosicurezza.it/allarmi.html#app",
+            "topicFocus": "controllo-remoto",
+            "isAccessibleForFree": true
+          }
+        ],
+        "relatedClusters": [
+          "cluster-nebbiogeni",
+          "cluster-videosorveglianza"
+        ]
+      }
+    ],
+    "supportingPages": [
+      {
+        "@type": "WebPage",
+        "@id": "https://francosicurezza.it/chi-siamo.html",
+        "name": "Chi Siamo - Expertise e Certificazioni",
+        "description": "Pagina di supporto per E-E-A-T e credibilità aziendale",
+        "additionalType": "AboutPage",
+        "mainEntity": {
+          "@type": "Organization",
+          "@id": "https://francosicurezza.it/#organization"
+        },
+        "about": [
+          "https://francosicurezza.it/#cluster-nebbiogeni",
+          "https://francosicurezza.it/#cluster-serramenti", 
+          "https://francosicurezza.it/#cluster-videosorveglianza",
+          "https://francosicurezza.it/#cluster-allarmi"
+        ],
+        "expertise": {
+          "@type": "DefinedTerm",
+          "name": "20+ anni nel settore sicurezza"
+        },
+        "award": "Certificazioni europee e specializzazioni tecniche"
+      },
+      {
+        "@type": "WebPage", 
+        "@id": "https://francosicurezza.it/ai-content-optimization.html",
+        "name": "FAQ e Glossario Tecnico",
+        "description": "Contenuti informativi per supporto SEO e user experience",
+        "additionalType": "FAQPage",
+        "mainEntity": {
+          "@type": "FAQPage",
+          "name": "Domande Frequenti Sistemi di Sicurezza"
+        },
+        "about": [
+          "https://francosicurezza.it/#cluster-nebbiogeni",
+          "https://francosicurezza.it/#cluster-serramenti", 
+          "https://francosicurezza.it/#cluster-videosorveglianza",
+          "https://francosicurezza.it/#cluster-allarmi"
+        ],
+        "hasPart": [
+          {
+            "@type": "DefinedTermSet",
+            "name": "Glossario Tecnico Sicurezza"
+          }
+        ]
+      }
+    ]
+  },
+  "semanticRelationships": {
+    "@type": "StructuredValue",
+    "name": "Relazioni Semantiche Cross-Cluster",
+    "crossClusterConnections": [
+      {
+        "from": "cluster-nebbiogeni",
+        "to": "cluster-allarmi",
+        "relationship": "complementaryTo",
+        "strength": 0.8,
+        "description": "Sistemi nebbiogeni e allarmi si integrano per protezione completa"
+      },
+      {
+        "from": "cluster-videosorveglianza", 
+        "to": "cluster-allarmi",
+        "relationship": "integratesWith",
+        "strength": 0.9,
+        "description": "Videosorveglianza e allarmi formano ecosistema di sicurezza"
+      },
+      {
+        "from": "cluster-serramenti",
+        "to": "cluster-nebbiogeni",
+        "relationship": "enhancedBy",
+        "strength": 0.7,
+        "description": "Serramenti blindati potenziati da sistemi nebbiogeni"
+      }
+    ]
+  },
+  "seoOptimization": {
+    "@type": "StructuredValue",
+    "name": "Ottimizzazioni SEO Avanzate",
+    "internalLinkingStrategy": {
+      "pillarToSpoke": "Ogni pillar page linka alle relative spoke pages con anchor text semantici",
+      "spokeToSpoke": "Collegamenti contestuali tra spoke pages dello stesso cluster",
+      "crossCluster": "Link strategici tra cluster correlati per topic authority"
+    },
+    "keywordDistribution": {
+      "pillarPages": "Keywords primarie ad alto volume",
+      "spokePages": "Long-tail keywords e variazioni semantiche",
+      "supportingPages": "Keywords informativi e branded"
+    },
+    "contentDepth": {
+      "pillarPages": "Contenuto comprensivo 2000+ parole",
+      "spokePages": "Focus specifico 800-1500 parole",
+      "supportingPages": "Contenuto di supporto variabile"
+    }
+  },
+  "aiOptimization": {
+    "@type": "StructuredValue",
+    "name": "Ottimizzazioni per AI Search Engines",
+    "entityRecognition": {
+      "primaryEntities": [
+        "Franco Benedetto",
+        "FB Total Security", 
+        "Sistemi Nebbiogeni",
+        "Serramenti Blindati",
+        "Videosorveglianza AI"
+      ],
+      "entityRelationships": "Definite tramite Schema.org e knowledge graph"
+    },
+    "contextualUnderstanding": {
+      "topicModeling": "Cluster tematici per comprensione contestuale",
+      "semanticSearch": "Ottimizzazione per query conversazionali",
+      "intentMatching": "Allineamento contenuti con search intent"
+    },
+    "knowledgeGraph": {
+      "localConnections": "Collegamenti con knowledge base aziendale",
+      "externalAuthority": "Riferimenti a standard e normative ufficiali",
+      "expertiseSignals": "Segnali di competenza e autorevolezza"
+    }
+  },
+  "performanceMetrics": {
+    "@type": "StructuredValue",
+    "name": "Metriche di Performance SEO",
+    "technicalSEO": {
+      "coreWebVitals": "Ottimizzazione per LCP, FID, CLS",
+      "mobileFirst": "Design responsive e mobile-optimized",
+      "pageSpeed": "Caricamento veloce con lazy loading"
+    },
+    "contentQuality": {
+      "readabilityScore": "Punteggio leggibilità ottimizzato",
+      "topicCoverage": "Copertura completa argomenti target",
+      "freshness": "Aggiornamenti regolari contenuti"
+    },
+    "userExperience": {
+      "navigationClarity": "Struttura navigazione intuitiva",
+      "internalLinking": "Collegamenti interni strategici",
+      "conversionPath": "Percorsi ottimizzati per conversioni"
+    }
+  }
+}

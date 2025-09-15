@@ -931,6 +931,7 @@ a {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .service-image {
@@ -2358,6 +2359,7 @@ a {
 
     .service-cta {
         flex-direction: column;
+        align-items: center;
     }
 
     .container {
