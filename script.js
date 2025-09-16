@@ -192,16 +192,22 @@ function initSmoothScrolling_Phase1() {
                 // Usa il sistema di batching DOM per evitare forced reflow
                 domOperations.read(() => {
                     // Cache the position calculation to avoid repeated getBoundingClientRect calls
+                    const cacheKey = `scrollPosition_${targetId}`;
                     const cachedPosition = getCachedDOMProperty(
                         targetSection,
-                        'scrollPosition',
+                        cacheKey,
                         () => {
-                            // Use requestAnimationFrame to ensure layout is stable
+                            // Use double requestAnimationFrame to ensure layout is completely stable
                             return new Promise(resolve => {
                                 requestAnimationFrame(() => {
-                                    const rect = targetSection.getBoundingClientRect();
-                                    const position = rect.top + window.pageYOffset - window.cachedHeaderHeight - 20;
-                                    resolve(position);
+                                    requestAnimationFrame(() => {
+                                        // Batch read operations to minimize forced reflow
+                                        const rect = targetSection.getBoundingClientRect();
+                                        const scrollY = window.pageYOffset;
+                                        const headerHeight = window.cachedHeaderHeight || 80;
+                                        const position = rect.top + scrollY - headerHeight - 20;
+                                        resolve(position);
+                                    });
                                 });
                             });
                         }
@@ -209,13 +215,16 @@ function initSmoothScrolling_Phase1() {
                     
                     // Handle both cached values and promises
                     Promise.resolve(cachedPosition).then(targetPosition => {
-                        domOperations.write(() => {
-                            window.scrollTo({
-                                top: targetPosition,
-                                behavior: 'smooth'
+                        // Use requestAnimationFrame for smooth write operation
+                        requestAnimationFrame(() => {
+                            domOperations.write(() => {
+                                window.scrollTo({
+                                    top: targetPosition,
+                                    behavior: 'smooth'
+                                });
+                                
+                                updateActiveNavLink(targetId);
                             });
-                            
-                            updateActiveNavLink(targetId);
                         });
                     });
                 });
@@ -2698,13 +2707,40 @@ function setLanguageOptimized(lang) {
     requestAnimationFrame(() => {
         console.log(`✍️ Executing ${operations.length} DOM write operations.`);
         
+        // Ottimizzazione specifica per hero-subtitle (LCP critical element)
+        let heroSubtitleOperation = null;
+        const otherOperations = [];
+        
         operations.forEach(op => {
+            if (op.element.getAttribute && op.element.getAttribute('data-translate') === 'hero-subtitle') {
+                heroSubtitleOperation = op;
+            } else {
+                otherOperations.push(op);
+            }
+        });
+        
+        // Processa prima hero-subtitle per migliorare LCP
+        if (heroSubtitleOperation) {
+            const element = heroSubtitleOperation.element;
+            // Usa textContent invece di innerHTML per performance migliori
+            element.textContent = heroSubtitleOperation.content;
+            // Forza il rendering immediato dell'elemento critico
+            element.offsetHeight; // Trigger reflow forzato solo per l'elemento critico
+        }
+        
+        // Processa gli altri elementi
+        otherOperations.forEach(op => {
             switch (op.action) {
                 case 'translate':
                     if (op.element.tagName === 'INPUT' || op.element.tagName === 'TEXTAREA') {
                         op.element.placeholder = op.content;
                     } else {
-                        op.element.innerHTML = op.content;
+                        // Usa textContent per elementi di testo semplice per performance migliori
+                        if (op.content.indexOf('<') === -1) {
+                            op.element.textContent = op.content;
+                        } else {
+                            op.element.innerHTML = op.content;
+                        }
                     }
                     break;
                 case 'placeholder':

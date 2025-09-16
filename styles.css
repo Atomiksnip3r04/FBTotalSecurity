@@ -386,6 +386,25 @@ a {
         flex-wrap: nowrap;
         height: 40px; /* Ripristina l'altezza fissa per il desktop */
         min-height: 40px; /* Ripristina l'altezza minima per il desktop */
+        
+        /* Stabilizzazione layout per prevenire micro-shift */
+        contain: layout style paint;
+        transform: translateZ(0);
+    }
+    
+    .nav-menu li {
+        /* Dimensioni fisse per prevenire CLS */
+        min-width: 80px;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        /* Stabilizzazione layout */
+        contain: layout style;
+        transform: translateZ(0);
+        flex-shrink: 0;
+        box-sizing: border-box;
     }
     
     .nav-link {
@@ -623,13 +642,13 @@ a {
     justify-content: center;
     align-items: center;
     
-    /* SOLUZIONE CLS: Riserva un'altezza minima per il contenitore */
-    /* Aumentato significativamente per prevenire il CLS di 0,847 */
-    min-height: 600px; /* Aumentato da 450px a 600px per prevenire CLS */
+    /* SOLUZIONE CLS AVANZATA: Aumentato ulteriormente per eliminare CLS residuo */
+    /* Risolve CLS 0,149 (0,104 + 0,045) aumentando significativamente min-height */
+    min-height: 700px; /* Aumentato da 600px a 700px per eliminare CLS residuo */
     height: auto; /* Permette espansione se necessario */
     
     /* Optimize for layout stability and reduce CLS */
-    contain: layout style;
+    contain: layout style paint;
     transform: translateZ(0);
     will-change: auto;
     /* Prevent layout shift during font loading */
@@ -637,6 +656,10 @@ a {
     opacity: 1;
     /* Stabilizza ulteriormente il layout */
     flex-shrink: 0;
+    
+    /* NUOVO: Forza dimensioni stabili per prevenire qualsiasi shift */
+    overflow: hidden; /* Previene espansioni inaspettate */
+    isolation: isolate; /* Crea nuovo stacking context */
 }
 
 .hero-title {
@@ -651,12 +674,12 @@ a {
     max-width: 800px; /* Limita la larghezza per evitare righe troppo lunghe */
     width: 100%; /* Occupa tutta la larghezza disponibile (del suo contenitore) */
 
-    /* SOLUZIONE CLS: Riserva altezza minima basata sulla dimensione del font */
-    /* Aumentato significativamente per prevenire il CLS */
-    min-height: 200px; /* Aumentato da 150px a 200px per prevenire CLS */
+    /* SOLUZIONE CLS AVANZATA: Aumentato ulteriormente per eliminare shift residui */
+    /* Risolve completamente i problemi di layout shift del testo hero */
+    min-height: 250px; /* Aumentato da 200px a 250px per eliminare CLS residuo */
     
     /* Aggiungiamo 'contain' per isolare il rendering di questi elementi */
-    contain: layout style paint;
+    contain: layout style paint size;
     will-change: auto; /* Usato con parsimonia, qui è giustificato */
     
     /* Prevent layout shift during font loading */
@@ -674,6 +697,11 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    /* NUOVO: Prevenzione aggressiva del CLS */
+    overflow: hidden; /* Previene espansioni del testo */
+    text-overflow: ellipsis; /* Gestisce testo lungo */
+    isolation: isolate; /* Isola il rendering */
 }
 
 .hero-subtitle {
