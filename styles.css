@@ -283,6 +283,17 @@ a {
     gap: 1.5rem;
     align-items: center;
     white-space: nowrap;
+    
+    /* SOLUZIONE CLS: Riserva spazio per gli elementi nav */
+    min-height: 60px; /* Altezza minima per prevenire CLS */
+    margin: 0;
+    padding: 0;
+    
+    /* Stabilizza il layout degli elementi nav */
+    contain: layout style;
+    transform: translateZ(0);
+    flex-shrink: 0;
+    box-sizing: border-box;
 }
 
 .nav-link {
@@ -613,10 +624,9 @@ a {
     align-items: center;
     
     /* SOLUZIONE CLS: Riserva un'altezza minima per il contenitore */
-    /* Questo valore è una stima sicura. Deve essere abbastanza grande
-       da contenere il testo anche con il font di sistema, ma non così grande
-       da creare spazio vuoto dopo il caricamento di Inter. */
-    min-height: 450px; /* Aumentato per prevenire CLS */
+    /* Aumentato significativamente per prevenire il CLS di 0,847 */
+    min-height: 600px; /* Aumentato da 450px a 600px per prevenire CLS */
+    height: auto; /* Permette espansione se necessario */
     
     /* Optimize for layout stability and reduce CLS */
     contain: layout style;
@@ -625,6 +635,8 @@ a {
     /* Prevent layout shift during font loading */
     visibility: visible;
     opacity: 1;
+    /* Stabilizza ulteriormente il layout */
+    flex-shrink: 0;
 }
 
 .hero-title {
@@ -640,9 +652,8 @@ a {
     width: 100%; /* Occupa tutta la larghezza disponibile (del suo contenitore) */
 
     /* SOLUZIONE CLS: Riserva altezza minima basata sulla dimensione del font */
-    /* (font-size massima) * (line-height) * (numero di righe) */
-    /* Esempio: 5rem * 1.6 (da rem a px) * 1.2 (line-height) * 2 (righe max) = ~192px */
-    min-height: 150px; /* Aumentato per prevenire CLS */
+    /* Aumentato significativamente per prevenire il CLS */
+    min-height: 200px; /* Aumentato da 150px a 200px per prevenire CLS */
     
     /* Aggiungiamo 'contain' per isolare il rendering di questi elementi */
     contain: layout style paint;
@@ -658,6 +669,11 @@ a {
     box-sizing: border-box;
     /* Use fallback font family to prevent shifts */
     font-family: 'Inter', 'Inter Fallback', system-ui, -apple-system, sans-serif;
+    /* Stabilizza ulteriormente il layout */
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-subtitle {
