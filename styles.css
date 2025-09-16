@@ -1,11 +1,12 @@
-/* Font Fallback Metrics for Inter to prevent CLS */
+/* Font Fallback Metrics for Inter to prevent CLS - Improved metrics */
 @font-face {
     font-family: 'Inter Fallback';
-    size-adjust: 107%;
-    ascent-override: 90%;
-    descent-override: 22%;
-    line-gap-override: 0%;
+    size-adjust: 107.40%;
+    ascent-override: 90.20%;
+    descent-override: 22.48%;
+    line-gap-override: 0.00%;
     src: local('Arial'), local('Helvetica'), local('system-ui');
+    font-display: swap;
 }
 
 /* CSS Custom Properties - Variabili per ottimizzazione performance */
@@ -615,12 +616,15 @@ a {
     /* Questo valore è una stima sicura. Deve essere abbastanza grande
        da contenere il testo anche con il font di sistema, ma non così grande
        da creare spazio vuoto dopo il caricamento di Inter. */
-    min-height: 350px;
+    min-height: 450px; /* Aumentato per prevenire CLS */
     
     /* Optimize for layout stability and reduce CLS */
     contain: layout style;
     transform: translateZ(0);
     will-change: auto;
+    /* Prevent layout shift during font loading */
+    visibility: visible;
+    opacity: 1;
 }
 
 .hero-title {
@@ -638,7 +642,7 @@ a {
     /* SOLUZIONE CLS: Riserva altezza minima basata sulla dimensione del font */
     /* (font-size massima) * (line-height) * (numero di righe) */
     /* Esempio: 5rem * 1.6 (da rem a px) * 1.2 (line-height) * 2 (righe max) = ~192px */
-    min-height: 100px; /* Aumenta se il titolo va su 3 righe. Es. 150px */
+    min-height: 150px; /* Aumentato per prevenire CLS */
     
     /* Aggiungiamo 'contain' per isolare il rendering di questi elementi */
     contain: layout style paint;
@@ -652,6 +656,8 @@ a {
     padding: 0.5rem 0;
     /* Stabilize layout dimensions */
     box-sizing: border-box;
+    /* Use fallback font family to prevent shifts */
+    font-family: 'Inter', 'Inter Fallback', system-ui, -apple-system, sans-serif;
 }
 
 .hero-subtitle {
@@ -667,12 +673,14 @@ a {
     /* SOLUZIONE CLS: Riserva altezza minima */
     /* Fai una stima simile al titolo. Per un paragrafo di 3-4 righe,
        un valore come 90px è solitamente sicuro. */
-    min-height: 90px;
+    min-height: 120px; /* Aumentato per prevenire CLS */
     
     /* Aggiungiamo 'contain' per isolare il rendering di questi elementi */
     contain: layout style paint;
     will-change: auto; /* Usato con parsimonia, qui è giustificato */
     transform: translateZ(0);
+    /* Use fallback font family to prevent shifts */
+    font-family: 'Inter', 'Inter Fallback', system-ui, -apple-system, sans-serif;
 }
 
 .hero-cta {
@@ -2245,31 +2253,64 @@ a {
         margin-right: 0.2rem;
     }
     
+    /* === SOLUZIONE AVANZATA BACKDROP-FILTER === */
+    /* Rimuovi il backdrop-filter dall'header su mobile quando il menu è aperto */
+    .header:has(.nav-menu.active) {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        transition: backdrop-filter 0s; /* Transizione istantanea per evitare flash */
+    }
+    
+    /* Fallback per browser che non supportano :has() */
+    .header.menu-open {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        transition: backdrop-filter 0s;
+    }
+    
     .nav-menu {
         position: fixed;
         top: 82px; /* Inizia sotto l'header */
         left: 0;
         right: 0; /* Forza la larghezza al 100% */
-        bottom: 0; /* LA SOLUZIONE CHIAVE: si estende fino al fondo dello schermo */
+        /* Rimuovi min-height per permettere al contenuto di determinare l'altezza */
+        height: auto; /* Permetti al contenuto di determinare l'altezza */
         width: 100%;
-        /* height: auto; */ /* RIMOSSO: creava conflitto con bottom: 0 */
         background: rgba(30, 30, 30, 0.98);
+        
+        /* Flexbox per allineare il contenuto in alto */
+        display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: flex-start; /* Allinea le voci in alto */
         align-items: center;
         padding: 2rem 0;
+        
+        /* Animazioni ottimizzate */
         transform: translateY(-100%);
         opacity: 0;
         visibility: hidden;
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    visibility 0s 0.3s; /* Delay sulla visibility per evitare flash */
+        
         z-index: 10000;
-        backdrop-filter: blur(10px);
+        
+        /* Il proprio backdrop-filter compensa quello rimosso dall'header */
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        
         border-radius: 0 0 20px 20px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        /* contain: layout style size; */ /* RIMOSSO: creava containing block che limitava l'estensione del menu */
+        
+        /* Previeni scrollbar interna */
+        overflow-y: auto;
+        overflow-x: hidden;
+        
+        /* Smooth scrolling se necessario */
+        -webkit-overflow-scrolling: touch;
+        
         will-change: transform, opacity;
         box-sizing: border-box;
-        overflow-y: auto; /* Abilita lo scroll se le voci del menu superano l'altezza dello schermo */
         white-space: normal;
     }
 
@@ -2277,7 +2318,29 @@ a {
         transform: translateY(0);
         opacity: 1;
         visibility: visible;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    visibility 0s; /* Nessun delay quando si apre */
     }
+    
+    /* Rimuovi pseudo-elemento che estende lo sfondo */
+    /* .nav-menu::after {
+        content: '';
+        position: fixed;
+        top: 82px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(30, 30, 30, 0.98);
+        z-index: -1;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .nav-menu.active::after {
+        opacity: 1;
+    } */
 
     .nav-menu.active .nav-link {
         color: #ffffff;

@@ -367,7 +367,15 @@
         .hero-container { 
             max-width: 1200px; 
             margin: 0 auto; 
-            z-index: 2; 
+            z-index: 2;
+            /* Prevenzione CLS - dimensioni fisse per il container */
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* Contenimento del layout per evitare shift */
+            contain: layout style;
         }
         .hero-title { 
             font-size: clamp(2.2rem, 8vw, 5rem); 
@@ -377,14 +385,17 @@
             background: linear-gradient(135deg, #ffffff, #4caf50); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
-            background-clip: text; 
-            /* --- SOLUZIONE CLS --- */
-            /* Riserva uno spazio verticale minimo che tenga conto di 2 righe di testo 
-               anche su schermi grandi, prevenendo il "salto" verso il basso. */
-            min-height: calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2); 
+            background-clip: text;
+            /* Prevenzione CLS - dimensioni fisse e layout */
+            min-height: calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2);
             max-width: 800px; 
             margin-left: auto; 
-            margin-right: auto; 
+            margin-right: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Font fallback per prevenire CLS */
+            font-family: 'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         .hero-subtitle { 
             font-size: clamp(1.2rem, 2.5vw, 1.5rem); 
@@ -394,7 +405,11 @@
             line-height: 1.6; 
             /* --- SOLUZIONE CLS --- */
             /* Riserva uno spazio verticale minimo per circa 3-4 righe di testo. */
-            min-height: calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3); 
+            min-height: calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3);
+            /* Font fallback per prevenire CLS */
+            font-family: 'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            /* Contenimento del layout per evitare shift */
+            contain: layout style;
         }
         .hero-cta { 
             display: flex; 

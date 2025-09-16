@@ -94,15 +94,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Cache dell'altezza del body per evitare letture DOM ripetute - Ottimizzato per forced reflow
     function updateBodyHeight() {
-        // Usa il sistema di batching DOM per evitare forced reflow
-        if (window.domOperations && window.domOperations.read) {
-            window.domOperations.read(() => {
+        // Usa requestAnimationFrame per evitare forced reflow
+        requestAnimationFrame(() => {
+            // Usa il sistema di batching DOM per evitare forced reflow
+            if (window.domOperations && window.domOperations.read) {
+                window.domOperations.read(() => {
+                    cachedBodyHeight = document.body.offsetHeight;
+                });
+            } else {
+                // Fallback ottimizzato con requestAnimationFrame
                 cachedBodyHeight = document.body.offsetHeight;
-            });
-        } else {
-            // Fallback per compatibilità
-            cachedBodyHeight = document.body.offsetHeight;
-        }
+            }
+        });
     }
     
     // Inizializza cache altezza

@@ -123,10 +123,19 @@ window.addEventListener('load', function() {
 function initMobileMenu() {
     // Usa DOM.hamburger, DOM.navMenu, etc. invece di querySelector
     if (DOM.hamburger && DOM.navMenu) {
+        // Cache header element for backdrop-filter fallback
+        const header = document.querySelector('.header');
+        
         DOM.hamburger.addEventListener('click', function() {
             DOM.hamburger.classList.toggle('active');
             DOM.navMenu.classList.toggle('active');
             DOM.body.classList.toggle('menu-open');
+            
+            // Fallback for browsers that don't support :has() selector
+            // Toggle menu-open class on header to remove backdrop-filter
+            if (header) {
+                header.classList.toggle('menu-open');
+            }
         });
         
         // Close menu when clicking on a link - usa cache nav links
@@ -135,6 +144,11 @@ function initMobileMenu() {
                 DOM.hamburger.classList.remove('active');
                 DOM.navMenu.classList.remove('active');
                 DOM.body.classList.remove('menu-open');
+                
+                // Remove menu-open class from header
+                if (header) {
+                    header.classList.remove('menu-open');
+                }
             });
         });
         
@@ -144,6 +158,11 @@ function initMobileMenu() {
                 DOM.hamburger.classList.remove('active');
                 DOM.navMenu.classList.remove('active');
                 DOM.body.classList.remove('menu-open');
+                
+                // Remove menu-open class from header
+                if (header) {
+                    header.classList.remove('menu-open');
+                }
             }
         });
     }
@@ -172,19 +191,32 @@ function initSmoothScrolling_Phase1() {
             if (targetSection) {
                 // Usa il sistema di batching DOM per evitare forced reflow
                 domOperations.read(() => {
-                    const targetPosition = getCachedDOMProperty(
+                    // Cache the position calculation to avoid repeated getBoundingClientRect calls
+                    const cachedPosition = getCachedDOMProperty(
                         targetSection,
                         'scrollPosition',
-                        () => targetSection.getBoundingClientRect().top + window.pageYOffset - window.cachedHeaderHeight - 20
+                        () => {
+                            // Use requestAnimationFrame to ensure layout is stable
+                            return new Promise(resolve => {
+                                requestAnimationFrame(() => {
+                                    const rect = targetSection.getBoundingClientRect();
+                                    const position = rect.top + window.pageYOffset - window.cachedHeaderHeight - 20;
+                                    resolve(position);
+                                });
+                            });
+                        }
                     );
                     
-                    domOperations.write(() => {
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
+                    // Handle both cached values and promises
+                    Promise.resolve(cachedPosition).then(targetPosition => {
+                        domOperations.write(() => {
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                            
+                            updateActiveNavLink(targetId);
                         });
-                        
-                        updateActiveNavLink(targetId);
                     });
                 });
             }
