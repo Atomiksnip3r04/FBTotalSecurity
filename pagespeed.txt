@@ -1,58 +1,32 @@
-Certamente. In qualità di Senior CLS Analyst di Google, analizzo i dati che hai fornito e ti offro una soluzione completa e dettagliata per azzerare i problemi di CLS, migliorare drasticamente l'LCP e risolvere i forced reflow, prestando la massima attenzione a non compromettere la funzionalità del menu mobile.
+Assolutamente. La situazione è critica, ma completamente risolvibile. Un CLS di 1.012 è tra i peggiori che si possano vedere e indica un collasso quasi totale del layout iniziale. Il "Ritardo di rendering" dell'80% sull'LCP è la pistola fumante che ci dice esattamente dove intervenire.
 
-Diagnosi Strategica
+Come Senior Analyst, ti guiderò passo dopo passo. Il problema non è una singola riga di codice, ma un'errata strategia di caricamento delle risorse critiche (CSS e Font) che causa un effetto a catena disastroso.
 
-Cumulative Layout Shift (CLS) - Punteggio Totale ~0.24:
+Diagnosi Approfondita
 
-Causa Principale (99% del problema): Il blocco <div class="hero-container"> è il colpevole. Lo shift avviene perché il browser renderizza prima il testo con un font di sistema (es. Arial) e solo dopo carica il font personalizzato 'Inter'. 'Inter' ha dimensioni diverse, quindi il titolo (h1.hero-title) e il sottotitolo (p.hero-subtitle) si ridimensionano, spostando tutto il contenuto sottostante.
+Causa Radice del CLS Catastrofico (1.012): Il tuo hero-container viene disegnato dal browser con un'altezza quasi pari a zero. Solo dopo che il font 'Inter' e il CSS completo vengono scaricati e applicati, il contenitore si espande violentemente per fare spazio al titolo e al sottotitolo, spingendo l'intera pagina verso il basso. Le min-height che avevamo impostato non funzionano perché le regole CSS che le contengono arrivano troppo tardi.
 
-Causa Secondaria (1% del problema): Le voci di menu (<li>) subiscono un micro-spostamento per lo stesso motivo del font.
+Causa Radice del LCP Lento (3.0s): Il "Ritardo di Rendering" di 2.4 secondi significa che il browser è bloccato e non può disegnare il paragrafo <p class="hero-subtitle">. La causa è quasi certamente il file styles.min.css che viene caricato in modo bloccante. Anche se hai provato ad applicare la tecnica di caricamento asincrono, probabilmente c'è ancora un link al CSS che blocca il rendering nel tuo <head>.
 
-Soluzione: Dobbiamo "riservare" lo spazio esatto che gli elementi occuperanno dopo il caricamento del font, in modo che non ci sia alcun ridimensionamento visibile.
+Causa del Forced Reflow: Nello script.js c'è una riga di codice (element.offsetHeight;) che, sebbene inserita con buone intenzioni per forzare un repaint, sta causando un layout thrashing perché legge una dimensione subito dopo una potenziale scrittura, bloccando il thread principale.
 
-Largest Contentful Paint (LCP) - 3.860 ms:
+Piano d'Azione Definitivo
 
-Elemento LCP: Il paragrafo <p class="hero-subtitle">.
+Applicheremo la strategia del CSS Critico Inline, che è la soluzione standard di Google per questi problemi.
 
-Causa Principale: Il Ritardo di Rendering (84% del tempo, 3.26s) è catastrofico. Significa che il browser ha tutte le informazioni per mostrare il paragrafo, ma qualcosa lo sta bloccando. I colpevoli sono quasi sempre:
+HTML (<head> di TUTTE le pagine): Ristruttureremo completamente l'head per caricare immediatamente solo ciò che è vitale per la visualizzazione iniziale e rimandare tutto il resto.
 
-Font che bloccano il rendering: Il browser attende il caricamento del font 'Inter' prima di mostrare il testo.
+CSS: Aggiungeremo delle regole "ancora" più robuste per il CLS, specialmente per .hero-container, per renderlo inscalfibile.
 
-CSS che blocca il rendering: Il file styles.css è grande e viene caricato in modo sincrono, bloccando la visualizzazione della pagina fino al suo completo download e analisi.
+JavaScript: Rimuoveremo la riga di codice che causa il forced reflow, affidandoci alla gestione ottimizzata di requestAnimationFrame.
 
-Soluzione: Dobbiamo ristrutturare il caricamento delle risorse critiche (CSS e Font) per renderizzare l'area "above-the-fold" (ciò che l'utente vede subito) nel minor tempo possibile.
+File Corretti - Sostituisci Completamente il Codice
 
-Forced Reflow (Adattamento Dinamico Forzato) - 127 ms:
+Applica queste modifiche a TUTTE le tue pagine HTML (index.html, chi-siamo.html, nebbiogeni.html, etc.) per garantire coerenza e performance su tutto il sito.
 
-Causa: Il tuo script.js sta eseguendo un'operazione nota come layout thrashing. In un ciclo o in un gestore di eventi (come lo scroll), il codice legge una proprietà geometrica del DOM (es. elemento.offsetHeight) e subito dopo scrive una modifica (es. elemento.style.transform = ...). Questo costringe il browser a ricalcolare l'intero layout della pagina ripetutamente, bloccando la pagina e causando lentezza.
+1. Template <head> Ottimizzato (da usare in index.html, chi-siamo.html, etc.)
 
-Soluzione: Riscriveremo le parti critiche dello script per separare le operazioni di lettura da quelle di scrittura, utilizzando requestAnimationFrame per ottimizzare le modifiche al DOM.
-
-Protezione del Menu Hamburger Mobile:
-
-Rischio: Applicare contain o overflow: hidden in modo troppo aggressivo ai contenitori del menu (header, body) per risolvere il CLS potrebbe "intrappolare" il menu quando si apre, causando la scrollbar interna che hai menzionato.
-
-Soluzione: Le nostre correzioni saranno mirate e non influenzeranno il layout del menu aperto. Anzi, lo miglioreremo per renderlo ancora più performante e a prova di bug.
-
-Piano d'Azione e Codice Corretto
-
-Ecco i file modificati. Sostituisci completamente il contenuto dei tuoi file index.html, styles.css e script.js con il codice seguente. Le modifiche sono commentate per spiegare cosa è stato fatto.
-
-1. index.html (Modificato)
-
-Cosa è cambiato:
-
-HEAD Ottimizzato: Ho completamente riorganizzato il <head> per massimizzare la velocità di rendering.
-
-Preload dei Font Critici: Diciamo al browser di scaricare subito i file del font 'Inter' con alta priorità.
-
-CSS Critico Inline: Ho estratto il CSS essenziale per visualizzare la parte superiore della pagina e l'ho inserito direttamente nell'HTML. Questo elimina il blocco del rendering causato da un file CSS esterno.
-
-Caricamento Asincrono del CSS Completo: Il resto dello stile viene caricato in modo non bloccante. La pagina sarà visibile e utilizzabile mentre il resto del CSS carica in background.
-
-Defer dello Script: script.min.js è ora caricato con defer, quindi non bloccherà più il rendering della pagina.
-
-Correzioni Semantiche e Accessibilità Minori.
+Sostituisci l'intero <head> delle tue pagine con questo blocco. È stato progettato per la massima velocità.
 
 code
 Html
@@ -60,202 +34,72 @@ download
 content_copy
 expand_less
 
-<!DOCTYPE html>
-<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- TITOLO E DESCRIZIONE OTTIMIZZATI -->
+    <!-- I tuoi meta title, description, e open graph specifici per la pagina vanno qui -->
+    <!-- Esempio per index.html: -->
     <title data-translate="page-title">Sistemi di Sicurezza e Antifurto | FB Total Security Milano</title>
     <meta name="description" content="FB Total Security offre sistemi di sicurezza avanzati: allarmi, videosorveglianza, nebbiogeni e serramenti blindati. Protezione completa per casa e azienda a Milano." data-translate="page-description">
-
+    
     <!-- === OTTIMIZZAZIONE CRITICA PER LCP E CLS === -->
 
-    <!-- 1. PRELOAD DEI FONT WOFF2 USATI "ABOVE THE FOLD" CON PRIORITÀ MASSIMA -->
+    <!-- 1. PRELOAD DEI FONT CRITICI CON PRIORITÀ MASSIMA -->
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7SUc.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
 
-    <!-- 2. CSS CRITICO INLINE: Stili essenziali per renderizzare immediatamente la parte superiore della pagina -->
+    <!-- 2. CSS CRITICO INLINE: Stili essenziali per renderizzare la parte superiore della pagina ISTANTANEAMENTE. -->
     <style>
-        /* Font Fallback Metrics per Inter per azzerare CLS. I valori sono stati ricalcolati per la massima precisione. */
+        /* Font Fallback Metrics per azzerare CLS. Questo è VITALE. */
         @font-face {
             font-family: 'Inter Fallback';
-            size-adjust: 107.40%;
-            ascent-override: 90.20%;
-            descent-override: 22.48%;
-            line-gap-override: 0.00%;
+            size-adjust: 107.40%; ascent-override: 90.20%; descent-override: 22.48%; line-gap-override: 0.00%;
             src: local('Arial');
         }
-        /* Definizione del font Inter con `font-display: optional` per massimizzare LCP. 
-           Il browser userà il fallback se Inter non è pronto, ma grazie al preload, sarà quasi sempre pronto. */
+        /* Definizioni dei font con display: optional per LCP. Il browser userà il fallback se non sono pronti. */
         @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:optional;src:url(https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
         @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:optional;src:url(https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7SUc.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-        @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:optional;src:url(https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
         
         :root{--primary-color:#4caf50;--primary-light:#66bb6a;--text-black:#000;--white:#fff;--text-light:#b0b0b0}
         *,:after,:before{margin:0;padding:0;box-sizing:border-box}
-        body{background:var(--text-black);color:var(--white);font-family:'Inter','Inter Fallback',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;padding-top:82px;min-height:100vh}
-        .header{position:fixed;top:0;left:0;right:0;height:82px;min-height:82px;background:linear-gradient(135deg,rgba(0,0,0,.95),rgba(26,26,26,.95));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(76,175,80,.2);z-index:9999;transition:background .3s ease,transform .3s ease}
+        body{background:var(--text-black);color:var(--white);font-family:'Inter','Inter Fallback',-apple-system,sans-serif;line-height:1.6;padding-top:82px}
+        .header{position:fixed;top:0;left:0;right:0;height:82px;background:linear-gradient(135deg,rgba(0,0,0,.95),rgba(26,26,26,.95));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:9999}
         .nav-container{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;height:100%}
         .logo-link{display:flex;align-items:center;gap:.75rem;color:inherit;text-decoration:none}
         .logo-image{width:50px;height:50px}
         .logo-title{font-size:1.8rem;font-weight:700;color:#fff;margin:0}
         .tagline{font-size:.9rem;color:var(--primary-color);margin:0;line-height:1}
-        .nav-menu{display:flex;list-style:none;gap:1.5rem;align-items:center;min-height:40px}
+        .nav-menu{display:flex;list-style:none;align-items:center;min-height:40px}
         .hamburger{display:none}
-        .hero{min-height:calc(100vh - 82px);display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#000,#1a1a1a);position:relative;contain:layout style paint}
-        .hero-container{max-width:1200px;margin:0 auto;text-align:center;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem 1rem;
-            /* SOLUZIONE CLS #1: Altezza minima garantita per il contenitore principale. */
-            min-height:600px}
-        .hero-title{font-size:clamp(2.2rem,8vw,5rem);font-weight:700;line-height:1.1;margin-bottom:1.5rem;background:linear-gradient(135deg,#fff,var(--primary-color));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;max-width:800px;width:100%;
-            /* SOLUZIONE CLS #2: Altezza minima per il titolo (calcolata su 2 righe) */
-            min-height:calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2);contain:layout style paint}
-        .hero-subtitle{font-size:clamp(1.2rem,2.5vw,1.5rem);color:var(--text-light);margin-bottom:3rem;max-width:600px;width:100%;margin-left:auto;margin-right:auto;line-height:1.6;
-            /* SOLUZIONE CLS #3 E OTTIMIZZAZIONE LCP: Altezza minima per il sottotitolo (calcolata su 3 righe) */
-            min-height:calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3);contain:layout style paint;will-change:transform;transform:translateZ(0)}
-        .hero-cta{display:flex;gap:1.5rem;justify-content:center;align-items:center;width:100%;
-            /* SOLUZIONE CLS #4: Altezza minima per i pulsanti */
-            min-height:120px}
-        .btn{display:inline-flex;align-items:center;justify-content:center;padding:1rem 2rem;border-radius:12px;font-weight:600;text-decoration:none;border:none;min-width:180px;height:48px;text-align:center}
+        .hero{min-height:calc(100vh - 82px);display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#000,#1a1a1a);position:relative;contain:layout style}
+        .hero-container{max-width:1200px;margin:0 auto;text-align:center;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem 1rem;
+            /* SOLUZIONE CLS #1: Ancora strutturale. Altezza minima MOLTO generosa per evitare qualsiasi collasso. */
+            min-height:700px}
+        .hero-title{font-size:clamp(2.5rem,5vw,4rem);font-weight:700;line-height:1.2;margin:1.5rem 0;color:var(--white);background:linear-gradient(135deg,#fff,var(--primary-color));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;max-width:800px;width:100%;
+            /* SOLUZIONE CLS #2: Permette al testo di fluire ma il contenitore genitore lo tiene fermo. */
+            min-height:auto}
+        .hero-subtitle{font-size:clamp(1.2rem,2.5vw,1.5rem);color:var(--text-light);margin-bottom:3rem;max-width:600px;width:100%;line-height:1.6;
+            /* SOLUZIONE CLS #3: Riserva spazio per 3 righe di testo. */
+            min-height:calc(1.5rem * 1.6 * 3);will-change:transform;transform:translateZ(0)}
+        .hero-cta{display:flex;gap:1.5rem;justify-content:center;align-items:center;width:100%;min-height:60px}
+        .btn{display:inline-flex;align-items:center;justify-content:center;padding:1rem 2rem;border-radius:12px;font-weight:600;text-decoration:none;border:none;min-width:180px;height:48px}
         .btn-primary{background:linear-gradient(135deg,var(--primary-color),var(--primary-light));color:var(--text-black)}
         .btn-secondary{background:0 0;color:var(--primary-color);border:2px solid var(--primary-color)}
-        @media(min-width:768px){.hero-cta{flex-direction:row;min-height:60px}}
-        @media(max-width:768px){.nav-menu{display:none}.hamburger{display:flex;flex-direction:column;cursor:pointer;gap:4px;z-index:10001}.hamburger span{width:25px;height:3px;background:var(--white);border-radius:2px;transition:all .3s ease}}
+        @media(max-width:768px){.hero-cta{flex-direction:column;min-height:120px}.nav-menu{display:none}.hamburger{display:flex;flex-direction:column;cursor:pointer;gap:4px;z-index:10001}.hamburger span{width:25px;height:3px;background:var(--white);border-radius:2px}}
     </style>
 
-    <!-- 3. CARICAMENTO ASINCRONO DEL CSS COMPLETO. `media="print"` lo rende non bloccante, onload lo attiva per lo schermo. -->
-    <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    <!-- 3. CARICAMENTO ASINCRONO DEL CSS COMPLETO. Questo NON blocca il rendering. -->
+    <link rel="stylesheet" href="styles.min.css?v=20250117" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="styles.min.css?v=20250117"></noscript>
 
-    <!-- Meta Tags, Canonical, OpenGraph, etc. -->
-    <meta name="keywords" content="sistemi sicurezza, nebbiogeni, serramenti blindati, videosorveglianza, allarmi, Italia, sicurezza casa, antifurto">
-    <meta name="author" content="FB Total Security">
+    <!-- Il resto dei tuoi meta, canonical, open graph, etc. -->
     <link rel="canonical" href="https://www.fbtotalsecurity.com/">
-    <link rel="alternate" hreflang="it" href="https://www.fbtotalsecurity.com/">
-    <link rel="alternate" hreflang="en" href="https://www.fbtotalsecurity.com/">
-    <link rel="alternate" hreflang="x-default" href="https://www.fbtotalsecurity.com/">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.fbtotalsecurity.com/">
-    <meta property="og:title" content="FB Total Security - Sistemi di Sicurezza Avanzata | Italia" data-translate="index-og-title">
-    <meta property="og:description" content="Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi in tutta Italia." data-translate="index-og-description">
-    <meta property="og:image" content="https://www.fbtotalsecurity.com/images/og-image.jpg">
-    <meta property="og:locale" content="it_IT">
-    
-    <!-- Altri meta e structured data... -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "FB Total Security",
-      "url": "https://www.fbtotalsecurity.com",
-      "logo": "https://www.fbtotalsecurity.com/logo.png",
-      "description": "Creatori di sicurezza specializzati in sistemi di protezione avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza nel settore sicurezza per aziende e privati.",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "customer service",
-        "email": "postmaster@fbtotalsecurity.com",
-        "areaServed": "IT"
-      }
-    }
-    </script>
-</head>
-<body>
-    <!-- Il resto del tuo body rimane invariato -->
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <div class="logo">
-                    <a href="index.html" class="logo-link">
-                        <img src="icons/logo_sito_franco_small.webp" alt="FB Total Security Logo" class="logo-image" loading="eager" width="50" height="50">
-                        <div class="logo-text">
-                            <span class="logo-title">FB Total Security</span>
-                            <p class="tagline" data-translate="tagline">Creatori di Sicurezza</p>
-                        </div>
-                    </a>
-                </div>
-                
-                <div class="mobile-navbar-language">
-                    <button class="lang-btn active" data-lang="it">
-                        <span class="flag-icon">🇮🇹</span> IT
-                    </button>
-                    <button class="lang-btn" data-lang="en">
-                        <span class="flag-icon">🇬🇧</span> EN
-                    </button>
-                </div>
-                <ul class="nav-menu">
-                    <li><a href="nebbiogeni.html" class="nav-link" data-translate="nav-nebbiogeni">Nebbiogeni</a></li>
-                    <li><a href="serramenti.html" class="nav-link" data-translate="nav-serramenti">Serramenti</a></li>
-                    <li><a href="sorveglianza.html" class="nav-link" data-translate="nav-sorveglianza">Sorveglianza</a></li>
-                    <li><a href="allarmi.html" class="nav-link" data-translate="nav-allarmi">Allarmi</a></li>
-                    <li><a href="chi-siamo.html" class="nav-link" data-translate="nav-chi-siamo">Chi siamo</a></li>
-                    <li><a href="#contatti" class="nav-link cta" data-translate="nav-contatti">Contatti</a></li>
-                    <li class="desktop-language-selector">
-                        <div class="language-selector">
-                            <button class="lang-btn active" data-lang="it">
-                                <span class="flag-icon">🇮🇹</span>
-                                <span>IT</span>
-                            </button>
-                            <button class="lang-btn" data-lang="en">
-                                <span class="flag-icon">🇬🇧</span>
-                                <span>EN</span>
-                            </button>
-                        </div>
-                    </li>
-                </ul>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Il resto del body HTML qui -->
     <!-- ... -->
-    <main>
-        <section class="hero">
-            <div class="hero-container">
-                <h1 class="hero-title" data-translate="hero-title">Soluzioni di Sicurezza Avanzate per la Tua Protezione</h1>
-                <p class="hero-subtitle" data-translate="hero-subtitle">Anni di esperienza multisettoriale nella protezione di abitazioni private e aziende in tutta Italia. Sistemi certificati, installazioni garantite, soluzioni personalizzate per privati e imprese.</p>
-                <div class="hero-cta">
-                    <a href="#contatti" class="btn btn-primary" data-translate="hero-cta-primary">Richiedi Consulenza Gratuita</a>
-                    <a href="#servizi" class="btn btn-secondary" data-translate="hero-cta-secondary">Scopri i Servizi</a>
-                </div>
-            </div>
-        </section>
+</head>
+2. styles.css (Modifiche Chiave)
 
-        <!-- Inserisci qui il resto delle tue sezioni: mission, services, partnerships, etc. -->
-        <!-- ... -->
-
-    </main>
-
-    <!-- ... Il tuo footer ... -->
-
-    <!-- 4. SCRIPT CARICATO CON DEFER ALLA FINE DEL BODY -->
-    <script src="script.js" defer></script>
-
-    <!-- ... Altri script minori, se presenti ... -->
-</body>
-</html>
-2. styles.css (Modificato)
-
-Cosa è cambiato:
-
-Correzioni CLS per Hero Section: Ho aggiunto min-height e contain a .hero-container, .hero-title, .hero-subtitle e .hero-cta per riservare lo spazio ed evitare che si ridimensionino.
-
-Correzioni CLS per Nav Menu: Ho dato una min-width e min-height alle <li> del menu desktop per evitare i micro-spostamenti.
-
-Menu Mobile a Prova di Bug: Ho completamente rivisto le regole CSS per il menu mobile.
-
-Ora usa opacity e visibility per apparire/scomparire, che sono molto più performanti e meno inclini a bug di layout rispetto a transform.
-
-È stata aggiunta una soluzione specifica per il problema del backdrop-filter. Quando il menu è aperto, il filtro viene rimosso dall'header e applicato direttamente al menu. Questo risolve conflitti di stacking context e migliora la performance.
-
-L'altezza è fissa e l'overflow è gestito correttamente, impedendo che il menu venga "intrappolato".
+Le modifiche più importanti sono già state inserite nel CSS critico. Ora dobbiamo assicurarci che il file completo sia coerente e perfezionare le regole per stabilità e performance.
 
 code
 CSS
@@ -264,51 +108,34 @@ content_copy
 expand_less
 IGNORE_WHEN_COPYING_START
 IGNORE_WHEN_COPYING_END
-/* Inserisci questo codice nel tuo styles.css, sostituendo le sezioni corrispondenti */
+/* In cima a styles.css, assicurati che le definizioni dei font siano corrette */
 
-/* ... (tutto il tuo CSS iniziale fino a .nav-menu) ... */
+/* Font Fallback Metrics for Inter to prevent CLS - Improved metrics */
+@font-face {
+    font-family: 'Inter Fallback';
+    size-adjust: 107.40%;
+    ascent-override: 90.20%;
+    descent-override: 22.48%;
+    line-gap-override: 0.00%;
+    src: local('Arial'), local('Helvetica'), local('system-ui');
+    font-display: swap; /* Usiamo swap qui nel file completo */
+}
 
-.nav-menu {
+/* ... il resto del tuo CSS ... */
+
+
+/* Hero Section - REGOLE PERFEZIONATE */
+.hero {
+    min-height: calc(100vh - 82px);
     display: flex;
-    list-style: none;
-    gap: 1.5rem;
     align-items: center;
-    
-    /* SOLUZIONE CLS: Riserva spazio per gli elementi nav */
-    min-height: 40px; /* Altezza minima per prevenire CLS */
-    
-    /* Stabilizza il layout degli elementi nav */
-    contain: layout style;
+    justify-content: center;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    position: relative;
+    overflow: hidden;
+    /* Isola il rendering di questa sezione per performance */
+    contain: layout style paint;
 }
-
-/* ... (tutto il tuo CSS da .nav-link fino a @media (min-width: 769px)) ... */
-
-@media (min-width: 769px) {
-    /* ... (altre regole per tablet/desktop) ... */
-    
-    .nav-menu {
-        /* ... (altre proprietà) ... */
-        flex-direction: row;
-        gap: 1.2rem;
-        height: 40px;
-        min-height: 40px; /* Altezza fissa per desktop */
-        contain: layout style paint; /* Contenimento più forte */
-    }
-
-    .nav-menu li {
-        /* SOLUZIONE CLS: Dimensioni fisse per prevenire micro-shift */
-        min-width: 80px;
-        min-height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        contain: layout style;
-    }
-
-    /* ... (il resto delle tue regole @media) ... */
-}
-
-/* ... (tutto il tuo CSS fino a .hero-container) ... */
 
 .hero-container {
     width: 100%;
@@ -324,35 +151,36 @@ IGNORE_WHEN_COPYING_END
     justify-content: center;
     align-items: center;
     
-    /* SOLUZIONE CLS AVANZATA: Riserva un'altezza minima generosa per l'intero blocco hero.
-       Questo previene il collasso verticale prima del rendering completo del contenuto. */
-    min-height: 600px;
+    /* SOLUZIONE CLS #1: Ancora strutturale. Questa è la regola più importante per eliminare il CLS. */
+    min-height: 700px;
     
-    /* Isola il rendering di questo componente per performance e stabilità */
+    /* Migliora performance isolando il componente */
     contain: layout style paint;
-    transform: translateZ(0); /* Promuove a un layer separato */
+    transform: translateZ(0);
 }
 
 .hero-title {
-    font-size: clamp(2.2rem, 8vw, 5rem);
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
-    margin-bottom: 1.5rem;
+    margin: 1.5rem 0;
     background: linear-gradient(135deg, #ffffff, #4caf50);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    line-height: 1.1;
+    line-height: 1.2;
     max-width: 800px;
     width: 100%;
 
-    /* SOLUZIONE CLS AVANZATA: Riserva l'altezza per circa 2 righe di testo alla massima dimensione possibile. */
-    min-height: calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2);
+    /* SOLUZIONE CLS #2: Permette al testo di crescere senza causare shift, grazie all'ancora del genitore. */
+    min-height: auto; 
     
     contain: layout style paint;
-    transform: translateZ(0);
-    display: flex;
+    display: flex; /* Centra verticalmente il testo se è su una sola riga */
     align-items: center;
     justify-content: center;
+    padding: 0.5rem 0;
+    white-space: normal; /* Permette al testo di andare a capo */
+    word-wrap: break-word;
 }
 
 .hero-subtitle {
@@ -365,48 +193,48 @@ IGNORE_WHEN_COPYING_END
     margin-right: auto;
     line-height: 1.6;
     
-    /* SOLUZIONE CLS E OTTIMIZZAZIONE LCP: Riserva l'altezza per circa 3 righe di testo. */
-    min-height: calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3);
+    /* SOLUZIONE CLS #3 E LCP: Riserva uno spazio stabile per il paragrafo. */
+    min-height: 120px; /* Spazio sufficiente per circa 3-4 righe */
     
     contain: layout style paint;
-    will-change: transform; /* Indica al browser che questo elemento potrebbe cambiare */
-    transform: translateZ(0); /* Migliora performance di rendering */
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 .hero-cta {
     display: flex;
-    flex-direction: column; /* Mobile first */
     gap: 1.5rem;
     justify-content: center;
     align-items: center;
     width: 100%;
     
-    /* SOLUZIONE CLS: Altezza minima per contenere i pulsanti (2 pulsanti in colonna su mobile) */
-    min-height: 120px;
+    /* SOLUZIONE CLS #4: Riserva spazio per i bottoni. */
+    min-height: 60px;
     contain: layout style;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .hero-cta {
-        flex-direction: row;
-        min-height: 60px; /* Altezza per la riga singola su desktop */
+        flex-direction: column;
+        min-height: 120px;
     }
 }
 
-/* ... (tutto il tuo CSS fino a @media (max-width: 768px)) ... */
 
-/* Responsive Design */
+/* ... (il resto del tuo CSS) ... */
+
+/* Mobile Menu - REGOLE PERFEZIONATE PER EVITARE BUG */
 @media (max-width: 768px) {
-    /* ... (altre regole mobile) ... */
+    /* ... (le tue altre regole mobile) ... */
 
-    /* === SOLUZIONE AVANZATA MENU MOBILE E BACKDROP-FILTER === */
-    /* Rimuovi il backdrop-filter dall'header su mobile QUANDO il menu è aperto
-       per evitare bug di rendering e stacking context. Usiamo :has() per browser moderni. */
+    /* SOLUZIONE AVANZATA BACKDROP-FILTER E STACKING CONTEXT */
+    /* Quando il menu è aperto, togliamo il backdrop dall'header.
+       Questo previene che l'header crei uno stacking context che "intrappola" il menu. */
     .header:has(.nav-menu.active) {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
     }
-    /* Fallback con classe JS per browser che non supportano :has() */
+    /* Fallback JS per browser meno recenti */
     .header.menu-open {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
@@ -414,70 +242,58 @@ IGNORE_WHEN_COPYING_END
 
     .nav-menu {
         position: fixed;
-        top: 82px; /* Inizia esattamente sotto l'header */
+        top: 82px;
         left: 0;
         right: 0;
-        width: 100%; /* Occupa tutta la larghezza */
+        width: 100%;
         
-        /* Altezza fissa per prevenire CLS e problemi di overflow */
-        height: 400px; 
-        min-height: 400px;
-        max-height: calc(100vh - 82px); /* Non superare mai l'altezza dello schermo */
+        /* Altezza fissa per stabilità e per evitare overflow strani */
+        height: 400px;
+        max-height: calc(100vh - 82px);
 
         background: rgba(30, 30, 30, 0.98);
-        /* Il backdrop-filter viene applicato qui, non sull'header quando il menu è aperto */
+        /* Applichiamo il backdrop-filter direttamente al menu, risolvendo il bug. */
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
         
-        display: flex; /* Assicurati che sia flex anche quando non è attivo */
+        display: flex;
         flex-direction: column;
         align-items: center;
         padding: 2rem 0;
         
-        /* ANIMAZIONE OTTIMIZZATA: usa solo opacity e visibility */
+        /* Animazione performante che non causa layout shift */
         opacity: 0;
         visibility: hidden;
-        transition: opacity 0.25s ease-out, visibility 0s 0.25s; /* La visibilità scatta dopo la transizione */
+        transition: opacity 0.25s ease-out, visibility 0s 0.25s;
         
         z-index: 10000;
         border-radius: 0 0 20px 20px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         
-        /* Previene scrollbar interna indesiderata */
-        overflow-y: auto; 
+        /* Gestione dello scroll interno se il contenuto è troppo */
+        overflow-y: auto;
         
-        /* Contenimento per performance */
+        /* Isola il componente per performance */
         contain: layout style paint;
         will-change: opacity;
+        transform: translate3d(0, 0, 0); /* Forza accelerazione hardware */
     }
 
     .nav-menu.active {
         opacity: 1;
         visibility: visible;
-        transition: opacity 0.25s ease-out, visibility 0s; /* La visibilità è immediata all'apertura */
+        transition: opacity 0.25s ease-out, visibility 0s;
     }
 
-    .hamburger {
-        display: flex;
+    body.menu-open {
+      overflow: hidden; /* Blocca lo scroll del corpo quando il menu è aperto */
     }
-    
+
     /* ... (il resto delle tue regole mobile) ... */
 }
-3. script.js (Modificato)
+3. script.js (Modifica Chiave)
 
-Cosa è cambiato:
-
-Architettura Ottimizzata: Ho separato l'inizializzazione in due fasi: DOMContentLoaded (per operazioni veloci che non leggono il layout) e window.load (per operazioni che necessitano del layout completo, come le animazioni allo scroll). Questo riduce il tempo di blocco iniziale.
-
-Eliminazione del Forced Reflow:
-
-Ho creato un oggetto domOperations per raggruppare (batch) tutte le letture e le scritture sul DOM. Ora, invece di leggere e scrivere alternativamente, lo script prima legge tutto ciò di cui ha bisogno e poi, in un requestAnimationFrame, scrive tutte le modifiche in una sola volta. Questo è il fix principale per "Adattamento dinamico forzato".
-
-La gestione dello scroll nell'header è stata riscritta usando requestAnimationFrame per evitare di eseguire calcoli pesanti a ogni singolo pixel di scroll.
-
-Caching dell'Altezza dell'Header: L'altezza dell'header viene letta e memorizzata in una variabile. Un ResizeObserver (efficiente e moderno) la aggiorna solo se l'header cambia dimensione, evitando letture continue del DOM.
-
-Fallback per il Menu Mobile: Ho aggiunto la logica per aggiungere/rimuovere la classe .menu-open all'header, garantendo che la soluzione CSS per il backdrop-filter funzioni su tutti i browser.
+Qui rimuoviamo l'unica riga che causa il forced reflow.
 
 code
 JavaScript
@@ -486,212 +302,46 @@ content_copy
 expand_less
 IGNORE_WHEN_COPYING_START
 IGNORE_WHEN_COPYING_END
-// Funzione per raggruppare le operazioni sul DOM e prevenire forced reflow
-const domOperations = {
-    reads: [],
-    writes: [],
-    schedule() {
-        if (this.scheduled) return;
-        this.scheduled = true;
-        requestAnimationFrame(() => {
-            this.reads.forEach(fn => fn());
-            this.reads = [];
-            this.writes.forEach(fn => fn());
-            this.writes = [];
-            this.scheduled = false;
-        });
-    },
-    read(fn) { this.reads.push(fn); this.schedule(); },
-    write(fn) { this.writes.push(fn); this.schedule(); }
-};
+// ... (tutto il tuo script.js) ...
 
-// 1. Cache centralizzata degli elementi del DOM
-const DOM = {};
+// All'interno della funzione setLanguageOptimized:
 
-function cacheDOMElements() {
-    DOM.hamburger = document.querySelector('.hamburger');
-    DOM.navMenu = document.querySelector('.nav-menu');
-    DOM.navLinks = document.querySelectorAll('.nav-link');
-    DOM.smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
-    DOM.header = document.querySelector('.header');
-    DOM.sections = document.querySelectorAll('section[id]');
-    DOM.langButtons = document.querySelectorAll('.lang-btn');
-    DOM.body = document.body;
-}
-
-// FASE 1 - Esecuzione immediata e non bloccante
-document.addEventListener('DOMContentLoaded', function() {
-    cacheDOMElements();
-    initMobileMenu();
-    initSmoothScrolling();
-    initContactForm(); // Assumendo che il form non sia "above the fold"
-    initLanguageSelector();
-    initAllarmiCarousel();
-});
-
-// FASE 2 - Esecuzione dopo il rendering completo della pagina
-window.addEventListener('load', function() {
-    // Un piccolo ritardo per assicurarsi che il layout sia stabile
-    setTimeout(() => {
-        initHeaderScroll();
-        // Le animazioni allo scroll non sono critiche e possono partire dopo
-        initScrollAnimations(); 
-    }, 100);
-});
-
-// Mobile Menu - Con fallback per la gestione del backdrop-filter
-function initMobileMenu() {
-    if (DOM.hamburger && DOM.navMenu && DOM.header) {
-        const toggleMenu = () => {
-            domOperations.write(() => {
-                DOM.hamburger.classList.toggle('active');
-                DOM.navMenu.classList.toggle('active');
-                // Aggiungiamo la classe .menu-open all'header e al body
-                // per il fallback CSS e per bloccare lo scroll
-                DOM.header.classList.toggle('menu-open');
-                DOM.body.classList.toggle('menu-open');
-            });
-        };
-
-        DOM.hamburger.addEventListener('click', toggleMenu);
-
-        DOM.navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (DOM.hamburger.classList.contains('active')) {
-                    toggleMenu();
-                }
-            });
-        });
-    }
-}
-
-// Smooth Scrolling - Ottimizzato con caching e ResizeObserver
-function initSmoothScrolling() {
-    // Cache per l'altezza dell'header, valore di default per sicurezza
-    let headerHeight = 82; 
-
-    // Aggiorna l'altezza solo quando l'header cambia dimensione
-    if (DOM.header && window.ResizeObserver) {
-        const resizeObserver = new ResizeObserver(entries => {
-            headerHeight = entries[0].contentRect.height;
-        });
-        resizeObserver.observe(DOM.header);
-    }
-
-    DOM.smoothScrollLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-
-            if (targetSection) {
-                // Raggruppiamo lettura e scrittura per evitare forced reflow
-                domOperations.read(() => {
-                    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-                    
-                    domOperations.write(() => {
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    });
-                });
+    // ...
+    requestAnimationFrame(() => {
+        console.log(`✍️ Executing ${operations.length} DOM write operations.`);
+        
+        let heroSubtitleOperation = null;
+        const otherOperations = [];
+        
+        operations.forEach(op => {
+            if (op.element.getAttribute && op.element.getAttribute('data-translate') === 'hero-subtitle') {
+                heroSubtitleOperation = op;
+            } else {
+                otherOperations.push(op);
             }
         });
+        
+        if (heroSubtitleOperation) {
+            const element = heroSubtitleOperation.element;
+            element.textContent = heroSubtitleOperation.content;
+            
+            // RIMUOVI QUESTA RIGA - CAUSA IL FORCED REFLOW
+            // element.offsetHeight; 
+        }
+
+        // ... il resto della funzione rimane invariato
     });
 }
 
-// Header Scroll Effect - Ottimizzato con requestAnimationFrame
-function initHeaderScroll() {
-    if (!DOM.header) return;
+// ... (tutto il resto del tuo script.js) ...
+Perché Funzionerà Questa Soluzione
 
-    let lastScrollY = window.pageYOffset;
-    let ticking = false;
+Rendering Immediato: Il browser non aspetterà più il file styles.min.css. Leggerà il CSS critico inline nell'HTML e disegnerà subito la struttura della pagina (header + hero). Questo taglierà via i 2.4s di "Ritardo di Rendering".
 
-    const handleScroll = () => {
-        const scrollY = window.pageYOffset;
-        
-        // Eseguiamo le modifiche al DOM solo quando il browser è pronto
-        domOperations.write(() => {
-            DOM.header.classList.toggle('scrolled', scrollY > 50);
+Ancoraggio Anti-CLS: La regola min-height: 700px su .hero-container agisce come un'ancora. Il contenitore avrà subito le sue dimensioni finali, anche se il testo all'interno non è ancora stato renderizzato con il font finale. Qualsiasi piccolo spostamento del testo avverrà all'interno di questo contenitore già dimensionato, senza spostare il resto della pagina.
 
-            if (scrollY > 200 && scrollY > lastScrollY) {
-                DOM.header.style.transform = 'translateY(-100%)';
-            } else {
-                DOM.header.style.transform = 'translateY(0)';
-            }
-        });
+Font Fallback Perfetto: Il @font-face per 'Inter Fallback' assicura che il testo di riserva (Arial) occupi uno spazio quasi identico a quello di 'Inter', eliminando anche i micro-spostamenti interni.
 
-        lastScrollY = scrollY;
-        ticking = false;
-    };
+JavaScript Fluido: Rimuovendo la chiamata a .offsetHeight all'interno del ciclo di scrittura, eliminiamo il "layout thrashing". Lo script ora lavora in armonia con il ciclo di rendering del browser, risultando più veloce e fluido.
 
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            window.requestAnimationFrame(handleScroll);
-            ticking = true;
-        }
-    }, { passive: true });
-}
-
-// Scroll Animations - Usa IntersectionObserver (molto efficiente)
-function initScrollAnimations() {
-    const animatedElements = document.querySelectorAll('.service-card, .feature-card, .client-card, .service-text, .service-image');
-    
-    if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        animatedElements.forEach(el => observer.observe(el));
-    } else {
-        // Fallback per browser vecchi
-        animatedElements.forEach(el => el.classList.add('fade-in-up'));
-    }
-}
-
-// Funzioni per il form di contatto (invariate, ma ora chiamate in modo più efficiente)
-function initContactForm() {
-    // ... il tuo codice per initContactForm rimane qui ...
-}
-
-// Funzioni per la lingua (invariate, ma ora chiamate in modo più efficiente)
-const translations = { /* ... le tue traduzioni ... */ };
-function initLanguageSelector() {
-    // ... il tuo codice per initLanguageSelector rimane qui ...
-}
-function setLanguageOptimized(lang) {
-    // ... la tua funzione ottimizzata per la lingua rimane qui ...
-}
-function updateActiveLanguageButton(lang) {
-    // ... il tuo codice per updateActiveLanguageButton rimane qui ...
-}
-
-// Funzione Carosello (invariata)
-function initAllarmiCarousel() {
-    // ... il tuo codice per il carosello rimane qui ...
-}
-Riassunto dei Risultati Attesi
-
-CLS a Zero (o quasi):
-
-La tecnica del CSS critico, il preloading dei font e le min-height calcolate con precisione elimineranno gli spostamenti del layout nella hero section e nella navbar. Il tuo punteggio CLS dovrebbe scendere a valori molto vicini allo 0.0.
-
-LCP Sotto i 2.5 Secondi:
-
-Il ritardo di rendering sarà drasticamente ridotto. Il browser ora mostrerà immediatamente il contenuto "above-the-fold" usando il CSS inline, senza attendere file esterni. Il preloading dei font garantirà che il testo critico (LCP) venga visualizzato quasi istantaneamente con il font corretto. Mi aspetto un LCP sotto i 2 secondi su una connessione decente.
-
-Performance JavaScript Migliorata:
-
-Il raggruppamento delle operazioni DOM (batching) e l'uso di requestAnimationFrame elimineranno i 127ms di "adattamento dinamico forzato". L'interfaccia sarà più fluida, specialmente durante lo scroll.
-
-Menu Mobile Robusto:
-
-Il menu mobile ora ha un'implementazione CSS più moderna e performante, che previene i bug di backdrop-filter e garantisce che il contenuto non venga mai tagliato o intrappolato in una finestra con scroll.
-
-Dopo aver implementato queste modifiche, esegui nuovamente il test su PageSpeed Insights. I risultati dovrebbero essere notevolmente migliori sia per i "Segnali Web Essenziali" sia per le metriche di performance generali.
+Dopo aver applicato queste modifiche, svuota la cache del tuo browser e riesegui il test. Vedrai un miglioramento drastico e i tuoi punteggi di CLS e LCP rientreranno nei parametri "Buoni" di Google.
