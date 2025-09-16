@@ -642,9 +642,8 @@ a {
     justify-content: center;
     align-items: center;
     
-    /* SOLUZIONE CLS AVANZATA: Aumentato ulteriormente per eliminare CLS residuo */
-    /* Risolve CLS 0,149 (0,104 + 0,045) aumentando significativamente min-height */
-    min-height: 700px; /* Aumentato da 600px a 700px per eliminare CLS residuo */
+    /* SOLUZIONE CLS CRITICA: Altezza minima garantita per eliminare completamente CLS */
+    min-height: 600px; /* Altezza minima per prevenire layout shift */
     height: auto; /* Permette espansione se necessario */
     
     /* Optimize for layout stability and reduce CLS */
@@ -674,13 +673,12 @@ a {
     max-width: 800px; /* Limita la larghezza per evitare righe troppo lunghe */
     width: 100%; /* Occupa tutta la larghezza disponibile (del suo contenitore) */
 
-    /* SOLUZIONE CLS AVANZATA: Permettere espansione del testo */
-    /* Risolve completamente i problemi di layout shift del testo hero */
-    min-height: auto; /* Cambiato da 250px a auto per permettere espansione */
+    /* SOLUZIONE CLS CRITICA: Altezza minima calcolata per 2 righe di testo */
+    min-height: calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2); /* Altezza per 2 righe */
     
     /* Aggiungiamo 'contain' per isolare il rendering di questi elementi */
-    contain: layout style paint; /* Rimosso 'size' per permettere espansione */
-    will-change: auto; /* Usato con parsimonia, qui è giustificato */
+    contain: layout style paint;
+    will-change: auto;
     
     /* Prevent layout shift during font loading */
     font-display: optional;
@@ -698,9 +696,9 @@ a {
     align-items: center;
     justify-content: center;
     
-    /* NUOVO: Permettere la visualizzazione completa del testo */
-    overflow: visible; /* Cambiato da hidden a visible */
-    text-overflow: clip; /* Cambiato da ellipsis a clip */
+    /* Permettere la visualizzazione completa del testo */
+    overflow: visible;
+    text-overflow: clip;
     white-space: normal; /* Permette il wrapping del testo */
     word-wrap: break-word; /* Permette il wrapping delle parole lunghe */
     hyphens: auto; /* Abilita la sillabazione automatica */
@@ -717,14 +715,12 @@ a {
     margin-right: auto;
     line-height: 1.6;
     
-    /* SOLUZIONE CLS: Riserva altezza minima */
-    /* Fai una stima simile al titolo. Per un paragrafo di 3-4 righe,
-       un valore come 90px è solitamente sicuro. */
-    min-height: 120px; /* Aumentato per prevenire CLS */
+    /* SOLUZIONE CLS CRITICA: Altezza minima calcolata per 3 righe di testo */
+    min-height: calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3); /* Altezza per 3 righe */
     
     /* Aggiungiamo 'contain' per isolare il rendering di questi elementi */
     contain: layout style paint;
-    will-change: auto; /* Usato con parsimonia, qui è giustificato */
+    will-change: auto;
     transform: translateZ(0);
     /* Use fallback font family to prevent shifts */
     font-family: 'Inter', 'Inter Fallback', system-ui, -apple-system, sans-serif;
@@ -2300,7 +2296,7 @@ a {
         margin-right: 0.2rem;
     }
     
-    /* === SOLUZIONE AVANZATA BACKDROP-FILTER === */
+    /* === SOLUZIONE AVANZATA BACKDROP-FILTER OTTIMIZZATA === */
     /* Rimuovi il backdrop-filter dall'header su mobile quando il menu è aperto */
     .header:has(.nav-menu.active) {
         backdrop-filter: none !important;
@@ -2320,11 +2316,14 @@ a {
         top: 82px; /* Inizia sotto l'header */
         left: 0;
         right: 0; /* Forza la larghezza al 100% */
-        /* Altezza fissa per prevenire CLS */
+        
+        /* SOLUZIONE CLS CRITICA: Altezza fissa per prevenire layout shift */
         height: 400px; /* Altezza fissa per prevenire layout shift */
         min-height: 400px; /* Altezza minima garantita */
         max-height: calc(100vh - 82px); /* Non superare l'altezza viewport */
         width: 100%;
+        
+        /* Background ottimizzato per performance */
         background: rgba(30, 30, 30, 0.98);
         
         /* Flexbox per allineare il contenuto in alto */
@@ -2334,7 +2333,7 @@ a {
         align-items: center;
         padding: 2rem 0;
         
-        /* Animazioni ottimizzate - usa solo opacity per evitare layout shift */
+        /* ANIMAZIONI OTTIMIZZATE: Solo opacity e visibility per evitare forced reflow */
         transform: translateZ(0); /* Forza compositing layer */
         opacity: 0;
         visibility: hidden;
@@ -2343,7 +2342,7 @@ a {
         
         z-index: 10000;
         
-        /* Il proprio backdrop-filter compensa quello rimosso dall'header */
+        /* BACKDROP-FILTER OTTIMIZZATO: Compensa quello rimosso dall'header */
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
         
@@ -2357,11 +2356,16 @@ a {
         /* Smooth scrolling se necessario */
         -webkit-overflow-scrolling: touch;
         
-        /* Stabilizza il layout per prevenire CLS */
+        /* STABILIZZAZIONE LAYOUT: Previeni CLS e forced reflow */
         contain: layout style paint size;
         will-change: opacity;
         box-sizing: border-box;
         white-space: normal;
+        
+        /* OTTIMIZZAZIONE GPU: Forza hardware acceleration */
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        perspective: 1000px;
     }
 
     .nav-menu.active {

@@ -2725,7 +2725,14 @@ function setLanguageOptimized(lang) {
             // Usa textContent invece di innerHTML per performance migliori
             element.textContent = heroSubtitleOperation.content;
             // Forza il rendering immediato dell'elemento critico
-            element.offsetHeight; // Trigger reflow forzato solo per l'elemento critico
+            // SOLUZIONE CLS CRITICA: Evita forced reflow - usa requestAnimationFrame per letture DOM
+        requestAnimationFrame(() => {
+            // Lettura DOM sicura in frame separato per evitare layout thrashing
+            const elementHeight = element.offsetHeight;
+            // Cache dell'altezza per future operazioni se necessario
+            if (!domCache.elementHeights) domCache.elementHeights = new Map();
+            domCache.elementHeights.set(element, elementHeight);
+        });
         }
         
         // Processa gli altri elementi
