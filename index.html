@@ -334,8 +334,7 @@
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(76, 175, 80, 0.2);
             z-index: 9999; 
-            transition: all 0.3s ease;
-            contain: layout style; 
+            transition: all 0.3s ease; 
         }
         .nav {
             padding: 1rem 0;
@@ -350,18 +349,9 @@
             height: 100%; 
         }
 
-        .nav-menu {
-            display: flex; /* Desktop default to prevent CLS */
-            list-style: none;
-            gap: 1.5rem;
-            align-items: center; /* Allinea verticalmente gli item */
-            white-space: nowrap;
-            /* --- SOLUZIONE CLS --- */
-            /* Dà un'altezza minima fissa al contenitore dei link per evitare 
-               che si ridimensioni al cambio di font. */
-            min-height: 40px;
-            height: 40px;
-        }
+        /* --- SOLUZIONE CLS --- */
+        /* Dà un'altezza minima fissa al contenitore dei link per evitare 
+           che si ridimensioni al cambio di font. */
         .hamburger {
             display: none; /* Desktop default */
         }
@@ -415,7 +405,6 @@
         }
         @media (max-width: 768px) { 
             .hero-cta { flex-direction: column; }
-            .nav-menu { display: none; }
             .hamburger { display: flex; flex-direction: column; cursor: pointer; }
         }
         .btn { 
@@ -445,15 +434,13 @@
     <link rel="stylesheet" href="styles.min.css?v=20250117" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="styles.min.css?v=20250117"></noscript>
     
+
+    
     <!-- Resource Hints for Performance -->
     <!-- <link rel="dns-prefetch" href="//www.google-analytics.com"> -->
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Preconnect ottimizzati per performance -->
     <link rel="preconnect" href="https://www.fbtotalsecurity.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Rimosso prefetch Cloudflare email-decode per evitare problemi SEO con link non scansionabili -->
 
     <!-- Prefetch rimosso per evitare errori 503 con server di sviluppo -->

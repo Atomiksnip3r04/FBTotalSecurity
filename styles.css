@@ -74,7 +74,7 @@ body {
     text-rendering: optimizeSpeed;
     
     /* Assicurati che il contenimento non sia troppo aggressivo qui */
-    contain: style paint; /* Rimuovi 'layout' se causa problemi */
+    /* contain: style; */ /* RIMOSSO completamente per evitare containing block corrotto sul menu mobile */
     
     /* Additional CLS prevention */
     box-sizing: border-box;
@@ -179,10 +179,8 @@ a {
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(76, 175, 80, 0.2);
     z-index: 9999;
-    transition: background 0.3s ease, backdrop-filter 0.3s ease, border-bottom 0.3s ease; /* Remove height from transition */
-    contain: layout style size; /* Enhanced containment for CLS prevention */
+    transition: background 0.3s ease, backdrop-filter 0.3s ease, border-bottom 0.3s ease;
     box-sizing: border-box;
-    overflow: hidden; /* Prevent content overflow that could cause shifts */
 }
 
 .header.scrolled {
@@ -217,7 +215,7 @@ a {
     flex-shrink: 0;
     min-width: 0;
     position: relative;
-    z-index: 1001;
+    z-index: 10001;
 }
 
 .logo-link {
@@ -284,9 +282,6 @@ a {
     gap: 1.5rem;
     align-items: center;
     white-space: nowrap;
-    /* Nav-menu - dimensioni fisse */
-    min-height: 40px;
-    height: 40px;
 }
 
 .nav-link {
@@ -377,6 +372,8 @@ a {
         justify-content: flex-start;
         align-items: center;
         flex-wrap: nowrap;
+        height: 40px; /* Ripristina l'altezza fissa per il desktop */
+        min-height: 40px; /* Ripristina l'altezza minima per il desktop */
     }
     
     .nav-link {
@@ -476,7 +473,7 @@ a {
     flex-direction: column;
     cursor: pointer;
     gap: 4px;
-    z-index: 1001;
+    z-index: 10001;
 }
 
 .hamburger span {
@@ -2250,12 +2247,12 @@ a {
     
     .nav-menu {
         position: fixed;
-        top: 82px; /* Match the new header height */
+        top: 82px; /* Inizia sotto l'header */
         left: 0;
+        right: 0; /* Forza la larghezza al 100% */
+        bottom: 0; /* LA SOLUZIONE CHIAVE: si estende fino al fondo dello schermo */
         width: 100%;
-        height: auto;
-        max-height: 80vh;
-        min-height: 220px; /* Increased minimum space to prevent CLS */
+        /* height: auto; */ /* RIMOSSO: creava conflitto con bottom: 0 */
         background: rgba(30, 30, 30, 0.98);
         flex-direction: column;
         justify-content: flex-start;
@@ -2265,16 +2262,15 @@ a {
         opacity: 0;
         visibility: hidden;
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 9998;
+        z-index: 10000;
         backdrop-filter: blur(10px);
         border-radius: 0 0 20px 20px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        /* Enhanced layout stability */
-        contain: layout style size;
+        /* contain: layout style size; */ /* RIMOSSO: creava containing block che limitava l'estensione del menu */
         will-change: transform, opacity;
-        /* Additional CLS prevention */
         box-sizing: border-box;
-        overflow-y: auto;
+        overflow-y: auto; /* Abilita lo scroll se le voci del menu superano l'altezza dello schermo */
+        white-space: normal;
     }
 
     .nav-menu.active {
@@ -2295,6 +2291,7 @@ a {
         display: flex;
     }
     
+    /* === SOLUZIONE DEFINITIVA MENU MOBILE === */
     /* Nascondi il selettore di lingua desktop su mobile */
     .desktop-language-selector {
         display: none;

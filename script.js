@@ -2789,7 +2789,7 @@ const additionalStyles = `
 /* Mobile Menu Styles */
 @media (max-width: 768px) {
     .hamburger {
-        z-index: 1002 !important;
+        z-index: 10001 !important;
     }
     
     .hamburger span {
@@ -2809,7 +2809,7 @@ const additionalStyles = `
         transform: translateY(-100%);
         opacity: 0;
         transition: all 0.3s ease;
-        z-index: 999;
+        z-index: 10000;
     }
     
     .nav-menu.active {

@@ -15,12 +15,98 @@
     <link rel="alternate" hreflang="it" href="https://www.fbtotalsecurity.com/termini-condizioni.html?lang=it">
     <link rel="alternate" hreflang="en" href="https://www.fbtotalsecurity.com/termini-condizioni.html?lang=en">
     <link rel="alternate" hreflang="x-default" href="https://www.fbtotalsecurity.com/termini-condizioni.html">
-    <link rel="stylesheet" href="styles.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=optional" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="styles.min.css?v=20250117">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><!-- === OTTIMIZZAZIONE FONT E CSS PER LCP === -->
+    
+    <!-- 1. Preload diretto dei file WOFF2 del font Inter -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+    <!-- 2. CSS Critico Inline per Font e Layout Stabile -->
+    <style>
+        /* Font Fallback Metrics per Inter (essenziale per CLS) */
+        @font-face {
+            font-family: 'Inter Fallback';
+            size-adjust: 107%;
+            ascent-override: 90%;
+            descent-override: 22%;
+            line-gap-override: 0%;
+            src: local('Arial'), local('Helvetica'), local('system-ui');
+        }
+        
+        /* Definizione @font-face per Inter (ora locale) */
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400; /* Regular */
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2) format('woff2');
+        }
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600; /* SemiBold */
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+        }
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700; /* Bold */
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2) format('woff2');
+        }
+
+        /* Applica il fallback a tutto il corpo */
+        body { 
+            font-family: 'Inter', 'Inter Fallback', sans-serif; 
+        }
+        
+        /* CRITICAL CSS FOR LAYOUT STABILITY (CLS PREVENTION) */
+        
+        /* Hero Section Stability */
+        .hero-container {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            contain: layout style;
+        }
+
+        .hero-title {
+            min-height: calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2); 
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-subtitle {
+            min-height: calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3);
+        }
+
+        .hero-cta {
+            min-height: 120px;
+        }
+
+        @media (min-width: 768px) {
+            .hero-cta {
+                min-height: 60px;
+            }
+        }
+
+        /* Image & Container Stability */
+        .logo-image {
+            aspect-ratio: 47 / 40;
+        }
+        .partnership-carousel {
+            min-height: 160px;
+            contain: layout style;
+        }
+        .allarmi-carousel .carousel-container {
+            min-height: 400px;
+            contain: layout style;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
