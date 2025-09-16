@@ -2874,16 +2874,24 @@ const additionalStyles = `
         flex-direction: column;
         padding: 2rem;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        transform: translateY(-100%);
+        /* Rimuovi transform per prevenire CLS */
         opacity: 0;
-        transition: all 0.3s ease;
+        visibility: hidden;
+        transition: opacity 0.25s ease-out, visibility 0s 0.25s;
         z-index: 10000;
+        /* Altezza fissa per prevenire CLS */
+        height: 400px;
+        min-height: 400px;
+        max-height: calc(100vh - 80px);
+        contain: layout style paint size;
+        will-change: opacity;
     }
     
     .nav-menu.active {
         display: flex;
-        transform: translateY(0);
         opacity: 1;
+        visibility: visible;
+        transition: opacity 0.25s ease-out, visibility 0s;
     }
     
     .hamburger.active span:nth-child(1) {

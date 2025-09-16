@@ -260,7 +260,7 @@ a {
     color: #ffffff;
     margin: 0;
     display: block;
-    line-height: 1.1;
+    line-height: 1.2;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -674,12 +674,12 @@ a {
     max-width: 800px; /* Limita la larghezza per evitare righe troppo lunghe */
     width: 100%; /* Occupa tutta la larghezza disponibile (del suo contenitore) */
 
-    /* SOLUZIONE CLS AVANZATA: Aumentato ulteriormente per eliminare shift residui */
+    /* SOLUZIONE CLS AVANZATA: Permettere espansione del testo */
     /* Risolve completamente i problemi di layout shift del testo hero */
-    min-height: 250px; /* Aumentato da 200px a 250px per eliminare CLS residuo */
+    min-height: auto; /* Cambiato da 250px a auto per permettere espansione */
     
     /* Aggiungiamo 'contain' per isolare il rendering di questi elementi */
-    contain: layout style paint size;
+    contain: layout style paint; /* Rimosso 'size' per permettere espansione */
     will-change: auto; /* Usato con parsimonia, qui è giustificato */
     
     /* Prevent layout shift during font loading */
@@ -698,9 +698,12 @@ a {
     align-items: center;
     justify-content: center;
     
-    /* NUOVO: Prevenzione aggressiva del CLS */
-    overflow: hidden; /* Previene espansioni del testo */
-    text-overflow: ellipsis; /* Gestisce testo lungo */
+    /* NUOVO: Permettere la visualizzazione completa del testo */
+    overflow: visible; /* Cambiato da hidden a visible */
+    text-overflow: clip; /* Cambiato da ellipsis a clip */
+    white-space: normal; /* Permette il wrapping del testo */
+    word-wrap: break-word; /* Permette il wrapping delle parole lunghe */
+    hyphens: auto; /* Abilita la sillabazione automatica */
     isolation: isolate; /* Isola il rendering */
 }
 
@@ -2317,8 +2320,10 @@ a {
         top: 82px; /* Inizia sotto l'header */
         left: 0;
         right: 0; /* Forza la larghezza al 100% */
-        /* Rimuovi min-height per permettere al contenuto di determinare l'altezza */
-        height: auto; /* Permetti al contenuto di determinare l'altezza */
+        /* Altezza fissa per prevenire CLS */
+        height: 400px; /* Altezza fissa per prevenire layout shift */
+        min-height: 400px; /* Altezza minima garantita */
+        max-height: calc(100vh - 82px); /* Non superare l'altezza viewport */
         width: 100%;
         background: rgba(30, 30, 30, 0.98);
         
@@ -2329,13 +2334,12 @@ a {
         align-items: center;
         padding: 2rem 0;
         
-        /* Animazioni ottimizzate */
-        transform: translateY(-100%);
+        /* Animazioni ottimizzate - usa solo opacity per evitare layout shift */
+        transform: translateZ(0); /* Forza compositing layer */
         opacity: 0;
         visibility: hidden;
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                    visibility 0s 0.3s; /* Delay sulla visibility per evitare flash */
+        transition: opacity 0.25s ease-out,
+                    visibility 0s 0.25s; /* Delay sulla visibility per evitare flash */
         
         z-index: 10000;
         
@@ -2353,17 +2357,17 @@ a {
         /* Smooth scrolling se necessario */
         -webkit-overflow-scrolling: touch;
         
-        will-change: transform, opacity;
+        /* Stabilizza il layout per prevenire CLS */
+        contain: layout style paint size;
+        will-change: opacity;
         box-sizing: border-box;
         white-space: normal;
     }
 
     .nav-menu.active {
-        transform: translateY(0);
         opacity: 1;
         visibility: visible;
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        transition: opacity 0.25s ease-out,
                     visibility 0s; /* Nessun delay quando si apre */
     }
     

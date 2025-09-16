@@ -90,31 +90,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Traccia scroll profondo (75% della pagina) - Ottimizzato per evitare forced reflow
     let scrollTracked = false;
     let cachedBodyHeight = null;
-    let lastBodyHeightUpdate = 0;
     let ticking = false;
     
     // Cache dell'altezza del body per evitare letture DOM ripetute - Ottimizzato per forced reflow
     function updateBodyHeight() {
-        // Usa doppio requestAnimationFrame per garantire stabilità del layout
+        // Usa requestAnimationFrame per evitare forced reflow
         requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                // Usa il sistema di batching DOM per evitare forced reflow
-                if (window.domOperations && window.domOperations.read) {
-                    window.domOperations.read(() => {
-                        // Cache con timeout per evitare letture eccessive
-                        if (!cachedBodyHeight || Date.now() - lastBodyHeightUpdate > 100) {
-                            cachedBodyHeight = document.body.offsetHeight;
-                            lastBodyHeightUpdate = Date.now();
-                        }
-                    });
-                } else {
-                    // Fallback ottimizzato con cache temporale
-                    if (!cachedBodyHeight || Date.now() - lastBodyHeightUpdate > 100) {
-                        cachedBodyHeight = document.body.offsetHeight;
-                        lastBodyHeightUpdate = Date.now();
-                    }
-                }
-            });
+            // Usa il sistema di batching DOM per evitare forced reflow
+            if (window.domOperations && window.domOperations.read) {
+                window.domOperations.read(() => {
+                    cachedBodyHeight = document.body.offsetHeight;
+                });
+            } else {
+                // Fallback ottimizzato con requestAnimationFrame
+                cachedBodyHeight = document.body.offsetHeight;
+            }
         });
     }
     
