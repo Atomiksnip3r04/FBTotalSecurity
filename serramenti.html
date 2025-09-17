@@ -1022,25 +1022,34 @@
     <!-- JavaScript Carosello Serramenti -->
     <script>
         let currentSlideIndexSerramenti = 0;
+        let previousSlideIndexSerramenti = -1;
         const slidesSerramenti = document.querySelectorAll('.serramenti-carousel .carousel-slide');
         const indicatorsSerramenti = document.querySelectorAll('.serramenti-carousel .indicator');
         const totalSlidesSerramenti = slidesSerramenti.length;
 
         function showSlideSerramenti(index) {
-            // Remove active class from all slides
-            slidesSerramenti.forEach(slide => {
-                slide.classList.remove('active');
-            });
+            // Only update if index has changed to avoid unnecessary DOM operations
+            if (index === previousSlideIndexSerramenti) return;
+            
+            // Remove active class only from previous slide (more efficient)
+            if (previousSlideIndexSerramenti >= 0 && slidesSerramenti[previousSlideIndexSerramenti]) {
+                slidesSerramenti[previousSlideIndexSerramenti].classList.remove('active');
+                if (indicatorsSerramenti[previousSlideIndexSerramenti]) {
+                    indicatorsSerramenti[previousSlideIndexSerramenti].classList.remove('active');
+                }
+            }
             
             // Add active class to current slide
             if (slidesSerramenti[index]) {
                 slidesSerramenti[index].classList.add('active');
             }
             
-            // Update indicators
-            indicatorsSerramenti.forEach((indicator, i) => {
-                indicator.classList.toggle('active', i === index);
-            });
+            // Update current indicator
+            if (indicatorsSerramenti[index]) {
+                indicatorsSerramenti[index].classList.add('active');
+            }
+            
+            previousSlideIndexSerramenti = index;
         }
 
         function changeSlideSerramenti(direction) {
@@ -1060,11 +1069,27 @@
             showSlideSerramenti(currentSlideIndexSerramenti);
         }
 
-        // Auto-slide ogni 5 secondi
+        // Auto-slide ogni 5 secondi con performance ottimizzata
         if (totalSlidesSerramenti > 1) {
-            setInterval(() => {
-                changeSlideSerramenti(1);
+            // Usa requestAnimationFrame per operazioni DOM più fluide
+            let intervalId = setInterval(() => {
+                requestAnimationFrame(() => {
+                    changeSlideSerramenti(1);
+                });
             }, 5000);
+            
+            // Pausa l'auto-slide quando la tab non è visibile per risparmiare risorse
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    clearInterval(intervalId);
+                } else if (totalSlidesSerramenti > 1) {
+                    intervalId = setInterval(() => {
+                        requestAnimationFrame(() => {
+                            changeSlideSerramenti(1);
+                        });
+                    }, 5000);
+                }
+            });
         }
     </script>
 </body>

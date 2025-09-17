@@ -887,16 +887,32 @@
             const nextBtn = slider.querySelector('.next-btn');
             
             let currentSlide = 0;
+            let previousSlide = -1;
             const totalSlides = slides.length;
             
             function showSlide(index) {
-                // Remove active class from all slides and dots
-                slides.forEach(slide => slide.classList.remove('active'));
-                dots.forEach(dot => dot.classList.remove('active'));
+                // Only update if index has changed to avoid unnecessary DOM operations
+                if (index === previousSlide) return;
+                
+                // Remove active class only from previous slide and dot (more efficient)
+                if (previousSlide >= 0) {
+                    if (slides[previousSlide]) {
+                        slides[previousSlide].classList.remove('active');
+                    }
+                    if (dots[previousSlide]) {
+                        dots[previousSlide].classList.remove('active');
+                    }
+                }
                 
                 // Add active class to current slide and dot
-                slides[index].classList.add('active');
-                dots[index].classList.add('active');
+                if (slides[index]) {
+                    slides[index].classList.add('active');
+                }
+                if (dots[index]) {
+                    dots[index].classList.add('active');
+                }
+                
+                previousSlide = index;
             }
             
             function nextSlide() {
@@ -926,8 +942,24 @@
                 });
             });
             
-            // Auto-advance slides every 5 seconds
-            setInterval(nextSlide, 5000);
+            // Auto-advance slides every 5 seconds with performance optimization
+            if (totalSlides > 1) {
+                // Use requestAnimationFrame for smoother DOM operations
+                let intervalId = setInterval(() => {
+                    requestAnimationFrame(nextSlide);
+                }, 5000);
+                
+                // Pause auto-slide when tab is not visible to save resources
+                document.addEventListener('visibilitychange', () => {
+                    if (document.hidden) {
+                        clearInterval(intervalId);
+                    } else if (totalSlides > 1) {
+                        intervalId = setInterval(() => {
+                            requestAnimationFrame(nextSlide);
+                        }, 5000);
+                    }
+                });
+            }
             
             // Keyboard navigation
             document.addEventListener('keydown', (e) => {

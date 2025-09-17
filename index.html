@@ -1607,25 +1607,34 @@ img {
     <!-- JavaScript Carosello Allarmi -->
     <script>
         let currentSlideIndexAllarmi = 0;
+        let previousSlideIndexAllarmi = -1;
         const slidesAllarmi = document.querySelectorAll('.allarmi-carousel .carousel-slide');
         const indicatorsAllarmi = document.querySelectorAll('.allarmi-carousel .indicator');
         const totalSlidesAllarmi = slidesAllarmi.length;
 
         function showSlideAllarmi(index) {
-            // Remove active class from all slides
-            slidesAllarmi.forEach(slide => {
-                slide.classList.remove('active');
-            });
+            // Only update if index has changed to avoid unnecessary DOM operations
+            if (index === previousSlideIndexAllarmi) return;
+            
+            // Remove active class only from previous slide (more efficient)
+            if (previousSlideIndexAllarmi >= 0 && slidesAllarmi[previousSlideIndexAllarmi]) {
+                slidesAllarmi[previousSlideIndexAllarmi].classList.remove('active');
+                if (indicatorsAllarmi[previousSlideIndexAllarmi]) {
+                    indicatorsAllarmi[previousSlideIndexAllarmi].classList.remove('active');
+                }
+            }
             
             // Add active class to current slide
             if (slidesAllarmi[index]) {
                 slidesAllarmi[index].classList.add('active');
             }
             
-            // Update indicators
-            indicatorsAllarmi.forEach((indicator, i) => {
-                indicator.classList.toggle('active', i === index);
-            });
+            // Update current indicator
+            if (indicatorsAllarmi[index]) {
+                indicatorsAllarmi[index].classList.add('active');
+            }
+            
+            previousSlideIndexAllarmi = index;
         }
 
         function changeSlideAllarmi(direction) {
@@ -1645,11 +1654,27 @@ img {
             showSlideAllarmi(currentSlideIndexAllarmi);
         }
 
-        // Auto-slide ogni 5 secondi
+        // Auto-slide ogni 5 secondi con performance ottimizzata
         if (totalSlidesAllarmi > 1) {
-            setInterval(() => {
-                changeSlideAllarmi(1);
+            // Usa requestAnimationFrame per operazioni DOM più fluide
+            let intervalId = setInterval(() => {
+                requestAnimationFrame(() => {
+                    changeSlideAllarmi(1);
+                });
             }, 5000);
+            
+            // Pausa l'auto-slide quando la tab non è visibile per risparmiare risorse
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    clearInterval(intervalId);
+                } else if (totalSlidesAllarmi > 1) {
+                    intervalId = setInterval(() => {
+                        requestAnimationFrame(() => {
+                            changeSlideAllarmi(1);
+                        });
+                    }, 5000);
+                }
+            });
         }
     </script>
     
