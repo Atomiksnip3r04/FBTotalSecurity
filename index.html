@@ -1743,39 +1743,92 @@ img {
                 originalAlert.call(window, message);
             };
             
-            // Disabilita Zaraz debug se l'oggetto zaraz esiste
-            if (window.zaraz) {
-                window.zaraz.debug = false;
-                if (window.zaraz.set && typeof window.zaraz.set === 'function') {
-                    try {
-                        window.zaraz.set('debug', false);
-                    } catch (e) {
-                        console.warn('Zaraz set method error:', e);
+            // Prevenzione completa errori Zaraz con inizializzazione sicura
+            (function() {
+                // Crea un oggetto zaraz stub sicuro per prevenire errori
+                const safeZarazStub = {
+                    debug: false,
+                    set: function(key, value) {
+                        // Stub sicuro che non fa nulla ma previene errori
+                        return this;
+                    },
+                    track: function() {
+                        // Stub sicuro per tracking
+                        return this;
+                    },
+                    init: function() {
+                        // Stub sicuro per init
+                        return this;
                     }
+                };
+                
+                // Inizializza zaraz con stub sicuro se non esiste
+                if (!window.zaraz) {
+                    window.zaraz = safeZarazStub;
                 }
-            }
-            
-            // Intercetta la creazione dell'oggetto zaraz con controlli di sicurezza
-            Object.defineProperty(window, 'zaraz', {
-                set: function(value) {
-                    if (value && typeof value === 'object') {
-                        value.debug = false;
-                        if (value.set && typeof value.set === 'function') {
-                            try {
-                                value.set('debug', false);
-                            } catch (e) {
-                                console.warn('Zaraz set method error during initialization:', e);
-                            }
+                
+                // Disabilita Zaraz debug se l'oggetto zaraz esiste
+                if (window.zaraz) {
+                    window.zaraz.debug = false;
+                    if (window.zaraz.set && typeof window.zaraz.set === 'function') {
+                        try {
+                            window.zaraz.set('debug', false);
+                        } catch (e) {
+                            // Silenzioso per evitare spam console
                         }
                     }
-                    this._zaraz = value;
-                },
-                get: function() {
-                    return this._zaraz;
-                },
-                configurable: true,
-                enumerable: true
-            });
+                }
+                
+                // Intercetta la creazione dell'oggetto zaraz con controlli di sicurezza avanzati
+                let zarazValue = window.zaraz || safeZarazStub;
+                
+                Object.defineProperty(window, 'zaraz', {
+                    set: function(value) {
+                        if (value && typeof value === 'object') {
+                            // Assicura che tutti i metodi essenziali esistano
+                            if (!value.set || typeof value.set !== 'function') {
+                                value.set = safeZarazStub.set;
+                            }
+                            if (!value.track || typeof value.track !== 'function') {
+                                value.track = safeZarazStub.track;
+                            }
+                            if (!value.init || typeof value.init !== 'function') {
+                                value.init = safeZarazStub.init;
+                            }
+                            
+                            value.debug = false;
+                            
+                            // Wrappa i metodi per prevenire errori
+                            const originalSet = value.set;
+                            value.set = function(key, val) {
+                                try {
+                                    return originalSet.call(this, key, val);
+                                } catch (e) {
+                                    return this;
+                                }
+                            };
+                            
+                            const originalInit = value.init;
+                            value.init = function() {
+                                try {
+                                    return originalInit.call(this);
+                                } catch (e) {
+                                    return this;
+                                }
+                            };
+                        } else if (!value) {
+                            // Se value è null/undefined, usa lo stub sicuro
+                            value = safeZarazStub;
+                        }
+                        zarazValue = value;
+                    },
+                    get: function() {
+                        return zarazValue;
+                    },
+                    configurable: true,
+                    enumerable: true
+                });
+            })();
         }
     </script>
 
