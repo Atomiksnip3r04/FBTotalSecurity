@@ -1653,6 +1653,96 @@ img {
         }
     </script>
     
+    <!-- Disabilita completamente Zaraz Debug Mode -->
+    <script>
+        // Disabilita Zaraz debug mode
+        if (typeof window !== 'undefined') {
+            // Rimuovi parametri debug dall'URL se presenti
+            if (window.location.search.includes('zaraz_debug') || window.location.search.includes('debug')) {
+                const url = new URL(window.location);
+                url.searchParams.delete('zaraz_debug');
+                url.searchParams.delete('debug');
+                window.history.replaceState({}, document.title, url.pathname + url.search);
+            }
+            
+            // Disabilita debug mode tramite localStorage
+            try {
+                localStorage.removeItem('zaraz_debug');
+                localStorage.removeItem('zaraz-debug');
+                localStorage.setItem('zaraz_debug', 'false');
+            } catch (e) {
+                // Ignora errori localStorage
+            }
+            
+            // Disabilita debug mode tramite sessionStorage
+            try {
+                sessionStorage.removeItem('zaraz_debug');
+                sessionStorage.removeItem('zaraz-debug');
+                sessionStorage.setItem('zaraz_debug', 'false');
+            } catch (e) {
+                // Ignora errori sessionStorage
+            }
+            
+            // Override console methods per bloccare messaggi debug Zaraz
+            const originalLog = console.log;
+            const originalWarn = console.warn;
+            const originalInfo = console.info;
+            
+            console.log = function(...args) {
+                const message = args.join(' ');
+                if (!message.includes('Zaraz') && !message.includes('zaraz')) {
+                    originalLog.apply(console, args);
+                }
+            };
+            
+            console.warn = function(...args) {
+                const message = args.join(' ');
+                if (!message.includes('Zaraz') && !message.includes('zaraz')) {
+                    originalWarn.apply(console, args);
+                }
+            };
+            
+            console.info = function(...args) {
+                const message = args.join(' ');
+                if (!message.includes('Zaraz') && !message.includes('zaraz')) {
+                    originalInfo.apply(console, args);
+                }
+            };
+            
+            // Blocca popup e alert relativi a Zaraz
+            const originalAlert = window.alert;
+            window.alert = function(message) {
+                if (typeof message === 'string' && (message.includes('Zaraz') || message.includes('zaraz'))) {
+                    return; // Blocca l'alert
+                }
+                originalAlert.call(window, message);
+            };
+            
+            // Disabilita Zaraz debug se l'oggetto zaraz esiste
+            if (window.zaraz) {
+                window.zaraz.debug = false;
+                if (window.zaraz.set) {
+                    window.zaraz.set('debug', false);
+                }
+            }
+            
+            // Intercetta la creazione dell'oggetto zaraz
+            Object.defineProperty(window, 'zaraz', {
+                set: function(value) {
+                    if (value && typeof value === 'object') {
+                        value.debug = false;
+                        if (value.set) {
+                            value.set('debug', false);
+                        }
+                    }
+                    this._zaraz = value;
+                },
+                get: function() {
+                    return this._zaraz;
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
