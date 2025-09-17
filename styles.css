@@ -201,15 +201,19 @@ a {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 40px; /* Fixed padding to match the CLS data (left: 40) */
-    width: 1270px; /* Fixed width to match CLS data */
-    max-width: 1270px;
+    padding: 0 40px; /* Consistent padding for all screen sizes */
+    width: 100%; /* Responsive width instead of fixed */
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
     height: 100%;
     box-sizing: border-box;
+    
+    /* CLS Prevention: Force layout stability */
+    contain: layout style;
+    transform: translateZ(0); /* Force GPU layer */
+    will-change: auto; /* Remove will-change to prevent unnecessary layers */
 }
 
 .logo {
@@ -2579,6 +2583,10 @@ a {
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: 3rem;
     margin: 4rem 0;
+    
+    /* CLS Prevention: Stabilize grid layout */
+    contain: layout style;
+    transform: translateZ(0); /* Force GPU layer */
 }
 
 .client-card {
@@ -2589,6 +2597,12 @@ a {
     position: relative;
     transition: all 0.4s ease;
     backdrop-filter: blur(10px);
+    
+    /* CLS Prevention: Force stable layout and dimensions */
+    min-height: 400px; /* Reserve minimum space to prevent layout shifts */
+    contain: layout style;
+    transform: translateZ(0); /* Force GPU layer */
+    will-change: transform; /* Optimize for animations */
 }
 
 .client-card::before {
@@ -2625,11 +2639,24 @@ a {
     background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(76, 175, 80, 0.05) 100%);
     border-radius: 12px;
     border: 1px solid rgba(76, 175, 80, 0.2);
+    
+    /* CLS Prevention: Force stable dimensions and layout */
+    min-width: 40px;
+    min-height: 40px;
+    flex-shrink: 0;
+    contain: layout style;
+    transform: translateZ(0); /* Force GPU layer */
 }
 
 .client-icon svg {
     width: 30px;
     height: 30px;
+    
+    /* CLS Prevention: Ensure SVG maintains stable dimensions */
+    min-width: 30px;
+    min-height: 30px;
+    flex-shrink: 0;
+    display: block; /* Prevent inline spacing issues */
 }
 
 .client-card h3 {
