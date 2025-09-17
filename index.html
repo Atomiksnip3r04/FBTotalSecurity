@@ -47,11 +47,11 @@
             /* SOLUZIONE CLS DEFINITIVA: Altezza fissa per eliminare completamente le variazioni */
             height:700px!important;min-height:700px!important;max-height:700px;width:100%;box-sizing:border-box;contain:layout style paint;transform:translateZ(0);isolation:isolate;flex-shrink:0;overflow:visible}
         .hero-title{font-size:clamp(2.2rem,8vw,5rem);font-weight:700;line-height:1.1;margin-bottom:1.5rem;background:linear-gradient(135deg,#fff,var(--primary-color));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;max-width:800px;width:100%;
-            /* SOLUZIONE CLS DEFINITIVA: Altezza fissa per il titolo */
-            height:calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2.2)!important;min-height:calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2.2)!important;contain:layout style paint;transform:translateZ(0);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-sizing:border-box;overflow:visible;text-align:center}
+            /* SOLUZIONE MOBILE: Altezza automatica per evitare troncamento */
+            height:auto!important;min-height:auto!important;contain:layout style paint;transform:translateZ(0);display:block;text-align:center;flex-shrink:0;box-sizing:border-box;overflow:visible;word-wrap:break-word;hyphens:auto}
         .hero-subtitle{font-size:clamp(1.2rem,2.5vw,1.5rem);color:var(--text-light);margin-bottom:3rem;max-width:600px;width:100%;margin-left:auto;margin-right:auto;line-height:1.6;
-            /* SOLUZIONE CLS E LCP DEFINITIVA: Altezza fissa per il sottotitolo LCP */
-            height:calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3.5)!important;min-height:calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3.5)!important;contain:layout style paint;will-change:auto;transform:translateZ(0);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-sizing:border-box;overflow:visible;text-align:center;isolation:isolate;
+            /* SOLUZIONE MOBILE: Altezza automatica per contenere tutto il testo */
+            height:auto!important;min-height:auto!important;contain:layout style paint;will-change:auto;transform:translateZ(0);display:block;text-align:center;flex-shrink:0;box-sizing:border-box;overflow:visible;isolation:isolate;word-wrap:break-word;hyphens:auto;
             /* OTTIMIZZAZIONE LCP CRITICA: Rendering immediato */
             font-display:block;visibility:visible;opacity:1;backface-visibility:hidden}
         .hero-cta{display:flex;gap:1.5rem;justify-content:center;align-items:center;width:100%;
@@ -678,7 +678,7 @@ img {
         <nav class="nav">
             <div class="nav-container">
                 <div class="logo">
-                    <a href="index.html" class="logo-link">
+                    <a href="index.html" class="logo-link" title="FB Total Security - Torna alla homepage">
                         <img src="icons/logo_sito_franco_small.webp" alt="FB Total Security Logo" class="logo-image" loading="eager" width="47" height="40">
                         <div class="logo-text">
                             <span class="logo-title">FB Total Security</span>
@@ -732,8 +732,8 @@ img {
                 <h1 class="hero-title" data-translate="hero-title">Soluzioni di Sicurezza Avanzate per la Tua Protezione</h1>
                 <p class="hero-subtitle" data-translate="hero-subtitle">Anni di esperienza multisettoriale nella protezione di abitazioni private e aziende in tutta Italia. Soluzioni di sicurezza avanzate certificate, installazioni garantite, sistemi di protezione personalizzati per privati e imprese.</p>
                 <div class="hero-cta">
-                    <a href="#contatti" class="btn btn-primary" data-translate="hero-cta-primary">Richiedi Consulenza Gratuita</a>
-                    <a href="#servizi" class="btn btn-secondary" data-translate="hero-cta-secondary">Scopri i Servizi</a>
+                    <a href="#contatti" class="btn btn-primary" data-translate="hero-cta-primary" title="Contattaci per una consulenza gratuita personalizzata">Richiedi Consulenza Gratuita</a>
+                    <a href="#servizi" class="btn btn-secondary" data-translate="hero-cta-secondary" title="Scopri tutti i nostri servizi di sicurezza avanzati">Scopri i Servizi</a>
                 </div>
             </div>
         </section>
@@ -908,7 +908,7 @@ img {
                             <li data-translate="nebbiogeni-feature-13">Supporto pre e post-vendita</li>
                         </ul>
                         <div class="service-cta">
-                            <a href="#contatti" class="btn btn-primary" data-translate="btn-quote">Richiedi Preventivo</a>
+                            <a href="#contatti" class="btn btn-primary" data-translate="btn-quote" title="Richiedi un preventivo gratuito per i sistemi nebbiogeni">Richiedi Preventivo</a>
         
                         </div>
                     </div>
@@ -982,7 +982,7 @@ img {
                             <li data-translate="serramenti-feature-13">Supporto post-vendita</li>
                         </ul>
                         <div class="service-cta">
-                            <a href="#contatti" class="btn btn-primary" data-translate="btn-quote">Richiedi Preventivo</a>
+                            <a href="#contatti" class="btn btn-primary" data-translate="btn-quote" title="Richiedi un preventivo gratuito per serramenti blindati">Richiedi Preventivo</a>
                         </div>
                     </div>
                     <div class="service-image">
@@ -1055,7 +1055,7 @@ img {
                             <li data-translate="sorveglianza-feature-13">Consulenza sicurezza personalizzata</li>
                         </ul>
                         <div class="service-cta">
-                            <a href="#contatti" class="btn btn-primary" data-translate="btn-quote">Richiedi Preventivo</a>
+                            <a href="#contatti" class="btn btn-primary" data-translate="btn-quote" title="Richiedi un preventivo gratuito per sistemi di videosorveglianza">Richiedi Preventivo</a>
                         </div>
                     </div>
                     <div class="service-image">
@@ -1125,7 +1125,7 @@ img {
                             <li data-translate="allarmi-feature-7">Modulabile e trasferibile secondo necessità</li>
                         </ul>
                         <div class="service-cta">
-                            <a href="#contatti" class="btn btn-primary" data-translate="btn-quote">Richiedi Preventivo</a>
+                            <a href="#contatti" class="btn btn-primary" data-translate="btn-quote" title="Richiedi un preventivo gratuito per sistemi di allarme intelligenti">Richiedi Preventivo</a>
                         </div>
                     </div>
                     <div class="service-image">
@@ -1230,7 +1230,7 @@ img {
                 </div>
                 <div class="clients-cta">
                     <p class="cta-text" data-translate="clients-cta-text">Ogni progetto inizia con un sopralluogo gratuito per valutare le tue specifiche esigenze di sicurezza</p>
-                    <a href="#contatti" class="btn btn-primary" data-translate="clients-cta-btn">Prenota Sopralluogo Gratuito</a>
+                    <a href="#contatti" class="btn btn-primary" data-translate="clients-cta-btn" title="Prenota un sopralluogo gratuito per valutare le tue esigenze di sicurezza">Prenota Sopralluogo Gratuito</a>
                 </div>
             </div>
         </section>
@@ -1251,7 +1251,7 @@ img {
                                 </svg>
                                 <div>
                                     <h3 data-translate="contact-email-label">Email</h3>
-                                    <p><a href="mailto:postmaster@fbtotalsecurity.com">postmaster@fbtotalsecurity.com</a></p>
+                                    <p><a href="mailto:postmaster@fbtotalsecurity.com" title="Invia una email a FB Total Security per informazioni e preventivi">postmaster@fbtotalsecurity.com</a></p>
                                 </div>
                             </div>
                             <div class="contact-item">
@@ -1333,7 +1333,7 @@ img {
                             <li data-translate="agency-feature-5">Expertise in nebbiogeni e videosorveglianza intelligente</li>
                         </ul>
                         <div class="service-cta" style="margin-top: 2rem; text-align: center;">
-                            <a href="#contatti" class="btn btn-primary" data-translate="agency-cta">Contattaci</a>
+                            <a href="#contatti" class="btn btn-primary" data-translate="agency-cta" title="Contattaci per scoprire le nostre soluzioni di sicurezza avanzate">Contattaci</a>
                         </div>
                     </div>
                 </div>
@@ -1481,14 +1481,14 @@ img {
                     <p data-translate="footer-description">Creatori di sicurezza specializzati in sistemi di protezione avanzati. La tua sicurezza è la nostra priorità.</p>
                     <div class="social-links">
                         <h4 data-translate="footer-social-title">Seguici su:</h4>
-                        <a href="https://www.facebook.com/profile.php?id=61581141350058" rel="follow noopener noreferrer" target="_blank" aria-label="FB Total Security su Facebook">
+                        <a href="https://www.facebook.com/profile.php?id=61581141350058" rel="follow noopener noreferrer" target="_blank" aria-label="FB Total Security su Facebook" title="Seguici su Facebook per aggiornamenti e novità sulla sicurezza">
                             <svg width="20" height="20" role="img" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                             </svg>
                             <span class="sr-only">Facebook</span>
                         </a>
-                        <a href="https://www.instagram.com/francosicurezza" rel="follow noopener noreferrer" target="_blank" aria-label="Instagram">📷</a>
-                        <a href="https://x.com/FBTotalSecurity" aria-label="FB Total Security su X" rel="me noopener noreferrer" target="_blank">
+                        <a href="https://www.instagram.com/francosicurezza" rel="follow noopener noreferrer" target="_blank" aria-label="Instagram" title="Seguici su Instagram per foto e video dei nostri progetti di sicurezza">📷</a>
+                        <a href="https://x.com/FBTotalSecurity" aria-label="FB Total Security su X" rel="me noopener noreferrer" target="_blank" title="Seguici su X (Twitter) per news e aggiornamenti sulla sicurezza">
                             <svg aria-hidden="true" width="20" height="20" role="img" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                             </svg>
@@ -1499,28 +1499,28 @@ img {
                 <div class="footer-section">
                     <h4 data-translate="footer-services-title">Servizi</h4>
                     <ul>
-                        <li><a href="nebbiogeni.html" data-translate="footer-service-nebbiogeni">Sistemi Nebbiogeni</a></li>
-                        <li><a href="serramenti.html" data-translate="footer-service-serramenti">Serramenti Blindati</a></li>
-                        <li><a href="sorveglianza.html" data-translate="footer-service-sorveglianza">Videosorveglianza</a></li>
-                        <li><a href="allarmi.html" data-translate="footer-service-allarmi">Sistemi di Allarme</a></li>
+                        <li><a href="nebbiogeni.html" data-translate="footer-service-nebbiogeni" title="Scopri i nostri sistemi nebbiogeni professionali per la protezione immediata">Sistemi Nebbiogeni</a></li>
+                        <li><a href="serramenti.html" data-translate="footer-service-serramenti" title="Esplora i nostri serramenti blindati e porte di sicurezza ad alta protezione">Serramenti Blindati</a></li>
+                        <li><a href="sorveglianza.html" data-translate="footer-service-sorveglianza" title="Scopri i nostri sistemi di videosorveglianza avanzati con tecnologia 4K">Videosorveglianza</a></li>
+                        <li><a href="allarmi.html" data-translate="footer-service-allarmi" title="Esplora i nostri sistemi di allarme intelligenti per la massima sicurezza">Sistemi di Allarme</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4 data-translate="footer-contacts-title">Contatti</h4>
                     <ul>
 
-                        <li><a href="mailto:postmaster@fbtotalsecurity.com">postmaster@fbtotalsecurity.com</a></li>
+                        <li><a href="mailto:postmaster@fbtotalsecurity.com" title="Invia una email a FB Total Security per informazioni e preventivi">postmaster@fbtotalsecurity.com</a></li>
                         <li data-translate="footer-service-area">Tutta Italia</li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4 data-translate="footer-info-title">Informazioni</h4>
                     <ul>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                        <li><a href="#">Termini di Servizio</a></li>
-                        <li><a href="termini-condizioni.html">Termini e Condizioni</a></li>
-                        <li><a href="#">Certificazioni</a></li>
+                        <li><a href="#" title="Consulta la nostra informativa sulla privacy">Privacy Policy</a></li>
+                        <li><a href="#" title="Scopri la nostra politica sui cookie">Cookie Policy</a></li>
+                        <li><a href="#" title="Leggi i nostri termini di servizio">Termini di Servizio</a></li>
+                        <li><a href="termini-condizioni.html" title="Leggi i nostri termini e condizioni di servizio">Termini e Condizioni</a></li>
+                        <li><a href="#" title="Visualizza le nostre certificazioni di sicurezza">Certificazioni</a></li>
                     </ul>
                 </div>
             </div>
@@ -1653,55 +1653,6 @@ img {
         }
     </script>
     
-    <!-- Cloudflare Zaraz Debug Mode -->
-    <script>
-        // Attiva debug mode per diagnosticare problemi GA e altri servizi di tracking
-        function enableZarazDebug() {
-            if (typeof zaraz !== 'undefined' && zaraz.debug) {
-                zaraz.debug('d348m84l0sms73chv9g0');
-                console.log('🔍 Zaraz Debug Mode attivato - Controlla Network tab per dettagli');
-                console.log('📊 Debug Key utilizzata: d348m84l0sms73chv9g0');
-                
-                // Log eventi Zaraz per debugging avanzato
-                if (zaraz.track) {
-                    const originalTrack = zaraz.track;
-                    zaraz.track = function(...args) {
-                        console.log('📊 Zaraz Track Event:', args);
-                        return originalTrack.apply(this, args);
-                    };
-                }
-                
-                // Log errori di rete Zaraz
-                if (zaraz._c) {
-                    const originalC = zaraz._c;
-                    zaraz._c = function(...args) {
-                        console.log('🌐 Zaraz Network Call:', args);
-                        return originalC.apply(this, args);
-                    };
-                }
-                
-                return true;
-            } else {
-                console.log('⚠️ Zaraz non disponibile, riprovo tra 500ms...');
-                setTimeout(enableZarazDebug, 500);
-                return false;
-            }
-        }
-        
-        // Avvia debug quando DOM è pronto
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', enableZarazDebug);
-        } else {
-            enableZarazDebug();
-        }
-        
-        // Fallback per assicurarsi che il debug sia attivo
-        setTimeout(() => {
-            if (typeof zaraz !== 'undefined' && !window.zarazDebugEnabled) {
-                enableZarazDebug();
-                window.zarazDebugEnabled = true;
-            }
-        }, 2000);
-    </script>
+
 </body>
 </html>

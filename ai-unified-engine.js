@@ -318,6 +318,7 @@ class AIUnifiedEngine {
                 const response = await fetch(schema);
                 if (response.ok) {
                     const data = await response.json();
+                    console.log(`✅ Loaded schema: ${schema}`);
                     
                     // Extract entities from @graph or add the entire object
                     if (data['@graph']) {
@@ -325,9 +326,11 @@ class AIUnifiedEngine {
                     } else if (data['@type']) {
                         unifiedGraph.push(data);
                     }
+                } else {
+                    console.debug(`⚠️ Schema not available: ${schema} (${response.status})`);
                 }
             } catch (error) {
-                console.warn(`Could not load schema ${schema}:`, error);
+                console.debug(`⚠️ Could not load schema ${schema}:`, error.message);
             }
         }
 

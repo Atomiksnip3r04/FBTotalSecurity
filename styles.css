@@ -646,10 +646,9 @@ a {
     justify-content: center;
     align-items: center;
     
-    /* SOLUZIONE CLS DEFINITIVA: Altezza fissa per eliminare completamente CLS */
-    height: 700px !important;
-    min-height: 700px !important;
-    max-height: 700px;
+    /* SOLUZIONE TRONCAMENTO: Altezza flessibile per contenere tutto il contenuto */
+    min-height: 600px; /* Altezza minima ragionevole */
+    height: auto; /* Altezza automatica basata sul contenuto */
     
     /* Optimize for layout stability and reduce CLS */
     contain: layout style paint;
@@ -674,13 +673,13 @@ a {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    line-height: 1.1;
+    line-height: 1.2; /* Aumentato da 1.1 per migliore leggibilità */
     max-width: 800px; /* Limita la larghezza per evitare righe troppo lunghe */
     width: 100%; /* Occupa tutta la larghezza disponibile (del suo contenitore) */
 
-    /* SOLUZIONE CLS DEFINITIVA: Altezza fissa calcolata per 2 righe di testo */
-    height: calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2.2) !important;
-    min-height: calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2.2) !important;
+    /* SOLUZIONE TRONCAMENTO: Rimuovere altezza fissa e permettere espansione naturale */
+    min-height: auto; /* Permette espansione naturale */
+    height: auto; /* Altezza automatica basata sul contenuto */
     
     /* Aggiungiamo 'contain' per isolare il rendering di questi elementi */
     contain: layout style paint;
@@ -698,9 +697,8 @@ a {
     font-family: 'Inter', 'Inter Fallback', system-ui, -apple-system, sans-serif;
     /* Stabilizza ulteriormente il layout */
     flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block; /* Cambiato da flex per permettere wrapping naturale */
+    text-align: center; /* Mantiene il testo centrato */
     
     /* Permettere la visualizzazione completa del testo */
     overflow: visible;
@@ -721,9 +719,9 @@ a {
     margin-right: auto;
     line-height: 1.6;
     
-    /* SOLUZIONE CLS E LCP DEFINITIVA: Altezza fissa per il sottotitolo LCP */
-    height: calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3.5) !important;
-    min-height: calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3.5) !important;
+    /* SOLUZIONE TRONCAMENTO: Altezza flessibile per contenere tutto il contenuto */
+    min-height: auto; /* Permette espansione naturale */
+    height: auto; /* Altezza automatica basata sul contenuto */
     
     /* Aggiungiamo 'contain' per isolare il rendering di questi elementi */
     contain: layout style paint;
@@ -733,14 +731,17 @@ a {
     font-family: 'Inter', 'Inter Fallback', system-ui, -apple-system, sans-serif;
     
     /* Ottimizzazioni aggiuntive per LCP e CLS */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block; /* Cambiato da flex per permettere wrapping naturale */
+    text-align: center; /* Mantiene il testo centrato */
     flex-shrink: 0;
     box-sizing: border-box;
     overflow: visible;
-    text-align: center;
     isolation: isolate;
+    
+    /* Miglioramenti per mobile - evita troncamento */
+    word-wrap: break-word;
+    hyphens: auto;
+    white-space: normal;
 }
 
 .hero-cta {
@@ -2482,6 +2483,21 @@ a {
         hyphens: auto;
         line-height: 1.2;
         padding: 0 0.5rem;
+        height: auto !important;
+        min-height: auto !important;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1.1rem, 4vw, 1.4rem);
+        line-height: 1.5;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+        word-break: break-word;
+        hyphens: auto;
+        white-space: normal;
+        height: auto !important;
+        min-height: auto !important;
+        max-width: 100%;
     }
 
     .hero-cta {
@@ -2567,10 +2583,28 @@ a {
         line-height: 1.1;
         padding: 0 1rem;
         text-align: center;
+        height: auto !important;
+        min-height: auto !important;
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(1rem, 4.5vw, 1.3rem);
+        line-height: 1.4;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+        word-break: break-word;
+        hyphens: auto;
+        white-space: normal;
+        height: auto !important;
+        min-height: auto !important;
+        max-width: 100%;
+        text-align: center;
     }
     
     .hero-container {
         padding: 0 0.5rem;
+        height: auto !important;
+        min-height: auto !important;
     }
 }
 
