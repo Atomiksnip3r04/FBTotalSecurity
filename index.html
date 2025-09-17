@@ -42,19 +42,21 @@
         .tagline{font-size:.9rem;color:var(--primary-color);margin:0;line-height:1}
         .nav-menu{display:flex;list-style:none;gap:1.5rem;align-items:center;min-height:40px}
         .hamburger{display:none}
-        .hero{min-height:calc(100vh - 82px);display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#000,#1a1a1a);position:relative;contain:layout style paint}
+        .hero{min-height:calc(100vh - 82px);display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#000,#1a1a1a);position:relative;contain:layout style paint;overflow:hidden}
         .hero-container{max-width:1200px;margin:0 auto;text-align:center;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem 1rem;
-            /* SOLUZIONE CLS #1: Altezza minima garantita per il contenitore principale. */
-            min-height:700px}
+            /* SOLUZIONE CLS DEFINITIVA: Altezza fissa per eliminare completamente le variazioni */
+            height:700px!important;min-height:700px!important;max-height:700px;width:100%;box-sizing:border-box;contain:layout style paint;transform:translateZ(0);isolation:isolate;flex-shrink:0;overflow:visible}
         .hero-title{font-size:clamp(2.2rem,8vw,5rem);font-weight:700;line-height:1.1;margin-bottom:1.5rem;background:linear-gradient(135deg,#fff,var(--primary-color));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;max-width:800px;width:100%;
-            /* SOLUZIONE CLS #2: Altezza minima per il titolo (calcolata su 2 righe) */
-            min-height:calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2);contain:layout style paint}
+            /* SOLUZIONE CLS DEFINITIVA: Altezza fissa per il titolo */
+            height:calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2.2)!important;min-height:calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2.2)!important;contain:layout style paint;transform:translateZ(0);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-sizing:border-box;overflow:visible;text-align:center}
         .hero-subtitle{font-size:clamp(1.2rem,2.5vw,1.5rem);color:var(--text-light);margin-bottom:3rem;max-width:600px;width:100%;margin-left:auto;margin-right:auto;line-height:1.6;
-            /* SOLUZIONE CLS #3 E OTTIMIZZAZIONE LCP: Altezza minima per il sottotitolo (calcolata su 3 righe) */
-            min-height:calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3);contain:layout style paint;will-change:transform;transform:translateZ(0)}
+            /* SOLUZIONE CLS E LCP DEFINITIVA: Altezza fissa per il sottotitolo LCP */
+            height:calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3.5)!important;min-height:calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3.5)!important;contain:layout style paint;will-change:auto;transform:translateZ(0);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-sizing:border-box;overflow:visible;text-align:center;isolation:isolate;
+            /* OTTIMIZZAZIONE LCP CRITICA: Rendering immediato */
+            font-display:block;visibility:visible;opacity:1;backface-visibility:hidden}
         .hero-cta{display:flex;gap:1.5rem;justify-content:center;align-items:center;width:100%;
-            /* SOLUZIONE CLS #4: Altezza minima per i pulsanti */
-            min-height:120px}
+            /* SOLUZIONE CLS DEFINITIVA: Altezza fissa per i pulsanti */
+            height:120px!important;min-height:120px!important;flex-shrink:0}
         .btn{display:inline-flex;align-items:center;justify-content:center;padding:1rem 2rem;border-radius:12px;font-weight:600;text-decoration:none;border:none;min-width:180px;height:48px;text-align:center}
         .btn-primary{background:linear-gradient(135deg,var(--primary-color),var(--primary-light));color:var(--text-black)}
         .btn-secondary{background:0 0;color:var(--primary-color);border:2px solid var(--primary-color)}
@@ -62,8 +64,8 @@
         @media(max-width:768px){.nav-menu{display:none}.hamburger{display:flex;flex-direction:column;cursor:pointer;gap:4px;z-index:10001}.hamburger span{width:25px;height:3px;background:var(--white);border-radius:2px;transition:all .3s ease}}
     </style>
 
-    <!-- 3. CARICAMENTO ASINCRONO DEL CSS COMPLETO. `media="print"` lo rende non bloccante, onload lo attiva per lo schermo. -->
-    <link rel="stylesheet" href="styles.min.css?v=20250117" media="print" onload="this.media='all'">
+    <!-- 3. OTTIMIZZAZIONE LCP: Preload del CSS critico per ridurre il ritardo di rendering -->
+    <link rel="preload" href="styles.min.css?v=20250117" as="style" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="high">
     <noscript><link rel="stylesheet" href="styles.min.css?v=20250117"></noscript>
 
     <!-- Meta Tags, Canonical, OpenGraph, etc. -->
@@ -1649,6 +1651,57 @@ img {
                 changeSlideAllarmi(1);
             }, 5000);
         }
+    </script>
+    
+    <!-- Cloudflare Zaraz Debug Mode -->
+    <script>
+        // Attiva debug mode per diagnosticare problemi GA e altri servizi di tracking
+        function enableZarazDebug() {
+            if (typeof zaraz !== 'undefined' && zaraz.debug) {
+                zaraz.debug('d348m84l0sms73chv9g0');
+                console.log('🔍 Zaraz Debug Mode attivato - Controlla Network tab per dettagli');
+                console.log('📊 Debug Key utilizzata: d348m84l0sms73chv9g0');
+                
+                // Log eventi Zaraz per debugging avanzato
+                if (zaraz.track) {
+                    const originalTrack = zaraz.track;
+                    zaraz.track = function(...args) {
+                        console.log('📊 Zaraz Track Event:', args);
+                        return originalTrack.apply(this, args);
+                    };
+                }
+                
+                // Log errori di rete Zaraz
+                if (zaraz._c) {
+                    const originalC = zaraz._c;
+                    zaraz._c = function(...args) {
+                        console.log('🌐 Zaraz Network Call:', args);
+                        return originalC.apply(this, args);
+                    };
+                }
+                
+                return true;
+            } else {
+                console.log('⚠️ Zaraz non disponibile, riprovo tra 500ms...');
+                setTimeout(enableZarazDebug, 500);
+                return false;
+            }
+        }
+        
+        // Avvia debug quando DOM è pronto
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', enableZarazDebug);
+        } else {
+            enableZarazDebug();
+        }
+        
+        // Fallback per assicurarsi che il debug sia attivo
+        setTimeout(() => {
+            if (typeof zaraz !== 'undefined' && !window.zarazDebugEnabled) {
+                enableZarazDebug();
+                window.zarazDebugEnabled = true;
+            }
+        }, 2000);
     </script>
 </body>
 </html>

@@ -646,9 +646,10 @@ a {
     justify-content: center;
     align-items: center;
     
-    /* SOLUZIONE CLS CRITICA: Altezza minima garantita per eliminare completamente CLS */
-    min-height: 600px; /* Altezza minima per prevenire layout shift */
-    height: auto; /* Permette espansione se necessario */
+    /* SOLUZIONE CLS DEFINITIVA: Altezza fissa per eliminare completamente CLS */
+    height: 700px !important;
+    min-height: 700px !important;
+    max-height: 700px;
     
     /* Optimize for layout stability and reduce CLS */
     contain: layout style paint;
@@ -661,7 +662,7 @@ a {
     flex-shrink: 0;
     
     /* NUOVO: Forza dimensioni stabili per prevenire qualsiasi shift */
-    overflow: hidden; /* Previene espansioni inaspettate */
+    overflow: visible; /* Cambiato da hidden per permettere visualizzazione completa */
     isolation: isolate; /* Crea nuovo stacking context */
 }
 
@@ -677,8 +678,9 @@ a {
     max-width: 800px; /* Limita la larghezza per evitare righe troppo lunghe */
     width: 100%; /* Occupa tutta la larghezza disponibile (del suo contenitore) */
 
-    /* SOLUZIONE CLS CRITICA: Altezza minima calcolata per 2 righe di testo */
-    min-height: calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2); /* Altezza per 2 righe */
+    /* SOLUZIONE CLS DEFINITIVA: Altezza fissa calcolata per 2 righe di testo */
+    height: calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2.2) !important;
+    min-height: calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2.2) !important;
     
     /* Aggiungiamo 'contain' per isolare il rendering di questi elementi */
     contain: layout style paint;
@@ -689,7 +691,7 @@ a {
     /* Additional CLS prevention */
     transform: translateZ(0);
     /* Reserve space to prevent shifts */
-    padding: 0.5rem 0;
+    padding: 0;
     /* Stabilize layout dimensions */
     box-sizing: border-box;
     /* Use fallback font family to prevent shifts */
@@ -719,8 +721,9 @@ a {
     margin-right: auto;
     line-height: 1.6;
     
-    /* SOLUZIONE CLS CRITICA: Altezza minima calcolata per 3 righe di testo */
-    min-height: calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3); /* Altezza per 3 righe */
+    /* SOLUZIONE CLS E LCP DEFINITIVA: Altezza fissa per il sottotitolo LCP */
+    height: calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3.5) !important;
+    min-height: calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3.5) !important;
     
     /* Aggiungiamo 'contain' per isolare il rendering di questi elementi */
     contain: layout style paint;
@@ -728,6 +731,16 @@ a {
     transform: translateZ(0);
     /* Use fallback font family to prevent shifts */
     font-family: 'Inter', 'Inter Fallback', system-ui, -apple-system, sans-serif;
+    
+    /* Ottimizzazioni aggiuntive per LCP e CLS */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    overflow: visible;
+    text-align: center;
+    isolation: isolate;
 }
 
 .hero-cta {
@@ -738,10 +751,12 @@ a {
     align-items: center;
     width: 100%;
     
-    /* SOLUZIONE CLS: Altezza minima per contenere i pulsanti */
-    min-height: 120px; /* (altezza bottone + gap) * numero bottoni */
+    /* SOLUZIONE CLS DEFINITIVA: Altezza fissa per contenere i pulsanti */
+    height: 120px !important;
+    min-height: 120px !important;
     contain: layout style;
     margin: 0 auto;
+    flex-shrink: 0;
 }
 
 @media (min-width: 768px) {
