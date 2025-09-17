@@ -1,19 +1,19 @@
-ai-unified-engine.js?v=20250117:318 Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-knowledge-base.json".
-loadExternalSchemas @ ai-unified-engine.js?v=20250117:318
+ai-unified-engine.js?v=20250917:318 Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-knowledge-base.json".
+loadExternalSchemas @ ai-unified-engine.js?v=20250917:318
 await in loadExternalSchemas
-integrateStructuredData @ ai-unified-engine.js?v=20250117:301
-runFullOptimization @ ai-unified-engine.js?v=20250117:72
-init @ ai-unified-engine.js?v=20250117:55
-AIUnifiedEngine @ ai-unified-engine.js?v=20250117:48
-(anonymous) @ ai-unified-engine.js?v=20250117:560
-ai-unified-engine.js?v=20250117:318 Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-services-schema.json".
-loadExternalSchemas @ ai-unified-engine.js?v=20250117:318
+integrateStructuredData @ ai-unified-engine.js?v=20250917:301
+runFullOptimization @ ai-unified-engine.js?v=20250917:72
+init @ ai-unified-engine.js?v=20250917:55
+AIUnifiedEngine @ ai-unified-engine.js?v=20250917:48
+(anonymous) @ ai-unified-engine.js?v=20250917:560
+ai-unified-engine.js?v=20250917:318 Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-services-schema.json".
+loadExternalSchemas @ ai-unified-engine.js?v=20250917:318
 await in loadExternalSchemas
-integrateStructuredData @ ai-unified-engine.js?v=20250117:301
-runFullOptimization @ ai-unified-engine.js?v=20250117:72
-init @ ai-unified-engine.js?v=20250117:55
-AIUnifiedEngine @ ai-unified-engine.js?v=20250117:48
-(anonymous) @ ai-unified-engine.js?v=20250117:560
+integrateStructuredData @ ai-unified-engine.js?v=20250917:301
+runFullOptimization @ ai-unified-engine.js?v=20250917:72
+init @ ai-unified-engine.js?v=20250917:55
+AIUnifiedEngine @ ai-unified-engine.js?v=20250917:48
+(anonymous) @ ai-unified-engine.js?v=20250917:560
 [Violation] Forced reflow while executing JavaScript took 204ms
  Failed sending fetch request with keepalive option to Zaraz; maybe due to large payload. Retrying fetch without keepalive option...
 (anonymous) @ s.js:5
@@ -50,36 +50,36 @@ zaraz.track @ s.js:1
 zaraz._c @ s.js:7
 (anonymous) @ s.js:7
 Navigated to https://www.fbtotalsecurity.com/
-ai-unified-engine.js?v=20250117:60 🚀 AI Unified Engine: Starting comprehensive optimization...
-ai-unified-engine.js?v=20250117:79 🔧 Optimizing meta tags...
-ai-unified-engine.js?v=20250117:125 🧠 Enhancing semantic markup...
-ai-unified-engine.js?v=20250117:217 🔗 Implementing semantic cross-linking...
-ai-unified-engine.js?v=20250117:299 📊 Integrating structured data...
-ai-unified-engine.js?v=20250117:74 ✅ AI Unified Engine: Optimization complete
-script.min.js?v=20250117:1 🔒 FB Total Security-Sistemi di Sicurezza
-script.min.js?v=20250117:1 Sito web ottimizzato per performance e SEO
+ai-unified-engine.js?v=20250917:60 🚀 AI Unified Engine: Starting comprehensive optimization...
+ai-unified-engine.js?v=20250917:79 🔧 Optimizing meta tags...
+ai-unified-engine.js?v=20250917:125 🧠 Enhancing semantic markup...
+ai-unified-engine.js?v=20250917:217 🔗 Implementing semantic cross-linking...
+ai-unified-engine.js?v=20250917:299 📊 Integrating structured data...
+ai-unified-engine.js?v=20250917:74 ✅ AI Unified Engine: Optimization complete
+script.min.js?v=20250917:1 🔒 FB Total Security-Sistemi di Sicurezza
+script.min.js?v=20250917:1 Sito web ottimizzato per performance e SEO
 (index):1662 🔍 Zaraz Debug Mode attivato - Controlla Network tab per dettagli
 (index):1663 📊 Debug Key utilizzata: d348m84l0sms73chv9g0
-script.min.js?v=20250117:1 🌐 Initializing language selector...
-script.min.js?v=20250117:1 🏁 Current language: it
-script.min.js?v=20250117:1 🔄 Setting language to it(Optimized)
-script.min.js?v=20250117:1 ✍️ Executing 168DOM write operations.
-script.min.js?v=20250117:1 ✅ DOM updates completed.
-ai-unified-engine.js?v=20250117:318 Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-seo-enhanced.json".
-loadExternalSchemas @ ai-unified-engine.js?v=20250117:318
-integrateStructuredData @ ai-unified-engine.js?v=20250117:301
-runFullOptimization @ ai-unified-engine.js?v=20250117:72
-init @ ai-unified-engine.js?v=20250117:55
-AIUnifiedEngine @ ai-unified-engine.js?v=20250117:48
-(anonymous) @ ai-unified-engine.js?v=20250117:560
-ai-unified-engine.js?v=20250117:318 Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-knowledge-base.json".
-loadExternalSchemas @ ai-unified-engine.js?v=20250117:318
+script.min.js?v=20250917:1 🌐 Initializing language selector...
+script.min.js?v=20250917:1 🏁 Current language: it
+script.min.js?v=20250917:1 🔄 Setting language to it(Optimized)
+script.min.js?v=20250917:1 ✍️ Executing 168DOM write operations.
+script.min.js?v=20250917:1 ✅ DOM updates completed.
+ai-unified-engine.js?v=20250917:318 Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-seo-enhanced.json".
+loadExternalSchemas @ ai-unified-engine.js?v=20250917:318
+integrateStructuredData @ ai-unified-engine.js?v=20250917:301
+runFullOptimization @ ai-unified-engine.js?v=20250917:72
+init @ ai-unified-engine.js?v=20250917:55
+AIUnifiedEngine @ ai-unified-engine.js?v=20250917:48
+(anonymous) @ ai-unified-engine.js?v=20250917:560
+ai-unified-engine.js?v=20250917:318 Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-knowledge-base.json".
+loadExternalSchemas @ ai-unified-engine.js?v=20250917:318
 await in loadExternalSchemas
-integrateStructuredData @ ai-unified-engine.js?v=20250117:301
-runFullOptimization @ ai-unified-engine.js?v=20250117:72
-init @ ai-unified-engine.js?v=20250117:55
-AIUnifiedEngine @ ai-unified-engine.js?v=20250117:48
-(anonymous) @ ai-unified-engine.js?v=20250117:560
+integrateStructuredData @ ai-unified-engine.js?v=20250917:301
+runFullOptimization @ ai-unified-engine.js?v=20250917:72
+init @ ai-unified-engine.js?v=20250917:55
+AIUnifiedEngine @ ai-unified-engine.js?v=20250917:48
+(anonymous) @ ai-unified-engine.js?v=20250917:560
 [Violation] Forced reflow while executing JavaScript took 236ms
  Failed sending fetch request with keepalive option to Zaraz; maybe due to large payload. Retrying fetch without keepalive option...
 (anonymous) @ s.js:5
@@ -132,36 +132,36 @@ init @ ai-unified-engine.js:55
 AIUnifiedEngine @ ai-unified-engine.js:48
 (anonymous) @ ai-unified-engine.js:560
 Navigated to https://www.fbtotalsecurity.com/
-ai-unified-engine.js?v=20250117:60 🚀 AI Unified Engine: Starting comprehensive optimization...
-ai-unified-engine.js?v=20250117:79 🔧 Optimizing meta tags...
-ai-unified-engine.js?v=20250117:125 🧠 Enhancing semantic markup...
-ai-unified-engine.js?v=20250117:217 🔗 Implementing semantic cross-linking...
-ai-unified-engine.js?v=20250117:299 📊 Integrating structured data...
-ai-unified-engine.js?v=20250117:74 ✅ AI Unified Engine: Optimization complete
-script.min.js?v=20250117:1 🔒 FB Total Security-Sistemi di Sicurezza
-script.min.js?v=20250117:1 Sito web ottimizzato per performance e SEO
+ai-unified-engine.js?v=20250917:60 🚀 AI Unified Engine: Starting comprehensive optimization...
+ai-unified-engine.js?v=20250917:79 🔧 Optimizing meta tags...
+ai-unified-engine.js?v=20250917:125 🧠 Enhancing semantic markup...
+ai-unified-engine.js?v=20250917:217 🔗 Implementing semantic cross-linking...
+ai-unified-engine.js?v=20250917:299 📊 Integrating structured data...
+ai-unified-engine.js?v=20250917:74 ✅ AI Unified Engine: Optimization complete
+script.min.js?v=20250917:1 🔒 FB Total Security-Sistemi di Sicurezza
+script.min.js?v=20250917:1 Sito web ottimizzato per performance e SEO
 (index):1662 🔍 Zaraz Debug Mode attivato - Controlla Network tab per dettagli
 (index):1663 📊 Debug Key utilizzata: d348m84l0sms73chv9g0
-script.min.js?v=20250117:1 🌐 Initializing language selector...
-script.min.js?v=20250117:1 🏁 Current language: it
-script.min.js?v=20250117:1 🔄 Setting language to it(Optimized)
-script.min.js?v=20250117:1 ✍️ Executing 168DOM write operations.
-script.min.js?v=20250117:1 ✅ DOM updates completed.
-ai-unified-engine.js?v=20250117:318 Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-seo-enhanced.json".
-loadExternalSchemas @ ai-unified-engine.js?v=20250117:318
-integrateStructuredData @ ai-unified-engine.js?v=20250117:301
-runFullOptimization @ ai-unified-engine.js?v=20250117:72
-init @ ai-unified-engine.js?v=20250117:55
-AIUnifiedEngine @ ai-unified-engine.js?v=20250117:48
-(anonymous) @ ai-unified-engine.js?v=20250117:560
-ai-unified-engine.js?v=20250117:318 Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-knowledge-base.json".
-loadExternalSchemas @ ai-unified-engine.js?v=20250117:318
+script.min.js?v=20250917:1 🌐 Initializing language selector...
+script.min.js?v=20250917:1 🏁 Current language: it
+script.min.js?v=20250917:1 🔄 Setting language to it(Optimized)
+script.min.js?v=20250917:1 ✍️ Executing 168DOM write operations.
+script.min.js?v=20250917:1 ✅ DOM updates completed.
+ai-unified-engine.js?v=20250917:318 Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-seo-enhanced.json".
+loadExternalSchemas @ ai-unified-engine.js?v=20250917:318
+integrateStructuredData @ ai-unified-engine.js?v=20250917:301
+runFullOptimization @ ai-unified-engine.js?v=20250917:72
+init @ ai-unified-engine.js?v=20250917:55
+AIUnifiedEngine @ ai-unified-engine.js?v=20250917:48
+(anonymous) @ ai-unified-engine.js?v=20250917:560
+ai-unified-engine.js?v=20250917:318 Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-knowledge-base.json".
+loadExternalSchemas @ ai-unified-engine.js?v=20250917:318
 await in loadExternalSchemas
-integrateStructuredData @ ai-unified-engine.js?v=20250117:301
-runFullOptimization @ ai-unified-engine.js?v=20250117:72
-init @ ai-unified-engine.js?v=20250117:55
-AIUnifiedEngine @ ai-unified-engine.js?v=20250117:48
-(anonymous) @ ai-unified-engine.js?v=20250117:560
+integrateStructuredData @ ai-unified-engine.js?v=20250917:301
+runFullOptimization @ ai-unified-engine.js?v=20250917:72
+init @ ai-unified-engine.js?v=20250917:55
+AIUnifiedEngine @ ai-unified-engine.js?v=20250917:48
+(anonymous) @ ai-unified-engine.js?v=20250917:560
 [Violation] Forced reflow while executing JavaScript took 235ms
  Fetch failed loading: GET "https://stats.g.doubleclick.net/g/collect?t=dc&aip=1&_r=3&v=1&_v=j86&tid=G-CETDSJWYQK&cid=965cf2c6-36d8-4f71-ab1f-922ea6e7700d&_u=KGDAAEADQAAAAC%7E&z=652859021".
 (anonymous) @ s.js:1
@@ -206,7 +206,7 @@ init @ ai-unified-engine.js:55
 AIUnifiedEngine @ ai-unified-engine.js:48
 (anonymous) @ ai-unified-engine.js:560
  Could not load schema ./ai-services-schema.json: TypeError: Failed to fetch
-    at AIUnifiedEngine.loadExternalSchemas (ai-unified-engine.js?v=20250117:318:40)
+    at AIUnifiedEngine.loadExternalSchemas (ai-unified-engine.js?v=20250917:318:40)
 loadExternalSchemas @ ai-unified-engine.js:330
 await in loadExternalSchemas
 integrateStructuredData @ ai-unified-engine.js:301
@@ -215,25 +215,25 @@ init @ ai-unified-engine.js:55
 AIUnifiedEngine @ ai-unified-engine.js:48
 (anonymous) @ ai-unified-engine.js:560
 Navigated to https://www.fbtotalsecurity.com/
-ai-unified-engine.js?v=20250117:60 🚀 AI Unified Engine: Starting comprehensive optimization...
-ai-unified-engine.js?v=20250117:79 🔧 Optimizing meta tags...
-ai-unified-engine.js?v=20250117:125 🧠 Enhancing semantic markup...
-ai-unified-engine.js?v=20250117:217 🔗 Implementing semantic cross-linking...
-ai-unified-engine.js?v=20250117:299 📊 Integrating structured data...
-ai-unified-engine.js?v=20250117:74 ✅ AI Unified Engine: Optimization complete
-script.min.js?v=20250117:1 🔒 FB Total Security-Sistemi di Sicurezza
-script.min.js?v=20250117:1 Sito web ottimizzato per performance e SEO
+ai-unified-engine.js?v=20250917:60 🚀 AI Unified Engine: Starting comprehensive optimization...
+ai-unified-engine.js?v=20250917:79 🔧 Optimizing meta tags...
+ai-unified-engine.js?v=20250917:125 🧠 Enhancing semantic markup...
+ai-unified-engine.js?v=20250917:217 🔗 Implementing semantic cross-linking...
+ai-unified-engine.js?v=20250917:299 📊 Integrating structured data...
+ai-unified-engine.js?v=20250917:74 ✅ AI Unified Engine: Optimization complete
+script.min.js?v=20250917:1 🔒 FB Total Security-Sistemi di Sicurezza
+script.min.js?v=20250917:1 Sito web ottimizzato per performance e SEO
 (index):1662 🔍 Zaraz Debug Mode attivato - Controlla Network tab per dettagli
 (index):1663 📊 Debug Key utilizzata: d348m84l0sms73chv9g0
-script.min.js?v=20250117:1 🌐 Initializing language selector...
-script.min.js?v=20250117:1 🏁 Current language: it
-script.min.js?v=20250117:1 🔄 Setting language to it(Optimized)
+script.min.js?v=20250917:1 🌐 Initializing language selector...
+script.min.js?v=20250917:1 🏁 Current language: it
+script.min.js?v=20250917:1 🔄 Setting language to it(Optimized)
  ✍️ Executing 168DOM write operations.
  ✅ DOM updates completed.
  Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-seo-enhanced.json".
-loadExternalSchemas @ ai-unified-engine.js?v=20250117:318
-integrateStructuredData @ ai-unified-engine.js?v=20250117:301
-runFullOptimization @ ai-unified-engine.js?v=20250117:72
-init @ ai-unified-engine.js?v=20250117:55
-AIUnifiedEngine @ ai-unified-engine.js?v=20250117:48
-(anonymous) @ ai-unified-engine.js?v=20250117:560
+loadExternalSchemas @ ai-unified-engine.js?v=20250917:318
+integrateStructuredData @ ai-unified-engine.js?v=20250917:301
+runFullOptimization @ ai-unified-engine.js?v=20250917:72
+init @ ai-unified-engine.js?v=20250917:55
+AIUnifiedEngine @ ai-unified-engine.js?v=20250917:48
+(anonymous) @ ai-unified-engine.js?v=20250917:560

@@ -65,8 +65,8 @@
     </style>
 
     <!-- 3. OTTIMIZZAZIONE LCP: Preload del CSS critico per ridurre il ritardo di rendering -->
-    <link rel="preload" href="styles.min.css?v=20250117" as="style" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="high">
-    <noscript><link rel="stylesheet" href="styles.min.css?v=20250117"></noscript>
+    <link rel="preload" href="styles.min.css?v=20250917" as="style" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="high">
+    <noscript><link rel="stylesheet" href="styles.min.css?v=20250917"></noscript>
 
     <!-- Meta Tags, Canonical, OpenGraph, etc. -->
     <meta name="keywords" content="sistemi sicurezza, nebbiogeni, serramenti blindati, videosorveglianza, allarmi, Italia, sicurezza casa, antifurto">
@@ -509,8 +509,8 @@
     </style>
     
     <!-- 3. Caricamento Asincrono del CSS completo -->
-    <link rel="stylesheet" href="styles.min.css?v=20250117" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="styles.min.css?v=20250117"></noscript>
+    <link rel="stylesheet" href="styles.min.css?v=20250917" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="styles.min.css?v=20250917"></noscript>
     
 
     
@@ -671,7 +671,7 @@ img {
 </style>
 
 <!-- AI Unified SEO Engine (Consolidated) -->
-<script src="ai-unified-engine.js?v=20250117" defer></script>
+<script src="ai-unified-engine.js?v=20250917" defer></script>
 </head>
 <body>
     <header class="header">
@@ -1531,8 +1531,8 @@ img {
         </div>
     </footer>
 
-    <script src="script.min.js?v=20250117" defer></script>
-    <script src="js/utm-tracking.js?v=20250117" defer></script>
+    <script src="script.min.js?v=20250917" defer></script>
+    <script src="js/utm-tracking.js?v=20250917" defer></script>
     
     <!-- Lite YouTube Embed Script -->
     <script>
@@ -1721,25 +1721,35 @@ img {
             // Disabilita Zaraz debug se l'oggetto zaraz esiste
             if (window.zaraz) {
                 window.zaraz.debug = false;
-                if (window.zaraz.set) {
-                    window.zaraz.set('debug', false);
+                if (window.zaraz.set && typeof window.zaraz.set === 'function') {
+                    try {
+                        window.zaraz.set('debug', false);
+                    } catch (e) {
+                        console.warn('Zaraz set method error:', e);
+                    }
                 }
             }
             
-            // Intercetta la creazione dell'oggetto zaraz
+            // Intercetta la creazione dell'oggetto zaraz con controlli di sicurezza
             Object.defineProperty(window, 'zaraz', {
                 set: function(value) {
                     if (value && typeof value === 'object') {
                         value.debug = false;
-                        if (value.set) {
-                            value.set('debug', false);
+                        if (value.set && typeof value.set === 'function') {
+                            try {
+                                value.set('debug', false);
+                            } catch (e) {
+                                console.warn('Zaraz set method error during initialization:', e);
+                            }
                         }
                     }
                     this._zaraz = value;
                 },
                 get: function() {
                     return this._zaraz;
-                }
+                },
+                configurable: true,
+                enumerable: true
             });
         }
     </script>

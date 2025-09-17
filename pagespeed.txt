@@ -90,8 +90,8 @@ expand_less
     </style>
 
     <!-- 3. CARICAMENTO ASINCRONO DEL CSS COMPLETO. Questo NON blocca il rendering. -->
-    <link rel="stylesheet" href="styles.min.css?v=20250117" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="styles.min.css?v=20250117"></noscript>
+    <link rel="stylesheet" href="styles.min.css?v=20250917" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="styles.min.css?v=20250917"></noscript>
 
     <!-- Il resto dei tuoi meta, canonical, open graph, etc. -->
     <link rel="canonical" href="https://www.fbtotalsecurity.com/">
