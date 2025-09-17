@@ -2197,11 +2197,78 @@ a {
     color: #4caf50;
 }
 
+/* Override footer link styles for Web Novis button */
+.footer-bottom .webnovis-btn,
+.footer-section .webnovis-btn {
+    color: white !important;
+    background: linear-gradient(135deg, #4caf50, #45a049) !important;
+    text-decoration: none !important;
+}
+
+.footer-bottom .webnovis-btn:hover,
+.footer-section .webnovis-btn:hover {
+    color: white !important;
+    background: linear-gradient(135deg, #45a049, #388e3c) !important;
+    text-decoration: none !important;
+}
+
 .footer-bottom {
     text-align: center;
     padding-top: 2rem;
     border-top: 1px solid rgba(76, 175, 80, 0.1);
     color: #666;
+}
+
+/* Web Novis Contact Button Styles */
+.webnovis-contact {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.webnovis-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #4caf50, #45a049);
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-left: 4px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
+    border: none;
+    cursor: pointer;
+}
+
+.webnovis-btn:hover {
+    background: linear-gradient(135deg, #45a049, #388e3c);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+    color: white;
+    text-decoration: none;
+}
+
+.webnovis-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
+}
+
+/* Mobile responsive styles for Web Novis button */
+@media (max-width: 768px) {
+    .webnovis-contact {
+        font-size: 0.85rem;
+        margin-top: 0.8rem;
+    }
+    
+    .webnovis-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        margin-left: 2px;
+        display: inline-block;
+        margin-top: 4px;
+    }
 }
 
 /* Animations */

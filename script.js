@@ -1035,7 +1035,9 @@ const translations = {
         'footer-info-title': 'Informazioni',
         'footer-social-title': 'Seguici su',
         'footer-copyright': '© 2025 FB Total Security. Tutti i diritti riservati. | P.IVA: 12345678901',
-        'footer-created-by': 'Creato da Web Novis',
+        'footer-created-by': 'Creato e curato da Web Novis',
+        'footer-webnovis-contact': 'Per una soluzione cucita su misura per te',
+        'footer-webnovis-btn': 'contatta Web Novis',
         'footer-company': 'FB Total Security',
         'footer-company-desc': 'Creatori di sicurezza dal 2003. Specializzati in sistemi di protezione avanzati per aziende e privati.',
         'footer-services': 'Servizi',
@@ -1631,7 +1633,7 @@ const translations = {
 
         'footer-email': '✉️ postmaster@fbtotalsecurity.com',
         'footer-copyright': '© 2025 FB Total Security. Tutti i diritti riservati.',
-        'footer-created-by': 'Creato da Web Novis'
+        'footer-created-by': 'Creato e Curato da Web Novis'
     },
     en: {
         // Navigation
@@ -2015,7 +2017,7 @@ const translations = {
         'footer-info-title': 'Information',
         'footer-social-title': 'Follow Us',
         'footer-copyright': '© 2025 FB Total Security. All rights reserved. | VAT: 12345678901',
-        'footer-created-by': 'Created by Web Novis',
+        'footer-created-by': 'Created and curated by Web Novis',
         'footer-company': 'FB Total Security',
         'footer-company-desc': 'Security creators since 2003. Specialized in advanced protection systems for businesses and individuals.',
         'footer-services': 'Services',
@@ -2675,7 +2677,9 @@ const translations = {
 
         'footer-email': '✉️ postmaster@fbtotalsecurity.com',
         'footer-copyright': '© 2025 FB Total Security. All rights reserved.',
-        'footer-created-by': 'Created by Web Novis',
+        'footer-created-by': 'Created and Curated by Web Novis',
+        'footer-webnovis-contact': 'For a tailor-made solution for you',
+        'footer-webnovis-btn': 'contact Web Novis',
         'form-contact-description': 'Fill out the form below to request a free quote or get more information about our security systems. Our team will contact you within 24 hours.'
     }
 };

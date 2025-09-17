@@ -1,239 +1,143 @@
-ai-unified-engine.js?v=20250917:318 Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-knowledge-base.json".
-loadExternalSchemas @ ai-unified-engine.js?v=20250917:318
-await in loadExternalSchemas
-integrateStructuredData @ ai-unified-engine.js?v=20250917:301
-runFullOptimization @ ai-unified-engine.js?v=20250917:72
-init @ ai-unified-engine.js?v=20250917:55
-AIUnifiedEngine @ ai-unified-engine.js?v=20250917:48
-(anonymous) @ ai-unified-engine.js?v=20250917:560
-ai-unified-engine.js?v=20250917:318 Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-services-schema.json".
-loadExternalSchemas @ ai-unified-engine.js?v=20250917:318
-await in loadExternalSchemas
-integrateStructuredData @ ai-unified-engine.js?v=20250917:301
-runFullOptimization @ ai-unified-engine.js?v=20250917:72
-init @ ai-unified-engine.js?v=20250917:55
-AIUnifiedEngine @ ai-unified-engine.js?v=20250917:48
-(anonymous) @ ai-unified-engine.js?v=20250917:560
-[Violation] Forced reflow while executing JavaScript took 204ms
- Failed sending fetch request with keepalive option to Zaraz; maybe due to large payload. Retrying fetch without keepalive option...
-(anonymous) @ s.js:5
-Promise.catch
-(anonymous) @ s.js:3
-zaraz.track @ s.js:1
-zaraz._c @ s.js:7
-(anonymous) @ s.js:7
- Fetch failed loading: GET "chrome-extension://bjfgambnhccakkhmkepdoekmckoijdlc/content-scripts/content.css".
-ry @ chrome-extension://b…ripts/content.js:59
-iy @ chrome-extension://b…ripts/content.js:58
-main @ chrome-extension://b…ripts/content.js:90
-(anonymous) @ chrome-extension://b…ripts/content.js:90
-(anonymous) @ chrome-extension://b…ripts/content.js:90
-(anonymous) @ chrome-extension://b…ripts/content.js:90
- Fetch failed loading: GET "https://stats.g.doubleclick.net/g/collect?t=dc&aip=1&_r=3&v=1&_v=j86&tid=G-CETDSJWYQK&cid=965cf2c6-36d8-4f71-ab1f-922ea6e7700d&_u=KGDAAEADQAAAAC%7E&z=1812297592".
-(anonymous) @ s.js:1
-(anonymous) @ s.js:1
-window.zaraz._p @ s.js:1
-(anonymous) @ s.js:247
-(anonymous) @ s.js:247
- Fetch failed loading: POST "https://region1.google-analytics.com/g/collect?v=2&tid=G-K3KTWNJ5CQ&gtm=45je59f1v9229747908za200zd9229747908&_p=1758104032589&gcd=13l3l3l2l3l1&npa=1&dma_cps=syphamo&dma=1&cid=2004294346.1758102049&ul=it-it&sr=378x678&uaa=&uab=64&uafvl=Chromium%3B140.0.7339.128%7CNot%253DA%253FBrand%3B24.0.0.0%7CGoogle%2520Chrome%3B140.0.7339.128&uamb=1&uam=Nexus%205&uap=Android&uapv=6.0&uaw=0&are=1&frm=0&pscdl=noapi&_eu=AAAAAAQ&ngs=1&_s=1&tag_exp=101509157~102015666~103116026~103200004~103233427~104527906~104528500~104630779~104630781~104684208~104684211~104948813~105367987~105367989~105426769~105426771~115480710~115616986~115688283~115688285&dt=Sistemi%20di%20Sicurezza%20e%20Antifurto%20%7C%20FB%20Total%20Security%20Milano&dl=https%3A%2F%2Fwww.fbtotalsecurity.com%2F&sid=1758102049&sct=1&seg=1&dr=https%3A%2F%2Fwww.fbtotalsecurity.com%2F&_tu=QAg&en=page_view&_ee=1&ep.transport_type=beacon&ep.anonymize_ip=true&tfd=918".
-$c @ js:209
-el @ js:359
-uN @ js:830
-k.flush @ js:837
-k.flush @ js:853
-(anonymous) @ js:865
-(anonymous) @ js:803
-(anonymous) @ js:802
- Fetch failed loading: POST "https://www.fbtotalsecurity.com/cdn-cgi/zaraz/t".
-(anonymous) @ s.js:3
-zaraz.track @ s.js:1
-zaraz._c @ s.js:7
-(anonymous) @ s.js:7
-Navigated to https://www.fbtotalsecurity.com/
-ai-unified-engine.js?v=20250917:60 🚀 AI Unified Engine: Starting comprehensive optimization...
-ai-unified-engine.js?v=20250917:79 🔧 Optimizing meta tags...
-ai-unified-engine.js?v=20250917:125 🧠 Enhancing semantic markup...
-ai-unified-engine.js?v=20250917:217 🔗 Implementing semantic cross-linking...
-ai-unified-engine.js?v=20250917:299 📊 Integrating structured data...
-ai-unified-engine.js?v=20250917:74 ✅ AI Unified Engine: Optimization complete
-script.min.js?v=20250917:1 🔒 FB Total Security-Sistemi di Sicurezza
-script.min.js?v=20250917:1 Sito web ottimizzato per performance e SEO
-(index):1662 🔍 Zaraz Debug Mode attivato - Controlla Network tab per dettagli
-(index):1663 📊 Debug Key utilizzata: d348m84l0sms73chv9g0
-script.min.js?v=20250917:1 🌐 Initializing language selector...
-script.min.js?v=20250917:1 🏁 Current language: it
-script.min.js?v=20250917:1 🔄 Setting language to it(Optimized)
-script.min.js?v=20250917:1 ✍️ Executing 168DOM write operations.
-script.min.js?v=20250917:1 ✅ DOM updates completed.
-ai-unified-engine.js?v=20250917:318 Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-seo-enhanced.json".
-loadExternalSchemas @ ai-unified-engine.js?v=20250917:318
-integrateStructuredData @ ai-unified-engine.js?v=20250917:301
-runFullOptimization @ ai-unified-engine.js?v=20250917:72
-init @ ai-unified-engine.js?v=20250917:55
-AIUnifiedEngine @ ai-unified-engine.js?v=20250917:48
-(anonymous) @ ai-unified-engine.js?v=20250917:560
-ai-unified-engine.js?v=20250917:318 Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-knowledge-base.json".
-loadExternalSchemas @ ai-unified-engine.js?v=20250917:318
-await in loadExternalSchemas
-integrateStructuredData @ ai-unified-engine.js?v=20250917:301
-runFullOptimization @ ai-unified-engine.js?v=20250917:72
-init @ ai-unified-engine.js?v=20250917:55
-AIUnifiedEngine @ ai-unified-engine.js?v=20250917:48
-(anonymous) @ ai-unified-engine.js?v=20250917:560
-[Violation] Forced reflow while executing JavaScript took 236ms
- Failed sending fetch request with keepalive option to Zaraz; maybe due to large payload. Retrying fetch without keepalive option...
-(anonymous) @ s.js:5
-Promise.catch
-(anonymous) @ s.js:3
-zaraz.track @ s.js:1
-zaraz._c @ s.js:7
-(anonymous) @ s.js:7
- Could not load schema ./ai-services-schema.json: TypeError: Failed to fetch
-loadExternalSchemas @ ai-unified-engine.js:330
-await in loadExternalSchemas
-integrateStructuredData @ ai-unified-engine.js:301
-runFullOptimization @ ai-unified-engine.js:72
-init @ ai-unified-engine.js:55
-AIUnifiedEngine @ ai-unified-engine.js:48
-(anonymous) @ ai-unified-engine.js:560
- Fetch failed loading: POST "https://www.fbtotalsecurity.com/cdn-cgi/zaraz/t".
-(anonymous) @ s.js:3
-zaraz.track @ s.js:1
-zaraz._c @ s.js:7
-(anonymous) @ s.js:7
- Fetch failed loading: GET "chrome-extension://bjfgambnhccakkhmkepdoekmckoijdlc/content-scripts/content.css".
-ry @ chrome-extension://b…ripts/content.js:59
-iy @ chrome-extension://b…ripts/content.js:58
-main @ chrome-extension://b…ripts/content.js:90
-(anonymous) @ chrome-extension://b…ripts/content.js:90
-(anonymous) @ chrome-extension://b…ripts/content.js:90
-(anonymous) @ chrome-extension://b…ripts/content.js:90
- Fetch failed loading: POST "https://region1.google-analytics.com/g/collect?v=2&tid=G-K3KTWNJ5CQ&gtm=45je59f1v9229747908za200zd9229747908&_p=1758104033186&gcd=13l3l3l2l3l1&npa=1&dma_cps=syphamo&dma=1&cid=2004294346.1758102049&ul=it-it&sr=378x678&uaa=&uab=64&uafvl=Chromium%3B140.0.7339.128%7CNot%253DA%253FBrand%3B24.0.0.0%7CGoogle%2520Chrome%3B140.0.7339.128&uamb=1&uam=Nexus%205&uap=Android&uapv=6.0&uaw=0&are=1&frm=0&pscdl=noapi&_eu=AAAAAAQ&ngs=1&_s=1&tag_exp=101509157~102015666~103116026~103200004~103233427~104527906~104528500~104630779~104630781~104684208~104684211~104948813~105367987~105367989~105426769~105426771~115480710~115688283~115688285&dt=Sistemi%20di%20Sicurezza%20e%20Antifurto%20%7C%20FB%20Total%20Security%20Milano&dl=https%3A%2F%2Fwww.fbtotalsecurity.com%2F&sid=1758102049&sct=1&seg=1&dr=https%3A%2F%2Fwww.fbtotalsecurity.com%2F&_tu=QAg&en=page_view&_ee=1&ep.transport_type=beacon&ep.anonymize_ip=true&tfd=907".
-$c @ js:209
-el @ js:359
-uN @ js:830
-k.flush @ js:837
-k.flush @ js:853
-(anonymous) @ js:865
-(anonymous) @ js:803
-(anonymous) @ js:802
- Fetch failed loading: GET "https://stats.g.doubleclick.net/g/collect?t=dc&aip=1&_r=3&v=1&_v=j86&tid=G-CETDSJWYQK&cid=965cf2c6-36d8-4f71-ab1f-922ea6e7700d&_u=KGDAAEADQAAAAC%7E&z=1849637654".
-(anonymous) @ s.js:1
-(anonymous) @ s.js:1
-window.zaraz._p @ s.js:1
-(anonymous) @ s.js:247
-(anonymous) @ s.js:247
- Fetch failed loading: GET "https://www.fbtotalsecurity.com/ai-services-schema.json".
-loadExternalSchemas @ ai-unified-engine.js:318
-await in loadExternalSchemas
-integrateStructuredData @ ai-unified-engine.js:301
-runFullOptimization @ ai-unified-engine.js:72
-init @ ai-unified-engine.js:55
-AIUnifiedEngine @ ai-unified-engine.js:48
-(anonymous) @ ai-unified-engine.js:560
-Navigated to https://www.fbtotalsecurity.com/
-ai-unified-engine.js?v=20250917:60 🚀 AI Unified Engine: Starting comprehensive optimization...
-ai-unified-engine.js?v=20250917:79 🔧 Optimizing meta tags...
-ai-unified-engine.js?v=20250917:125 🧠 Enhancing semantic markup...
-ai-unified-engine.js?v=20250917:217 🔗 Implementing semantic cross-linking...
-ai-unified-engine.js?v=20250917:299 📊 Integrating structured data...
-ai-unified-engine.js?v=20250917:74 ✅ AI Unified Engine: Optimization complete
-script.min.js?v=20250917:1 🔒 FB Total Security-Sistemi di Sicurezza
-script.min.js?v=20250917:1 Sito web ottimizzato per performance e SEO
-(index):1662 🔍 Zaraz Debug Mode attivato - Controlla Network tab per dettagli
-(index):1663 📊 Debug Key utilizzata: d348m84l0sms73chv9g0
-script.min.js?v=20250917:1 🌐 Initializing language selector...
-script.min.js?v=20250917:1 🏁 Current language: it
-script.min.js?v=20250917:1 🔄 Setting language to it(Optimized)
-script.min.js?v=20250917:1 ✍️ Executing 168DOM write operations.
-script.min.js?v=20250917:1 ✅ DOM updates completed.
-ai-unified-engine.js?v=20250917:318 Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-seo-enhanced.json".
-loadExternalSchemas @ ai-unified-engine.js?v=20250917:318
-integrateStructuredData @ ai-unified-engine.js?v=20250917:301
-runFullOptimization @ ai-unified-engine.js?v=20250917:72
-init @ ai-unified-engine.js?v=20250917:55
-AIUnifiedEngine @ ai-unified-engine.js?v=20250917:48
-(anonymous) @ ai-unified-engine.js?v=20250917:560
-ai-unified-engine.js?v=20250917:318 Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-knowledge-base.json".
-loadExternalSchemas @ ai-unified-engine.js?v=20250917:318
-await in loadExternalSchemas
-integrateStructuredData @ ai-unified-engine.js?v=20250917:301
-runFullOptimization @ ai-unified-engine.js?v=20250917:72
-init @ ai-unified-engine.js?v=20250917:55
-AIUnifiedEngine @ ai-unified-engine.js?v=20250917:48
-(anonymous) @ ai-unified-engine.js?v=20250917:560
-[Violation] Forced reflow while executing JavaScript took 235ms
- Fetch failed loading: GET "https://stats.g.doubleclick.net/g/collect?t=dc&aip=1&_r=3&v=1&_v=j86&tid=G-CETDSJWYQK&cid=965cf2c6-36d8-4f71-ab1f-922ea6e7700d&_u=KGDAAEADQAAAAC%7E&z=652859021".
-(anonymous) @ s.js:1
-(anonymous) @ s.js:1
-window.zaraz._p @ s.js:1
-(anonymous) @ s.js:247
-(anonymous) @ s.js:247
- Failed sending fetch request with keepalive option to Zaraz; maybe due to large payload. Retrying fetch without keepalive option...
-(anonymous) @ s.js:5
-Promise.catch
-(anonymous) @ s.js:3
-zaraz.track @ s.js:1
-zaraz._c @ s.js:7
-(anonymous) @ s.js:7
- Fetch failed loading: POST "https://region1.google-analytics.com/g/collect?v=2&tid=G-K3KTWNJ5CQ&gtm=45je59f1v9229747908za200zd9229747908&_p=1758104033822&gcd=13l3l3l2l3l1&npa=1&dma_cps=syphamo&dma=1&cid=2004294346.1758102049&ul=it-it&sr=378x678&uaa=&uab=64&uafvl=Chromium%3B140.0.7339.128%7CNot%253DA%253FBrand%3B24.0.0.0%7CGoogle%2520Chrome%3B140.0.7339.128&uamb=1&uam=Nexus%205&uap=Android&uapv=6.0&uaw=0&are=1&frm=0&pscdl=noapi&_eu=AAAAAAQ&ngs=1&_s=1&tag_exp=101509157~102015666~103116026~103200004~103233427~104527907~104528501~104630779~104630781~104684208~104684211~104948813~105359938~105367987~105367989~105426769~105426771~115480710~115616985~115688283~115688285&dt=Sistemi%20di%20Sicurezza%20e%20Antifurto%20%7C%20FB%20Total%20Security%20Milano&dl=https%3A%2F%2Fwww.fbtotalsecurity.com%2F&sid=1758102049&sct=1&seg=1&dr=https%3A%2F%2Fwww.fbtotalsecurity.com%2F&_tu=QAg&en=page_view&_ee=1&ep.transport_type=beacon&ep.anonymize_ip=true&tfd=969".
-$c @ js:209
-el @ js:359
-uN @ js:830
-k.flush @ js:837
-k.flush @ js:853
-(anonymous) @ js:865
-(anonymous) @ js:803
-(anonymous) @ js:802
- Fetch failed loading: POST "https://www.fbtotalsecurity.com/cdn-cgi/zaraz/t".
-(anonymous) @ s.js:3
-zaraz.track @ s.js:1
-zaraz._c @ s.js:7
-(anonymous) @ s.js:7
- Fetch failed loading: GET "chrome-extension://bjfgambnhccakkhmkepdoekmckoijdlc/content-scripts/content.css".
-ry @ chrome-extension://b…ripts/content.js:59
-iy @ chrome-extension://b…ripts/content.js:58
-main @ chrome-extension://b…ripts/content.js:90
-(anonymous) @ chrome-extension://b…ripts/content.js:90
-(anonymous) @ chrome-extension://b…ripts/content.js:90
-(anonymous) @ chrome-extension://b…ripts/content.js:90
- Fetch failed loading: GET "https://www.fbtotalsecurity.com/ai-services-schema.json".
-loadExternalSchemas @ ai-unified-engine.js:318
-await in loadExternalSchemas
-integrateStructuredData @ ai-unified-engine.js:301
-runFullOptimization @ ai-unified-engine.js:72
-init @ ai-unified-engine.js:55
-AIUnifiedEngine @ ai-unified-engine.js:48
-(anonymous) @ ai-unified-engine.js:560
- Could not load schema ./ai-services-schema.json: TypeError: Failed to fetch
-    at AIUnifiedEngine.loadExternalSchemas (ai-unified-engine.js?v=20250917:318:40)
-loadExternalSchemas @ ai-unified-engine.js:330
-await in loadExternalSchemas
-integrateStructuredData @ ai-unified-engine.js:301
-runFullOptimization @ ai-unified-engine.js:72
-init @ ai-unified-engine.js:55
-AIUnifiedEngine @ ai-unified-engine.js:48
-(anonymous) @ ai-unified-engine.js:560
-Navigated to https://www.fbtotalsecurity.com/
-ai-unified-engine.js?v=20250917:60 🚀 AI Unified Engine: Starting comprehensive optimization...
-ai-unified-engine.js?v=20250917:79 🔧 Optimizing meta tags...
-ai-unified-engine.js?v=20250917:125 🧠 Enhancing semantic markup...
-ai-unified-engine.js?v=20250917:217 🔗 Implementing semantic cross-linking...
-ai-unified-engine.js?v=20250917:299 📊 Integrating structured data...
-ai-unified-engine.js?v=20250917:74 ✅ AI Unified Engine: Optimization complete
-script.min.js?v=20250917:1 🔒 FB Total Security-Sistemi di Sicurezza
-script.min.js?v=20250917:1 Sito web ottimizzato per performance e SEO
-(index):1662 🔍 Zaraz Debug Mode attivato - Controlla Network tab per dettagli
-(index):1663 📊 Debug Key utilizzata: d348m84l0sms73chv9g0
-script.min.js?v=20250917:1 🌐 Initializing language selector...
-script.min.js?v=20250917:1 🏁 Current language: it
-script.min.js?v=20250917:1 🔄 Setting language to it(Optimized)
- ✍️ Executing 168DOM write operations.
- ✅ DOM updates completed.
- Fetch finished loading: GET "https://www.fbtotalsecurity.com/ai-seo-enhanced.json".
-loadExternalSchemas @ ai-unified-engine.js?v=20250917:318
-integrateStructuredData @ ai-unified-engine.js?v=20250917:301
-runFullOptimization @ ai-unified-engine.js?v=20250917:72
-init @ ai-unified-engine.js?v=20250917:55
-AIUnifiedEngine @ ai-unified-engine.js?v=20250917:48
-(anonymous) @ ai-unified-engine.js?v=20250917:560
+Certamente. Ho analizzato attentamente il codice dei tuoi file (index.html, styles.css, script.js) e ho individuato con precisione la causa del problema.
+
+Non si tratta di un errore nel CSS, ma di un effetto collaterale del tuo script di traduzione in script.js.
+
+Diagnosi del Problema
+
+Il problema risiede nel modo in cui lo script di traduzione gestisce il testo del footer. Analizziamo i due file coinvolti:
+
+1. Nel tuo index.html:
+
+Hai un paragrafo <p> che contiene sia del testo normale sia il link <a> che dovrebbe essere il bottone.
+
+code
+Html
+download
+content_copy
+expand_less
+
+<p class="webnovis-contact" data-translate="footer-webnovis-contact">
+    Per una soluzione cucita su misura per te 
+    <a href="mailto:webnovis.info@gmail.com" class="webnovis-btn" title="..." data-translate="footer-webnovis-btn">contatta Web Novis</a>
+</p>
+
+2. Nel tuo script.js:
+
+All'interno dell'oggetto translations, hai la seguente chiave per il paragrafo:
+
+code
+JavaScript
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+// Nella sezione 'it':
+'footer-webnovis-contact': 'Per una soluzione cucita su misura per te',
+
+Cosa succede quando la pagina si carica?
+
+Lo script di traduzione cerca tutti gli elementi con l'attributo data-translate.
+
+Trova il paragrafo <p class="webnovis-contact" data-translate="footer-webnovis-contact">.
+
+Prende il testo dalla chiave 'footer-webnovis-contact' (che è una stringa di testo semplice: "Per una soluzione cucita su misura per te").
+
+Sostituisce l'intero contenuto HTML del paragrafo <p> con questa stringa di testo.
+
+Di conseguenza, il tag <a> con la classe .webnovis-btn e l'attributo href="mailto:..." viene completamente eliminato e rimpiazzato da testo semplice.
+
+Questo spiega entrambi i problemi:
+
+Non vedi il bottone verde: perché l'elemento <a> con la classe .webnovis-btn non esiste più nel DOM.
+
+Il link non funziona: perché non c'è più un tag <a> cliccabile.
+
+Soluzione Corretta
+
+Per risolvere il problema, dobbiamo separare il testo statico dal link, in modo che lo script di traduzione aggiorni solo le parti necessarie senza distruggere la struttura HTML.
+
+Ecco i passaggi da seguire:
+
+Passaggio 1: Modifica index.html
+
+Modifica il paragrafo nel footer separando il testo e il link con i rispettivi attributi data-translate.
+
+PRIMA (sbagliato):
+
+code
+Html
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+<p class="webnovis-contact" data-translate="footer-webnovis-contact">
+    Per una soluzione cucita su misura per te 
+    <a href="mailto:webnovis.info@gmail.com" class="webnovis-btn" title="Contatta Web Novis per soluzioni personalizzate" data-translate="footer-webnovis-btn">contatta Web Novis</a>
+</p>
+
+DOPO (corretto):
+
+code
+Html
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+<p class="webnovis-contact">
+    <span data-translate="footer-webnovis-contact">Per una soluzione cucita su misura per te</span> 
+    <a href="mailto:webnovis.info@gmail.com" class="webnovis-btn" title="Contatta Web Novis per soluzioni personalizzate" data-translate="footer-webnovis-btn">contatta Web Novis</a>
+</p>
+
+Ho rimosso data-translate dal tag <p>.
+
+Ho avvolto il testo che precede il link in un tag <span> e gli ho assegnato l'attributo data-translate.
+
+Passaggio 2: Modifica script.js
+
+Aggiorna l'oggetto translations per riflettere la nuova struttura.
+
+PRIMA (sbagliato):
+
+code
+JavaScript
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+// Lingua Italiana (it)
+'footer-webnovis-contact': 'Per una soluzione cucita su misura per te',
+'footer-webnovis-btn': 'contatta Web Novis',
+
+// Lingua Inglese (en)
+'footer-webnovis-contact': 'For a tailor-made solution for you',
+'footer-webnovis-btn': 'contact Web Novis',
+
+DOPO (corretto):
+
+code
+JavaScript
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+// Lingua Italiana (it)
+'footer-webnovis-contact': 'Per una soluzione cucita su misura per te', // Solo il testo nello span
+'footer-webnovis-btn': 'contatta Web Novis', // Il testo del bottone rimane invariato
+
+// Lingua Inglese (en)
+'footer-webnovis-contact': 'For a tailor-made solution for you', // Solo il testo nello span
+'footer-webnovis-btn': 'contact Web Novis', // Il testo del bottone rimane invariato
+Riassunto della Correzione
+
+Applicando queste due semplici modifiche, lo script di traduzione ora aggiornerà correttamente:
+
+Il contenuto del tag <span>.
+
+Il contenuto del tag <a>.
+
+In questo modo, il tag <a> con la sua classe .webnovis-btn e il suo href="mailto:..." non verrà mai rimosso, risolvendo così entrambi i problemi. Il bottone apparirà verde come definito nel tuo styles.css e il click aprirà correttamente il client di posta elettronica.
