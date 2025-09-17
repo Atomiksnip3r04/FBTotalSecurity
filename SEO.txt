@@ -1,0 +1,189 @@
+Certamente, ho analizzato tutte le immagini che hai fornito. Ecco un elenco ordinato e dettagliato di tutti i problemi SEO rilevati, suddivisi per priorità, con spiegazioni chiare e suggerimenti su come risolverli, inclusi esempi di codice dove applicabile.
+
+Priorità Alta: Problemi Critici da Risolvere Subito
+
+Questi errori possono avere un impatto significativo sulla capacità del tuo sito di essere indicizzato correttamente e di posizionarsi su Google.
+
+1. Canonical Link Duplicato
+
+Problema: La pagina ha più di un tag link rel="canonical". Questo confonde i motori di ricerca su quale sia la versione "ufficiale" della pagina, portando a problemi di indicizzazione e diluizione del "link juice".
+
+Riferimento: Immagine 2 (Seobility).
+
+Come Risolvere: Assicurati che nell' <head> del tuo codice HTML ci sia un solo tag canonical che punti all'URL corretto e preferito della pagina.
+
+Codice da verificare/modificare:
+
+code
+Html
+download
+content_copy
+expand_less
+
+<!-- Rimuovi tutti i tag canonical duplicati e lascia solo questo -->
+<link rel="canonical" href="https://www.fbtotalsecurity.com/" />
+2. Meta Description Troppo Lunga
+
+Problema: La meta description supera il limite massimo di pixel (1006px su un massimo di 1000px). Google la troncherà nei risultati di ricerca, rendendola meno efficace e poco professionale.
+
+Riferimento: Immagine 2 (Seobility).
+
+Come Risolvere: Riduci la lunghezza della meta description. Cerca di mantenerla concisa, accattivante e idealmente sotto i 155-160 caratteri (o usa un tool per verificare la larghezza in pixel).
+
+Codice da modificare:
+
+code
+Html
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+<!-- Esempio di meta description più corta -->
+<meta name="description" content="FB Total Security offre sistemi di sicurezza avanzati: allarmi, videosorveglianza, nebbiogeni e serramenti blindati. Protezione per casa e azienda a Milano." />
+
+(L'esempio è già buono, potrebbe bastare togliere una parola come "avanzati" o "completa" per rientrare nei limiti di pixel).
+
+3. Attributi Alt Mancanti o Vuoti sulle Immagini
+
+Problema: Alcune immagini (<img>) non hanno l'attributo alt (testo alternativo). Questo è un problema sia per l'accessibilità (gli screen reader non possono descrivere l'immagine) sia per la SEO (Google non può "capire" il contenuto dell'immagine).
+
+Riferimento: Immagine 8 (SEOSiteCheckup) e Immagine 10 (SEOUtility).
+
+Come Risolvere: Aggiungi un attributo alt descrittivo a ogni immagine del sito. Includi parole chiave pertinenti quando è naturale farlo.
+
+Codice da modificare:
+
+code
+Html
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+<!-- Esempio di correzione -->
+<img src="impianto-videosorveglianza.jpg" alt="Impianto di videosorveglianza per abitazione a Milano" />
+4. Sitemap non Indicata nel File robots.txt
+
+Problema: Il file robots.txt non contiene un link alla sitemap del sito. Anche se Google può trovarla in altri modi, dichiararla esplicitamente aiuta i motori di ricerca a scoprire e indicizzare più velocemente tutte le pagine del tuo sito.
+
+Riferimento: Immagine 4 (SEO Tester Online).
+
+Come Risolvere: Aggiungi una riga alla fine del tuo file robots.txt che indichi l'URL completo della tua sitemap.
+
+File da modificare (robots.txt):
+
+code
+Code
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+
+Sitemap: https://www.fbtotalsecurity.com/sitemap.xml
+Priorità Media: Ottimizzazioni Importanti
+
+Questi punti migliorano la qualità del contenuto, l'esperienza utente e la sicurezza, influenzando indirettamente il posizionamento.
+
+5. Intestazioni (Headings) Duplicate
+
+Problema: Sulla pagina sono presenti più tag di intestazione (es. H2, H3) con lo stesso identico testo. Questo può confondere sia gli utenti che i motori di ricerca riguardo alla struttura e gerarchia dei contenuti.
+
+Riferimento: Immagine 3 (Seobility).
+
+Come Risolvere: Rivedi tutte le intestazioni (H1, H2, H3, etc.) della pagina e assicurati che ognuna sia unica e descriva specificamente il paragrafo o la sezione che la segue.
+
+6. Link Esterni non Sicuri (Unsafe Cross-Origin Links)
+
+Problema: I link che si aprono in una nuova scheda (target="_blank") non includono l'attributo rel="noopener noreferrer". Questo crea una piccola vulnerabilità di sicurezza e può avere un leggero impatto sulle performance.
+
+Riferimento: Immagine 6 (SEOSiteCheckup) e Immagine 9 (SEOSiteCheckup).
+
+Come Risolvere: Aggiungi rel="noopener noreferrer" a tutti i link <a> che hanno l'attributo target="_blank".
+
+Codice da modificare:
+
+code
+Html
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+<!-- Prima (non sicuro) -->
+<a href="https://sito-esterno.com" target="_blank">Link esterno</a>
+
+<!-- Dopo (corretto) -->
+<a href="https://sito-esterno.com" target="_blank" rel="noopener noreferrer">Link esterno</a>
+7. Contenuto della Pagina non Correlato all'H1
+
+Problema: Le parole chiave presenti nel titolo principale della pagina (H1) non vengono riutilizzate nel testo del corpo della pagina. Questo indebolisce la pertinenza della pagina per quelle parole chiave.
+
+Riferimento: Immagine 1 (Seobility).
+
+Come Risolvere: Rivedi il contenuto della pagina e assicurati di includere in modo naturale le parole e i concetti chiave presenti nel tuo H1 all'interno dei paragrafi.
+
+8. Immagini Distorte (Aspect Ratio Errato)
+
+Problema: Le dimensioni con cui vengono visualizzate alcune immagini non corrispondono alle loro proporzioni originali, facendole apparire schiacciate o allungate. Questo rovina l'esperienza utente.
+
+Riferimento: Immagine 6 e 8 (SEOSiteCheckup).
+
+Come Risolvere: Controlla il CSS o gli attributi width e height delle immagini segnalate. Assicurati che le proporzioni siano mantenute. Una soluzione comune è impostare solo la larghezza (width: 100%;) e lasciare l'altezza automatica (height: auto;) nel CSS.
+
+9. Anchor Text dei Link Interni da Ottimizzare
+
+Problema: Vengono segnalati due problemi: 1) alcuni anchor text (il testo cliccabile di un link) sono usati più volte per link diversi; 2) alcuni anchor text sono troppo lunghi.
+
+Riferimento: Immagine 3 (Seobility).
+
+Come Risolvere:
+
+Varia gli Anchor Text: Assicurati che l'anchor text descriva in modo specifico la pagina di destinazione. Evita di usare lo stesso testo generico (es. "clicca qui") per più link.
+
+Sii Conciso: Rendi gli anchor text brevi e diretti, senza sacrificare la chiarezza.
+
+Priorità Bassa: Miglioramenti e Best Practice
+
+Questi sono ritocchi finali che contribuiscono a creare un sito più pulito, professionale e meglio ottimizzato.
+
+10. Attributo "title" Mancante sui Link
+
+Problema: 33 su 37 tag <a> (link) non hanno l'attributo title. Questo attributo fornisce informazioni aggiuntive sul link quando l'utente ci passa sopra con il mouse. È un fattore minore per la SEO ma migliora l'usabilità.
+
+Riferimento: Immagine 5 (SEO Tester Online).
+
+Come Risolvere: Aggiungi un attributo title descrittivo ai link più importanti.
+
+Codice da modificare:
+
+code
+Html
+download
+content_copy
+expand_less
+IGNORE_WHEN_COPYING_START
+IGNORE_WHEN_COPYING_END
+<a href="/sistemi-di-allarme/" title="Scopri i nostri sistemi di allarme professionali">Sistemi di allarme</a>
+11. Nomi dei File Immagine non Ottimizzati
+
+Problema: I nomi dei file delle immagini non contengono parole chiave rilevanti (es. IMG_1234.jpg).
+
+Riferimento: Immagine 10 (SEOUtility).
+
+Come Risolvere: Rinomina i file immagine prima di caricarli, usando trattini per separare le parole. Esempio: serramenti-blindati-milano.jpg invece di foto1.jpg.
+
+
+12. Numero di Headings da Rivedere
+
+Problema: La pagina ha 35 headings, un numero che il tool considera sproporzionato rispetto alla quantità di testo.
+
+Riferimento: Immagine 3 (Seobility).
+
+Come Risolvere: Questo non è un errore grave, ma un suggerimento. Rivedi la struttura della pagina: stai usando le intestazioni (H2, H3, etc.) correttamente per strutturare il contenuto in sezioni logiche, o le stai usando solo per motivi stilistici? Assicurati che la gerarchia sia corretta (un solo H1, seguito da H2, e H3 sotto gli H2, ecc.).
+
+Inizia lavorando sui punti a priorità alta, poi passa a quelli a priorità media. Questo approccio ti garantirà di ottenere i migliori risultati nel minor tempo possibile. Buon lavoro

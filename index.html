@@ -6,7 +6,7 @@
     
     <!-- TITOLO E DESCRIZIONE OTTIMIZZATI -->
     <title data-translate="page-title">Sistemi di Sicurezza e Antifurto | FB Total Security Milano</title>
-    <meta name="description" content="FB Total Security offre sistemi di sicurezza avanzati: allarmi, videosorveglianza, nebbiogeni e serramenti blindati. Protezione completa per casa e azienda a Milano." data-translate="page-description">
+    <meta name="description" content="FB Total Security offre sistemi di sicurezza: allarmi, videosorveglianza, nebbiogeni e serramenti blindati. Protezione per casa e azienda a Milano." data-translate="page-description">
 
     <!-- === OTTIMIZZAZIONE CRITICA PER LCP E CLS === -->
 
@@ -19,7 +19,7 @@
         /* Font Fallback Metrics per Inter per azzerare CLS. I valori sono stati ricalcolati per la massima precisione. */
         @font-face {
             font-family: 'Inter Fallback';
-            size-adjust: 107.40%;
+            /* size-adjust: 107.40%; - Proprietà non standard, rimossa per validazione W3C */
             ascent-override: 90.20%;
             descent-override: 22.48%;
             line-gap-override: 0.00%;
@@ -74,10 +74,11 @@
     <link rel="alternate" hreflang="en" href="https://www.fbtotalsecurity.com/">
     <link rel="alternate" hreflang="x-default" href="https://www.fbtotalsecurity.com/">
     
-    <!-- Cache Control -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <!-- Cache Control - Using valid HTTP headers -->
+    <!-- Note: These meta tags are not standard HTML5, cache control should be handled server-side -->
+    <!-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Expires" content="0"> -->
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -96,8 +97,7 @@
     <meta property="twitter:description" content="Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi in tutta Italia." data-translate="index-twitter-description">
     <meta property="twitter:image" content="https://www.fbtotalsecurity.com/images/og-image.jpg">
     
-    <!-- Canonical and hreflang -->
-    <link rel="canonical" href="https://www.fbtotalsecurity.com/">
+    <!-- Hreflang tags -->
     <link rel="alternate" hreflang="it" href="https://www.fbtotalsecurity.com/?lang=it">
     <link rel="alternate" hreflang="en" href="https://www.fbtotalsecurity.com/?lang=en">
     <link rel="alternate" hreflang="x-default" href="https://www.fbtotalsecurity.com/">
@@ -130,8 +130,6 @@
     <meta name="expires" content="0">
     
     <!-- Google tag (gtag.js) -->
-    <!-- Google Analytics temporarily disabled to prevent net::ERR_ABORTED errors -->
-    <!-- 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3KTWNJ5CQ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -153,13 +151,12 @@
         page_location: window.location.href
       });
     </script>
-    -->
     
     <!-- Facebook Pixel Code - Performance Optimized -->
     <script src="js/facebook-pixel-optimized.js" defer></script>
     <noscript>
-      <img height="1" width="1" style="display:none" 
-           src="https://www.facebook.com/tr?id=901001165949446&ev=PageView&noscript=1"/>
+      <img height="1" width="1" style="display:none" alt="Facebook Pixel"
+           src="https://www.facebook.com/tr?id=901001165949446&ev=PageView&noscript=1">
     </noscript>
     <!-- End Facebook Pixel Code -->
     
@@ -334,7 +331,7 @@
         /* Font Fallback Metrics per Inter (essenziale per CLS) */
         @font-face {
             font-family: 'Inter Fallback';
-            size-adjust: 107%;
+            /* size-adjust: 107%; - Proprietà non standard, rimossa per validazione W3C */
             ascent-override: 90%;
             descent-override: 22%;
             line-gap-override: 0%;
@@ -476,10 +473,10 @@
             transform: translateZ(0); /* Forza hardware acceleration per rendering veloce */
             /* Preload del contenuto per ridurre rendering delay */
             content-visibility: auto;
-            contain-intrinsic-size: 600px 120px; /* Dimensioni intrinsiche per content-visibility */
+            /* contain-intrinsic-size: 600px 120px; - Proprietà sperimentale, commentata per validazione W3C */
             contain: layout style;
             /* Font display ottimizzato per LCP */
-            font-display: optional; /* Usa font di fallback se Inter non è caricato velocemente */
+            /* font-display: optional; - Proprietà da usare in @font-face, non in selettori CSS */
         }
         .hero-cta { 
             display: flex; 
@@ -533,8 +530,7 @@
     <!-- Preload Critical Images for LCP -->
     <link rel="preload" href="icons/logo_sito_franco_small.webp" as="image" fetchpriority="high">
     
-    <!-- Preload Critical Text Content for LCP -->
-    <link rel="preload" as="fetch" href="data:text/plain;charset=utf-8,Anni di esperienza multisettoriale nella protezione di abitazioni private e aziende in tutta Italia. Sistemi certificati, installazioni garantite, soluzioni personalizzate per privati e imprese." fetchpriority="high" crossorigin>
+    <!-- Preload Critical Text Content for LCP - Removed: not used by JavaScript, content is static HTML -->
     
     <!-- Preload Critical JavaScript removed - script is deferred -->
     
@@ -705,12 +701,12 @@ img {
                     </button>
                 </div>
                 <ul class="nav-menu">
-                    <li><a href="nebbiogeni.html" class="nav-link" data-translate="nav-nebbiogeni">Nebbiogeni</a></li>
-                    <li><a href="serramenti.html" class="nav-link" data-translate="nav-serramenti">Serramenti</a></li>
-                    <li><a href="sorveglianza.html" class="nav-link" data-translate="nav-sorveglianza">Sorveglianza</a></li>
-                    <li><a href="allarmi.html" class="nav-link" data-translate="nav-allarmi">Allarmi</a></li>
-                    <li><a href="chi-siamo.html" class="nav-link" data-translate="nav-chi-siamo">Chi siamo</a></li>
-                    <li><a href="#contatti" class="nav-link cta" data-translate="nav-contatti">Contatti</a></li>
+                    <li><a href="nebbiogeni.html" class="nav-link" data-translate="nav-nebbiogeni" title="Sistemi nebbiogeni professionali per la sicurezza">Nebbiogeni</a></li>
+                    <li><a href="serramenti.html" class="nav-link" data-translate="nav-serramenti" title="Serramenti blindati e porte di sicurezza">Serramenti</a></li>
+                    <li><a href="sorveglianza.html" class="nav-link" data-translate="nav-sorveglianza" title="Sistemi di videosorveglianza avanzati">Sorveglianza</a></li>
+                    <li><a href="allarmi.html" class="nav-link" data-translate="nav-allarmi" title="Sistemi di allarme intelligenti">Allarmi</a></li>
+                    <li><a href="chi-siamo.html" class="nav-link" data-translate="nav-chi-siamo" title="Scopri la nostra azienda e la nostra esperienza">Chi siamo</a></li>
+                    <li><a href="#contatti" class="nav-link cta" data-translate="nav-contatti" title="Contattaci per una consulenza gratuita">Contatti</a></li>
                     <li class="desktop-language-selector">
                         <div class="language-selector">
                             <button class="lang-btn active" data-lang="it">
@@ -738,7 +734,7 @@ img {
         <section class="hero">
             <div class="hero-container">
                 <h1 class="hero-title" data-translate="hero-title">Soluzioni di Sicurezza Avanzate per la Tua Protezione</h1>
-                <p class="hero-subtitle" data-translate="hero-subtitle">Anni di esperienza multisettoriale nella protezione di abitazioni private e aziende in tutta Italia. Sistemi certificati, installazioni garantite, soluzioni personalizzate per privati e imprese.</p>
+                <p class="hero-subtitle" data-translate="hero-subtitle">Anni di esperienza multisettoriale nella protezione di abitazioni private e aziende in tutta Italia. Soluzioni di sicurezza avanzate certificate, installazioni garantite, sistemi di protezione personalizzati per privati e imprese.</p>
                 <div class="hero-cta">
                     <a href="#contatti" class="btn btn-primary" data-translate="hero-cta-primary">Richiedi Consulenza Gratuita</a>
                     <a href="#servizi" class="btn btn-secondary" data-translate="hero-cta-secondary">Scopri i Servizi</a>
@@ -749,16 +745,16 @@ img {
         <section class="mission-section">
             <div class="container">
                 <h2 class="section-title" data-translate="mission-title">La tua sicurezza, la nostra missione</h2>
-                <p class="section-description" data-translate="mission-description">In un mondo in continua evoluzione, la protezione dei tuoi beni e dei tuoi cari è una priorità. FB Security nasce con l'obiettivo di offrirti una tranquillità totale, grazie a un servizio di sicurezza multisettoriale che si adatta a ogni tua esigenza. Dalla vigilanza armata ai sistemi di videosorveglianza più avanzati, dalla protezione fisica di inferriate e grate ai moderni nebbiogeni, ti offriamo una Protezione a 360°. Siamo il tuo partner di fiducia per un'esistenza sicura, giorno e notte.</p>
+                <p class="section-description" data-translate="mission-description">In un mondo in continua evoluzione, la protezione dei tuoi beni e dei tuoi cari è una priorità. FB Security nasce con l'obiettivo di offrirti una tranquillità totale, grazie a soluzioni di sicurezza avanzate multisettoriali che si adattano a ogni tua esigenza. Dalla vigilanza armata ai sistemi di videosorveglianza più avanzati, dalla protezione fisica di inferriate e grate ai moderni nebbiogeni, ti offriamo una Protezione a 360°. Siamo il tuo partner di fiducia per un'esistenza sicura, giorno e notte.</p>
             </div>
         </section>
 
         <section id="servizi" class="services-overview">
             <div class="container">
                 <h2 class="section-title" data-translate="services-title">I Nostri Servizi di Sicurezza</h2>
-                <p class="section-subtitle" data-translate="services-subtitle">Soluzioni complete per ogni esigenza di protezione</p>
+                <p class="section-subtitle" data-translate="services-subtitle">Soluzioni di sicurezza avanzate complete per ogni esigenza di protezione</p>
                 <div class="services-grid">
-                    <a href="nebbiogeni.html" class="service-card nebbiogeni-card">
+                    <a href="nebbiogeni.html" class="service-card nebbiogeni-card" title="Scopri i nostri sistemi nebbiogeni professionali per la protezione immediata">
                         <div class="service-icon">
                             <svg width="80" height="80" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" stroke="#4caf50" fill="#4caf50" role="img" aria-label="Icona Sistemi Nebbiogeni">
                                 <g fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -774,7 +770,7 @@ img {
                         <p data-translate="service-nebbiogeni-desc">Sistemi di nebbiogeni per protezione immediata contro intrusioni e furti</p>
                         <span class="service-link" data-translate="service-nebbiogeni-link">Sistemi Nebbiogeni</span>
                     </a>
-                    <a href="serramenti.html" class="service-card serramenti-card">
+                    <a href="serramenti.html" class="service-card serramenti-card" title="Esplora i nostri serramenti blindati e porte di sicurezza ad alta protezione">
                         <div class="service-icon">
                             <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" stroke="#4caf50" fill="#4caf50" aria-label="Icona Serramenti Blindati di Sicurezza">
                                 <!-- Stile principale per le linee dell'icona -->
@@ -797,7 +793,7 @@ img {
                         <p data-translate="service-serramenti-desc">Porte blindate, finestre antieffrazione e serramenti ad alta sicurezza</p>
                         <span class="service-link" data-translate="service-serramenti-link">Serramenti Blindati</span>
                     </a>
-                    <a href="sorveglianza.html" class="service-card sorveglianza-card">
+                    <a href="sorveglianza.html" class="service-card sorveglianza-card" title="Scopri i nostri sistemi di videosorveglianza avanzati con tecnologia 4K">
                         <div class="service-icon">
                             <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" width="100" height="100" aria-label="Icona Sistemi di Videosorveglianza Avanzati">
                                 <!-- Bordo circolare esterno -->
@@ -826,7 +822,7 @@ img {
                         <p data-translate="service-sorveglianza-desc">Centrale operativa certificata, pronto intervento con GPG armate 24/7, Custodia chiavi e collegamento con centrale operativa, e integrazione completa con AI</p>
                         <span class="service-link" data-translate="service-sorveglianza-link">Videosorveglianza</span>
                     </a>
-                    <a href="allarmi.html" class="service-card allarmi-card">
+                    <a href="allarmi.html" class="service-card allarmi-card" title="Esplora i nostri sistemi di allarme intelligenti per la massima sicurezza">
                         <div class="service-icon">
                             <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" stroke="#4caf50" fill="none" aria-label="Icona Sistemi di Allarme Intelligenti">
                                 <!-- Stile principale per le linee dell'icona -->
@@ -865,13 +861,13 @@ img {
                         <div style="width: 80px; height: 26px; background: linear-gradient(135deg, #1e3a8a, #3b82f6); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: bold;">VIGILANZA</div>
                     </div>
                     <div class="partner-logo">
-                        <img src="icons/itlgroup-logo-carosello-homepage_small.webp" alt="ITL Group Logo" loading="lazy" width="67" height="26" />
+                        <img src="icons/itlgroup-logo-carosello-homepage_small.webp" alt="ITL Group Logo" loading="lazy" width="67" height="26">
                     </div>
                     <div class="partner-logo">
-                        <img src="icons/XECUR-logo-carosello-homepage_small.webp" alt="Xecur SRL Logo" loading="lazy" width="49" height="26" />
+                        <img src="icons/XECUR-logo-carosello-homepage_small.webp" alt="Xecur SRL Logo" loading="lazy" width="49" height="26">
                     </div>
                     <div class="partner-logo">
-                        <img src="icons/URfog-logo-carosello-homepage.webp" alt="UR Fog Logo" loading="lazy" width="67" height="26" />
+                        <img src="icons/URfog-logo-carosello-homepage.webp" alt="UR Fog Logo" loading="lazy" width="67" height="26">
                     </div>
                     <!-- Duplicati per loop seamless -->
                     <div class="partner-logo">
@@ -882,13 +878,13 @@ img {
                         </svg>
                     </div>
                     <div class="partner-logo">
-                        <img src="icons/itlgroup-logo-carosello-homepage_small.webp" alt="ITL Group Logo" loading="lazy" width="67" height="26" />
+                        <img src="icons/itlgroup-logo-carosello-homepage_small.webp" alt="ITL Group Logo" loading="lazy" width="67" height="26">
                     </div>
                     <div class="partner-logo">
-                        <img src="icons/XECUR-logo-carosello-homepage_small.webp" alt="Xecur SRL Logo" loading="lazy" width="49" height="26" />
+                        <img src="icons/XECUR-logo-carosello-homepage_small.webp" alt="Xecur SRL Logo" loading="lazy" width="49" height="26">
                     </div>
                     <div class="partner-logo">
-                        <img src="icons/URfog-logo-carosello-homepage.webp" alt="UR Fog Logo" loading="lazy" width="67" height="26" />
+                        <img src="icons/URfog-logo-carosello-homepage.webp" alt="UR Fog Logo" loading="lazy" width="67" height="26">
                     </div>
                 </div>
             </div>
@@ -1326,22 +1322,22 @@ img {
             <div class="container">
                 <div class="service-content" style="grid-template-columns: 1fr; text-align: center;">
                     <div class="service-text" style="max-width: 800px; margin: 0 auto;">
-                        <h3>FB Total Security</h3>
-                        <p class="service-description">Agenzia Specializzata in Sistemi di Sicurezza Avanzati</p>
-                        <p style="color: #b0b0b0; line-height: 1.7; font-size: 1.1rem; margin-bottom: 2rem;">
+                        <h3 data-translate="agency-title">Agenzia Specializzata in Sistemi di Sicurezza</h3>
+                        <p class="service-description" data-translate="agency-subtitle">FB Total Security - Leader nel settore della protezione avanzata</p>
+                        <p style="color: #b0b0b0; line-height: 1.7; font-size: 1.1rem; margin-bottom: 2rem;" data-translate="agency-description">
                             FB Total Security è un'agenzia leader nel settore della sicurezza, specializzata in sistemi di protezione avanzati, 
                             nebbiogeni antifurto e videosorveglianza intelligente. La nostra expertise comprende certificazioni di sicurezza europee e implementazione 
                             di soluzioni innovative per la protezione di abitazioni e aziende in tutta Italia.
                         </p>
                         <ul class="service-features" style="text-align: left; display: inline-block; max-width: 600px;">
-                            <li>Specializzazione in sistemi di sicurezza avanzati</li>
-                            <li>Certificazioni di sicurezza europee</li>
-                            <li>Soluzioni innovative per abitazioni e aziende</li>
-                            <li>Copertura servizi in tutta Italia</li>
-                            <li>Expertise in nebbiogeni e videosorveglianza intelligente</li>
+                            <li data-translate="agency-feature-1">Specializzazione in sistemi di sicurezza avanzati</li>
+                            <li data-translate="agency-feature-2">Certificazioni di sicurezza europee</li>
+                            <li data-translate="agency-feature-3">Soluzioni innovative per abitazioni e aziende</li>
+                            <li data-translate="agency-feature-4">Copertura servizi in tutta Italia</li>
+                            <li data-translate="agency-feature-5">Expertise in nebbiogeni e videosorveglianza intelligente</li>
                         </ul>
                         <div class="service-cta" style="margin-top: 2rem; text-align: center;">
-                            <a href="#contatti" class="btn btn-primary">Contattaci</a>
+                            <a href="#contatti" class="btn btn-primary" data-translate="agency-cta">Contattaci</a>
                         </div>
                     </div>
                 </div>
@@ -1353,8 +1349,8 @@ img {
             <div class="container">
                 <div class="service-content" style="grid-template-columns: 1fr; text-align: center;">
                     <div class="service-text" style="max-width: 1000px; margin: 0 auto;">
-                        <h3>Riferimenti Normativi e Certificazioni</h3>
-                        <p class="service-description">Tutti i nostri sistemi rispettano le normative europee e italiane più rigorose</p>
+                        <h3 data-translate="normative-title">Riferimenti Normativi e Certificazioni</h3>
+                        <p class="service-description" data-translate="normative-subtitle">Tutti i nostri sistemi rispettano le normative europee e italiane più rigorose</p>
                         
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; text-align: left;">
                             
@@ -1363,24 +1359,24 @@ img {
                                     <svg style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle;" viewBox="0 0 24 24" fill="#4caf50">
                                         <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/>
                                     </svg>
-                                    Normative Europee
+                                    <span data-translate="normative-european-title">Normative Europee</span>
                                 </h4>
                                 <ul style="margin: 0; padding-left: 1.5rem; color: #b0b0b0; line-height: 1.6; list-style: none;">
                                     <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
                                         <span style="position: absolute; left: 0; color: #4caf50; font-weight: bold;">✓</span>
-                                        <strong>EN 1627-1630:</strong> Standard europei per serramenti antieffrazione
+                                        <strong>EN 1627-1630:</strong> <span data-translate="normative-en-1627">Standard europei per serramenti antieffrazione</span>
                                     </li>
                                     <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
                                         <span style="position: absolute; left: 0; color: #4caf50; font-weight: bold;">✓</span>
-                                        <strong>EN 50131:</strong> Sistemi di allarme per applicazioni di sicurezza
+                                        <strong>EN 50131:</strong> <span data-translate="normative-en-50131">Sistemi di allarme per applicazioni di sicurezza</span>
                                     </li>
                                     <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
                                         <span style="position: absolute; left: 0; color: #4caf50; font-weight: bold;">✓</span>
-                                        <strong>EN 62676:</strong> Sistemi di videosorveglianza CCTV
+                                        <strong>EN 62676:</strong> <span data-translate="normative-en-62676">Sistemi di videosorveglianza CCTV</span>
                                     </li>
                                     <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
                                         <span style="position: absolute; left: 0; color: #4caf50; font-weight: bold;">✓</span>
-                                        <strong>CPR 305/2011:</strong> Regolamento prodotti da costruzione
+                                        <strong>CPR 305/2011:</strong> <span data-translate="normative-cpr-305">Regolamento prodotti da costruzione</span>
                                     </li>
                                 </ul>
                             </div>
@@ -1390,24 +1386,24 @@ img {
                                     <svg style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle;" viewBox="0 0 24 24" fill="#2196f3">
                                         <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
                                     </svg>
-                                    Certificazioni Italiane
+                                    <span data-translate="normative-italian-title">Certificazioni Italiane</span>
                                 </h4>
                                 <ul style="margin: 0; padding-left: 1.5rem; color: #b0b0b0; line-height: 1.6; list-style: none;">
                                     <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
                                         <span style="position: absolute; left: 0; color: #4caf50; font-weight: bold;">✓</span>
-                                        <strong>UNI 10854:</strong> Porte pedonali - Prestazioni
+                                        <strong>UNI 10854:</strong> <span data-translate="normative-uni-10854">Porte pedonali - Prestazioni</span>
                                     </li>
                                     <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
                                         <span style="position: absolute; left: 0; color: #4caf50; font-weight: bold;">✓</span>
-                                        <strong>D.Lgs. 81/2008:</strong> Sicurezza nei luoghi di lavoro
+                                        <strong>D.Lgs. 81/2008:</strong> <span data-translate="normative-dlgs-81">Sicurezza nei luoghi di lavoro</span>
                                     </li>
                                     <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
                                         <span style="position: absolute; left: 0; color: #4caf50; font-weight: bold;">✓</span>
-                                        <strong>Codice Privacy:</strong> D.Lgs. 196/2003 e GDPR
+                                        <strong>Codice Privacy:</strong> <span data-translate="normative-privacy">D.Lgs. 196/2003 e GDPR</span>
                                     </li>
                                     <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
                                         <span style="position: absolute; left: 0; color: #4caf50; font-weight: bold;">✓</span>
-                                        <strong>IMQ/CSI:</strong> Certificazioni qualità prodotti
+                                        <strong>IMQ/CSI:</strong> <span data-translate="normative-imq-csi">Certificazioni qualità prodotti</span>
                                     </li>
                                 </ul>
                             </div>
@@ -1417,24 +1413,24 @@ img {
                                     <svg style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle;" viewBox="0 0 24 24" fill="#ff9800">
                                         <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.4 16,13V16C16,16.6 15.6,17 15,17H9C8.4,17 8,16.6 8,16V13C8,12.4 8.4,11.5 9,11.5V10C9,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.2,9.2 10.2,10V11.5H13.8V10C13.8,9.2 12.8,8.2 12,8.2Z"/>
                                     </svg>
-                                    Classi di Sicurezza
+                                    <span data-translate="normative-security-classes-title">Classi di Sicurezza</span>
                                 </h4>
                                 <ul style="margin: 0; padding-left: 1.5rem; color: #b0b0b0; line-height: 1.6; list-style: none;">
                                     <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
                                         <span style="position: absolute; left: 0; color: #4caf50; font-weight: bold;">✓</span>
-                                        <strong>RC1-RC6:</strong> Classi resistenza antieffrazione
+                                        <strong>RC1-RC6:</strong> <span data-translate="normative-rc-classes">Classi resistenza antieffrazione</span>
                                     </li>
                                     <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
                                         <span style="position: absolute; left: 0; color: #4caf50; font-weight: bold;">✓</span>
-                                        <strong>Grado 1-4:</strong> Livelli sistemi di allarme
+                                        <strong>Grado 1-4:</strong> <span data-translate="normative-alarm-grades">Livelli sistemi di allarme</span>
                                     </li>
                                     <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
                                         <span style="position: absolute; left: 0; color: #4caf50; font-weight: bold;">✓</span>
-                                        <strong>IP65/IP66:</strong> Protezione ambientale telecamere
+                                        <strong>IP65/IP66:</strong> <span data-translate="normative-ip-protection">Protezione ambientale telecamere</span>
                                     </li>
                                     <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
                                         <span style="position: absolute; left: 0; color: #4caf50; font-weight: bold;">✓</span>
-                                        <strong>CE:</strong> Conformità europea obbligatoria
+                                        <strong>CE:</strong> <span data-translate="normative-ce-compliance">Conformità europea obbligatoria</span>
                                     </li>
                                 </ul>
                             </div>
@@ -1444,34 +1440,34 @@ img {
                                     <svg style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle;" viewBox="0 0 24 24" fill="#9c27b0">
                                         <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"/>
                                     </svg>
-                                    Garanzie e Conformità
+                                    <span data-translate="normative-warranties-title">Garanzie e Conformità</span>
                                 </h4>
                                 <ul style="margin: 0; padding-left: 1.5rem; color: #b0b0b0; line-height: 1.6; list-style: none;">
                                     <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
                                         <span style="position: absolute; left: 0; color: #4caf50; font-weight: bold;">✓</span>
-                                        <strong>Garanzia:</strong> 2-5 anni su tutti i prodotti
+                                        <strong data-translate="normative-warranty-label">Garanzia:</strong> <span data-translate="normative-warranty-desc">2-5 anni su tutti i prodotti</span>
                                     </li>
                                     <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
                                         <span style="position: absolute; left: 0; color: #4caf50; font-weight: bold;">✓</span>
-                                        <strong>Assistenza:</strong> Supporto tecnico 24/7
+                                        <strong data-translate="normative-support-label">Assistenza:</strong> <span data-translate="normative-support-desc">Supporto tecnico 24/7</span>
                                     </li>
                                     <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
                                         <span style="position: absolute; left: 0; color: #4caf50; font-weight: bold;">✓</span>
-                                        <strong>Installazione:</strong> Tecnici certificati
+                                        <strong data-translate="normative-installation-label">Installazione:</strong> <span data-translate="normative-installation-desc">Tecnici certificati</span>
                                     </li>
                                     <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
                                         <span style="position: absolute; left: 0; color: #4caf50; font-weight: bold;">✓</span>
-                                        <strong>Manutenzione:</strong> Contratti di assistenza
+                                        <strong data-translate="normative-maintenance-label">Manutenzione:</strong> <span data-translate="normative-maintenance-desc">Contratti di assistenza</span>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         
                         <div class="guarantee-banner" style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0.05)); border-radius: 12px; text-align: center; border: 1px solid rgba(76, 175, 80, 0.3);">
-                            <p style="margin: 0; color: #4caf50; font-weight: 600; font-size: 1.1rem;">
+                            <p style="margin: 0; color: #4caf50; font-weight: 600; font-size: 1.1rem;" data-translate="normative-guarantee-main">
                                 ✓ Tutti i nostri prodotti rispettano le normative europee e italiane vigenti
                             </p>
-                            <p style="margin: 0.5rem 0 0 0; color: #b0b0b0; font-size: 1rem;">
+                            <p style="margin: 0.5rem 0 0 0; color: #b0b0b0; font-size: 1rem;" data-translate="normative-guarantee-sub">
                                 Certificazioni verificabili • Installazione a norma • Assistenza garantita
                             </p>
                         </div>
@@ -1489,14 +1485,14 @@ img {
                     <p data-translate="footer-description">Creatori di sicurezza specializzati in sistemi di protezione avanzati. La tua sicurezza è la nostra priorità.</p>
                     <div class="social-links">
                         <h4 data-translate="footer-social-title">Seguici su:</h4>
-                        <a href="https://www.facebook.com/profile.php?id=61581141350058" rel="follow" target="_blank" aria-label="FB Total Security su Facebook">
+                        <a href="https://www.facebook.com/profile.php?id=61581141350058" rel="follow noopener noreferrer" target="_blank" aria-label="FB Total Security su Facebook">
                             <svg width="20" height="20" role="img" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                             </svg>
                             <span class="sr-only">Facebook</span>
                         </a>
-                        <a href="https://www.instagram.com/francosicurezza" rel="follow" target="_blank" aria-label="Instagram">📷</a>
-                        <a href="https://x.com/FBTotalSecurity" aria-label="FB Total Security su X" rel="me noopener" target="_blank">
+                        <a href="https://www.instagram.com/francosicurezza" rel="follow noopener noreferrer" target="_blank" aria-label="Instagram">📷</a>
+                        <a href="https://x.com/FBTotalSecurity" aria-label="FB Total Security su X" rel="me noopener noreferrer" target="_blank">
                             <svg aria-hidden="true" width="20" height="20" role="img" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                             </svg>
