@@ -13,6 +13,10 @@
     <!-- 1. PRELOAD DEI FONT WOFF2 USATI "ABOVE THE FOLD" CON PRIORITÀ MASSIMA -->
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7SUc.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
+    
+    <!-- PRELOAD CRITICO PER LCP: CSS principale -->
+    <link rel="preload" href="styles.css" as="style" fetchpriority="high">
+    <link rel="preload" href="script.js" as="script" fetchpriority="low">
 
     <!-- 2. CSS CRITICO INLINE: Stili essenziali + FONT FALLBACK + STABILIZZAZIONE LAYOUT DEFINITIVA -->
     <style>
@@ -62,9 +66,17 @@
             /* L'altezza deve rimanere automatica. */
             height:auto !important; min-height:auto !important;
             contain:layout style paint;will-change:auto;transform:translateZ(0);display:block;text-align:center;flex-shrink:0;box-sizing:border-box;overflow:visible;isolation:isolate;word-wrap:break-word;hyphens:auto;
-            /* Ottimizzazioni LCP */
-            font-display:block;visibility:visible;opacity:1;backface-visibility:hidden;
-            font-synthesis:none;text-rendering:optimizeSpeed;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale
+            /* === OTTIMIZZAZIONI LCP ULTRA-CRITICHE === */
+            font-display:swap;visibility:visible;opacity:1;backface-visibility:hidden;
+            font-synthesis:none;text-rendering:optimizeSpeed;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+            /* Prevenzione layout shift */
+            font-family:'Inter','Inter Fallback',system-ui,-apple-system,sans-serif;
+            /* Ottimizzazione rendering ultra-critica per LCP */
+            content-visibility:visible;contain-intrinsic-size:auto 100px;
+            /* Accelerazione hardware massima */
+            transform:translate3d(0,0,0);
+            /* Priorità rendering massima */
+            z-index:1;
         }
         .hero-cta{
             display:flex;gap:1.5rem;justify-content:center;align-items:center;width:100%;
@@ -748,7 +760,7 @@ img {
         <section class="hero">
             <div class="hero-container">
                 <h1 class="hero-title" data-translate="hero-title">Soluzioni di Sicurezza Avanzate per la Tua Protezione</h1>
-                <p class="hero-subtitle" data-translate="hero-subtitle">Anni di esperienza multisettoriale nella protezione di abitazioni private e aziende in tutta Italia. Soluzioni di sicurezza avanzate certificate, installazioni garantite, sistemi di protezione personalizzati per privati e imprese.</p>
+                <p class="hero-subtitle">Anni di esperienza multisettoriale nella protezione di abitazioni private e aziende in tutta Italia. Soluzioni di sicurezza avanzate certificate, installazioni garantite, sistemi di protezione personalizzati per privati e imprese.</p>
                 <div class="hero-cta">
                     <a href="#contatti" class="btn btn-primary" data-translate="hero-cta-primary" title="Contattaci per una consulenza gratuita personalizzata">Richiedi Consulenza Gratuita</a>
                     <a href="#servizi" class="btn btn-secondary" data-translate="hero-cta-secondary" title="Scopri tutti i nostri servizi di sicurezza avanzati">Scopri i Servizi</a>
