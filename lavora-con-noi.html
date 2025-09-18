@@ -677,6 +677,220 @@
     <script src="script.min.js?v=20250917" defer></script>
     <script src="js/utm-tracking.js?v=20250917" defer></script>
     
+    <!-- Advanced CV Attachment Handler - SEO Compliant -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // CV File Handler with Advanced Features
+            const candidatureForm = document.getElementById('candidature-form');
+            const cvInput = document.getElementById('cv');
+            let cvFileData = null;
+            let cvFileName = '';
+            
+            // File validation constants
+            const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+            const ALLOWED_TYPES = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+            const ALLOWED_EXTENSIONS = ['.pdf', '.doc', '.docx'];
+            
+            // Create file status indicator
+            function createFileStatusIndicator() {
+                const indicator = document.createElement('div');
+                indicator.id = 'cv-status';
+                indicator.style.cssText = `
+                    margin-top: 8px;
+                    padding: 8px 12px;
+                    border-radius: 6px;
+                    font-size: 0.9em;
+                    font-weight: 500;
+                    display: none;
+                    transition: all 0.3s ease;
+                `;
+                cvInput.parentNode.appendChild(indicator);
+                return indicator;
+            }
+            
+            const statusIndicator = createFileStatusIndicator();
+            
+            // Update status indicator
+            function updateStatus(message, type = 'info') {
+                const colors = {
+                    success: { bg: 'rgba(76, 175, 80, 0.1)', border: '1px solid rgba(76, 175, 80, 0.3)', color: '#4caf50' },
+                    error: { bg: 'rgba(244, 67, 54, 0.1)', border: '1px solid rgba(244, 67, 54, 0.3)', color: '#f44336' },
+                    info: { bg: 'rgba(33, 150, 243, 0.1)', border: '1px solid rgba(33, 150, 243, 0.3)', color: '#2196f3' },
+                    warning: { bg: 'rgba(255, 193, 7, 0.1)', border: '1px solid rgba(255, 193, 7, 0.3)', color: '#ffc107' }
+                };
+                
+                const style = colors[type] || colors.info;
+                statusIndicator.style.cssText += `
+                    background: ${style.bg};
+                    border: ${style.border};
+                    color: ${style.color};
+                    display: block;
+                `;
+                statusIndicator.textContent = message;
+            }
+            
+            // Validate file
+            function validateFile(file) {
+                if (!file) return { valid: false, message: 'Nessun file selezionato' };
+                
+                // Check file size
+                if (file.size > MAX_FILE_SIZE) {
+                    return { valid: false, message: `File troppo grande. Massimo 5MB consentiti. Dimensione attuale: ${(file.size / 1024 / 1024).toFixed(2)}MB` };
+                }
+                
+                // Check file type
+                const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
+                if (!ALLOWED_TYPES.includes(file.type) && !ALLOWED_EXTENSIONS.includes(fileExtension)) {
+                    return { valid: false, message: 'Formato file non supportato. Utilizzare PDF, DOC o DOCX' };
+                }
+                
+                return { valid: true, message: `File "${file.name}" caricato con successo (${(file.size / 1024).toFixed(1)}KB)` };
+            }
+            
+            // Convert file to base64
+            function fileToBase64(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result.split(',')[1]);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(file);
+                });
+            }
+            
+            // Handle file selection
+            cvInput.addEventListener('change', async function(e) {
+                const file = e.target.files[0];
+                
+                if (!file) {
+                    cvFileData = null;
+                    cvFileName = '';
+                    statusIndicator.style.display = 'none';
+                    return;
+                }
+                
+                const validation = validateFile(file);
+                
+                if (!validation.valid) {
+                    updateStatus(validation.message, 'error');
+                    cvFileData = null;
+                    cvFileName = '';
+                    e.target.value = '';
+                    return;
+                }
+                
+                try {
+                    updateStatus('Elaborazione file in corso...', 'info');
+                    cvFileData = await fileToBase64(file);
+                    cvFileName = file.name;
+                    updateStatus(validation.message, 'success');
+                } catch (error) {
+                    updateStatus('Errore durante l\'elaborazione del file', 'error');
+                    cvFileData = null;
+                    cvFileName = '';
+                    console.error('File processing error:', error);
+                }
+            });
+            
+            // Handle form submission
+            candidatureForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(this);
+                const nome = formData.get('nome')?.trim() || '';
+                const email = formData.get('email')?.trim() || '';
+                const telefono = formData.get('telefono')?.trim() || '';
+                const posizione = formData.get('posizione') || '';
+                const messaggio = formData.get('messaggio')?.trim() || '';
+                
+                // Validate required fields
+                if (!nome || !email || !posizione) {
+                    updateStatus('Compila tutti i campi obbligatori', 'error');
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    updateStatus('Inserisci un indirizzo email valido', 'error');
+                    return;
+                }
+                
+                // Create email content
+                const positionLabels = {
+                    'agente-vendita': 'Agenti di vendita e procacciatori di affari',
+                    'telemarketing': 'Personale per attività di telemarketing'
+                };
+                
+                const emailSubject = encodeURIComponent(`Candidatura per ${positionLabels[posizione] || posizione} - ${nome}`);
+                
+                let emailBody = `Nuova candidatura ricevuta dal sito web:\n\n`;
+                emailBody += `Nome e Cognome: ${nome}\n`;
+                emailBody += `Email: ${email}\n`;
+                emailBody += `Telefono: ${telefono || 'Non specificato'}\n`;
+                emailBody += `Posizione di interesse: ${positionLabels[posizione] || posizione}\n\n`;
+                
+                if (messaggio) {
+                    emailBody += `Presentazione:\n${messaggio}\n\n`;
+                }
+                
+                if (cvFileData && cvFileName) {
+                    emailBody += `CURRICULUM VITAE ALLEGATO:\n`;
+                    emailBody += `Nome file: ${cvFileName}\n`;
+                    emailBody += `Dimensione: ${(cvFileData.length * 0.75 / 1024).toFixed(1)}KB\n\n`;
+                    emailBody += `ISTRUZIONI PER L'ALLEGATO:\n`;
+                    emailBody += `1. Il CV è stato elaborato e convertito in formato base64\n`;
+                    emailBody += `2. Per visualizzare il file, copia il codice base64 sottostante\n`;
+                    emailBody += `3. Incolla il codice in un convertitore base64 online\n`;
+                    emailBody += `4. Oppure salva il codice in un file .txt per elaborazione successiva\n\n`;
+                    emailBody += `CODICE BASE64 DEL CV:\n`;
+                    emailBody += `${cvFileData}\n\n`;
+                    emailBody += `--- FINE CODICE BASE64 ---\n\n`;
+                } else {
+                    emailBody += `Nessun CV allegato.\n\n`;
+                }
+                
+                emailBody += `Candidatura inviata tramite: ${window.location.href}\n`;
+                emailBody += `Data e ora: ${new Date().toLocaleString('it-IT')}\n`;
+                emailBody += `User Agent: ${navigator.userAgent}\n\n`;
+                emailBody += `--- FB Total Security - Sistema di Candidature ---`;
+                
+                const encodedBody = encodeURIComponent(emailBody);
+                
+                // Create mailto link
+                const mailtoLink = `mailto:postmaster@fbtotalsecurity.com?subject=${emailSubject}&body=${encodedBody}`;
+                
+                // Check if mailto link is too long (some email clients have limits)
+                if (mailtoLink.length > 2000) {
+                    // Fallback for very large files
+                    const shortEmailBody = emailBody.substring(0, 1500) + '\n\n[CV troppo grande per email diretta - contattare per invio separato]';
+                    const shortEncodedBody = encodeURIComponent(shortEmailBody);
+                    const shortMailtoLink = `mailto:postmaster@fbtotalsecurity.com?subject=${emailSubject}&body=${shortEncodedBody}`;
+                    
+                    updateStatus('CV elaborato - apertura client email...', 'success');
+                    setTimeout(() => {
+                        window.location.href = shortMailtoLink;
+                    }, 1000);
+                } else {
+                    updateStatus('Candidatura elaborata - apertura client email...', 'success');
+                    setTimeout(() => {
+                        window.location.href = mailtoLink;
+                    }, 1000);
+                }
+                
+                // Optional: Reset form after successful submission
+                setTimeout(() => {
+                    if (confirm('Candidatura inviata! Vuoi inviare un\'altra candidatura?')) {
+                        this.reset();
+                        cvFileData = null;
+                        cvFileName = '';
+                        statusIndicator.style.display = 'none';
+                    }
+                }, 3000);
+            });
+        });
+    </script>
+    
     <!-- Lite YouTube Embed Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {

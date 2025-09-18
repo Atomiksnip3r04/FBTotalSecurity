@@ -80,11 +80,12 @@
         /* Font Fallback Metrics per Inter (essenziale per CLS) */
         @font-face {
             font-family: 'Inter Fallback';
-            size-adjust: 107%;
-            ascent-override: 90%;
-            descent-override: 22%;
-            line-gap-override: 0%;
+            size-adjust: 107.40%;
+            ascent-override: 90.20%;
+            descent-override: 22.48%;
+            line-gap-override: 0.00%;
             src: local('Arial'), local('Helvetica'), local('system-ui');
+            font-display: optional;
         }
         
         /* Definizione @font-face per Inter (ora locale) */
@@ -92,27 +93,29 @@
             font-family: 'Inter';
             font-style: normal;
             font-weight: 400; /* Regular */
-            font-display: swap;
+            font-display: optional;
             src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2) format('woff2');
         }
         @font-face {
             font-family: 'Inter';
             font-style: normal;
             font-weight: 600; /* SemiBold */
-            font-display: swap;
+            font-display: optional;
             src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
         }
         @font-face {
             font-family: 'Inter';
             font-style: normal;
             font-weight: 700; /* Bold */
-            font-display: swap;
+            font-display: optional;
             src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2) format('woff2');
         }
 
         /* Applica il fallback a tutto il corpo */
         body { 
-            font-family: 'Inter', 'Inter Fallback', sans-serif; 
+            font-family: 'Inter', 'Inter Fallback', sans-serif;
+            contain: layout style paint;
+            transform: translateZ(0);
         }
         
         /* CRITICAL CSS FOR LAYOUT STABILITY (CLS PREVENTION) */

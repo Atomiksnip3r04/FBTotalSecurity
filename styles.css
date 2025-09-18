@@ -64,7 +64,7 @@ body {
     background: var(--text-black);
     
     /* CLS Prevention - Critical Fixes */
-    font-display: swap; /* Cambiato da optional per ridurre CLS */
+    font-display: optional; /* Cambiato per eliminare CLS */
     min-height: 100vh;
     width: 100%; /* Larghezza fissa */
     padding-top: 80px;
@@ -74,8 +74,9 @@ body {
     font-kerning: normal;
     text-rendering: optimizeSpeed;
     
-    /* Assicurati che il contenimento non sia troppo aggressivo qui */
-    /* contain: style; */ /* RIMOSSO completamente per evitare containing block corrotto sul menu mobile */
+    /* CLS FIX: Rinforzo per la stabilità della Hero Section */
+    contain: layout style paint;
+    transform: translateZ(0);
     
     /* Additional CLS prevention */
     box-sizing: border-box;
@@ -93,6 +94,9 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
     margin-bottom: 1rem;
     color: var(--white);
+    /* CLS FIX: Isola anche gli elementi figli per massima stabilità */
+    contain: layout style paint;
+    transform: translateZ(0);
 }
 
 /* Modern H1 styling - eliminates H1UserAgentFontSizeInSection deprecation */
@@ -605,7 +609,7 @@ a {
     color: #4caf50;
 }
 
-/* Hero Section */
+/* Hero Section - CLS Optimized */
 .hero {
     min-height: calc(100vh - 80px);
     display: flex;
@@ -614,9 +618,15 @@ a {
     background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
     position: relative;
     overflow: hidden;
-    /* Optimize for layout stability and reduce CLS */
-    contain: layout style;
+    
+    /* CRITICAL CLS FIX: Optimize for layout stability */
+    contain: layout style paint;
     will-change: auto;
+    transform: translateZ(0);
+    isolation: isolate;
+    
+    /* Font loading optimization */
+    font-display: optional;
 }
 
 .hero::before {
@@ -629,13 +639,17 @@ a {
     background: radial-gradient(circle at 30% 70%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 70% 30%, rgba(76, 175, 80, 0.05) 0%, transparent 50%);
     pointer-events: none;
+    
+    /* CLS FIX: Stabilizza il pseudo-elemento */
+    contain: layout style paint;
+    transform: translateZ(0);
 }
 
 .hero-container {
-    /* Stabilizza la larghezza massima e impedisce che collassi */
+    /* CRITICAL CLS FIX: Stabilizza dimensioni e layout */
     width: 100%;
     max-width: 1200px;
-    padding: 2rem 1rem; /* Usa padding invece di margini per spaziatura interna */
+    padding: 2rem 1rem;
     box-sizing: border-box;
     margin: 0 auto;
     text-align: center;
@@ -646,124 +660,137 @@ a {
     justify-content: center;
     align-items: center;
     
-    /* SOLUZIONE TRONCAMENTO: Altezza flessibile per contenere tutto il contenuto */
-    min-height: 600px; /* Altezza minima ragionevole */
-    height: auto; /* Altezza automatica basata sul contenuto */
+    /* CRITICAL: Altezza fissa per prevenire CLS */
+    min-height: 600px;
+    height: auto;
     
-    /* Optimize for layout stability and reduce CLS */
+    /* CRITICAL CLS FIX: Massima stabilità del layout */
     contain: layout style paint;
     transform: translateZ(0);
     will-change: auto;
-    /* Prevent layout shift during font loading */
     visibility: visible;
     opacity: 1;
-    /* Stabilizza ulteriormente il layout */
     flex-shrink: 0;
+    overflow: visible;
+    isolation: isolate;
     
-    /* NUOVO: Forza dimensioni stabili per prevenire qualsiasi shift */
-    overflow: visible; /* Cambiato da hidden per permettere visualizzazione completa */
-    isolation: isolate; /* Crea nuovo stacking context */
+    /* Font loading optimization */
+    font-display: optional;
+    font-family: 'Inter', 'Inter Fallback', system-ui, -apple-system, sans-serif;
 }
 
 .hero-title {
-    font-size: clamp(2.2rem, 8vw, 5rem); /* Usa clamp per fluidità */
+    /* CRITICAL CLS FIX: Dimensioni responsive stabili */
+    font-size: clamp(2.2rem, 8vw, 5rem);
     font-weight: 700;
     margin-bottom: 1.5rem;
     background: linear-gradient(135deg, #ffffff, #4caf50);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    line-height: 1.2; /* Aumentato da 1.1 per migliore leggibilità */
-    max-width: 800px; /* Limita la larghezza per evitare righe troppo lunghe */
-    width: 100%; /* Occupa tutta la larghezza disponibile (del suo contenitore) */
+    line-height: 1.2;
+    max-width: 800px;
+    width: 100%;
 
-    /* SOLUZIONE TRONCAMENTO: Rimuovere altezza fissa e permettere espansione naturale */
-    min-height: auto; /* Permette espansione naturale */
-    height: auto; /* Altezza automatica basata sul contenuto */
+    /* CRITICAL CLS FIX: Altezza e layout stabili */
+    min-height: auto;
+    height: auto;
     
-    /* Aggiungiamo 'contain' per isolare il rendering di questi elementi */
+    /* CRITICAL: Massima stabilità del rendering */
     contain: layout style paint;
     will-change: auto;
-    
-    /* Prevent layout shift during font loading */
-    font-display: optional;
-    /* Additional CLS prevention */
     transform: translateZ(0);
-    /* Reserve space to prevent shifts */
-    padding: 0;
-    /* Stabilize layout dimensions */
-    box-sizing: border-box;
-    /* Use fallback font family to prevent shifts */
-    font-family: 'Inter', 'Inter Fallback', system-ui, -apple-system, sans-serif;
-    /* Stabilizza ulteriormente il layout */
-    flex-shrink: 0;
-    display: block; /* Cambiato da flex per permettere wrapping naturale */
-    text-align: center; /* Mantiene il testo centrato */
     
-    /* Permettere la visualizzazione completa del testo */
+    /* CRITICAL: Font loading optimization */
+    font-display: optional;
+    font-family: 'Inter', 'Inter Fallback', system-ui, -apple-system, sans-serif;
+    
+    /* Layout stabilization */
+    padding: 0;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    display: block;
+    text-align: center;
     overflow: visible;
     text-overflow: clip;
-    white-space: normal; /* Permette il wrapping del testo */
-    word-wrap: break-word; /* Permette il wrapping delle parole lunghe */
-    hyphens: auto; /* Abilita la sillabazione automatica */
-    isolation: isolate; /* Isola il rendering */
+    white-space: normal;
+    word-wrap: break-word;
+    hyphens: auto;
+    isolation: isolate;
+    
+    /* CRITICAL: Reserve space to prevent font swap CLS */
+    min-width: 0;
+    max-width: 100%;
 }
 
 .hero-subtitle {
+    /* CRITICAL CLS FIX: Dimensioni responsive stabili */
     font-size: clamp(1.2rem, 2.5vw, 1.5rem);
     color: #b0b0b0;
     margin-bottom: 3rem;
-    max-width: 600px; /* Limita la larghezza */
+    max-width: 600px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
     line-height: 1.6;
     
-    /* SOLUZIONE TRONCAMENTO: Altezza flessibile per contenere tutto il contenuto */
-    min-height: auto; /* Permette espansione naturale */
-    height: auto; /* Altezza automatica basata sul contenuto */
+    /* CRITICAL CLS FIX: Altezza e layout stabili */
+    min-height: auto;
+    height: auto;
     
-    /* Aggiungiamo 'contain' per isolare il rendering di questi elementi */
+    /* CRITICAL: Massima stabilità del rendering */
     contain: layout style paint;
     will-change: auto;
     transform: translateZ(0);
-    /* Use fallback font family to prevent shifts */
+    
+    /* CRITICAL: Font loading optimization */
+    font-display: optional;
     font-family: 'Inter', 'Inter Fallback', system-ui, -apple-system, sans-serif;
     
-    /* Ottimizzazioni aggiuntive per LCP e CLS */
-    display: block; /* Cambiato da flex per permettere wrapping naturale */
-    text-align: center; /* Mantiene il testo centrato */
+    /* Layout stabilization */
+    display: block;
+    text-align: center;
     flex-shrink: 0;
     box-sizing: border-box;
     overflow: visible;
     isolation: isolate;
-    
-    /* Miglioramenti per mobile - evita troncamento */
     word-wrap: break-word;
     hyphens: auto;
     white-space: normal;
+    
+    /* CRITICAL: Reserve space to prevent font swap CLS */
+    min-width: 0;
+    max-width: 100%;
 }
 
 .hero-cta {
+    /* CRITICAL CLS FIX: Layout stabile per i pulsanti */
     display: flex;
-    flex-direction: column; /* Mobile first */
+    flex-direction: column;
     gap: 1.5rem;
     justify-content: center;
     align-items: center;
     width: 100%;
     
-    /* SOLUZIONE CLS DEFINITIVA: Altezza fissa per contenere i pulsanti */
-    height: 120px !important;
-    min-height: 120px !important;
-    contain: layout style;
+    /* CRITICAL: Altezza fissa per prevenire CLS */
+    height: 120px;
+    min-height: 120px;
+    
+    /* CRITICAL: Massima stabilità del layout */
+    contain: layout style paint;
     margin: 0 auto;
     flex-shrink: 0;
+    transform: translateZ(0);
+    isolation: isolate;
+    box-sizing: border-box;
+    overflow: visible;
 }
 
 @media (min-width: 768px) {
     .hero-cta {
         flex-direction: row;
-        min-height: 60px; /* Altezza per la riga singola */
+        height: 60px;
+        min-height: 60px;
     }
 }
 
