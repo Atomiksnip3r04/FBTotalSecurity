@@ -645,39 +645,9 @@ a {
     transform: translateZ(0);
 }
 
-.hero-container {
-    /* CRITICAL CLS FIX: Stabilizza dimensioni e layout */
-    width: 100%;
-    max-width: 1200px;
-    padding: 2rem 1rem;
-    box-sizing: border-box;
-    margin: 0 auto;
-    text-align: center;
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-    /* CRITICAL: Altezza fissa per prevenire CLS */
-    min-height: 600px;
-    height: auto;
-    
-    /* CRITICAL CLS FIX: Massima stabilità del layout */
-    contain: layout style paint;
-    transform: translateZ(0);
-    will-change: auto;
-    visibility: visible;
-    opacity: 1;
-    flex-shrink: 0;
-    overflow: visible;
-    isolation: isolate;
-    
-    /* Font loading optimization */
-    font-display: optional;
-    font-family: 'Inter', 'Inter Fallback', system-ui, -apple-system, sans-serif;
-}
+/* REMOVED CONFLICTING RULES - Now handled by inline critical CSS with fixed height */
+/* All hero-container styling is now managed in the critical CSS section of each HTML file */
+/* This prevents conflicts with the definitive CLS fix */
 
 .hero-title {
     /* CRITICAL CLS FIX: Dimensioni responsive stabili */
@@ -2622,15 +2592,8 @@ a {
         padding: 0 1rem;
     }
 
-    .hero-container {
-        padding: 0 1rem;
-    }
-    
-    /* Riduce ulteriormente la spaziatura su mobile */
-    .hero-container {
-        padding-top: 0;
-        margin-top: 0;
-    }
+    /* REMOVED CONFLICTING MOBILE RULES - Now handled by inline critical CSS */
+    /* Mobile styling is now managed in the critical CSS section */
 
     .contact-form {
         padding: 2rem;
@@ -2695,11 +2658,8 @@ a {
         text-align: center;
     }
     
-    .hero-container {
-        padding: 0 0.5rem;
-        height: auto !important;
-        min-height: auto !important;
-    }
+    /* REMOVED CONFLICTING MOBILE RULES - Now handled by inline critical CSS */
+    /* Mobile styling is now managed in the critical CSS section */
 }
 
 /* Clients Section */

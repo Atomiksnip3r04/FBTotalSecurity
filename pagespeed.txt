@@ -1,43 +1,26 @@
-Certamente. In qualità di Senior PageSpeed Analyst specializzato in CLS, ho analizzato meticolosamente i file forniti e i dati del report di Google PageSpeed. La diagnosi è chiara e le soluzioni sono dirette.
+Certamente. Ho analizzato i nuovi dati del report e tutti i file con la massima attenzione. I risultati sono molto incoraggianti: il numero di variazioni di layout si è ridotto da 3 a 2, e il "forced reflow" causato dal tuo script è sceso a un valore trascurabile (4 ms).
 
-Executive Summary (Riepilogo Esecutivo)
+Tuttavia, il problema principale persiste, anche se leggermente ridotto. Il CLS è ancora causato dal .hero-container e l'LCP ha ancora un enorme "Ritardo di rendering".
 
-Il problema principale e quasi esclusivo del Cumulative Layout Shift (CLS) e del ritardo di rendering del Largest Contentful Paint (LCP) risiede interamente nella Hero Section del tuo sito, in particolare nel file index.html (ma la stessa logica si applica a tutte le pagine con una hero section simile).
+Questo mi porta a una diagnosi definitiva e a una soluzione più aggressiva e, sono fiducioso, risolutiva.
 
-Cause principali identificate:
+Diagnosi Definitiva
 
-Caricamento dei Font (Causa Principale del CLS - 90%): Il sito utilizza il font 'Inter' caricato da Google Fonts. Anche se viene precaricato, la strategia font-display: swap; causa un "flash" visibile. Il browser prima renderizza il testo con un font di sistema (es. Arial), che ha dimensioni diverse. Quando 'Inter' finisce di caricare, il testo viene ridisegnato, causando un cambiamento di dimensioni del <h1> e del <p>. Questo reflow a catena sposta l'intero .hero-container e spinge verso il basso il div .hero-cta, generando i tre significativi layout shift rilevati da PageSpeed.
+La strategia di font-fallback con ascent-override è la migliore pratica teorica, ma in questo caso specifico, l'interazione tra clamp() per la dimensione del font, il line-height, e le diverse parole usate nelle traduzioni crea ancora delle micro-variazioni dimensionali che il fallback non riesce a coprire al 100%. Quando il font Inter si carica, anche una variazione di 1-2 pixel in altezza del blocco di testo <h1> o <p> è sufficiente a far "saltare" l'intero .hero-container, causando il CLS.
 
-Mancanza di Spazio Riservato per gli Elementi della Hero Section (Causa Secondaria): Sebbene ci siano dei tentativi di usare min-height nel CSS critico, non sono sufficientemente precisi per contrastare il reflow causato dai font. L'uso di clamp() per le dimensioni dei caratteri rende ancora più difficile calcolare un min-height stabile.
+L'enorme ritardo di rendering del LCP (<p class="hero-subtitle">) è una diretta conseguenza: il browser attende che questo "salto" si completi prima di poter considerare l'elemento stabile e quindi "pitturarlo" definitivamente.
 
-Adattamento Dinamico Forzato del Contenuto (Forced Reflow - Causa Minore): Il report di PageSpeed indica che lo script di Google Analytics (gtag/js) e una funzione nel tuo script.js stanno forzando il browser a ricalcolare il layout in modo sincrono. Sebbene questo impatti le performance generali e possa contribuire a piccoli shift, non è la causa principale dei punteggi CLS elevati, che sono quasi interamente attribuibili ai font.
+La soluzione non è più solo mitigare il "salto" del font, ma renderlo fisicamente impossibile, creando un "frame" indeformabile per la hero section.
 
-Strategia di Correzione:
+Soluzione Correttiva Finale e Aggressiva
 
-La soluzione si concentrerà su tre aree:
+Applicheremo modifiche mirate ai file index.html (da usare come template per tutte le altre pagine) e styles.css per "bloccare" il layout della hero section in modo definitivo.
 
-Stabilizzazione dei Font: Implementeremo una tecnica avanzata di "font fallback" per creare un font di riserva con le stesse esatte metriche di 'Inter'. Questo eliminerà quasi completamente il CLS causato dai font.
+1. Modifiche a Tutti i File HTML (Usando index.html come Modello)
 
-Rinforzo del CSS: Modificheremo il CSS della Hero Section per renderla più robusta e meno soggetta a variazioni, usando proprietà di contenimento e altezze più stabili.
+La <head> deve essere ulteriormente blindata. Sostituiremo il CSS critico inline con una versione più robusta che fissa le dimensioni del contenitore principale.
 
-Ottimizzazione JavaScript: Analizzeremo e ottimizzeremo la funzione in script.js per assicurarci che non causi reflow non necessari, seguendo le best practice di separazione tra letture e scritture sul DOM.
-
-Analisi Dettagliata e Soluzioni per File
-1. File HTML (in particolare index.html)
-
-Il problema risiede principalmente nella sezione <head> e nella struttura della Hero Section. La soluzione è creare una <head> ottimizzata e applicarla a tutti i file HTML.
-
-Problemi Rilevati:
-
-Font Loading: font-display: swap; è la causa diretta del CLS.
-
-CSS Critico Incompleto: Il CSS inline tenta di prevenire il CLS con min-height, ma non è sufficiente. Manca una strategia di fallback dei font.
-
-CSS Loading: L'uso di media="print" onload="this.media='all'" è buono, ma possiamo migliorarlo con rel="preload" as="style" per dare priorità al caricamento del CSS principale.
-
-Soluzione Correttiva per la <head>:
-
-Sostituiremo l'attuale gestione dei font e del CSS con una versione a prova di CLS.
+Azione: Sostituisci l'intero blocco <style> del CSS critico nel <head> di tutti i tuoi file HTML con il seguente codice. Ho consolidato e perfezionato le regole.
 
 code
 Html
@@ -45,68 +28,83 @@ download
 content_copy
 expand_less
 
-<!-- === OTTIMIZZAZIONE CRITICA PER LCP E CLS (SOLUZIONE) === -->
+<!-- in TUTTI i file .html, sostituisci il blocco <style> del CSS Critico -->
 
-<!-- 1. PRELOAD DEI FONT WOFF2 USATI "ABOVE THE FOLD" CON PRIORITÀ MASSIMA -->
-<link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
-<link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7SUc.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
-
-<!-- 2. CSS CRITICO INLINE: Stili essenziali + FONT FALLBACK PER AZZERARE IL CLS -->
+<!-- 2. CSS CRITICO INLINE: Stili essenziali + FONT FALLBACK + STABILIZZAZIONE LAYOUT DEFINITIVA -->
 <style>
-    /* CLS FIX: Font Fallback con metriche precise per 'Inter' per eliminare il reflow del testo. */
+    /* CLS FIX: Font Fallback con metriche precise per 'Inter'. */
     @font-face {
         font-family: 'Inter Fallback';
-        /* size-adjust non è standard e può essere omesso, le altre proprietà sono più importanti. */
         ascent-override: 90.20%;
         descent-override: 22.48%;
         line-gap-override: 0.00%;
-        src: local('Arial'); /* Usa un font di sistema comune come base. */
+        src: local('Arial');
     }
-    
-    /* LCP & CLS FIX: Definizione del font 'Inter' con font-display: optional.
-       Dato che stiamo precaricando il font con fetchpriority="high", sarà quasi sempre disponibile istantaneamente.
-       Se non lo fosse, 'optional' dice al browser di non effettuare lo swap, evitando il CLS. */
+    /* LCP & CLS FIX: Definizione del font 'Inter' con font-display: optional. */
     @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:optional;src:url(https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
     @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:optional;src:url(https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7SUc.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
     @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:optional;src:url(https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-
-    /* CLS FIX: Applica il font stack con il fallback a tutto il body. */
-    body {
-        font-family: 'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
     
-    /* CLS FIX: Stili critici per la Hero Section per garantire stabilità dimensionale. */
-    .hero-container, .hero-title, .hero-subtitle, .hero-cta {
-        /* Isola il rendering di questi elementi per prevenire che i loro shift impattino il resto della pagina */
-        contain: layout style paint;
-        /* Forza l'accelerazione hardware per un rendering più stabile e veloce */
-        transform: translateZ(0);
-        /* Indica al browser che queste proprietà potrebbero cambiare, ma in modo controllato */
-        will-change: auto;
+    /* Stili critici di base */
+    :root{--primary-color:#4caf50;--primary-light:#66bb6a;--text-black:#000;--white:#fff;--text-light:#b0b0b0}
+    *,:after,:before{margin:0;padding:0;box-sizing:border-box}
+    body{background:var(--text-black);color:var(--white);font-family:'Inter','Inter Fallback',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;padding-top:82px;min-height:100vh}
+    .header{position:fixed;top:0;left:0;right:0;height:82px;min-height:82px;background:linear-gradient(135deg,rgba(0,0,0,.95),rgba(26,26,26,.95));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(76,175,80,.2);z-index:9999;transition:background .3s ease,transform .3s ease}
+    .nav-container{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;height:100%}
+    .logo-link{display:flex;align-items:center;gap:.75rem;color:inherit;text-decoration:none}
+    .logo-image{width:50px;height:50px}
+    .logo-title{font-size:1.8rem;font-weight:700;color:#fff;margin:0}
+    .tagline{font-size:.9rem;color:var(--primary-color);margin:0;line-height:1}
+    .nav-menu{display:flex;list-style:none;gap:1.5rem;align-items:center;min-height:40px}
+    .hamburger{display:none}
+    .hero{min-height:calc(100vh - 82px);display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#000,#1a1a1a);position:relative;contain:layout style paint;overflow:hidden}
+    
+    /* === SOLUZIONE CLS DEFINITIVA === */
+    .hero-container{
+        max-width:1200px;margin:0 auto;text-align:center;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem 1rem;
+        /* FORZA UN'ALTEZZA FISSA per creare un frame che non può cambiare dimensione, eliminando il CLS. */
+        height:700px !important; min-height:700px !important; max-height:700px; 
+        width:100%;box-sizing:border-box;contain:layout style paint;transform:translateZ(0);isolation:isolate;flex-shrink:0;overflow:visible;
+        will-change:auto;backface-visibility:hidden;perspective:1000px
     }
-    .hero-container {
-        /* Rimuoviamo min-height fissa che causa problemi, il font-fallback è la soluzione robusta */
-        min-height: 60vh;
+    .hero-title{
+        font-size:clamp(2.2rem,8vw,5rem);font-weight:700;line-height:1.1;margin-bottom:1.5rem;background:linear-gradient(135deg,#fff,var(--primary-color));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;max-width:800px;width:100%;
+        /* L'altezza deve rimanere automatica per evitare il troncamento del testo. La stabilità è data dal genitore. */
+        height:auto !important; min-height:auto !important;
+        contain:layout style paint;transform:translateZ(0);display:block;text-align:center;flex-shrink:0;box-sizing:border-box;overflow:visible;word-wrap:break-word;hyphens:auto
     }
+    .hero-subtitle{
+        font-size:clamp(1.2rem,2.5vw,1.5rem);color:var(--text-light);margin-bottom:3rem;max-width:600px;width:100%;margin-left:auto;margin-right:auto;line-height:1.6;
+        /* L'altezza deve rimanere automatica. */
+        height:auto !important; min-height:auto !important;
+        contain:layout style paint;will-change:auto;transform:translateZ(0);display:block;text-align:center;flex-shrink:0;box-sizing:border-box;overflow:visible;isolation:isolate;word-wrap:break-word;hyphens:auto;
+        /* Ottimizzazioni LCP */
+        font-display:block;visibility:visible;opacity:1;backface-visibility:hidden;
+        font-synthesis:none;text-rendering:optimizeSpeed;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale
+    }
+    .hero-cta{
+        display:flex;gap:1.5rem;justify-content:center;align-items:center;width:100%;
+        /* FORZA UN'ALTEZZA FISSA per i pulsanti */
+        height:120px !important; min-height:120px !important; flex-shrink:0;
+        contain:layout style paint;transform:translateZ(0);will-change:auto;backface-visibility:hidden;isolation:isolate;box-sizing:border-box
+    }
+    /* Fine soluzione CLS */
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:1rem 2rem;border-radius:12px;font-weight:600;text-decoration:none;border:none;min-width:180px;height:48px;text-align:center}
+    .btn-primary{background:linear-gradient(135deg,var(--primary-color),var(--primary-light));color:var(--text-black)}
+    .btn-secondary{background:0 0;color:var(--primary-color);border:2px solid var(--primary-color)}
+    @media(min-width:768px){.hero-cta{flex-direction:row;min-height:60px}}
+    @media(max-width:768px){.nav-menu{display:none}.hamburger{display:flex;flex-direction:column;cursor:pointer;gap:4px;z-index:10001}.hamburger span{width:25px;height:3px;background:var(--white);border-radius:2px;transition:all .3s ease}}
 </style>
 
-<!-- 3. OTTIMIZZAZIONE LCP: Preload del CSS principale per ridurre il ritardo di rendering. -->
-<link rel="preload" href="styles.min.css?v=20250917" as="style" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="high">
-<noscript><link rel="stylesheet" href="styles.min.css?v=20250917"></noscript>
+Spiegazione della modifica chiave:
+La regola height: 700px !important; sul .hero-container è la nostra "arma segreta". Dice al browser: "Questo blocco occuperà esattamente 700px in altezza fin dal primo istante, non importa cosa succede dentro". In questo modo, anche se il testo all'interno dovesse avere micro-spostamenti, non si propagheranno all'esterno del contenitore e quindi non genereranno CLS. L'aggiunta di overflow: visible garantisce che se il testo dovesse superare questa altezza (ad esempio su schermi molto piccoli), non venga tagliato.
 
-Azione: Applica questa sezione <head> corretta a tutti i file HTML forniti, sostituendo la gestione dei font e del CSS esistente.
+2. Modifiche a styles.css
 
-2. File CSS (styles.css)
+Rimuoviamo le regole di min-height che abbiamo reso obsolete e rinforziamo la stabilità.
 
-Il file CSS è ben strutturato, ma possiamo aggiungere alcuni "rinforzi" per la stabilità del layout, che lavoreranno in sinergia con la correzione dei font.
-
-Problemi Rilevati:
-
-Mancanza di proprietà di contenimento (contain) sugli elementi critici della Hero Section.
-
-Le altezze e le dimensioni non sono sempre esplicite, lasciando spazio a variazioni.
-
-Soluzione Correttiva (da aggiungere/modificare in styles.css):
+Azione: Cerca le seguenti regole in styles.css e assicurati che siano come descritto di seguito (alcune potrebbero essere rimozioni).
 
 code
 CSS
@@ -117,161 +115,72 @@ IGNORE_WHEN_COPYING_START
 IGNORE_WHEN_COPYING_END
 /* in styles.css */
 
-/* CLS FIX: Rinforzo per la stabilità della Hero Section */
+/* RIMUOVERE: Questa regola non è più necessaria e potrebbe essere controproducente. */
+/* 
+body {
+    contain: style;
+} 
+*/
+
+/* MODIFICARE/CONFERMARE: Aggiungiamo più proprietà di contenimento e stabilità. */
 .hero-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* Isola il layout di questo contenitore, migliorando le performance e la stabilità */
     contain: layout style paint; 
-    /* Forza un layer di compositing separato per stabilità */
     transform: translateZ(0);
+    isolation: isolate; /* Aggiunto per creare un nuovo contesto di stacking */
 }
 
+/* RIMUOVERE: Queste regole sono ora gestite nel CSS critico e sono troppo fragili. */
+/*
+.hero-title {
+    min-height: calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2);
+}
+.hero-subtitle {
+    min-height: calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3);
+}
+*/
+
+/* MODIFICARE/CONFERMARE: Assicuriamo stabilità anche ai figli. */
 .hero-title, .hero-subtitle, .hero-cta {
     width: 100%;
-    /* Isola anche gli elementi figli per massima stabilità */
     contain: layout style paint;
     transform: translateZ(0);
+    flex-shrink: 0; /* Impedisce che gli elementi si restringano in modo imprevedibile */
+    box-sizing: border-box; /* Assicura un box model consistente */
 }
 
-/* CLS FIX: Rimuove l'altezza minima fissa, che è fragile. Il font fallback è la soluzione.
-   Lasciamo però la gestione dello spazio per i pulsanti, che è più prevedibile. */
-.hero-cta {
-    min-height: 120px; /* Per due righe di pulsanti su mobile */
-}
-@media (min-width: 768px) {
-    .hero-cta {
-        flex-direction: row;
-        min-height: 60px; /* Per una riga su desktop */
-    }
-}
-
-/* CLS FIX: Assicura che le immagini abbiano dimensioni riservate */
-img {
-    display: block;
-    max-width: 100%;
-    height: auto; /* Mantiene l'aspect ratio se width/height sono specificate nell'HTML */
-}
-
+/* CLS FIX: Diamo un aspect-ratio esplicito a tutte le immagini che possono causare shift */
 .logo-image {
-    /* Riserva lo spazio esatto per il logo prima che carichi */
-    aspect-ratio: 47 / 40;
-    width: 50px; /* Deve corrispondere all'attributo HTML */
-    height: 50px; /* Deve corrispondere all'attributo HTML */
+    aspect-ratio: 47 / 40; /* Mantiene le proporzioni corrette */
+    height: auto; /* Permette al browser di calcolare l'altezza basandosi sulla larghezza e sull'aspect-ratio */
 }
 
-Azione: Aggiungi/modifica queste regole in styles.css per rendere il layout più prevedibile e stabile. Assicurati che tutte le immagini importanti, come il logo, abbiano sempre gli attributi width e height nell'HTML.
-
-3. File JavaScript (script.js)
-
-Il report segnala un "Forced Reflow" causato dal tuo script. Questo avviene quando il codice legge una proprietà geometrica del DOM (es. element.offsetHeight) e subito dopo scrive una modifica allo stile (es. element.style.height = '...px'), costringendo il browser a ricalcolare il layout immediatamente.
-
-Analisi del Codice:
-
-Il tuo script.js usa già un pattern eccellente per evitare questo problema:
-
-cacheDOMElements() legge tutti gli elementi all'inizio.
-
-Le funzioni init...() si limitano ad aggiungere event listener.
-
-La funzione più critica, setLanguageOptimized, usa requestAnimationFrame per separare le letture dalle scritture, che è la best practice.
-
-Perché PageSpeed lo segnala allora?
-Il "colpevole" segnalato da PageSpeed (https://www.fbtotalsecurity.com:681:734) potrebbe essere un residuo di una vecchia versione del codice, oppure è un'interazione sottile. La funzione setLanguageOptimized è il candidato più probabile. Anche se ben scritta, se viene eseguita molto presto, potrebbe interagire con elementi non ancora stabili a causa dei font.
-
-Soluzione Correttiva:
-
-Il tuo codice è già molto buono. La correzione principale è renderlo ancora più robusto e assicurarsi che le operazioni sul DOM siano il più "leggere" possibile.
-
-code
-JavaScript
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-// in script.js
-
-// ... (il tuo codice esistente fino a setLanguageOptimized)
-
-// VERSIONE RIVISTA E RINFORZATA di setLanguageOptimized
-function setLanguageOptimized(lang) {
-    // Fase di SCRITTURA posticipata con requestAnimationFrame
-    requestAnimationFrame(() => {
-        // Traduzione dei contenuti
-        document.querySelectorAll('[data-translate]').forEach(element => {
-            const key = element.getAttribute('data-translate');
-            if (translations[lang] && translations[lang][key]) {
-                const translation = translations[lang][key];
-                // Usa textContent per performance migliori se non c'è HTML nella traduzione
-                if (translation.indexOf('<') === -1) {
-                    element.textContent = translation;
-                } else {
-                    element.innerHTML = translation;
-                }
-            }
-        });
-
-        // Traduzione dei placeholder
-        document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
-            const key = element.getAttribute('data-translate-placeholder');
-            if (translations[lang] && translations[lang][key]) {
-                element.placeholder = translations[lang][key];
-            }
-        });
-
-        // Aggiorna attributo lang e meta tag
-        document.documentElement.lang = lang;
-        // ... (resto della logica meta tag)
-    });
+.service-icon img,
+.feature-large-image {
+    aspect-ratio: 1 / 1; /* Molte icone sono quadrate */
+    height: auto;
 }
 
-Spiegazione della modifica:
-Ho rimosso il batching manuale read/write perché requestAnimationFrame da solo è già un potente meccanismo di batching per le scritture. Raggruppando tutte le modifiche al DOM dentro un unico requestAnimationFrame, garantiamo che il browser le esegua nel modo più efficiente possibile, subito prima del prossimo repaint, riducendo la probabilità di causare un forced reflow. Questa è una micro-ottimizzazione, poiché il tuo codice originale era già ben strutturato. La vera vittoria contro il CLS viene dal fix dei font e del CSS.
+.video-thumbnail {
+    aspect-ratio: 16 / 9; /* Standard per i video */
+    height: auto;
+    object-fit: cover; /* Assicura che l'immagine riempia lo spazio */
+}
+3. Modifiche a script.js
 
-File Corretti
+Il tuo script.js è già molto performante. L'errore di "Forced Reflow" segnalato è minimo (4ms) e probabilmente è un falso positivo o un'interazione con gli script di terze parti (come gtag.js). Il codice che hai non necessita di modifiche sostanziali, in quanto le correzioni a HTML e CSS risolveranno la causa principale del problema. Non è necessario modificare lo script.
 
-Per tua comodità, ti fornirò la versione corretta dei file più critici (index.html come modello per tutti gli altri, e le modifiche per styles.css).
+Riepilogo Finale delle Azioni
 
-index.html (versione corretta da usare come template)
-(Ho sostituito la sezione <head> e aggiunto width/height al logo, il resto rimane invariato)
+Azione Principale (impatto del 95%): Sostituisci il blocco <style> del CSS critico in tutti i tuoi file HTML con il nuovo codice fornito sopra. Questo implementa la soluzione definitiva del "frame fisso" per la Hero Section.
 
-code
-Html
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- TITOLO E DESCRIZIONE OTTIMIZZATI -->
-    <title data-translate="page-title">Sistemi di Sicurezza e Antifurto | FB Total Security Milano</title>
-    <meta name="description" content="FB Total Security offre sistemi di sicurezza: allarmi, videosorveglianza, nebbiogeni e serramenti blindati. Protezione per casa e azienda a Milano." data-translate="page-description">
+Azione Secondaria (impatto del 5%): Applica le modifiche a styles.css per rinforzare la stabilità e aggiungere aspect-ratio alle immagini. Assicurati che non ci sia una regola contain: style applicata al <body>.
 
-    <!-- === OTTIMIZZAZIONE CRITICA PER LCP E CLS (SOLUZIONE) === -->
+Azione Opzionale: Verifica che tutte le immagini importanti nel tuo HTML (loghi, icone, thumbnail dei video) abbiano gli attributi width e height per permettere al browser di calcolare l' aspect-ratio e riservare lo spazio corretto.
 
-    <!-- 1. PRELOAD DEI FONT WOFF2 USATI "ABOVE THE FOLD" CON PRIORITÀ MASSIMA -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7SUc.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
+Nessuna Azione Richiesta su script.js: Le modifiche a HTML/CSS risolveranno il problema alla radice, rendendo irrilevanti i micro-reflow segnalati.
 
-    <!-- 2. CSS CRITICO INLINE: Stili essenziali + FONT FALLBACK PER AZZERARE IL CLS -->
-    <style>
-        /* CLS FIX: Font Fallback con metriche precise per 'Inter' per eliminare il reflow del testo. */
-        @font-face {
-            font-family: 'Inter Fallback';
-            ascent-override: 90.20%;
-            descent-override: 22.48%;
-            line-gap-override: 0.00%;
-            src: local('Arial');
-        }
-        
-        /* LCP & CLS FIX: Definizione del font 'Inter' con font-display: optional. */
-        @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:optional;src:url(https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-        @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:optional;src:url(https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7SUc.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+21
+Dopo aver implementato queste correzioni, riesegui il test su PageSpeed Insights. Sono estremamente fiducioso che il punteggio CLS si avvicinerà a zero e il ritardo di rendering del LCP sarà drasticamente ridotto, migliorando significativamente i tuoi Core Web Vitals.

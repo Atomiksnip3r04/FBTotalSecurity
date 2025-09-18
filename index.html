@@ -14,23 +14,22 @@
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7SUc.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
 
-    <!-- 2. CSS CRITICO INLINE: Stili essenziali per renderizzare immediatamente la parte superiore della pagina -->
+    <!-- 2. CSS CRITICO INLINE: Stili essenziali + FONT FALLBACK + STABILIZZAZIONE LAYOUT DEFINITIVA -->
     <style>
-        /* Font Fallback Metrics per Inter per azzerare CLS. I valori sono stati ricalcolati per la massima precisione. */
+        /* CLS FIX: Font Fallback con metriche precise per 'Inter'. */
         @font-face {
             font-family: 'Inter Fallback';
-            /* size-adjust: 107.40%; - Proprietà non standard, rimossa per validazione W3C */
             ascent-override: 90.20%;
             descent-override: 22.48%;
             line-gap-override: 0.00%;
             src: local('Arial');
         }
-        /* Definizione del font Inter con `font-display: optional` per massimizzare LCP. 
-           Il browser userà il fallback se Inter non è pronto, ma grazie al preload, sarà quasi sempre pronto. */
+        /* LCP & CLS FIX: Definizione del font 'Inter' con font-display: optional. */
         @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:optional;src:url(https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
         @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:optional;src:url(https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7SUc.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
         @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:optional;src:url(https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
         
+        /* Stili critici di base */
         :root{--primary-color:#4caf50;--primary-light:#66bb6a;--text-black:#000;--white:#fff;--text-light:#b0b0b0}
         *,:after,:before{margin:0;padding:0;box-sizing:border-box}
         body{background:var(--text-black);color:var(--white);font-family:'Inter','Inter Fallback',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;padding-top:82px;min-height:100vh}
@@ -43,26 +42,38 @@
         .nav-menu{display:flex;list-style:none;gap:1.5rem;align-items:center;min-height:40px}
         .hamburger{display:none}
         .hero{min-height:calc(100vh - 82px);display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#000,#1a1a1a);position:relative;contain:layout style paint;overflow:hidden}
-        .hero-container{max-width:1200px;margin:0 auto;text-align:center;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem 1rem;
-            /* SOLUZIONE CLS DEFINITIVA: Altezza fissa per eliminare completamente le variazioni */
-            height:700px!important;min-height:700px!important;max-height:700px;width:100%;box-sizing:border-box;contain:layout style paint;transform:translateZ(0);isolation:isolate;flex-shrink:0;overflow:visible;
-            /* PREVENZIONE LAYOUT SHIFT AGGIUNTIVA */
-            will-change:auto;backface-visibility:hidden;perspective:1000px}
-        .hero-title{font-size:clamp(2.2rem,8vw,5rem);font-weight:700;line-height:1.1;margin-bottom:1.5rem;background:linear-gradient(135deg,#fff,var(--primary-color));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;max-width:800px;width:100%;
-            /* SOLUZIONE MOBILE: Altezza automatica per evitare troncamento */
-            height:auto!important;min-height:auto!important;contain:layout style paint;transform:translateZ(0);display:block;text-align:center;flex-shrink:0;box-sizing:border-box;overflow:visible;word-wrap:break-word;hyphens:auto}
-        .hero-subtitle{font-size:clamp(1.2rem,2.5vw,1.5rem);color:var(--text-light);margin-bottom:3rem;max-width:600px;width:100%;margin-left:auto;margin-right:auto;line-height:1.6;
-            /* SOLUZIONE MOBILE: Altezza automatica per contenere tutto il testo */
-            height:auto!important;min-height:auto!important;contain:layout style paint;will-change:auto;transform:translateZ(0);display:block;text-align:center;flex-shrink:0;box-sizing:border-box;overflow:visible;isolation:isolate;word-wrap:break-word;hyphens:auto;
-            /* OTTIMIZZAZIONE LCP CRITICA: Rendering immediato */
+        
+        /* === SOLUZIONE CLS DEFINITIVA === */
+        .hero-container{
+            max-width:1200px;margin:0 auto;text-align:center;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem 1rem;
+            /* FORZA UN'ALTEZZA FISSA per creare un frame che non può cambiare dimensione, eliminando il CLS. */
+            height:700px !important; min-height:700px !important; max-height:700px; 
+            width:100%;box-sizing:border-box;contain:layout style paint;transform:translateZ(0);isolation:isolate;flex-shrink:0;overflow:visible;
+            will-change:auto;backface-visibility:hidden;perspective:1000px
+        }
+        .hero-title{
+            font-size:clamp(2.2rem,8vw,5rem);font-weight:700;line-height:1.1;margin-bottom:1.5rem;background:linear-gradient(135deg,#fff,var(--primary-color));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;max-width:800px;width:100%;
+            /* L'altezza deve rimanere automatica per evitare il troncamento del testo. La stabilità è data dal genitore. */
+            height:auto !important; min-height:auto !important;
+            contain:layout style paint;transform:translateZ(0);display:block;text-align:center;flex-shrink:0;box-sizing:border-box;overflow:visible;word-wrap:break-word;hyphens:auto
+        }
+        .hero-subtitle{
+            font-size:clamp(1.2rem,2.5vw,1.5rem);color:var(--text-light);margin-bottom:3rem;max-width:600px;width:100%;margin-left:auto;margin-right:auto;line-height:1.6;
+            /* L'altezza deve rimanere automatica. */
+            height:auto !important; min-height:auto !important;
+            contain:layout style paint;will-change:auto;transform:translateZ(0);display:block;text-align:center;flex-shrink:0;box-sizing:border-box;overflow:visible;isolation:isolate;word-wrap:break-word;hyphens:auto;
+            /* Ottimizzazioni LCP */
             font-display:block;visibility:visible;opacity:1;backface-visibility:hidden;
-            /* PREVENZIONE RENDERING DELAY AGGIUNTIVA */
-            font-synthesis:none;text-rendering:optimizeSpeed;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-        .hero-cta{display:flex;gap:1.5rem;justify-content:center;align-items:center;width:100%;
-            /* SOLUZIONE CLS DEFINITIVA: Altezza fissa per i pulsanti */
-            height:120px!important;min-height:120px!important;flex-shrink:0;
-            /* PREVENZIONE LAYOUT SHIFT AGGIUNTIVA */
-            contain:layout style paint;transform:translateZ(0);will-change:auto;backface-visibility:hidden;isolation:isolate;box-sizing:border-box}
+            font-synthesis:none;text-rendering:optimizeSpeed;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale
+        }
+        .hero-cta{
+            display:flex;gap:1.5rem;justify-content:center;align-items:center;width:100%;
+            /* FORZA UN'ALTEZZA FISSA per i pulsanti */
+            height:120px !important; min-height:120px !important; flex-shrink:0;
+            contain:layout style paint;transform:translateZ(0);will-change:auto;backface-visibility:hidden;isolation:isolate;box-sizing:border-box
+        }
+        /* Fine soluzione CLS */
+
         .btn{display:inline-flex;align-items:center;justify-content:center;padding:1rem 2rem;border-radius:12px;font-weight:600;text-decoration:none;border:none;min-width:180px;height:48px;text-align:center}
         .btn-primary{background:linear-gradient(135deg,var(--primary-color),var(--primary-light));color:var(--text-black)}
         .btn-secondary{background:0 0;color:var(--primary-color);border:2px solid var(--primary-color)}
