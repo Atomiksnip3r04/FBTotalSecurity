@@ -4,72 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- TITOLO E DESCRIZIONE OTTIMIZZATI -->
     <title data-translate="page-title">Sistemi di Sicurezza e Antifurto | FB Total Security Milano</title>
     <meta name="description" content="FB Total Security offre sistemi di sicurezza: allarmi, videosorveglianza, nebbiogeni e serramenti blindati. Protezione per casa e azienda a Milano." data-translate="page-description">
 
-    <!-- === SOLUZIONE DEFINITIVA LCP & CLS === -->
+    <!-- === OTTIMIZZAZIONE CRITICA PER LCP E CLS === -->
 
-    <!-- 1. PRELOAD RISORSE NON CRITICHE (Script) -->
-    <!-- Precarichiamo lo script con bassa priorità, non bloccherà il rendering. -->
-    <link rel="preload" href="script.min.js?v=20250917" as="script" fetchpriority="low">
-
-    <!-- 2. CSS CRITICO INLINE CON FONT EMBEDDED -->
-    <style>
-        /* FONT INLINING: Il font Inter (Regular & Bold) è incorporato direttamente per LCP istantaneo. */
-        @font-face {
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 400;
-            font-display: block; /* 'block' è corretto qui perché il font è già disponibile, non c'è attesa. */
-            src: url(data:font/woff2;base64,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v+b/5//l/+//z/8D/kf+9/+f+5//v/B/6H/lf8T/yv/m/+f+b/+n/5v/5/+b/+j/wP/A/7n/s/8n/yf+D/yv+5/wH/R/8P/kf+D/6//1/+d/+v+x/yv/z/+T/hf/T/+n+b/5f/8/+//6//r/+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+-gAAAAAACiOqAAAAAAAIg2qAAAoD/C+qAAAoA/wvoD/C+gAAAAAAABKIAAACAAQAAAEAABAAAAQAACEAIQAhACgAAAAAAIAAAACAAAAAgAAAAIABAAAAwADAAIAAwACAAIAAADAAIAAAADAAIAAADAAAAAAAIAAAACAAIAAAADAAIAAADAAAAAAAAAAAA=) format('woff2');
-        }
-        @font-face {
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 700;
-            font-display: block; /* 'block' è corretto qui perché il font è già disponibile, non c'è attesa. */
-            src: url(data:font/woff2;base64,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5/xv+b/5//l/+//z/8D/kf+9/+f+5//v/B/6H/lf8T/yv+m/+f+b/+n/5v/5/+b/+j/wP/A/7n/s/8n/yf+D/yv+5/wH/R/8P/kf+D/6//1/+d/+v+x/yv/z/+T/hf/T/+n+b/5f/8/+//6//r/+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/+v+r/-gAAAAAACiOqAAAAAAAIg2qAAAoD/C+qAAAoA/wvoD/C+gAAAAAAABKIAAACAAQAAAEAABAAAAQAACEAIQAhACgAAAAAAIAAAACAAAAAgAAAAIABAAAAwADAAIAAwACAAIAAADAAIAAAADAAIAAADAAAAAAAIAAAACAAIAAAADAAIAAADAAAAAAAAAAAA=) format('woff2');
-        }
-
-        /* === SOLUZIONE CLS DEFINITIVA: STILI CRITICI PER LA HERO SECTION === */
-        .hero { min-height: calc(100vh - 82px); display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #000, #1a1a1a); text-align: center; padding: 0 1rem; contain: layout; }
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            min-height: 300px; /* Altezza minima per stabilità */
-            contain: layout;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            line-height: 1.2;
-            margin: 1.5rem 0;
-            background: linear-gradient(135deg, #fff, #4caf50);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero-subtitle {
-            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-            color: #b0b0b0;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            min-height: 52px; /* Riserva spazio per i pulsanti */
-        }
-        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2rem; border-radius: 12px; font-weight: 600; text-decoration: none; border: none; min-width: 180px; height: 48px; }
-        .btn-primary { background: linear-gradient(135deg, #4caf50, #66bb6a); color: #000; }
-        .btn-secondary { background: transparent; color: #4caf50; border: 2px solid #4caf50; }
-    </style>
+    <!-- 1. PRELOAD DEI FONT WOFF2 USATI "ABOVE THE FOLD" CON PRIORITÀ MASSIMA -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7SUc.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
     
+    <!-- PRELOAD CRITICO PER LCP: CSS principale -->
+    <link rel="preload" href="styles.css" as="style" fetchpriority="high">
+    <link rel="preload" href="script.js" as="script" fetchpriority="low">
+
+    <!-- 2. CSS CRITICO INLINE: Stili essenziali + FONT FALLBACK + STABILIZZAZIONE LAYOUT DEFINITIVA -->
+    <style>
+        /* CLS FIX: Font Fallback con metriche precise per 'Inter'. */
+        @font-face {
+            font-family: 'Inter Fallback';
+            ascent-override: 90.20%;
+            descent-override: 22.48%;
+            line-gap-override: 0.00%;
+            src: local('Arial');
+        }
+        /* LCP & CLS FIX: Definizione del font 'Inter' con font-display: optional. */
+        @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:optional;src:url(https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:optional;src:url(https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7SUc.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+        @font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:optional;src:url(https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+        
+        /* Stili critici di base */
+        :root{--primary-color:#4caf50;--primary-light:#66bb6a;--text-black:#000;--white:#fff;--text-light:#b0b0b0}
+        *,:after,:before{margin:0;padding:0;box-sizing:border-box}
+        body{background:var(--text-black);color:var(--white);font-family:'Inter','Inter Fallback',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;padding-top:82px;min-height:100vh}
+        .header{position:fixed;top:0;left:0;right:0;height:82px;min-height:82px;background:linear-gradient(135deg,rgba(0,0,0,.95),rgba(26,26,26,.95));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(76,175,80,.2);z-index:9999;transition:background .3s ease,transform .3s ease}
+        .nav-container{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;height:100%}
+        .logo-link{display:flex;align-items:center;gap:.75rem;color:inherit;text-decoration:none}
+        .logo-image{width:50px;height:50px}
+        .logo-title{font-size:1.8rem;font-weight:700;color:#fff;margin:0}
+        .tagline{font-size:.9rem;color:var(--primary-color);margin:0;line-height:1}
+        .nav-menu{display:flex;list-style:none;gap:1.5rem;align-items:center;min-height:40px}
+        .hamburger{display:none}
+        .hero{min-height:calc(100vh - 82px);display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#000,#1a1a1a);position:relative;contain:layout style paint;overflow:hidden}
+        
+        /* === SOLUZIONE CLS DEFINITIVA === */
+        .hero-container{
+            max-width:1200px;margin:0 auto;text-align:center;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem 1rem;
+            /* FORZA UN'ALTEZZA FISSA per creare un frame che non può cambiare dimensione, eliminando il CLS. */
+            height:700px !important; min-height:700px !important; max-height:700px; 
+            width:100%;box-sizing:border-box;contain:layout style paint;transform:translateZ(0);isolation:isolate;flex-shrink:0;overflow:visible;
+            will-change:auto;backface-visibility:hidden;perspective:1000px
+        }
+        .hero-title{
+            font-size:clamp(2.2rem,8vw,5rem);font-weight:700;line-height:1.1;margin-bottom:1.5rem;background:linear-gradient(135deg,#fff,var(--primary-color));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;max-width:800px;width:100%;
+            /* L'altezza deve rimanere automatica per evitare il troncamento del testo. La stabilità è data dal genitore. */
+            height:auto !important; min-height:auto !important;
+            contain:layout style paint;transform:translateZ(0);display:block;text-align:center;flex-shrink:0;box-sizing:border-box;overflow:visible;word-wrap:break-word;hyphens:auto
+        }
+        .hero-subtitle{
+            font-size:clamp(1.2rem,2.5vw,1.5rem);color:var(--text-light);margin-bottom:3rem;max-width:600px;width:100%;margin-left:auto;margin-right:auto;line-height:1.6;
+            /* L'altezza deve rimanere automatica. */
+            height:auto !important; min-height:auto !important;
+            contain:layout style paint;will-change:auto;transform:translateZ(0);display:block;text-align:center;flex-shrink:0;box-sizing:border-box;overflow:visible;isolation:isolate;word-wrap:break-word;hyphens:auto;
+            /* === OTTIMIZZAZIONI LCP ULTRA-CRITICHE === */
+            font-display:swap;visibility:visible;opacity:1;backface-visibility:hidden;
+            font-synthesis:none;text-rendering:optimizeSpeed;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+            /* Prevenzione layout shift */
+            font-family:'Inter','Inter Fallback',system-ui,-apple-system,sans-serif;
+            /* Ottimizzazione rendering ultra-critica per LCP */
+            content-visibility:visible;contain-intrinsic-size:auto 100px;
+            /* Accelerazione hardware massima */
+            transform:translate3d(0,0,0);
+            /* Priorità rendering massima */
+            z-index:1;
+        }
+        .hero-cta{
+            display:flex;gap:1.5rem;justify-content:center;align-items:center;width:100%;
+            /* FORZA UN'ALTEZZA FISSA per i pulsanti */
+            height:120px !important; min-height:120px !important; flex-shrink:0;
+            contain:layout style paint;transform:translateZ(0);will-change:auto;backface-visibility:hidden;isolation:isolate;box-sizing:border-box
+        }
+        /* Fine soluzione CLS */
+
+        .btn{display:inline-flex;align-items:center;justify-content:center;padding:1rem 2rem;border-radius:12px;font-weight:600;text-decoration:none;border:none;min-width:180px;height:48px;text-align:center}
+        .btn-primary{background:linear-gradient(135deg,var(--primary-color),var(--primary-light));color:var(--text-black)}
+        .btn-secondary{background:0 0;color:var(--primary-color);border:2px solid var(--primary-color)}
+        @media(min-width:768px){.hero-cta{flex-direction:row;min-height:60px}}
+        @media(max-width:768px){.nav-menu{display:none}.hamburger{display:flex;flex-direction:column;cursor:pointer;gap:4px;z-index:10001}.hamburger span{width:25px;height:3px;background:var(--white);border-radius:2px;transition:all .3s ease}}
+    </style>
+
     <!-- 3. OTTIMIZZAZIONE LCP: Preload del CSS critico per ridurre il ritardo di rendering -->
     <link rel="preload" href="styles.min.css?v=20250917" as="style" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="high">
     <noscript><link rel="stylesheet" href="styles.min.css?v=20250917"></noscript>
@@ -737,7 +760,7 @@ img {
         <section class="hero">
             <div class="hero-container">
                 <h1 class="hero-title" data-translate="hero-title">Soluzioni di Sicurezza Avanzate per la Tua Protezione</h1>
-                <p class="hero-subtitle" data-translate="hero-subtitle">Anni di esperienza multisettoriale nella protezione di abitazioni private e aziende in tutta Italia. Soluzioni di sicurezza avanzate certificate, installazioni garantite, sistemi di protezione personalizzati per privati e imprese.</p>
+                <p class="hero-subtitle">Anni di esperienza multisettoriale nella protezione di abitazioni private e aziende in tutta Italia. Soluzioni di sicurezza avanzate certificate, installazioni garantite, sistemi di protezione personalizzati per privati e imprese.</p>
                 <div class="hero-cta">
                     <a href="#contatti" class="btn btn-primary" data-translate="hero-cta-primary" title="Contattaci per una consulenza gratuita personalizzata">Richiedi Consulenza Gratuita</a>
                     <a href="#servizi" class="btn btn-secondary" data-translate="hero-cta-secondary" title="Scopri tutti i nostri servizi di sicurezza avanzati">Scopri i Servizi</a>
