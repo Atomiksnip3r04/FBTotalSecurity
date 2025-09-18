@@ -1,0 +1,29 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="growthGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2e7d32;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#388e3c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="40" cy="40" r="38" fill="rgba(46, 125, 50, 0.1)" stroke="url(#growthGradient)" stroke-width="2"/>
+  
+  <!-- Growth chart bars -->
+  <rect x="20" y="50" width="6" height="15" fill="url(#growthGradient)" rx="2"/>
+  <rect x="30" y="45" width="6" height="20" fill="url(#growthGradient)" rx="2"/>
+  <rect x="40" y="35" width="6" height="30" fill="url(#growthGradient)" rx="2"/>
+  <rect x="50" y="25" width="6" height="40" fill="url(#growthGradient)" rx="2"/>
+  
+  <!-- Arrow pointing up -->
+  <path d="M58 30 L65 23 L72 30" stroke="url(#growthGradient)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="65" y1="23" x2="65" y2="35" stroke="url(#growthGradient)" stroke-width="2.5" stroke-linecap="round"/>
+  
+  <!-- Person silhouette -->
+  <circle cx="25" cy="20" r="4" fill="url(#growthGradient)"/>
+  <path d="M20 28 Q25 25 30 28 L30 35 L20 35 Z" fill="url(#growthGradient)"/>
+  
+  <!-- Success stars -->
+  <path d="M60 15 L61 17 L63 17 L61.5 18.5 L62 20.5 L60 19.5 L58 20.5 L58.5 18.5 L57 17 L59 17 Z" fill="#66bb6a" opacity="0.7"/>
+  <path d="M68 40 L69 42 L71 42 L69.5 43.5 L70 45.5 L68 44.5 L66 45.5 L66.5 43.5 L65 42 L67 42 Z" fill="#66bb6a" opacity="0.5"/>
+</svg>

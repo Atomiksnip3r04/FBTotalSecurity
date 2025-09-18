@@ -45,7 +45,9 @@
         .hero{min-height:calc(100vh - 82px);display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#000,#1a1a1a);position:relative;contain:layout style paint;overflow:hidden}
         .hero-container{max-width:1200px;margin:0 auto;text-align:center;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem 1rem;
             /* SOLUZIONE CLS DEFINITIVA: Altezza fissa per eliminare completamente le variazioni */
-            height:700px!important;min-height:700px!important;max-height:700px;width:100%;box-sizing:border-box;contain:layout style paint;transform:translateZ(0);isolation:isolate;flex-shrink:0;overflow:visible}
+            height:700px!important;min-height:700px!important;max-height:700px;width:100%;box-sizing:border-box;contain:layout style paint;transform:translateZ(0);isolation:isolate;flex-shrink:0;overflow:visible;
+            /* PREVENZIONE LAYOUT SHIFT AGGIUNTIVA */
+            will-change:auto;backface-visibility:hidden;perspective:1000px}
         .hero-title{font-size:clamp(2.2rem,8vw,5rem);font-weight:700;line-height:1.1;margin-bottom:1.5rem;background:linear-gradient(135deg,#fff,var(--primary-color));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;max-width:800px;width:100%;
             /* SOLUZIONE MOBILE: Altezza automatica per evitare troncamento */
             height:auto!important;min-height:auto!important;contain:layout style paint;transform:translateZ(0);display:block;text-align:center;flex-shrink:0;box-sizing:border-box;overflow:visible;word-wrap:break-word;hyphens:auto}
@@ -53,10 +55,14 @@
             /* SOLUZIONE MOBILE: Altezza automatica per contenere tutto il testo */
             height:auto!important;min-height:auto!important;contain:layout style paint;will-change:auto;transform:translateZ(0);display:block;text-align:center;flex-shrink:0;box-sizing:border-box;overflow:visible;isolation:isolate;word-wrap:break-word;hyphens:auto;
             /* OTTIMIZZAZIONE LCP CRITICA: Rendering immediato */
-            font-display:block;visibility:visible;opacity:1;backface-visibility:hidden}
+            font-display:block;visibility:visible;opacity:1;backface-visibility:hidden;
+            /* PREVENZIONE RENDERING DELAY AGGIUNTIVA */
+            font-synthesis:none;text-rendering:optimizeSpeed;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
         .hero-cta{display:flex;gap:1.5rem;justify-content:center;align-items:center;width:100%;
             /* SOLUZIONE CLS DEFINITIVA: Altezza fissa per i pulsanti */
-            height:120px!important;min-height:120px!important;flex-shrink:0}
+            height:120px!important;min-height:120px!important;flex-shrink:0;
+            /* PREVENZIONE LAYOUT SHIFT AGGIUNTIVA */
+            contain:layout style paint;transform:translateZ(0);will-change:auto;backface-visibility:hidden;isolation:isolate;box-sizing:border-box}
         .btn{display:inline-flex;align-items:center;justify-content:center;padding:1rem 2rem;border-radius:12px;font-weight:600;text-decoration:none;border:none;min-width:180px;height:48px;text-align:center}
         .btn-primary{background:linear-gradient(135deg,var(--primary-color),var(--primary-light));color:var(--text-black)}
         .btn-secondary{background:0 0;color:var(--primary-color);border:2px solid var(--primary-color)}
@@ -547,7 +553,7 @@
       "areaServed": "Italia",
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+39-351-9613625",
+        "telephone": "+393802647367",
         "contactType": "customer service",
         "email": "postmaster@fbtotalsecurity.com",
         "availableLanguage": "Italian"
@@ -701,6 +707,7 @@ img {
                     <li><a href="serramenti.html" class="nav-link" data-translate="nav-serramenti" title="Serramenti blindati e porte di sicurezza">Serramenti</a></li>
                     <li><a href="sorveglianza.html" class="nav-link" data-translate="nav-sorveglianza" title="Sistemi di videosorveglianza avanzati">Sorveglianza</a></li>
                     <li><a href="allarmi.html" class="nav-link" data-translate="nav-allarmi" title="Sistemi di allarme intelligenti">Allarmi</a></li>
+                    <li><a href="lavora-con-noi.html" class="nav-link" data-translate="nav-lavora-con-noi" title="Opportunità di lavoro e carriera">Lavora con noi</a></li>
                     <li><a href="chi-siamo.html" class="nav-link" data-translate="nav-chi-siamo" title="Scopri la nostra azienda e la nostra esperienza">Chi siamo</a></li>
                     <li><a href="#contatti" class="nav-link cta" data-translate="nav-contatti" title="Contattaci per una consulenza gratuita">Contatti</a></li>
                     <li class="desktop-language-selector">
@@ -1252,6 +1259,15 @@ img {
                                 <div>
                                     <h3 data-translate="contact-email-label">Email</h3>
                                     <p><a href="mailto:postmaster@fbtotalsecurity.com" title="Invia una email a FB Total Security per informazioni e preventivi">postmaster@fbtotalsecurity.com</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                </svg>
+                                <div>
+                                    <h3 data-translate="contact-phone-label">Telefono</h3>
+                                    <p><a href="tel:+393802647367" class="phone-button" title="Chiama FB Total Security per informazioni immediate">Chiama Ora</a></p>
                                 </div>
                             </div>
                             <div class="contact-item">

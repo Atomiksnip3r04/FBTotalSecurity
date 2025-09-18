@@ -124,6 +124,12 @@
             flex-direction: column;
             justify-content: center;
             contain: layout style;
+            /* PREVENZIONE LAYOUT SHIFT AGGIUNTIVA */
+            will-change: auto;
+            backface-visibility: hidden;
+            perspective: 1000px;
+            transform: translateZ(0);
+            isolation: isolate;
         }
 
         .hero-title {
@@ -139,6 +145,13 @@
 
         .hero-cta {
             min-height: 120px;
+            /* PREVENZIONE LAYOUT SHIFT AGGIUNTIVA */
+            contain: layout style paint;
+            transform: translateZ(0);
+            will-change: auto;
+            backface-visibility: hidden;
+            isolation: isolate;
+            box-sizing: border-box;
         }
 
         @media (min-width: 768px) {
@@ -501,6 +514,7 @@
                         <li><a href="serramenti.html" class="nav-link" data-translate="nav-serramenti" title="Serramenti blindati e porte di sicurezza">Serramenti</a></li>
                         <li><a href="sorveglianza.html" class="nav-link" data-translate="nav-sorveglianza" title="Sistemi di videosorveglianza intelligente">Sorveglianza</a></li>
                         <li><a href="allarmi.html" class="nav-link" data-translate="nav-allarmi" title="Sistemi di allarme intelligenti">Allarmi</a></li>
+                        <li><a href="lavora-con-noi.html" class="nav-link" data-translate="nav-lavora-con-noi" title="Opportunità di lavoro e carriera">Lavora con noi</a></li>
                         <li><a href="chi-siamo.html" class="nav-link" data-translate="nav-chi-siamo" title="Scopri la nostra azienda e i nostri valori">Chi siamo</a></li>
                         <li><a href="#contatti" class="nav-link cta" data-translate="nav-contatti" title="Contattaci per un preventivo gratuito">Contatti</a></li>
                     <li class="desktop-language-selector">
@@ -816,6 +830,14 @@
                         <div class="contact-details">
                             <h3 data-translate="contact-email-title">Email</h3>
                             <p><a href="mailto:postmaster@fbtotalsecurity.com">postmaster@fbtotalsecurity.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h3 data-translate="contact-phone-title">Telefono</h3>
+                            <p><a href="tel:+393802647367" class="phone-button">Chiama Ora</a></p>
                         </div>
                     </div>
                     

@@ -31,8 +31,8 @@
       "availableChannel": {
         "@type": "ServiceChannel",
         "serviceUrl": "https://www.fbtotalsecurity.com/nebbiogeni",
-        "serviceSmsNumber": "+39 123 456 7890",
-        "servicePhone": "+39 123 456 7890"
+        "serviceSmsNumber": "+393802647367",
+        "servicePhone": "+393802647367"
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -110,8 +110,8 @@
       "availableChannel": {
         "@type": "ServiceChannel",
         "serviceUrl": "https://www.fbtotalsecurity.com/serramenti",
-        "serviceSmsNumber": "+39 123 456 7890",
-        "servicePhone": "+39 123 456 7890"
+        "serviceSmsNumber": "+393802647367",
+        "servicePhone": "+393802647367"
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -208,8 +208,8 @@
       "availableChannel": {
         "@type": "ServiceChannel",
         "serviceUrl": "https://www.fbtotalsecurity.com/videosorveglianza",
-        "serviceSmsNumber": "+39 123 456 7890",
-        "servicePhone": "+39 123 456 7890"
+        "serviceSmsNumber": "+393802647367",
+        "servicePhone": "+393802647367"
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -283,8 +283,8 @@
       "availableChannel": {
         "@type": "ServiceChannel",
         "serviceUrl": "https://www.fbtotalsecurity.com/allarmi",
-        "serviceSmsNumber": "+39 123 456 7890", 
-        "servicePhone": "+39 123 456 7890"
+        "serviceSmsNumber": "+393802647367",
+        "servicePhone": "+393802647367"
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",

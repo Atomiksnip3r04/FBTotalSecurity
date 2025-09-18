@@ -1,0 +1,44 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="portfolioGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2e7d32;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#388e3c;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#66bb6a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4caf50;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="40" cy="40" r="38" fill="rgba(46, 125, 50, 0.1)" stroke="url(#portfolioGradient)" stroke-width="2"/>
+  
+  <!-- Briefcase -->
+  <rect x="25" y="35" width="30" height="20" rx="3" fill="url(#portfolioGradient)"/>
+  <rect x="25" y="32" width="30" height="6" rx="3" fill="url(#goldGradient)"/>
+  <rect x="35" y="28" width="10" height="4" rx="2" fill="url(#portfolioGradient)"/>
+  
+  <!-- Lock (premium/exclusive) -->
+  <rect x="37" y="42" width="6" height="6" rx="1" fill="url(#goldGradient)"/>
+  <path d="M38 42 Q40 40 42 42" stroke="url(#goldGradient)" stroke-width="1.5" fill="none"/>
+  
+  <!-- Documents floating around -->
+  <rect x="15" y="20" width="8" height="10" rx="1" fill="rgba(255, 255, 255, 0.9)" stroke="url(#portfolioGradient)" stroke-width="1"/>
+  <line x1="17" y1="23" x2="21" y2="23" stroke="url(#portfolioGradient)" stroke-width="1"/>
+  <line x1="17" y1="25" x2="20" y2="25" stroke="url(#portfolioGradient)" stroke-width="1"/>
+  <line x1="17" y1="27" x2="21" y2="27" stroke="url(#portfolioGradient)" stroke-width="1"/>
+  
+  <rect x="57" y="25" width="8" height="10" rx="1" fill="rgba(255, 255, 255, 0.9)" stroke="url(#portfolioGradient)" stroke-width="1"/>
+  <line x1="59" y1="28" x2="63" y2="28" stroke="url(#portfolioGradient)" stroke-width="1"/>
+  <line x1="59" y1="30" x2="62" y2="30" stroke="url(#portfolioGradient)" stroke-width="1"/>
+  <line x1="59" y1="32" x2="63" y2="32" stroke="url(#portfolioGradient)" stroke-width="1"/>
+  
+  <!-- Premium badge -->
+  <circle cx="60" cy="20" r="8" fill="url(#goldGradient)"/>
+  <path d="M56 20 L58 22 L64 16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Partnership handshake icon -->
+  <path d="M20 55 Q25 50 30 55 Q35 60 40 55" stroke="url(#portfolioGradient)" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <circle cx="18" cy="57" r="2" fill="url(#portfolioGradient)"/>
+  <circle cx="42" cy="57" r="2" fill="url(#portfolioGradient)"/>
+</svg>

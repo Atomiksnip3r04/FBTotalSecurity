@@ -372,7 +372,7 @@ class AIUnifiedEngine {
             "name": "Franco Benedetto - Sistemi di Sicurezza",
             "description": "Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza AI e allarmi wireless",
             "url": window.location.origin,
-            "telephone": "+39-XXX-XXXXXXX",
+            "telephone": "+393802647367",
             "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Italia"
