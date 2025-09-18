@@ -6,7 +6,7 @@
   "givenName": "Franco",
   "familyName": "Benedetto",
   "jobTitle": "Esperto in Sistemi di Sicurezza Avanzati",
-  "description": "Specialista certificato in sistemi di sicurezza con oltre 20 anni di esperienza nel settore. Esperto riconosciuto in nebbiogeni antifurto, serramenti blindati certificati e videosorveglianza intelligente con AI.",
+  "description": "Specialista certificato in sistemi di sicurezza con oltre 20 anni di esperienza nel settore. Esperto riconosciuto in nebbiogeni antifurto, grate e inferriate blindate certificate e videosorveglianza intelligente con AI.",
   "url": "https://www.fbtotalsecurity.com/franco-benedetto",
   "image": {
     "@type": "ImageObject",
@@ -35,8 +35,8 @@
     },
     {
       "@type": "DefinedTerm", 
-      "name": "Serramenti Blindati EN 1627-1630",
-      "description": "Certificazione e installazione serramenti secondo standard europei",
+      "name": "Grate e Inferriate Blindate Certificate EN 1627-1630",
+      "description": "Certificazione e installazione grate e inferriate blindate secondo standard europei",
       "inDefinedTermSet": {
         "@type": "DefinedTermSet",
         "name": "Expertise Sicurezza",
@@ -98,8 +98,8 @@
     },
     {
       "@type": "EducationalOccupationalCredential",
-      "name": "Certificazione EN 1627-1630 Serramenti",
-      "description": "Abilitazione installazione serramenti blindati secondo standard europei",
+      "name": "Certificazione EN 1627-1630 Grate e Inferriate Blindate Certificate antieffrazione",
+      "description": "Abilitazione installazione grate e inferriate blindate secondo standard europei",
       "credentialCategory": "Technical Certification",
       "validFrom": "2010-01-01"
     },
@@ -200,7 +200,7 @@
     {
       "@type": "PropertyValue",
       "name": "Specializzazione Principale",
-      "value": "Sistemi Nebbiogeni e Serramenti Blindati"
+      "value": "Sistemi Nebbiogeni e Grate e Inferriate Blindate"
     }
   ],
   "publishingPrinciples": {

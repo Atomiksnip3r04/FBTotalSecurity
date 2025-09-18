@@ -46,17 +46,17 @@ class AISemanticCrossLinker {
         this.semanticMap.set('serramenti', {
             mainPage: '/serramenti',
             relatedFAQ: [
-                'Come scegliere la classe di resistenza giusta per porte blindate',
+                'Come scegliere la classe di resistenza giusta per porte e finestre',
                 'Quali sono i vantaggi della videosorveglianza con riconoscimento facciale'
             ],
-            glossaryTerms: ['Serramenti Blindati', 'Classe di Resistenza RC', 'Controllo Accessi'],
+            glossaryTerms: ['Grate e Inferriate Blindate', 'Classe di Resistenza RC', 'Controllo Accessi'],
             relatedServices: ['videosorveglianza', 'allarmi'],
-            keywords: ['porte blindate', 'finestre antieffrazione', 'EN 1627', 'RC2 RC3', 'protezione fisica'],
+            keywords: ['grate e inferriate blindate', 'finestre antieffrazione', 'EN 1627', 'RC2 RC3', 'protezione fisica'],
             contextualLinks: [
                 {
                     anchor: 'controllo accessi biometrico',
                     url: '/videosorveglianza',
-                    context: 'Integrazione con serramenti per accesso automatizzato sicuro'
+                    context: 'Integrazione con Grate e Inferriate Blindateper accesso automatizzato sicuro'
                 },
                 {
                     anchor: 'sistemi di allarme perimetrali',
@@ -73,7 +73,7 @@ class AISemanticCrossLinker {
                 'È possibile integrare diversi sistemi di sicurezza in un\'unica piattaforma'
             ],
             glossaryTerms: ['Videosorveglianza Intelligente', 'Riconoscimento Facciale', 'Analisi Comportamentale', 'Monitoraggio Remoto 24/7'],
-            relatedServices: ['allarmi', 'nebbiogeni', 'serramenti'],
+            relatedServices: ['allarmi', 'nebbiogeni', 'grate e inferriate blindate'],
             keywords: ['telecamere AI', 'riconoscimento facciale', 'analisi comportamentale', '4K', 'cloud'],
             contextualLinks: [
                 {
@@ -82,9 +82,9 @@ class AISemanticCrossLinker {
                     context: 'Attivazione automatica nebbiogeni tramite analisi video AI'
                 },
                 {
-                    anchor: 'serramenti con controllo accessi',
+                    anchor: 'grate e inferriate blindate con controllo accessi',
                     url: '/serramenti',
-                    context: 'Apertura automatica serramenti tramite riconoscimento facciale'
+                    context: 'Apertura automatica grate e inferriate tramite riconoscimento facciale'
                 }
             ]
         });
@@ -96,7 +96,7 @@ class AISemanticCrossLinker {
                 'È possibile integrare diversi sistemi di sicurezza in un\'unica piattaforma'
             ],
             glossaryTerms: ['Sistema di Allarme Wireless', 'Sicurezza Perimetrale', 'Monitoraggio Remoto 24/7'],
-            relatedServices: ['videosorveglianza', 'nebbiogeni', 'serramenti'],
+            relatedServices: ['videosorveglianza', 'nebbiogeni', 'grate e inferriate blindate'],
             keywords: ['allarme wireless', 'sensori intelligenti', 'app smartphone', 'centrale operativa'],
             contextualLinks: [
                 {
@@ -118,7 +118,7 @@ class AISemanticCrossLinker {
         this.contextualRelations.set('sicurezza-integrata', {
             concept: 'Ecosistema di Sicurezza Integrato',
             description: 'Sinergia tra tutti i sistemi di protezione per massima efficacia',
-            components: ['nebbiogeni', 'serramenti', 'videosorveglianza', 'allarmi'],
+            components: ['nebbiogeni', 'Grate e Inferriate Blindate', 'videosorveglianza', 'allarmi'],
             benefits: [
                 'Riduzione falsi allarmi attraverso verifica multipla',
                 'Risposta automatica coordinata agli eventi',
@@ -213,7 +213,7 @@ class AISemanticCrossLinker {
     createGlossaryTooltips() {
         // Crea tooltip interattivi per termini del glossario
         const glossaryTerms = [
-            'Sistema Nebbiogeno', 'Serramenti Blindati', 'Videosorveglianza Intelligente',
+            'Sistema Nebbiogeno', 'Grate e Inferriate Blindate Certificate', 'Videosorveglianza Intelligente',
             'Riconoscimento Facciale', 'Analisi Comportamentale', 'Classe di Resistenza RC'
         ];
         
@@ -322,7 +322,7 @@ class AISemanticCrossLinker {
     getServiceTitle(term) {
         const titles = {
             'nebbiogeni': 'Sistemi Nebbiogeni Antifurto',
-            'serramenti': 'Serramenti Blindati Certificati', 
+            'Grate e Inferriate Blindate': 'Grate e Inferriate Blindate Certificate', 
             'videosorveglianza': 'Videosorveglianza Intelligente',
             'allarmi': 'Sistemi di Allarme Wireless'
         };
@@ -332,7 +332,7 @@ class AISemanticCrossLinker {
     getServiceDescription(term) {
         const descriptions = {
             'nebbiogeni': 'Protezione istantanea con nebbia densa atossica',
-            'serramenti': 'Porte e finestre blindate certificate EN 1627-1630',
+            'Grate e Inferriate Blindate': 'Grate e inferriate blindate per porte e finestre certificate EN 1627-1630',
             'videosorveglianza': 'Telecamere AI con riconoscimento facciale',
             'allarmi': 'Sensori wireless intelligenti con app mobile'
         };

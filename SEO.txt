@@ -1,143 +1,110 @@
-Certamente. Ho analizzato attentamente il codice dei tuoi file (index.html, styles.css, script.js) e ho individuato con precisione la causa del problema.
+Certamente. Dopo un'analisi approfondita di tutti i file forniti, ho identificato con precisione la causa del problema e ho preparato una soluzione chiara e dettagliata.
 
-Non si tratta di un errore nel CSS, ma di un effetto collaterale del tuo script di traduzione in script.js.
+Il Problema Principale
 
-Diagnosi del Problema
+Il problema principale che causa il taglio del selettore della lingua (e potenzialmente del bottone "Contatti" su schermi più stretti) è la proprietà CSS contain: layout style; applicata alla classe .nav-container nel tuo file styles.css.
 
-Il problema risiede nel modo in cui lo script di traduzione gestisce il testo del footer. Analizziamo i due file coinvolti:
+Spiegazione Tecnica del Problema
 
-1. Nel tuo index.html:
+La proprietà contain è uno strumento molto potente per ottimizzare le performance, in particolare per prevenire il Cumulative Layout Shift (CLS). Indica al browser che il contenuto di un elemento è "isolato" e non influenzerà il layout del resto della pagina.
 
-Hai un paragrafo <p> che contiene sia del testo normale sia il link <a> che dovrebbe essere il bottone.
+Tuttavia, il valore layout ha un effetto collaterale molto forte: impedisce a qualsiasi elemento figlio di essere visibile al di fuori dei bordi del contenitore. Funziona in modo simile a overflow: hidden, ma in modo più rigoroso e a livello di rendering.
+
+Nel tuo caso:
+
+Il contenitore .nav-container ha un'altezza fissa ereditata dal .header (110px).
+
+Il selettore della lingua (.language-selector) ha flex-direction: column, quindi i suoi due bottoni si impilano verticalmente.
+
+La somma dell'altezza dei due bottoni, più il gap, supera i 110px di altezza del contenitore.
+
+La regola contain: layout; "taglia" tutto ciò che fuoriesce verticalmente dai 110px di altezza del .nav-container, causando l'effetto visibile nell'immagine.
+
+Anche se hai impostato overflow: visible;, la proprietà contain: layout; ha la precedenza e ne annulla l'effetto.
+
+Soluzione: Come e Dove Risolvere
+
+La soluzione consiste nel rimuovere questa regola specifica, poiché le altre ottimizzazioni che hai implementato (come l'altezza fissa sull'header) sono già sufficienti per garantire la stabilità del layout senza causare questo problema di clipping.
+
+File da modificare: styles.css
+
+1. Trova il selettore .nav-container nel tuo file styles.css.
+
+2. Rimuovi la riga contain: layout style;
+
+Ecco il codice specifico:
+
+PRIMA (Codice Problematico in styles.css)
 
 code
-Html
+CSS
 download
 content_copy
 expand_less
 
-<p class="webnovis-contact" data-translate="footer-webnovis-contact">
-    Per una soluzione cucita su misura per te 
-    <a href="mailto:webnovis.info@gmail.com" class="webnovis-btn" title="..." data-translate="footer-webnovis-btn">contatta Web Novis</a>
-</p>
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 0px; /* Reduced from 15px to 10px to move navbar further left and prevent language selector cutoff */
+    width: 100%; /* Responsive width instead of fixed */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: visible; /* Assicura che il contenuto non venga tagliato */
+    
+    /* CLS Prevention: Force layout stability */
+    contain: layout style; /* <<<<<< QUESTA RIGA È LA CAUSA DEL PROBLEMA */
+    transform: translateZ(0); /* Force GPU layer */
+    will-change: auto; /* Remove will-change to prevent unnecessary layers */
+}
 
-2. Nel tuo script.js:
-
-All'interno dell'oggetto translations, hai la seguente chiave per il paragrafo:
-
-code
-JavaScript
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-// Nella sezione 'it':
-'footer-webnovis-contact': 'Per una soluzione cucita su misura per te',
-
-Cosa succede quando la pagina si carica?
-
-Lo script di traduzione cerca tutti gli elementi con l'attributo data-translate.
-
-Trova il paragrafo <p class="webnovis-contact" data-translate="footer-webnovis-contact">.
-
-Prende il testo dalla chiave 'footer-webnovis-contact' (che è una stringa di testo semplice: "Per una soluzione cucita su misura per te").
-
-Sostituisce l'intero contenuto HTML del paragrafo <p> con questa stringa di testo.
-
-Di conseguenza, il tag <a> con la classe .webnovis-btn e l'attributo href="mailto:..." viene completamente eliminato e rimpiazzato da testo semplice.
-
-Questo spiega entrambi i problemi:
-
-Non vedi il bottone verde: perché l'elemento <a> con la classe .webnovis-btn non esiste più nel DOM.
-
-Il link non funziona: perché non c'è più un tag <a> cliccabile.
-
-Soluzione Corretta
-
-Per risolvere il problema, dobbiamo separare il testo statico dal link, in modo che lo script di traduzione aggiorni solo le parti necessarie senza distruggere la struttura HTML.
-
-Ecco i passaggi da seguire:
-
-Passaggio 1: Modifica index.html
-
-Modifica il paragrafo nel footer separando il testo e il link con i rispettivi attributi data-translate.
-
-PRIMA (sbagliato):
+DOPO (Codice Corretto in styles.css)
 
 code
-Html
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-<p class="webnovis-contact" data-translate="footer-webnovis-contact">
-    Per una soluzione cucita su misura per te 
-    <a href="mailto:webnovis.info@gmail.com" class="webnovis-btn" title="Contatta Web Novis per soluzioni personalizzate" data-translate="footer-webnovis-btn">contatta Web Novis</a>
-</p>
-
-DOPO (corretto):
-
-code
-Html
+CSS
 download
 content_copy
 expand_less
 IGNORE_WHEN_COPYING_START
 IGNORE_WHEN_COPYING_END
-<p class="webnovis-contact">
-    <span data-translate="footer-webnovis-contact">Per una soluzione cucita su misura per te</span> 
-    <a href="mailto:webnovis.info@gmail.com" class="webnovis-btn" title="Contatta Web Novis per soluzioni personalizzate" data-translate="footer-webnovis-btn">contatta Web Novis</a>
-</p>
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 0px; 
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: visible; /* Ora questa proprietà funzionerà correttamente */
+    
+    /* CLS Prevention: Force layout stability */
+    /* contain: layout style; */ /* <<<<<< RIGA RIMOSSA */
+    transform: translateZ(0); 
+    will-change: auto; 
+}
+Miglioramento Aggiuntivo (Consigliato)
 
-Ho rimosso data-translate dal tag <p>.
+Ho notato che hai rimosso il padding dal .nav-container (padding: 0 0px;). Questo fa sì che la navbar tocchi i bordi dello schermo quando la finestra del browser è più stretta di 1200px. Per un aspetto più pulito e per dare respiro agli elementi, ti consiglio di ripristinare un leggero padding.
 
-Ho avvolto il testo che precede il link in un tag <span> e gli ho assegnato l'attributo data-translate.
-
-Passaggio 2: Modifica script.js
-
-Aggiorna l'oggetto translations per riflettere la nuova struttura.
-
-PRIMA (sbagliato):
+Modifica consigliata nel selettore .nav-container:
 
 code
-JavaScript
+CSS
 download
 content_copy
 expand_less
 IGNORE_WHEN_COPYING_START
 IGNORE_WHEN_COPYING_END
-// Lingua Italiana (it)
-'footer-webnovis-contact': 'Per una soluzione cucita su misura per te',
-'footer-webnovis-btn': 'contatta Web Novis',
+.nav-container {
+    /* ...altre proprietà... */
+    padding: 0 1rem; /* <<<<<< Ripristina un po' di spazio laterale */
+    /* ...altre proprietà... */
+}
 
-// Lingua Inglese (en)
-'footer-webnovis-contact': 'For a tailor-made solution for you',
-'footer-webnovis-btn': 'contact Web Novis',
-
-DOPO (corretto):
-
-code
-JavaScript
-download
-content_copy
-expand_less
-IGNORE_WHEN_COPYING_START
-IGNORE_WHEN_COPYING_END
-// Lingua Italiana (it)
-'footer-webnovis-contact': 'Per una soluzione cucita su misura per te', // Solo il testo nello span
-'footer-webnovis-btn': 'contatta Web Novis', // Il testo del bottone rimane invariato
-
-// Lingua Inglese (en)
-'footer-webnovis-contact': 'For a tailor-made solution for you', // Solo il testo nello span
-'footer-webnovis-btn': 'contact Web Novis', // Il testo del bottone rimane invariato
-Riassunto della Correzione
-
-Applicando queste due semplici modifiche, lo script di traduzione ora aggiornerà correttamente:
-
-Il contenuto del tag <span>.
-
-Il contenuto del tag <a>.
-
-In questo modo, il tag <a> con la sua classe .webnovis-btn e il suo href="mailto:..." non verrà mai rimosso, risolvendo così entrambi i problemi. Il bottone apparirà verde come definito nel tuo styles.css e il click aprirà correttamente il client di posta elettronica.
+Rimuovendo la proprietà contain, l' overflow: visible; che avevi già correttamente impostato su .header, .nav e .nav-container entrerà in funzione, permettendo al selettore della lingua di essere visualizzato completamente.

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-translate="chi-siamo-meta-title">Chi Siamo - FB Total Security | Italia</title>
-    <meta name="description" content="Scopri FB Total Security: agenzia autorizzata e certificata nella sicurezza professionale. Specialisti in nebbiogeni, serramenti blindati, videosorveglianza e allarmi con partnership dirette dai leader del settore." data-translate="chi-siamo-meta-description">
+    <meta name="description" content="Scopri FB Total Security: agenzia autorizzata e certificata nella sicurezza professionale. Specialisti in nebbiogeni, grate e inferriate blindate e certificate, videosorveglianza e allarmi con partnership dirette dai leader del settore." data-translate="chi-siamo-meta-description">
     <meta name="keywords" content="FB Total Security, chi siamo, agenzia autorizzata, certificazioni sicurezza, partnership settore, Italia, sistemi sicurezza">
     <meta name="author" content="FB Total Security">
     <meta name="robots" content="index, follow">
@@ -125,7 +125,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            contain: layout style;
+            /* contain: layout style; */ /* Rimossa: causava problemi di overflow nella navbar */
             /* PREVENZIONE LAYOUT SHIFT AGGIUNTIVA */
             will-change: auto;
             backface-visibility: hidden;
@@ -168,11 +168,11 @@
         }
         .partnership-carousel {
             min-height: 160px;
-            contain: layout style;
+            /* contain: layout style; */ /* Rimossa: causava problemi di overflow */
         }
         .allarmi-carousel .carousel-container {
             min-height: 400px;
-            contain: layout style;
+            /* contain: layout style; */ /* Rimossa: causava problemi di overflow */
         }
     </style>
     
@@ -279,7 +279,7 @@
                 <ul class="nav-menu">
 
                     <li><a href="nebbiogeni.html" class="nav-link" data-translate="nav-nebbiogeni" title="Sistemi nebbiogeni professionali per la sicurezza">Nebbiogeni</a></li>
-                        <li><a href="serramenti.html" class="nav-link" data-translate="nav-serramenti" title="Serramenti blindati e porte di sicurezza">Serramenti</a></li>
+                        <li><a href="serramenti.html" class="nav-link" data-translate="nav-serramenti" title="Grate e inferriate blindate per porte e finestre">Grate e Inferriate</a></li>
                         <li><a href="sorveglianza.html" class="nav-link" data-translate="nav-sorveglianza" title="Sistemi di videosorveglianza intelligente">Sorveglianza</a></li>
                         <li><a href="allarmi.html" class="nav-link" data-translate="nav-allarmi" title="Sistemi di allarme intelligenti">Allarmi</a></li>
                         <li><a href="lavora-con-noi.html" class="nav-link" data-translate="nav-lavora-con-noi" title="Opportunità di lavoro e carriera">Lavora con noi</a></li>
@@ -389,7 +389,7 @@
                 </div>
                 <div class="service-card serramenti-card">
                     <div class="service-icon">
-                        <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" stroke="#4caf50" fill="#4caf50" aria-label="Icona Serramenti Blindati di Sicurezza">
+                        <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" stroke="#4caf50" fill="#4caf50" aria-label="Icona Grate e Inferriate Blindate di Sicurezza">
                             <!-- Stile principale per le linee dell'icona -->
                             <g fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <!-- 1. Cornice esterna della porta -->
@@ -406,9 +406,9 @@
                             </g>
                         </svg>
                     </div>
-                    <h3 data-translate="chi-siamo-spec2-title">Serramenti Blindati</h3>
-                    <p data-translate="chi-siamo-spec2-desc">Porte blindate, finestre di sicurezza e serramenti antieffrazione di ultima generazione. Progettiamo e installiamo soluzioni su misura che combinano massima sicurezza ed estetica raffinata per ogni tipo di ambiente.</p>
-                    <a href="serramenti.html" class="service-link" data-translate="chi-siamo-spec2-link">Serramenti Blindati Antieffrazione</a>
+                    <h3 data-translate="chi-siamo-spec2-title">Grate e Inferriate Blindate</h3>
+                    <p data-translate="chi-siamo-spec2-desc">Grate e inferriate blindate di ultima generazione. Progettiamo e installiamo soluzioni su misura che combinano massima sicurezza ed estetica raffinata per ogni tipo di ambiente.</p>
+                    <a href="serramenti.html" class="service-link" data-translate="chi-siamo-spec2-link">Grate e Inferriate Blindate</a>
                 </div>
                 <div class="service-card sorveglianza-card">
                     <div class="service-icon">
@@ -579,7 +579,7 @@
                             <select id="servizio" name="servizio">
                                 <option value="" data-translate="form-service-default">Seleziona il servizio di interesse</option>
                                 <option value="nebbiogeni" data-translate="form-service-nebbiogeni">Sistemi Nebbiogeni</option>
-                                <option value="serramenti" data-translate="form-service-serramenti">Serramenti Blindati</option>
+                                <option value="grate-inferriate" data-translate="form-service-serramenti">Grate e Inferriate Blindate</option>
                                 <option value="sorveglianza" data-translate="form-service-sorveglianza">Videosorveglianza</option>
                                 <option value="allarmi" data-translate="form-service-allarmi">Sistemi di Allarme</option>
                                 <option value="consulenza" data-translate="form-service-consulenza">Consulenza Generale</option>
@@ -628,7 +628,7 @@
                     <h4 data-translate="footer-services-title">Servizi</h4>
                     <ul>
                         <li><a href="nebbiogeni.html" data-translate="footer-service-nebbiogeni">Sistemi Nebbiogeni</a></li>
-                        <li><a href="serramenti.html" data-translate="footer-service-serramenti">Serramenti Blindati</a></li>
+                        <li><a href="serramenti.html" data-translate="footer-service-serramenti">Grate e Inferriate Blindate</a></li>
                         <li><a href="sorveglianza.html" data-translate="footer-service-sorveglianza">Videosorveglianza</a></li>
                         <li><a href="allarmi.html" data-translate="footer-service-allarmi">Sistemi di Allarme</a></li>
                     </ul>

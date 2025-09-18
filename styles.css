@@ -177,15 +177,16 @@ a {
     top: 0;
     left: 0;
     right: 0;
-    height: 82px;
-    min-height: 82px;
-    max-height: 82px; /* Force consistent height to prevent CLS */
+    height: 110px; /* Aumentato ulteriormente da 95px per contenere meglio i selettori lingua verticali */
+    min-height: 110px; /* Aumentato da 95px */
+    max-height: 110px; /* Aumentato da 95px - Force consistent height to prevent CLS */
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(76, 175, 80, 0.2);
     z-index: 9999;
     transition: background 0.3s ease, backdrop-filter 0.3s ease, border-bottom 0.3s ease;
     box-sizing: border-box;
+    overflow: visible; /* Assicura che il contenuto non venga tagliato */
 }
 
 .header.scrolled {
@@ -196,16 +197,17 @@ a {
 
 .nav {
     padding: 1rem 0;
-    height: 82px; /* Match header height exactly */
+    height: 110px; /* Aumentato da 95px per match con header height */
     box-sizing: border-box;
     display: flex;
     align-items: center;
+    overflow: visible; /* Assicura che il contenuto non venga tagliato */
 }
 
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 0px; /* Reduced from 15px to 10px to move navbar further left and prevent language selector cutoff */
+    padding: 0 1rem; /* Ripristinato padding per migliorare l'aspetto */
     width: 100%; /* Responsive width instead of fixed */
     display: flex;
     justify-content: space-between;
@@ -213,9 +215,10 @@ a {
     position: relative;
     height: 100%;
     box-sizing: border-box;
+    overflow: visible; /* Assicura che il contenuto non venga tagliato */
     
     /* CLS Prevention: Force layout stability */
-    contain: layout style;
+    /* contain: layout style; */ /* Rimossa: causava il taglio del selettore lingua */
     transform: translateZ(0); /* Force GPU layer */
     will-change: auto; /* Remove will-change to prevent unnecessary layers */
 }
@@ -298,7 +301,7 @@ a {
     padding: 0;
     
     /* Stabilizza il layout degli elementi nav */
-    contain: layout style;
+    /* contain: layout style; */ /* RIMOSSO: causava il clipping del selettore lingua */
     transform: translateZ(0);
     flex-shrink: 0;
     box-sizing: border-box;
@@ -396,7 +399,7 @@ a {
         min-height: 40px; /* Ripristina l'altezza minima per il desktop */
         
         /* Stabilizzazione layout per prevenire micro-shift */
-        contain: layout style paint;
+        /* contain: layout style paint; */ /* RIMOSSO: causava il clipping del selettore lingua */
         transform: translateZ(0);
     }
     
@@ -416,51 +419,55 @@ a {
     }
     
     .nav-link {
-        padding: 0.4rem 0.6rem;
-        font-size: 0.9rem;
+        padding: 0.35rem 0.5rem;
+        font-size: 0.85rem;
     }
     
     .nav-link.cta {
-        padding: 0.6rem 1rem;
-        margin-left: 0.3rem;
+        padding: 0.45rem 0.8rem; /* riduce dimensioni bottone Contattaci su desktop */
+        font-size: 0.85rem;
+        margin-left: 0.2rem;
+        border-radius: 6px;
     }
 }
 
 /* Ottimizzazioni specifiche per desktop più grandi */
 @media (min-width: 1025px) {
     .nav-menu {
-        gap: 1.5rem;
+        gap: 1.1rem; /* leggermente meno spazio tra voci */
     }
     
     .nav-link {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.95rem;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.9rem;
     }
     
     .nav-link.cta {
-        padding: 0.75rem 1.2rem;
-        margin-left: 0.5rem;
+        padding: 0.5rem 0.9rem; /* più compatto su desktop large */
+        margin-left: 0.3rem;
+        font-size: 0.9rem;
     }
 }
 
 /* Language Selector */
 .language-selector {
     display: flex;
-    gap: 0.3rem; /* Reduced from 0.5rem to save space */
-    margin-left: 0.5rem; /* Reduced from 1rem to save space */
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-left: 0.15rem;
     align-items: center;
 }
 
 .lang-btn {
     display: flex;
     align-items: center;
-    gap: 0.2rem; /* Reduced from 0.3rem to save space */
-    padding: 0.4rem 0.6rem; /* Reduced horizontal padding from 0.8rem to 0.6rem */
+    gap: 0.2rem;
+    padding: 0.32rem 0.5rem; /* più piccolo su desktop */
     background: rgba(26, 26, 26, 0.8);
     border: 1px solid rgba(76, 175, 80, 0.2);
-    border-radius: 8px;
+    border-radius: 6px;
     color: #b0b0b0;
-    font-size: 0.8rem; /* Reduced from 0.85rem to save space */
+    font-size: 0.78rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;

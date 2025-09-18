@@ -1,6 +1,6 @@
 /* Fix per le icone sproporzionate nelle sezioni Caratteristiche Tecniche e Processo di Installazione */
 
-/* Override specifico per le icone emoji nelle sezioni serramenti */
+/* Override specifico per le icone emoji nelle sezioni grate e inferriate */
 .feature-icon {
     font-size: 3rem !important;
     width: 80px !important;

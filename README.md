@@ -10,7 +10,7 @@ Sito web moderno e professionale per FB Total Security, agente plurimandatario s
 - **Design moderno e stondato** con elementi visivi eleganti
 - **Colori dedicati per ogni sezione**:
   - 🔵 Blu (#1976d2) - Nebbiogeni
-  - 🟣 Viola (#7b1fa2) - Serramenti di Sicurezza
+  - 🟣 Viola (#7b1fa2) - Grate e Inferriate di Sicurezza
   - 🟢 Verde (#2e7d32) - Sorveglianza
   - 🟠 Arancione (#f57c00) - Sistemi di Allarme
 - **Layout completamente responsive** per tutti i dispositivi
@@ -62,8 +62,8 @@ sito_franco_trae/
 - Integrazione con sistemi esistenti
 - Controllo remoto via app
 
-### 2. 🚪 Serramenti di Sicurezza
-- Porte blindate classe 3, 4 e 5
+### 2. 🚪 Grate e Inferriate di Sicurezza
+- Grate e Inferriate classe 3, 4 e 5
 - Serrature europee multipoint
 - Vetri antisfondamento stratificati
 - Persiane blindate e grate
@@ -88,14 +88,14 @@ sito_franco_trae/
 ### Primarie
 - sistemi sicurezza
 - nebbiogeni
-- serramenti blindati
+- grate e inferriate blindate
 - videosorveglianza
 - allarmi
 - FB Total Security
 
 ### Secondarie
 - agente plurimandatario sicurezza
-- porte blindate Roma
+- Grate e Inferriate Roma
 - telecamere IP
 - centrali antifurto
 - protezione casa
@@ -105,7 +105,7 @@ sito_franco_trae/
 
 ### Long-tail
 - "installazione sistemi nebbiogeni Roma"
-- "porte blindate classe 5 certificata"
+- "Grate e Inferriate classe 5 certificata"
 - "videosorveglianza 4K visione notturna"
 - "centrali allarme wireless smartphone"
 
@@ -158,7 +158,7 @@ I colori delle sezioni sono definiti in `styles.css`:
 /* Nebbiogeni - Blu */
 .nebbiogeni-section { color: #1976d2; }
 
-/* Serramenti - Viola */
+/* Grate e Inferriate - Viola */
 .serramenti-section { color: #7b1fa2; }
 
 /* Sorveglianza - Verde */

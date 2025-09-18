@@ -6,7 +6,7 @@
     
     <!-- TITOLO E DESCRIZIONE OTTIMIZZATI -->
     <title data-translate="page-title">Sistemi di Sicurezza e Antifurto | FB Total Security Milano</title>
-    <meta name="description" content="FB Total Security offre sistemi di sicurezza: allarmi, videosorveglianza, nebbiogeni e serramenti blindati. Protezione per casa e azienda a Milano." data-translate="page-description">
+    <meta name="description" content="FB Total Security offre sistemi di sicurezza: allarmi, videosorveglianza, nebbiogeni e grate e inferriate blindate. Protezione per casa e azienda a Milano." data-translate="page-description">
 
     <!-- === OTTIMIZZAZIONE CRITICA PER LCP E CLS === -->
 
@@ -36,8 +36,8 @@
         /* Stili critici di base */
         :root{--primary-color:#4caf50;--primary-light:#66bb6a;--text-black:#000;--white:#fff;--text-light:#b0b0b0}
         *,:after,:before{margin:0;padding:0;box-sizing:border-box}
-        body{background:var(--text-black);color:var(--white);font-family:'Inter','Inter Fallback',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;padding-top:82px;min-height:100vh}
-        .header{position:fixed;top:0;left:0;right:0;height:82px;min-height:82px;background:linear-gradient(135deg,rgba(0,0,0,.95),rgba(26,26,26,.95));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(76,175,80,.2);z-index:9999;transition:background .3s ease,transform .3s ease}
+        body{background:var(--text-black);color:var(--white);font-family:'Inter','Inter Fallback',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;padding-top:110px;min-height:100vh}
+.header{position:fixed;top:0;left:0;right:0;height:110px;min-height:110px;background:linear-gradient(135deg,rgba(0,0,0,.95),rgba(26,26,26,.95));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(76,175,80,.2);z-index:9999;transition:background .3s ease,transform .3s ease;overflow:visible}
         .nav-container{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;height:100%}
         .logo-link{display:flex;align-items:center;gap:.75rem;color:inherit;text-decoration:none}
         .logo-image{width:50px;height:50px}
@@ -47,44 +47,66 @@
         .hamburger{display:none}
         .hero{min-height:calc(100vh - 82px);display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#000,#1a1a1a);position:relative;contain:layout style paint;overflow:hidden}
         
-        /* === SOLUZIONE CLS DEFINITIVA === */
-        .hero-container{
-            max-width:1200px;margin:0 auto;text-align:center;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem 1rem;
-            /* FORZA UN'ALTEZZA FISSA per creare un frame che non può cambiare dimensione, eliminando il CLS. */
-            height:700px !important; min-height:700px !important; max-height:700px; 
-            width:100%;box-sizing:border-box;contain:layout style paint;transform:translateZ(0);isolation:isolate;flex-shrink:0;overflow:visible;
-            will-change:auto;backface-visibility:hidden;perspective:1000px
+        /* === SOLUZIONE CLS FLESSIBILE E OTTIMIZZATA === */
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1rem;
+            /* Usa un'altezza minima basata sulla viewport invece di un'altezza fissa */
+            min-height: 80vh; 
+            contain: layout style;
         }
-        .hero-title{
-            font-size:clamp(2.2rem,8vw,5rem);font-weight:700;line-height:1.1;margin-bottom:1.5rem;background:linear-gradient(135deg,#fff,var(--primary-color));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;max-width:800px;width:100%;
-            /* L'altezza deve rimanere automatica per evitare il troncamento del testo. La stabilità è data dal genitore. */
-            height:auto !important; min-height:auto !important;
-            contain:layout style paint;transform:translateZ(0);display:block;text-align:center;flex-shrink:0;box-sizing:border-box;overflow:visible;word-wrap:break-word;hyphens:auto
+        .hero-title {
+            font-size: clamp(2.2rem, 8vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff, var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            max-width: 800px;
+            width: 100%;
+            /* CLS FIX: Riserva lo spazio per circa 2 righe di testo del titolo */
+            min-height: calc(clamp(2.2rem, 8vw, 5rem) * 1.1 * 2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .hero-subtitle{
-            font-size:clamp(1.2rem,2.5vw,1.5rem);color:var(--text-light);margin-bottom:3rem;max-width:600px;width:100%;margin-left:auto;margin-right:auto;line-height:1.6;
-            /* L'altezza deve rimanere automatica. */
-            height:auto !important; min-height:auto !important;
-            contain:layout style paint;will-change:auto;transform:translateZ(0);display:block;text-align:center;flex-shrink:0;box-sizing:border-box;overflow:visible;isolation:isolate;word-wrap:break-word;hyphens:auto;
-            /* === OTTIMIZZAZIONI LCP ULTRA-CRITICHE === */
-            font-display:swap;visibility:visible;opacity:1;backface-visibility:hidden;
-            font-synthesis:none;text-rendering:optimizeSpeed;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-            /* Prevenzione layout shift */
-            font-family:'Inter','Inter Fallback',system-ui,-apple-system,sans-serif;
-            /* Ottimizzazione rendering ultra-critica per LCP */
-            content-visibility:visible;contain-intrinsic-size:auto 100px;
-            /* Accelerazione hardware massima */
-            transform:translate3d(0,0,0);
-            /* Priorità rendering massima */
-            z-index:1;
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            /* CLS FIX: Riserva lo spazio per circa 3-4 righe di testo del sottotitolo */
+            min-height: calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3);
         }
-        .hero-cta{
-            display:flex;gap:1.5rem;justify-content:center;align-items:center;width:100%;
-            /* FORZA UN'ALTEZZA FISSA per i pulsanti */
-            height:120px !important; min-height:120px !important; flex-shrink:0;
-            contain:layout style paint;transform:translateZ(0);will-change:auto;backface-visibility:hidden;isolation:isolate;box-sizing:border-box
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            /* CLS FIX: Riserva l'altezza per i pulsanti */
+            min-height: 60px;
         }
-        /* Fine soluzione CLS */
+        @media(max-width:767px) {
+            .hero-cta {
+                flex-direction: column;
+                min-height: 120px;
+            }
+        }
 
         .btn{display:inline-flex;align-items:center;justify-content:center;padding:1rem 2rem;border-radius:12px;font-weight:600;text-decoration:none;border:none;min-width:180px;height:48px;text-align:center}
         .btn-primary{background:linear-gradient(135deg,var(--primary-color),var(--primary-light));color:var(--text-black)}
@@ -98,7 +120,7 @@
     <noscript><link rel="stylesheet" href="styles.min.css?v=20250917"></noscript>
 
     <!-- Meta Tags, Canonical, OpenGraph, etc. -->
-    <meta name="keywords" content="sistemi sicurezza, nebbiogeni, serramenti blindati, videosorveglianza, allarmi, Italia, sicurezza casa, antifurto">
+    <meta name="keywords" content="sistemi sicurezza, nebbiogeni, grate e inferriate blindate, videosorveglianza, allarmi, Italia, sicurezza casa, antifurto">
     <meta name="author" content="FB Total Security">
     <link rel="canonical" href="https://www.fbtotalsecurity.com/">
     <link rel="alternate" hreflang="it" href="https://www.fbtotalsecurity.com/">
@@ -115,7 +137,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.fbtotalsecurity.com/">
     <meta property="og:title" content="FB Total Security - Sistemi di Sicurezza Avanzata | Italia" data-translate="index-og-title">
-    <meta property="og:description" content="Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi in tutta Italia." data-translate="index-og-description">
+    <meta property="og:description" content="Specialisti in sistemi di sicurezza avanzati: nebbiogeni, grate e inferriate blindate, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi in tutta Italia." data-translate="index-og-description">
     <meta property="og:image" content="https://www.fbtotalsecurity.com/icons/logo_sito_franco.webp">
     <meta property="og:locale" content="it_IT">
     <meta property="og:locale:alternate" content="en_US">
@@ -125,7 +147,7 @@
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.fbtotalsecurity.com/">
     <meta property="twitter:title" content="FB Total Security - Sistemi di Sicurezza Avanzata | Italia" data-translate="index-twitter-title">
-    <meta property="twitter:description" content="Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi in tutta Italia." data-translate="index-twitter-description">
+    <meta property="twitter:description" content="Specialisti in sistemi di sicurezza avanzati: nebbiogeni, grate e inferriate blindate, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi in tutta Italia." data-translate="index-twitter-description">
     <meta property="twitter:image" content="https://www.fbtotalsecurity.com/icons/logo_sito_franco.webp">
     
     <!-- Hreflang tags -->
@@ -135,8 +157,8 @@
     
     <!-- Standard Meta Tags (Schema.org compliant) -->
     <meta name="subject" content="Sistemi di Sicurezza Avanzati">
-    <meta name="topic" content="Sicurezza, Nebbiogeni, Serramenti Blindati, Videosorveglianza, Allarmi">
-    <meta name="summary" content="FB Total Security è leader italiano in sistemi di sicurezza: nebbiogeni antifurto, serramenti blindati certificati, videosorveglianza AI e allarmi wireless. Oltre 20 anni di esperienza, servizi in tutta Italia.">
+    <meta name="topic" content="Sicurezza, Nebbiogeni, Grate e Inferriate Blindate, Videosorveglianza, Allarmi">
+    <meta name="summary" content="FB Total Security è leader italiano in sistemi di sicurezza: nebbiogeni antifurto, grate e inferriate blindate certificate, videosorveglianza AI e allarmi wireless. Oltre 20 anni di esperienza, servizi in tutta Italia.">
     <meta name="classification" content="Sicurezza e Protezione">
     <meta name="category" content="Sistemi di Sicurezza">
     <meta name="coverage" content="Italia">
@@ -145,13 +167,13 @@
     <meta name="revisit-after" content="7 days">
     
     <!-- Enhanced Keywords for AI -->
-    <meta name="keywords" content="sistemi sicurezza avanzati, nebbiogeni antifurto Italia, serramenti blindati Milano, videosorveglianza intelligente AI, allarmi wireless professionali, sicurezza domestica aziendale, protezione antifurto, controllo accessi biometrico, monitoraggio remoto 24/7, riconoscimento facciale, analisi comportamentale, sicurezza perimetrale, porte blindate certificate, telecamere 4K, sistemi antintrusione, prevenzione furti, tecnologie sicurezza innovative">
+    <meta name="keywords" content="sistemi sicurezza avanzati, nebbiogeni antifurto Italia, grate e inferriate blindate Milano, videosorveglianza intelligente AI, allarmi wireless professionali, sicurezza domestica aziendale, protezione antifurto, controllo accessi biometrico, monitoraggio remoto 24/7, riconoscimento facciale, analisi comportamentale, sicurezza perimetrale, grate blindate certificate, telecamere 4K, sistemi antintrusione, prevenzione furti, tecnologie sicurezza innovative">
     
     <!-- Schema.org Entity Information (replaces custom ai-* tags) -->
     <meta name="entity" content="FB Total Security">
     <meta name="entity-type" content="LocalBusiness">
     <meta name="industry" content="Security Systems">
-    <meta name="services" content="Nebbiogeni, Serramenti Blindati, Videosorveglianza, Allarmi">
+    <meta name="services" content="Nebbiogeni, Grate e Inferriate Blindate, Videosorveglianza, Allarmi">
     <meta name="location" content="Milano, Italia">
     <meta name="expertise" content="Sistemi di Sicurezza Avanzati">
     
@@ -206,7 +228,7 @@
             "Franco Benedetto Total Security",
             "Sistemi Sicurezza Milano",
             "Nebbiogeni Italia",
-            "Serramenti Blindati Milano"
+            "Grate e Inferriate Blindate Milano"
           ],
           "url": "https://www.fbtotalsecurity.com",
           "logo": {
@@ -215,7 +237,7 @@
             "width": 300,
             "height": 100
           },
-          "description": "Agenzia plurimandataria leader in Italia specializzata in sistemi di sicurezza avanzati: nebbiogeni antifurto, serramenti blindati certificati, videosorveglianza intelligente con AI e sistemi di allarme wireless. Oltre 20 anni di esperienza nel settore sicurezza con servizi in tutta Italia.",
+          "description": "Agenzia plurimandataria leader in Italia specializzata in sistemi di sicurezza avanzati: nebbiogeni antifurto, grate e inferriate blindate certificate, videosorveglianza intelligente con AI e sistemi di allarme wireless. Oltre 20 anni di esperienza nel settore sicurezza con servizi in tutta Italia.",
           "slogan": "La tua sicurezza è la nostra missione",
           "foundingDate": "2000",
           "numberOfEmployees": "10-50",
@@ -271,7 +293,7 @@
           "knowsAbout": [
             "Sistemi di sicurezza",
             "Nebbiogeni antifurto",
-            "Serramenti blindati", 
+            "Grate e inferriate blindate", 
             "Videosorveglianza",
             "Allarmi wireless",
             "Sicurezza domestica",
@@ -279,7 +301,7 @@
             "Protezione antifurto",
             "Sistemi di allarme",
             "Telecamere di sicurezza",
-            "Porte blindate",
+            "Grate blindate",
             "Sicurezza perimetrale",
             "Controllo accessi",
             "Monitoraggio remoto",
@@ -311,7 +333,7 @@
           "@id": "https://www.fbtotalsecurity.com/#website",
           "url": "https://www.fbtotalsecurity.com",
           "name": "FB Total Security - Sistemi di Sicurezza Avanzati",
-          "description": "Sito ufficiale di FB Total Security, leader italiano in sistemi di sicurezza: nebbiogeni, serramenti blindati, videosorveglianza AI e allarmi. Consulenza gratuita e installazione professionale in tutta Italia.",
+          "description": "Sito ufficiale di FB Total Security, leader italiano in sistemi di sicurezza: nebbiogeni, grate e inferriate blindate, videosorveglianza AI e allarmi. Consulenza gratuita e installazione professionale in tutta Italia.",
           "publisher": {
             "@id": "https://www.fbtotalsecurity.com/#organization"
           },
@@ -567,7 +589,7 @@
       "name": "FB Total Security",
       "url": "https://www.fbtotalsecurity.com",
         "logo": "https://www.fbtotalsecurity.com/logo.png",
-      "description": "Creatori di sicurezza specializzati in sistemi di protezione avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza nel settore sicurezza per aziende e privati.",
+      "description": "Creatori di sicurezza specializzati in sistemi di protezione avanzati: nebbiogeni, grate e inferriate blindate, videosorveglianza e allarmi. Oltre 20 anni di esperienza nel settore sicurezza per aziende e privati.",
       "founder": {
         "@type": "Person",
         "name": "FB Total Security",
@@ -605,8 +627,8 @@
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Serramenti di Sicurezza",
-              "description": "Porte blindate e serramenti antieffrazione"
+              "name": "Grate e Inferriate di Sicurezza",
+              "description": "Grate e inferriate blindate antieffrazione"
             }
           },
           {
@@ -727,7 +749,7 @@ img {
                 </div>
                 <ul class="nav-menu">
                     <li><a href="nebbiogeni.html" class="nav-link" data-translate="nav-nebbiogeni" title="Sistemi nebbiogeni professionali per la sicurezza">Nebbiogeni</a></li>
-                    <li><a href="serramenti.html" class="nav-link" data-translate="nav-serramenti" title="Serramenti blindati e porte di sicurezza">Serramenti</a></li>
+                    <li><a href="serramenti.html" class="nav-link" data-translate="nav-serramenti" title="Grate e inferriate blindate per porte e finestre">Grate e Inferriate</a></li>
                     <li><a href="sorveglianza.html" class="nav-link" data-translate="nav-sorveglianza" title="Sistemi di videosorveglianza avanzati">Sorveglianza</a></li>
                     <li><a href="allarmi.html" class="nav-link" data-translate="nav-allarmi" title="Sistemi di allarme intelligenti">Allarmi</a></li>
                     <li><a href="lavora-con-noi.html" class="nav-link" data-translate="nav-lavora-con-noi" title="Opportunità di lavoro e carriera">Lavora con noi</a></li>
@@ -796,9 +818,9 @@ img {
                         <p data-translate="service-nebbiogeni-desc">Sistemi di nebbiogeni per protezione immediata contro intrusioni e furti</p>
                         <span class="service-link" data-translate="service-nebbiogeni-link">Sistemi Nebbiogeni</span>
                     </a>
-                    <a href="serramenti.html" class="service-card serramenti-card" title="Esplora i nostri serramenti blindati e porte di sicurezza ad alta protezione">
+                    <a href="serramenti.html" class="service-card serramenti-card" title="Esplora le nostre grate e inferriate blindate per la massima protezione">
                         <div class="service-icon">
-                            <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" stroke="#4caf50" fill="#4caf50" aria-label="Icona Serramenti Blindati di Sicurezza">
+                            <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" stroke="#4caf50" fill="#4caf50" aria-label="Icona Grate e Inferriate Blindate di Sicurezza">
                                 <!-- Stile principale per le linee dell'icona -->
                                 <g fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                     <!-- 1. Cornice esterna della porta -->
@@ -815,9 +837,9 @@ img {
                                 </g>
                             </svg>
                         </div>
-                        <h3 data-translate="service-serramenti-title">Serramenti di Sicurezza</h3>
-                        <p data-translate="service-serramenti-desc">Porte blindate, finestre antieffrazione e serramenti ad alta sicurezza</p>
-                        <span class="service-link" data-translate="service-serramenti-link">Serramenti Blindati</span>
+                        <h3 data-translate="service-serramenti-title">Grate e Inferriate di Sicurezza</h3>
+                        <p data-translate="service-serramenti-desc">Grate e inferriate blindate antieffrazione con fissaggio senza opere murarie</p>
+                        <span class="service-link" data-translate="service-serramenti-link">Grate e Inferriate Blindate</span>
                     </a>
                     <a href="sorveglianza.html" class="service-card sorveglianza-card" title="Scopri i nostri sistemi di videosorveglianza avanzati con tecnologia 4K">
                         <div class="service-icon">
@@ -994,8 +1016,8 @@ img {
             <div class="container">
                 <div class="service-content reverse">
                     <div class="service-text">
-                        <h3 data-translate="serramenti-section-title">Serramenti di Sicurezza Blindati</h3>
-                        <p class="service-description" data-translate="serramenti-section-desc">Porte blindate e serramenti antieffrazione progettati per offrire la massima protezione. Utilizziamo solo materiali certificati e tecnologie all'avanguardia per garantire sicurezza e durata nel tempo.</p>
+                        <h3 data-translate="serramenti-section-title">Grate e Inferriate di Sicurezza</h3>
+                        <p class="service-description" data-translate="serramenti-section-desc">Grate e Inferriate blindate antieffrazione progettati per offrire la massima protezione. Utilizziamo solo materiali certificati e tecnologie all'avanguardia per garantire sicurezza e durata nel tempo.</p>
                         <ul class="service-features">
                             <li data-translate="serramenti-feature-1">Antieffrazione fino a Classe 6 (UNI EN 1627-1630)</li>
                             <li data-translate="serramenti-feature-2">Produzione interna (ciclo chiuso)</li>
@@ -1012,13 +1034,13 @@ img {
                             <li data-translate="serramenti-feature-13">Supporto post-vendita</li>
                         </ul>
                         <div class="service-cta">
-                            <a href="#contatti" class="btn btn-primary" data-translate="btn-quote" title="Richiedi un preventivo gratuito per serramenti blindati">Richiedi Preventivo</a>
+                            <a href="#contatti" class="btn btn-primary" data-translate="btn-quote" title="Richiedi un preventivo gratuito per porte e finestre">Richiedi Preventivo</a>
                         </div>
                     </div>
                     <div class="service-image">
                         <!-- Lite YouTube Embed -->
-                        <div class="lite-youtube-embed" data-id="4utsUJHzVFw" data-title="Xecur Serramenti - Sicurezza e Design per la Tua Casa" aria-label="Guarda il video sui serramenti di sicurezza Xecur">
-                            <img src="icons/thumbnail-xecur-super-optimized.webp" alt="Anteprima video Xecur Serramenti" class="video-thumbnail" loading="lazy" width="408" height="214">
+                        <div class="lite-youtube-embed" data-id="4utsUJHzVFw" data-title="Xecur Grate e Inferriate Blindate - Sicurezza e Design per la Tua Casa" aria-label="Guarda il video sulle grate e inferriate blindate di sicurezza Xecur">
+                            <img src="icons/thumbnail-xecur-super-optimized.webp" alt="Anteprima video Xecur Grate e Inferriate" class="video-thumbnail" loading="lazy" width="408" height="214">
                             <button type="button" class="play-btn" aria-label="Riproduci video">
                                 <svg width="68" height="48" viewBox="0 0 68 48"><path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg>
                             </button>
@@ -1026,11 +1048,11 @@ img {
                         
                         <!-- SEO copy attorno al video -->
                         <div class="video-description">
-                            <p data-translate="serramenti-video-description">Scopri la qualità e l'innovazione dei serramenti di sicurezza Xecur. I nostri serramenti antieffrazione offrono una protezione dal livello IV al livello VI, incluso lo standard di sicurezza più alto a livello europeo (RC6) con la grata Alice V. Porte blindate, finestre antieffrazione e soluzioni su misura per proteggere la tua casa con stile e design moderno. <a href="#contatti" class="text-link" title="Contattaci per una consulenza sui serramenti di sicurezza">Contattaci per una consulenza</a>.</p>
+                            <p data-translate="serramenti-video-description">Scopri la qualità e l'innovazione delle grate e inferriate blindate di sicurezza Xecur. Le nostre grate e inferriate blindate antieffrazione offrono una protezione dal livello IV al livello VI, incluso lo standard di sicurezza più alto a livello europeo (RC6) con la grata Alice V. Grate e inferriate blindate antieffrazione e soluzioni su misura per proteggere la tua casa con stile e design moderno. <a href="#contatti" class="text-link" title="Contattaci per una consulenza sulle grate e inferriate blindate di sicurezza">Contattaci per una consulenza</a>.</p>
                             
                             <details>
                                 <summary data-translate="video-transcription-title">Trascrizione Video</summary>
-                                <p data-translate="serramenti-video-transcription">Il video presenta la gamma completa di serramenti di sicurezza Xecur, mostrando porte blindate di classe superiore con protezione dal livello IV al livello VI (standard RC6), finestre antieffrazione con grata Alice V e sistemi di chiusura avanzati. Ogni prodotto combina massima sicurezza con design elegante, utilizzando materiali certificati e tecnologie all'avanguardia per garantire protezione duratura nel tempo.</p>
+                                <p data-translate="serramenti-video-transcription">Il video presenta la gamma completa di grate e inferriate blindate Xecur, mostrando grate di classe superiore con protezione dal livello IV al livello VI (standard RC6), inferriate antieffrazione con sistema Alice VI e sistemi di fissaggio avanzati senza opere murarie. Ogni prodotto combina massima sicurezza con design elegante, utilizzando materiali certificati e tecnologie all'avanguardia per garantire protezione duratura nel tempo.</p>
                             </details>
                         </div>
                         
@@ -1039,8 +1061,8 @@ img {
                         {
                             "@context": "https://schema.org",
                             "@type": "VideoObject",
-                            "name": "Xecur Serramenti - Sicurezza e Design per la Tua Casa",
-                            "description": "Presentazione della gamma completa di serramenti di sicurezza Xecur: porte blindate con protezione dal livello IV al VI (standard RC6), finestre antieffrazione con grata Alice V e soluzioni su misura che combinano massima protezione con design elegante e moderno",
+                            "name": "Xecur Grate e Inferriate Blindate - Sicurezza e Design per la Tua Casa",
+                            "description": "Presentazione della gamma completa delle grate e inferriate blindate di sicurezza Xecur: Grate e Inferriate con protezione dal livello IV al VI (standard RC6), finestre antieffrazione con grata Alice V e soluzioni su misura che combinano massima protezione con design elegante e moderno",
                             "thumbnailUrl": "https://www.fbtotalsecurity.com/icons/thumbnail-xecur-super-optimized.webp",
                         "uploadDate": "2023-08-15T12:00:00+01:00",
                         "duration": "PT3M45S",
@@ -1247,9 +1269,9 @@ img {
                             </svg>
                         </div>
                         <h3 data-translate="clients-residential-title">Abitazioni Private</h3>
-                        <p data-translate="clients-residential-desc">Proteggi la tua famiglia e la tua casa con sistemi di sicurezza discreti ed efficaci. Dalle porte blindate ai nebbiogeni, dalle telecamere agli allarmi wireless con bottoni antipanico e integrazioni complete con AI: soluzioni complete per la massima tranquillità domestica.</p>
+                        <p data-translate="clients-residential-desc">Proteggi la tua famiglia e la tua casa con sistemi di sicurezza discreti ed efficaci. Dalle Grate e Inferriate ai nebbiogeni, dalle telecamere agli allarmi wireless con bottoni antipanico e integrazioni complete con AI: soluzioni complete per la massima tranquillità domestica.</p>
                         <ul class="client-features">
-                            <li data-translate="clients-residential-feature-1">Serramenti blindati e porte di sicurezza</li>
+                            <li data-translate="clients-residential-feature-1">Grate e inferriate blindate per porte di sicurezza</li>
                             <li data-translate="clients-residential-feature-2">Sistemi nebbiogeni per protezione immediata</li>
                             <li data-translate="clients-residential-feature-3">Telecamere HD con visione notturna</li>
                             <li data-translate="clients-residential-feature-4">Allarmi wireless con bottoni antipanico integrati</li>
@@ -1332,7 +1354,7 @@ img {
                             <select id="servizio" name="servizio" required>
                                 <option value="" data-translate="form-service-default">Seleziona il servizio di interesse</option>
                                 <option value="nebbiogeni" data-translate="form-service-nebbiogeni">Sistemi Nebbiogeni</option>
-                                <option value="serramenti" data-translate="form-service-serramenti">Serramenti di Sicurezza</option>
+                                <option value="grate-inferriate" data-translate="form-service-serramenti">Grate e Inferriate di Sicurezza</option>
                                 <option value="sorveglianza" data-translate="form-service-sorveglianza">Videosorveglianza</option>
                                 <option value="allarmi" data-translate="form-service-allarmi">Sistemi di Allarme</option>
                                 <option value="consulenza" data-translate="form-service-consulenza">Consulenza Generale</option>
@@ -1399,7 +1421,7 @@ img {
                                 <ul style="margin: 0; padding-left: 1.5rem; color: #b0b0b0; line-height: 1.6; list-style: none;">
                                     <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
                                         <span style="position: absolute; left: 0; color: #4caf50; font-weight: bold;">✓</span>
-                                        <strong>EN 1627-1630:</strong> <span data-translate="normative-en-1627">Standard europei per serramenti antieffrazione</span>
+                                        <strong>EN 1627-1630:</strong> <span data-translate="normative-en-1627">Standard europei per grate e inferriate antieffrazione</span>
                                     </li>
                                     <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
                                         <span style="position: absolute; left: 0; color: #4caf50; font-weight: bold;">✓</span>
@@ -1539,7 +1561,7 @@ img {
                     <h4 data-translate="footer-services-title">Servizi</h4>
                     <ul>
                         <li><a href="nebbiogeni.html" data-translate="footer-service-nebbiogeni" title="Scopri i nostri sistemi nebbiogeni professionali per la protezione immediata">Sistemi Nebbiogeni</a></li>
-                        <li><a href="serramenti.html" data-translate="footer-service-serramenti" title="Esplora i nostri serramenti blindati e porte di sicurezza ad alta protezione">Serramenti Blindati</a></li>
+                        <li><a href="serramenti.html" data-translate="footer-service-serramenti" title="Esplora le nostre grate e inferriate blindate per porte e finestre ad alta protezione">Grate e Inferriate blindate</a></li>
                         <li><a href="sorveglianza.html" data-translate="footer-service-sorveglianza" title="Scopri i nostri sistemi di videosorveglianza avanzati con tecnologia 4K">Videosorveglianza</a></li>
                         <li><a href="allarmi.html" data-translate="footer-service-allarmi" title="Esplora i nostri sistemi di allarme intelligenti per la massima sicurezza">Sistemi di Allarme</a></li>
                     </ul>
@@ -1630,10 +1652,10 @@ img {
         },
         {
           "@type": "Question",
-          "name": "Quali sono le migliori porte blindate?",
+          "name": "Quali sono le migliori Grate e Inferriate?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Le migliori porte blindate sono quelle certificate classe 3, 4 o 5 secondo gli standard europei. Offriamo serramenti blindati Xecur con protezione fino al livello RC6, il più alto standard di sicurezza europeo. Sono testate rigorosamente e rappresentano un deterrente estremamente efficace contro le effrazioni."
+            "text": "Le migliori Grate e Inferriate sono quelle certificate classe 3, 4 o 5 secondo gli standard europei. Offriamo grate e inferriate blindate Xecur con protezione fino al livello RC6, il più alto standard di sicurezza europeo. Sono testate rigorosamente e rappresentano un deterrente estremamente efficace contro le effrazioni."
           }
         },
         {

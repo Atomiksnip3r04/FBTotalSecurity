@@ -35,7 +35,7 @@
       "@type": "CreativeWork",
       "@id": "https://francosicurezza.it/standards/en-1627-series",
       "name": "Serie EN 1627-1630: Resistenza Antieffrazione",
-      "description": "Standard europei per la classificazione della resistenza di porte, finestre e serramenti contro tentativi di effrazione",
+      "description": "Standard europei per la classificazione della resistenza di grate e inferriate blindate per porte e finestre",
       "url": "https://www.en-standard.eu/bs-en-1627-2011/",
       "publisher": {
         "@type": "Organization",

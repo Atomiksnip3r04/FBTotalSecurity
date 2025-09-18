@@ -32,10 +32,10 @@ class AISemanticEnhancer {
                 itemtype: 'https://schema.org/Service',
                 'data-ai-topic': 'sistemi-nebbiogeni-antifurto'
             },
-            'serramenti': {
+            'Grate e Inferriate Blindate': {
                 itemscope: true,
                 itemtype: 'https://schema.org/Service',
-                'data-ai-topic': 'serramenti-blindati-sicurezza'
+                'data-ai-topic': 'grate-inferriate-blindate-sicurezza'
             },
             'sorveglianza': {
                 itemscope: true,
@@ -77,7 +77,7 @@ class AISemanticEnhancer {
                 heading.setAttribute('data-ai-concept', 'sistema-nebbiogeno');
                 heading.setAttribute('itemprop', 'name');
             } else if (text.includes('serramento') || text.includes('blindat') || text.includes('porta')) {
-                heading.setAttribute('data-ai-concept', 'serramenti-blindati');
+                heading.setAttribute('data-ai-concept', 'grate-inferriate-blindate');
                 heading.setAttribute('itemprop', 'name');
             } else if (text.includes('videosorveglianza') || text.includes('telecamer') || text.includes('surveillance')) {
                 heading.setAttribute('data-ai-concept', 'videosorveglianza-ai');
@@ -172,7 +172,7 @@ class AISemanticEnhancer {
                 'telecamere 4K'
             ],
             'serramenti': [
-                'porte blindate',
+                'grate e inferriate blindate',
                 'classe resistenza RC',
                 'certificazioni europee',
                 'antieffrazione',
@@ -213,7 +213,7 @@ class AISemanticEnhancer {
             'sicurezza-domestica': ['casa', 'famiglia', 'abitazione', 'residenziale'],
             'sicurezza-aziendale': ['ufficio', 'azienda', 'commerciale', 'business'],
             'tecnologie-ai': ['intelligenza artificiale', 'machine learning', 'riconoscimento', 'analisi'],
-            'protezione-fisica': ['barriere', 'porte', 'finestre', 'perimetro']
+            'protezione-fisica': ['barriere', 'inferriate', 'grate', 'perimetro']
         };
 
         Object.entries(topicClusters).forEach(([cluster, terms]) => {

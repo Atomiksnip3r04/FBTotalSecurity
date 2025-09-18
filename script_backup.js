@@ -638,7 +638,7 @@ const translations = {
         'nav-quote': 'Preventivo Gratuito',
         'tagline': 'Creatori di Sicurezza',
         'nav-nebbiogeni': 'Nebbiogeni',
-        'nav-serramenti': 'Serramenti',
+        'nav-serramenti': 'Grate e Inferriate',
         'nav-sorveglianza': 'Sorveglianza',
         'nav-allarmi': 'Allarmi',
         'nav-chi-siamo': 'Chi siamo',
@@ -647,7 +647,7 @@ const translations = {
         // Hero section
         'hero-tagline': 'La tua sicurezza è la nostra priorità',
         'hero-title': 'Soluzioni di Sicurezza Avanzate per la Tua Protezione',
-        'hero-subtitle': 'Sistemi nebbiogeni, serramenti blindati, videosorveglianza e allarmi intelligenti. Proteggi ciò che conta di più con tecnologie all\'avanguardia.',
+        'hero-subtitle': 'Sistemi nebbiogeni, grate e inferriate blindate, videosorveglianza e allarmi intelligenti. Proteggi ciò che conta di più con tecnologie all\'avanguardia.',
         'hero-cta': 'Scopri i Nostri Servizi',
         'hero-cta-primary': 'Scopri i Nostri Servizi',
         'hero-cta-secondary': 'Richiedi Preventivo',
@@ -657,8 +657,8 @@ const translations = {
         'services-subtitle': 'Soluzioni complete per ogni esigenza di protezione',
         'service-nebbiogeni-title': 'Sistemi Nebbiogeni',
         'service-nebbiogeni-desc': 'Protezione istantanea con nebbia densa che neutralizza qualsiasi intrusione',
-        'service-serramenti-title': 'Serramenti Blindati',
-        'service-serramenti-desc': 'Porte e finestre ad alta sicurezza certificate per la massima protezione',
+        'service-serramenti-title': 'Grate e Inferriate Blindate',
+        'service-serramenti-desc': 'Grate e inferriate ad alta sicurezza certificate per la massima protezione',
         'service-sorveglianza-title': 'Videosorveglianza',
         'service-sorveglianza-desc': 'Sistemi di monitoraggio avanzati con intelligenza artificiale',
         'service-allarmi-title': 'Sistemi di Allarme',
@@ -682,10 +682,10 @@ const translations = {
         'nebbiogeni-feature-4': 'Integrazione con sistemi esistenti',
         'nebbiogeni-cta': 'Scopri i Sistemi Nebbiogeni',
         
-        // Serramenti Section
-        'serramenti-title': 'Serramenti di Sicurezza Blindati',
-        'serramenti-subtitle': 'Barriera fisica impenetrabile',
-        'serramenti-desc': 'Porte e finestre blindate certificate secondo le normative europee più severe. Ogni serramento è progettato su misura per garantire il massimo livello di protezione senza compromettere l\'estetica della tua abitazione.',
+        // Grate e Inferriate Section
+        'serramenti-title': 'Grate e Inferriate Blindate di Sicurezza',
+        'serramenti-subtitle': 'Protezione fisica massima',
+        'serramenti-desc': 'Grate e inferriate blindate certificate secondo le normative europee più severe. Ogni prodotto è progettato su misura per garantire il massimo livello di protezione senza compromettere l\'estetica della tua abitazione.',
         'serramenti-feature-1': 'Antieffrazione fino a Classe 6 (UNI EN 1627-1630)',
         'serramenti-feature-2': 'Produzione interna (ciclo chiuso)',
         'serramenti-feature-3': 'Personalizzabile (su misura, varie classi e modelli)',
@@ -699,7 +699,7 @@ const translations = {
         'serramenti-feature-11': 'Sopralluogo e consulenza dedicata',
         'serramenti-feature-12': 'Assistenza tecnica',
         'serramenti-feature-13': 'Supporto post-vendita',
-        'serramenti-cta': 'Configura i Tuoi Serramenti',
+        'serramenti-cta': 'Configura le Tue Grate e Inferriate',
         
         // Sorveglianza Section
         'sorveglianza-title': 'Sistemi di Videosorveglianza Avanzati',
@@ -803,37 +803,37 @@ const translations = {
         'nebbiogeni-contact-title': 'Richiedi Informazioni',
         'nebbiogeni-contact-description': 'Contattaci per una consulenza completamente gratuita sui sistemi nebbiogeni. I nostri esperti valuteranno le tue esigenze e ti proporranno la soluzione più adatta. Verrai ricontattato telefonicamente da uno dei nostri operatori il più presto possibile.',
         
-        // Serramenti Page
-        'serramenti-hero-title': 'Serramenti di Sicurezza Blindati',
-        'serramenti-hero-subtitle': 'Protezione fisica impenetrabile con design elegante. Porte e finestre blindate certificate per la massima sicurezza.',
+        // Grate e Inferriate Page
+        'serramenti-hero-title': 'Grate e Inferriate Blindate',
+        'serramenti-hero-subtitle': 'Protezione fisica massima con fissaggio senza opere murarie. Grate e inferriate blindate certificate per la massima sicurezza.',
         'serramenti-hero-cta1': 'Scopri di Più',
         'serramenti-hero-cta2': 'Richiedi Preventivo',
         'serramenti-products-title': 'Prodotti Principali',
-        'serramenti-products-description': 'La nostra gamma completa di serramenti blindati combina sicurezza massima e design raffinato, con soluzioni personalizzate per ogni esigenza abitativa e commerciale.',
-        'serramenti-product-1-title': 'Porte Blindate Residenziali',
-        'serramenti-product-1-desc': 'Porte blindate certificate classe 3 e 4 con design personalizzabile per abitazioni private.',
-        'serramenti-product-2-title': 'Finestre Antieffrazione',
-        'serramenti-product-2-desc': 'Finestre con vetri stratificati e telai rinforzati per protezione totale.',
-        'serramenti-product-3-title': 'Serramenti Commerciali',
+        'serramenti-products-description': 'La nostra gamma completa di grate e inferriate blindate combina sicurezza massima e design raffinato, con soluzioni personalizzate per ogni esigenza abitativa e commerciale.',
+        'serramenti-product-1-title': 'Grate per Porte Residenziali',
+        'serramenti-product-1-desc': 'Grate blindate certificate classe IV-VI con design personalizzabile per abitazioni private.',
+        'serramenti-product-2-title': 'Inferriate per Finestre',
+        'serramenti-product-2-desc': 'Inferriate con sistemi di fissaggio senza opere murarie per protezione totale.',
+        'serramenti-product-3-title': 'Grate Commerciali',
         'serramenti-product-3-desc': 'Soluzioni professionali per negozi, uffici e attività commerciali.',
         'serramenti-tech-title': 'Caratteristiche Tecniche',
-        'serramenti-tech-description': 'Ogni serramento è progettato secondo i più alti standard di sicurezza europei, utilizzando materiali di prima qualità e tecnologie all\'avanguardia.',
-        'serramenti-tech-1': 'Certificazione antieffrazione classe 4',
-        'serramenti-tech-2': 'Serrature europee multipoint',
-        'serramenti-tech-3': 'Vetri antisfondamento stratificati',
-        'serramenti-tech-4': 'Telai in acciaio rinforzato',
-        'serramenti-tech-5': 'Guarnizioni termoacustiche',
-        'serramenti-tech-6': 'Cerniere antisollevamento',
-        'serramenti-tech-7': 'Defender e rostri di sicurezza',
-        'serramenti-tech-8': 'Pannelli coibentati',
-        'serramenti-types-title': 'Tipologie di Serramenti',
-        'serramenti-types-description': 'Offriamo una vasta gamma di serramenti blindati per soddisfare ogni esigenza di sicurezza e design, dalla residenza privata agli ambienti commerciali più esigenti.',
-        'serramenti-type-1': 'Porte blindate per appartamenti',
-        'serramenti-type-2': 'Porte blindate per ville',
-        'serramenti-type-3': 'Finestre e persiane blindate',
-        'serramenti-type-4': 'Serramenti per negozi',
-        'serramenti-type-5': 'Porte tagliafuoco certificate',
-        'serramenti-type-6': 'Cancelli e recinzioni',
+        'serramenti-tech-description': 'Ogni grata e inferriata è progettata secondo i più alti standard di sicurezza europei, utilizzando materiali di prima qualità e tecnologie all\'avanguardia.',
+        'serramenti-tech-1': 'Certificazione antieffrazione classe IV-VI (RC6)',
+        'serramenti-tech-2': 'Sistemi di fissaggio senza opere murarie',
+        'serramenti-tech-3': 'Apertura senza snodi ed ingombro minimo',
+        'serramenti-tech-4': 'Struttura in acciaio ad alta resistenza',
+        'serramenti-tech-5': 'Verniciatura a polvere termoindurente',
+        'serramenti-tech-6': 'Design personalizzabile e moderno',
+        'serramenti-tech-7': 'Certificazioni UNI EN 1627-1630:2011',
+        'serramenti-tech-8': 'Garanzia fino a 10 anni - 100% Made in Italy',
+        'serramenti-types-title': 'Tipologie di Grate e Inferriate',
+        'serramenti-types-description': 'Offriamo una vasta gamma di grate e inferriate blindate per soddisfare ogni esigenza di sicurezza e design, dalla residenza privata agli ambienti commerciali più esigenti.',
+        'serramenti-type-1': 'Grate per porte di abitazioni',
+        'serramenti-type-2': 'Grate per porte di uffici',
+        'serramenti-type-3': 'Inferriate per finestre',
+        'serramenti-type-4': 'Grate scorrevoli',
+        'serramenti-type-5': 'Grate di sicurezza Alice VI',
+        'serramenti-type-6': 'Serrande avvolgibili rinforzate',
         'serramenti-installation-title': 'Processo di Installazione',
         'serramenti-installation-description': 'Il nostro processo di installazione garantisce precisione millimetrica e rispetto dei tempi, con un servizio completo dalla progettazione al collaudo finale.',
         'serramenti-install-1': 'Sopralluogo e progettazione personalizzata',
@@ -844,7 +844,7 @@ const translations = {
         'serramenti-cta-catalogo': 'Scarica Catalogo',
         'serramenti-partner-title': 'Il Nostro Partner: Xecur Srl',
         'serramenti-partner-info-title': 'Informazioni Generali',
-        'serramenti-partner-info-desc': 'Xecur Srl è un\'azienda leader nella produzione di serramenti blindati e sistemi di sicurezza passiva. Con oltre 30 anni di esperienza, garantisce prodotti di altissima qualità certificati secondo le normative europee più severe.',
+        'serramenti-partner-info-desc': 'Xecur Srl è un\'azienda leader nella produzione di grate e inferriate blindate e sistemi di sicurezza passiva. Con oltre 30 anni di esperienza, garantisce prodotti di altissima qualità certificati secondo le normative europee più severe.',
         'serramenti-partner-services-title': 'Servizi e Innovazioni',
         'serramenti-partner-service-1': 'Progettazione e produzione su misura',
         'serramenti-partner-service-2': 'Certificazioni antieffrazione classe 1-6',
@@ -852,7 +852,7 @@ const translations = {
         'serramenti-partner-service-4': 'Assistenza tecnica specializzata',
         'serramenti-partner-service-5': 'Garanzia estesa su tutti i prodotti',
         'serramenti-contact-title': 'Richiedi Informazioni',
-        'serramenti-contact-description': 'Contattaci per una consulenza completamente gratuita sui serramenti blindati. I nostri esperti valuteranno le tue esigenze e ti proporranno la soluzione più adatta. Verrai ricontattato telefonicamente da uno dei nostri operatori il più presto possibile.',
+        'serramenti-contact-description': 'Contattaci per una consulenza completamente gratuita sulle grate e inferriate blindate. I nostri esperti valuteranno le tue esigenze e ti proporranno la soluzione più adatta. Verrai ricontattato telefonicamente da uno dei nostri operatori il più presto possibile.',
         'serramenti-form-name': 'Nome e Cognome',
         'serramenti-form-email': 'Email',
         'serramenti-form-phone': 'Telefono',
@@ -974,7 +974,7 @@ const translations = {
 
         'contact-service': 'Servizio di Interesse',
         'contact-service-option-1': 'Sistema Nebbiogeni',
-        'contact-service-option-2': 'Serramenti Blindati',
+        'contact-service-option-2': 'Grate e Inferriate Blindate',
         'contact-service-option-3': 'Videosorveglianza',
         'contact-service-option-4': 'Sistemi di Allarme',
         'contact-service-option-5': 'Consulenza Generale',
@@ -995,7 +995,7 @@ const translations = {
         'form-service-label': 'Servizio di interesse',
         'form-service-default': 'Seleziona il servizio di interesse',
         'form-service-nebbiogeni': 'Sistemi Nebbiogeni',
-        'form-service-serramenti': 'Serramenti di Sicurezza',
+        'form-service-serramenti': 'Grate e Inferriate di Sicurezza',
         'form-service-sorveglianza': 'Videosorveglianza',
         'form-service-allarmi': 'Sistemi di Allarme',
         'form-service-consulenza': 'Consulenza Generale',
@@ -1007,7 +1007,7 @@ const translations = {
         'footer-description': 'Creatori di sicurezza specializzati in sistemi di protezione avanzati. La tua sicurezza è la nostra priorità.',
         'footer-services-title': 'Servizi',
         'footer-service-nebbiogeni': 'Sistemi Nebbiogeni',
-        'footer-service-serramenti': 'Serramenti Blindati',
+        'footer-service-serramenti': 'Grate e Inferriate Blindate',
         'footer-service-sorveglianza': 'Videosorveglianza',
         'footer-service-allarmi': 'Sistemi di Allarme',
         'footer-contacts-title': 'Contatti',
@@ -1167,8 +1167,8 @@ const translations = {
         'video-transcription-title': 'Trascrizione Video',
         'nebbiogeni-video-description': 'Guarda in azione il nostro sistema nebbiogeno professionale che garantisce protezione immediata contro le intrusioni. La tecnologia avanzata crea una barriera di nebbia impenetrabile in pochi secondi, impedendo ai malintenzionati di orientarsi e proteggendo efficacemente i tuoi beni. <a href="#contatti" class="text-link">Contattaci per una dimostrazione</a>.',
         'nebbiogeni-video-transcription': 'Il video mostra l\'efficacia dei sistemi nebbiogeni di sicurezza in azione. In pochi secondi dall\'attivazione, il dispositivo rilascia una densa nebbia che riempie completamente l\'ambiente, riducendo la visibilità a zero e rendendo impossibile per gli intrusi orientarsi o individuare oggetti di valore. La nebbia è completamente sicura per persone, animali e oggetti, non lascia residui e si dissipa naturalmente dopo un periodo prestabilito.',
-        'serramenti-video-description': 'Scopri la qualità e l\'innovazione dei serramenti di sicurezza Xecur. I nostri serramenti antieffrazione offrono una protezione dal livello IV al livello VI, incluso lo standard di sicurezza più alto a livello europeo (RC6) con la grata Alice V. Porte blindate, finestre antieffrazione e soluzioni su misura per proteggere la tua casa con stile e design moderno. <a href="#contatti" class="text-link">Contattaci per una consulenza</a>.',
-        'serramenti-video-transcription': 'Il video presenta la gamma completa di serramenti di sicurezza Xecur, mostrando porte blindate di classe superiore con protezione dal livello IV al livello VI (standard RC6), finestre antieffrazione con grata Alice V e sistemi di chiusura avanzati. Ogni prodotto combina massima sicurezza con design elegante, utilizzando materiali certificati e tecnologie all\'avanguardia per garantire protezione duratura nel tempo.',
+        'serramenti-video-description': 'Scopri la qualità e l\'innovazione delle grate e inferriate blindate Xecur. Le nostre grate antieffrazione offrono una protezione dal livello IV al livello VI, incluso lo standard di sicurezza più alto a livello europeo (RC6) con la grata Alice VI. Grate per porte, inferriate per finestre e soluzioni su misura per proteggere la tua casa con stile e design moderno, senza opere murarie. <a href="#contatti" class="text-link">Contattaci per una consulenza</a>.',
+        'serramenti-video-transcription': 'Il video presenta la gamma completa di grate e inferriate blindate Xecur, mostrando grate di classe superiore con protezione dal livello IV al livello VI (standard RC6), inferriate antieffrazione con sistema Alice VI e sistemi di fissaggio avanzati senza opere murarie. Ogni prodotto combina massima sicurezza con design elegante, utilizzando materiali certificati e tecnologie all\'avanguardia per garantire protezione duratura nel tempo.',
         
         // Sorveglianza page
         'sorveglianza-meta-title': 'Videosorveglianza - Controllo e Monitoraggio | Milano',
@@ -1244,7 +1244,7 @@ const translations = {
         
         // Chi Siamo page
         'chi-siamo-meta-title': 'Chi Siamo - FB Total Security | Milano',
-        'chi-siamo-meta-description': 'Scopri FB Total Security: agenzia autorizzata e certificata nella sicurezza professionale. Specialisti in nebbiogeni, serramenti blindati, videosorveglianza e allarmi con partnership dirette dai leader del settore.',
+        'chi-siamo-meta-description': 'Scopri FB Total Security: agenzia autorizzata e certificata nella sicurezza professionale. Specialisti in nebbiogeni, grate e inferriate blindate, videosorveglianza e allarmi con partnership dirette dai leader del settore.',
         'chi-siamo-og-title': 'Chi Siamo - FB Total Security | Creatori di Sicurezza',
         'chi-siamo-og-description': 'Scopri FB Total Security, agenzia autorizzata e certificata nella sicurezza professionale in tutta Italia con partnership dirette dai leader del settore.',
         'chi-siamo-hero-title': 'Chi Siamo',
@@ -1271,8 +1271,8 @@ const translations = {
         'chi-siamo-spec1-title': 'Sistemi Nebbiogeni',
         'chi-siamo-spec1-desc': 'Tecnologia all\'avanguardia per la protezione immediata contro intrusioni. I nostri sistemi nebbiogeni creano una barriera di nebbia densa in pochi secondi, rendendo impossibile ai malintenzionati orientarsi e proseguire nell\'azione criminosa.',
         'chi-siamo-spec1-link': 'Scopri di più',
-        'chi-siamo-spec2-title': 'Serramenti Blindati',
-        'chi-siamo-spec2-desc': 'Porte blindate, finestre di sicurezza e serramenti antieffrazione di ultima generazione. Progettiamo e installiamo soluzioni su misura che combinano massima sicurezza ed estetica raffinata per ogni tipo di ambiente.',
+        'chi-siamo-spec2-title': 'Grate e Inferriate Blindate',
+        'chi-siamo-spec2-desc': 'Grate e Inferriate, finestre di sicurezza e grate e inferriate blindate antieffrazione di ultima generazione. Progettiamo e installiamo soluzioni su misura che combinano massima sicurezza ed estetica raffinata per ogni tipo di ambiente.',
         'chi-siamo-spec2-link': 'Scopri di più',
         'chi-siamo-spec3-title': 'Videosorveglianza',
         'chi-siamo-spec3-desc': 'Sistemi di videosorveglianza intelligenti con tecnologie AI integrate. Telecamere 4K, visione notturna, riconoscimento facciale e analisi comportamentale per un controllo completo e automatizzato della tua proprietà.',
@@ -1347,19 +1347,19 @@ const translations = {
         'contact-form-privacy': 'Accetto il trattamento dei dati personali secondo i <a href="termini-condizioni.html" target="_blank" style="color: #4caf50; text-decoration: underline;">Termini e Condizioni</a>',
         'contact-form-submit': 'Invia Richiesta',
         
-        // Missing serramenti translations
-        'serramenti-meta-title': 'Serramenti Sicurezza - Porte Blindate | Milano',
-        'serramenti-meta-description': 'Serramenti di sicurezza, porte blindate e infissi antieffrazione. Massima protezione per casa e ufficio. Installazione professionale a Milano.',
-        'serramenti-og-title': 'Serramenti di Sicurezza - Porte Blindate e Infissi',
-        'serramenti-og-description': 'Serramenti di sicurezza, porte blindate e infissi antieffrazione per massima protezione.',
-        'serramenti-product-title': 'Porte Blindate di Alta Sicurezza',
-        'serramenti-product-desc': 'Le nostre porte blindate rappresentano l\'eccellenza nella sicurezza passiva. Ogni porta è progettata e realizzata secondo le normative europee più severe, offrendo la massima protezione senza compromettere l\'estetica della tua abitazione.',
+        // Missing Grate e Inferriate Blindatetranslations
+        'serramenti-meta-title': 'Grate e Inferriate Blindate | Milano-Italia',
+        'serramenti-meta-description': 'Grate e Inferriate blindate antieffrazione per la massima sicurezza. Massima protezione per casa e ufficio. Installazione professionale a Milano.',
+        'serramenti-og-title': 'Grate e Inferriate Antieffrazionedi Sicurezza - FB Total Security',
+        'serramenti-og-description': 'Grate e Inferriate Blindate antieffrazione, per la massima protezione e sicurezza.',
+        'serramenti-product-title': 'Grate e Inferriate di Alta Sicurezza',
+        'serramenti-product-desc': 'Le nostre Grate e Inferriate rappresentano l\'eccellenza nella sicurezza passiva. Ogni porta è progettata e realizzata secondo le normative europee più severe, offrendo la massima protezione senza compromettere l\'estetica della tua abitazione.',
         'serramenti-feature-5': 'Isolamento termico e acustico',
         'serramenti-feature-6': 'Finiture personalizzabili',
         'serramenti-feature-7': 'Certificazioni CE e conformità normative',
         'serramenti-feature-8': 'Garanzia fino a 10 anni',
         
-        // Additional serramenti translations
+        // Additional Grate e Inferriate Blindatetranslations
         'serramenti-product-cta1': 'Caratteristiche',
         'serramenti-product-cta2': 'Preventivo Gratuito',
         'serramenti-partnership-title': 'Partnership Premium',
@@ -1373,7 +1373,7 @@ const translations = {
         'serramenti-partner-tag-5': 'Garanzia fino a 10 anni',
         'serramenti-partner-tag-6': 'ISO 9001:2015',
         
-        // Serramenti certifications translations
+        // Grate e Inferriate Blindatecertifications translations
         'serramenti-certifications-title': 'Certificazioni e Garanzie',
         'serramenti-cert-1-title': 'UNI EN 1627-1630:2011',
         'serramenti-cert-1-desc': 'Classi antieffrazione internazionali',
@@ -1388,7 +1388,7 @@ const translations = {
         'serramenti-cert-6-title': '100% Made in Italy',
         'serramenti-cert-6-desc': 'Processi di produzione interni',
         
-        // Serramenti characteristics translations
+        // Grate e Inferriate Blindatecharacteristics translations
         'serramenti-characteristics-title': 'Caratteristiche Tecniche',
         'serramenti-characteristics-subtitle': 'Tecnologia avanzata per la massima sicurezza',
         'serramenti-char-1-title': 'Classe RC6',
@@ -1400,14 +1400,14 @@ const translations = {
         'serramenti-char-4-title': 'Isolamento Termoacustico',
         'serramenti-char-4-desc': 'Eccellenti prestazioni di isolamento termico e acustico per comfort abitativo ottimale.',
         
-        // Additional serramenti characteristics and types
+        // Additional Grate e Inferriate Blindatecharacteristics and types
         'serramenti-char-5-title': 'Design Personalizzabile',
         'serramenti-char-5-desc': 'Ampia gamma di finiture, colori e stili per adattarsi perfettamente al tuo arredamento.',
         'serramenti-char-6-title': 'Certificazioni',
         'serramenti-char-6-desc': 'Tutti i prodotti sono certificati CE e conformi alle normative italiane ed europee di sicurezza.',
-        'serramenti-types-desc': 'Offriamo una vasta gamma di serramenti blindati per soddisfare ogni esigenza di sicurezza e design, dalla residenza privata agli ambienti commerciali più esigenti.',
-        'serramenti-type-7': 'Porte tagliafuoco certificate',
-        'serramenti-type-8': 'Sistemi di controllo accessi',
+        'serramenti-types-desc': 'Offriamo una vasta gamma di grate e inferriate blindate certificate per soddisfare ogni esigenza di sicurezza e design, dalla residenza privata agli ambienti commerciali più esigenti.',
+        'serramenti-type-7': 'Grate per porte tagliafuoco',
+        'serramenti-type-8': 'Grate per controllo accessi',
         'serramenti-types-cta1': 'Richiedi Consulenza',
         'serramenti-types-cta2': 'Altri Servizi',
         'serramenti-installation-subtitle': 'Servizio completo dalla progettazione alla manutenzione',
@@ -1423,16 +1423,16 @@ const translations = {
         'serramenti-install-5-desc': 'Test completo di funzionamento e consegna della documentazione tecnica e garanzie.',
         'serramenti-install-6-title': '6. Assistenza',
         'serramenti-install-6-desc': 'Servizio di manutenzione programmata e assistenza tecnica per tutta la durata della garanzia.',
-        'serramenti-contact-desc': 'Contattaci per una consulenza gratuita sui serramenti di sicurezza. I nostri esperti valuteranno le tue esigenze e ti proporranno la soluzione più adatta.',
+        'serramenti-contact-desc': 'Contattaci per una consulenza gratuita sulle grate e inferriate di sicurezza. I nostri esperti valuteranno le tue esigenze e ti proporranno la soluzione più adatta.',
         'footer-installation': 'Installazione',
         'footer-maintenance': 'Manutenzione',
         'footer-support': 'Assistenza 24/7',
         'page-title': 'Sistemi di Sicurezza e Antifurto | FB Total Security Milano',
-        'page-description': 'FB Total Security offre sistemi di sicurezza avanzati: allarmi, videosorveglianza, nebbiogeni e serramenti blindati. Protezione completa per casa e azienda a Milano.',
+        'page-description': 'FB Total Security offre sistemi di sicurezza avanzati: allarmi, videosorveglianza, nebbiogeni e grate e inferriate blindate certificate. Protezione completa per casa e azienda a Milano.',
         'nebbiogeni-page-title': 'Sistemi Nebbiogeni Professionali - Protezione Antifurto Istantanea | FB Total Security Milano',
         'nebbiogeni-page-description': 'Scopri i sistemi nebbiogeni UR Fog: tecnologia avanzata di nebulizzazione antifurto che riduce la visibilità a zero in 10 secondi. Protezione certificata per negozi, uffici e abitazioni a Milano. Consulenza gratuita.',
         'og-title': 'Sistemi di Sicurezza e Antifurto | FB Total Security Milano',
-        'og-description': 'FB Total Security offre sistemi di sicurezza avanzati: allarmi, videosorveglianza, nebbiogeni e serramenti blindati. Protezione completa per casa e azienda a Milano.',
+        'og-description': 'FB Total Security offre sistemi di sicurezza avanzati: allarmi, videosorveglianza, nebbiogeni e grate e inferriate blindate certificate. Protezione completa per casa e azienda a Milano.',
         'nebbiogeni-og-title': 'Sistemi Nebbiogeni UR Fog - Protezione Antifurto Avanzata',
         'nebbiogeni-og-description': 'Tecnologia nebbiogeni che riduce la visibilità a zero in 10 secondi. Protezione certificata per la tua attività.',
         'btn-discover': 'Scopri di Più',
@@ -1520,15 +1520,15 @@ const translations = {
         'contact-info-title': 'Informazioni di Contatto',
         'contact-info-desc': 'Contattaci per una consulenza personalizzata sui nostri sistemi di sicurezza',
         'index-meta-title': 'FB Total Security - Sistemi Sicurezza | Milano',
-        'index-meta-description': 'Sistemi di sicurezza professionali: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Protezione completa per casa e azienda a Milano.',
+        'index-meta-description': 'Sistemi di sicurezza professionali: nebbiogeni, grate e inferriate blindate certificate, videosorveglianza e allarmi. Protezione completa per casa e azienda a Milano.',
         'index-og-title': 'FB Total Security - Sistemi di Sicurezza',
         'index-og-description': 'Soluzioni di sicurezza avanzate per la protezione di casa e azienda',
         'index-twitter-title': 'FB Total Security - Sistemi di Sicurezza',
         'index-twitter-description': 'Sistemi di sicurezza professionali a Milano',
         'nebbiogeni-section-title': 'Sistemi Nebbiogeni',
         'nebbiogeni-section-desc': 'Protezione istantanea con tecnologia nebbiogena avanzata',
-        'serramenti-section-title': 'Serramenti Blindati',
-        'serramenti-section-desc': 'Porte e finestre blindate per la massima sicurezza',
+        'serramenti-section-title': 'Grate e Inferriate Blindate Certificate',
+        'serramenti-section-desc': 'Grate e Inferriate Blindate per la massima sicurezza',
         'svg-serramenti-text': 'Serramenti',
         'sorveglianza-section-title': 'Videosorveglianza',
         'sorveglianza-section-desc': 'Sistemi di monitoraggio avanzati con AI',
@@ -1550,14 +1550,14 @@ const translations = {
         'clients-business-desc': 'Proteggiamo negozi, uffici, banche e strutture commerciali',
         'clients-business-feature-1': 'Sistemi nebbiogeni per negozi e centri commerciali',
         'clients-business-feature-2': 'Videosorveglianza avanzata per uffici e aziende',
-        'clients-business-feature-3': 'Serramenti blindati per banche e istituti di credito',
+        'clients-business-feature-3': 'Grate e Inferriate blindate per banche e istituti di credito',
         'clients-business-feature-4': 'Allarmi intelligenti per farmacie e parafarmacie',
         'clients-business-feature-5': 'Soluzioni integrate per magazzini e depositi',
         'clients-residential-title': 'Settore Residenziale',
         'clients-residential-desc': 'Protezione completa per abitazioni private e ville di lusso',
         'clients-residential-feature-1': 'Sistemi di allarme perimetrali avanzati',
         'clients-residential-feature-2': 'Videosorveglianza discreta e intelligente',
-        'clients-residential-feature-3': 'Serramenti blindati su misura per abitazioni',
+        'clients-residential-feature-3': 'Grate e Inferriate blindate su misura per abitazioni',
         'clients-residential-feature-4': 'Sistemi nebbiogeni per ville e case di lusso',
         'clients-residential-feature-5': 'Controllo accessi intelligente per abitazioni',
         'clients-residential-feature-6': 'Monitoraggio 24/7 con centrale operativa',
@@ -1597,7 +1597,7 @@ const translations = {
         'footer-description': 'Creatori di sicurezza specializzati in sistemi di protezione avanzati. La tua sicurezza è la nostra priorità.',
         'footer-services-title': 'Servizi',
         'footer-service-1': 'Sistemi Nebbiogeni',
-        'footer-service-2': 'Serramenti di Sicurezza',
+        'footer-service-2': 'Grate e Inferriate Blindate Certificate',
         'footer-service-3': 'Videosorveglianza',
         'footer-service-4': 'Sistemi di Allarme',
         'footer-company-title': 'Azienda',
@@ -1619,7 +1619,7 @@ const translations = {
         'nav-quote': 'Free Quote',
         'tagline': 'Security Creators',
         'nav-nebbiogeni': 'Fog Systems',
-        'nav-serramenti': 'Security Doors',
+        'nav-serramenti': 'Security Grilles',
         'nav-sorveglianza': 'Surveillance',
         'nav-allarmi': 'Alarms',
         'nav-chi-siamo': 'About Us',
@@ -1638,8 +1638,8 @@ const translations = {
         'services-subtitle': 'Complete solutions for every protection need',
         'service-nebbiogeni-title': 'Fog Systems',
         'service-nebbiogeni-desc': 'Instant protection with dense fog that neutralizes any intrusion',
-        'service-serramenti-title': 'Armored Doors & Windows',
-        'service-serramenti-desc': 'High-security certified doors and windows for maximum protection',
+        'service-serramenti-title': 'Security Grilles & Bars',
+        'service-serramenti-desc': 'High-security certified grilles and bars for maximum protection',
         'service-sorveglianza-title': 'Video Surveillance',
         'service-sorveglianza-desc': 'Advanced monitoring systems with artificial intelligence',
         'service-allarmi-title': 'Alarm Systems',
@@ -1663,10 +1663,10 @@ const translations = {
         'nebbiogeni-feature-4': 'Integration with existing systems',
         'nebbiogeni-cta': 'Discover Fog Systems',
         
-        // Serramenti Section
-        'serramenti-title': 'Armored Security Doors & Windows',
-        'serramenti-subtitle': 'Impenetrable physical barrier',
-        'serramenti-desc': 'Armored doors and windows certified according to the most severe European standards. Each fixture is custom-designed to ensure the highest level of protection without compromising the aesthetics of your home.',
+        // Security Grilles & Bars Section
+        'serramenti-title': 'Security Grilles & Bars',
+        'serramenti-subtitle': 'Maximum physical protection',
+        'serramenti-desc': 'Armored security grilles and bars certified according to the most severe European standards. Each product is custom-designed to ensure the highest level of protection without compromising the aesthetics of your property.',
         'serramenti-feature-1': 'Anti-burglary up to Class 6 (UNI EN 1627-1630)',
         'serramenti-feature-2': 'Internal production (closed cycle)',
         'serramenti-feature-3': 'Customizable (made to measure, various classes and models)',
@@ -1680,7 +1680,7 @@ const translations = {
         'serramenti-feature-11': 'Site survey and dedicated consultation',
         'serramenti-feature-12': 'Technical assistance',
         'serramenti-feature-13': 'Post-sales support',
-        'serramenti-cta': 'Configure Your Fixtures',
+        'serramenti-cta': 'Configure Your Security Grilles',
         
         // Sorveglianza Section
         'sorveglianza-title': 'Advanced Video Surveillance Systems',
@@ -1784,7 +1784,7 @@ const translations = {
         'nebbiogeni-contact-title': 'Request Information',
         'nebbiogeni-contact-description': 'Contact us for a completely free consultation on fog systems. Our experts will evaluate your needs and propose the most suitable solution. You will be contacted by phone by one of our operators as soon as possible.',
         
-        // Serramenti Page
+        // Grate e Inferriate BlindatePage
         'serramenti-hero-title': 'Armored Security Doors & Windows',
         'serramenti-hero-subtitle': 'Impenetrable physical protection with elegant design. Certified armored doors and windows for maximum security.',
         'serramenti-hero-cta1': 'Learn More',
@@ -1908,7 +1908,7 @@ const translations = {
         'form-service-label': 'Service of interest',
         'form-service-default': 'Select the service of interest',
         'form-service-nebbiogeni': 'Fog Systems',
-        'form-service-serramenti': 'Security Doors & Windows',
+        'form-service-serramenti': 'Security Grilles & Bars',
         'form-service-sorveglianza': 'Video Surveillance',
         'form-service-allarmi': 'Alarm Systems',
         'form-service-consulenza': 'General Consultation',
@@ -1920,7 +1920,7 @@ const translations = {
         'footer-description': 'Security creators specialized in advanced protection systems. Your security is our priority.',
         'footer-services-title': 'Services',
         'footer-service-nebbiogeni': 'Fog Systems',
-        'footer-service-serramenti': 'Armored Doors & Windows',
+        'footer-service-serramenti': 'Security Grilles & Bars',
         'footer-service-sorveglianza': 'Video Surveillance',
         'footer-service-allarmi': 'Alarm Systems',
         'footer-contacts-title': 'Contacts',
@@ -2238,8 +2238,8 @@ const translations = {
         'video-transcription-title': 'Video Transcription',
         'nebbiogeni-video-description': 'Watch our professional fog system in action, providing immediate protection against intrusions. Advanced technology creates an impenetrable fog barrier in seconds, preventing intruders from navigating and effectively protecting your assets. <a href="#contatti" class="text-link">Contact us for a demonstration</a>.',
         'nebbiogeni-video-transcription': 'The video demonstrates the effectiveness of security fog systems in action. Within seconds of activation, the device releases dense fog that completely fills the environment, reducing visibility to zero and making it impossible for intruders to navigate or locate valuable items. The fog is completely safe for people, animals and objects, leaves no residue and dissipates naturally after a predetermined period.',
-        'serramenti-video-description': 'Discover the quality and innovation of Xecur security doors and windows. Our anti-burglary systems offer protection from level IV to level VI, including the highest European security standard (RC6) with Alice V grating. Armored doors, anti-burglary windows and custom solutions to protect your home with style and modern design. <a href="#contatti" class="text-link">Contact us for consultation</a>.',
-        'serramenti-video-transcription': 'The video presents the complete range of Xecur security doors and windows, showcasing superior class armored doors with protection from level IV to level VI (RC6 standard), anti-burglary windows with Alice V grating and advanced locking systems. Each product combines maximum security with elegant design, using certified materials and cutting-edge technologies to ensure lasting protection over time.',
+        'serramenti-video-description': 'Discover the quality and innovation of Xecur security grilles and bars. Our anti-burglary grilles offer protection from level IV to level VI, including the highest European security standard (RC6) with Alice VI grating. Door grilles, window bars and custom solutions to protect your home with style and modern design, without masonry work. <a href="#contatti" class="text-link">Contact us for consultation</a>.',
+        'serramenti-video-transcription': 'The video presents the complete range of Xecur security grilles and bars, showcasing superior class grilles with protection from level IV to level VI (RC6 standard), anti-burglary window bars with Alice VI system and advanced fixing systems without masonry work. Each product combines maximum security with elegant design, using certified materials and cutting-edge technologies to ensure lasting protection over time.',
         
         // Sorveglianza page
         'sorveglianza-meta-title': 'Video Surveillance - Control & Monitoring | Milan',
@@ -2324,7 +2324,7 @@ const translations = {
         'contact-form-privacy': 'I accept the processing of personal data according to the <a href="termini-condizioni.html" target="_blank" style="color: #4caf50; text-decoration: underline;">Terms and Conditions</a>',
         'contact-form-submit': 'Send Request',
         
-        // Missing serramenti translations
+        // Missing Grate e Inferriate Blindatetranslations
         'serramenti-meta-title': 'Security Doors & Windows - Armored Doors | Milan',
         'serramenti-meta-description': 'Security doors and windows, armored doors and anti-burglary fixtures. Maximum protection for home and office. Professional installation in Milan.',
         'serramenti-og-title': 'Security Doors and Windows - Armored Doors and Fixtures',
@@ -2336,7 +2336,7 @@ const translations = {
         'serramenti-feature-7': 'CE certifications and regulatory compliance',
         'serramenti-feature-8': 'Warranty up to 10 years',
         
-        // Additional serramenti translations
+        // Additional Grate e Inferriate Blindatetranslations
         'serramenti-product-cta1': 'Features',
         'serramenti-product-cta2': 'Free Quote',
         'serramenti-partnership-title': 'Premium Partnership',
@@ -2350,7 +2350,7 @@ const translations = {
         'serramenti-partner-tag-5': 'Warranty up to 10 years',
         'serramenti-partner-tag-6': 'ISO 9001:2015',
         
-        // Serramenti certifications translations
+        // Grate e Inferriate Blindatecertifications translations
         'serramenti-certifications-title': 'Certifications and Warranties',
         'serramenti-cert-1-title': 'UNI EN 1627-1630:2011',
         'serramenti-cert-1-desc': 'International anti-burglary classes',
@@ -2365,7 +2365,7 @@ const translations = {
         'serramenti-cert-6-title': '100% Made in Italy',
         'serramenti-cert-6-desc': 'Internal production processes',
         
-        // Serramenti characteristics translations
+        // Grate e Inferriate Blindatecharacteristics translations
         'serramenti-characteristics-title': 'Technical Characteristics',
         'serramenti-characteristics-subtitle': 'Advanced technology for maximum security',
         'serramenti-char-1-title': 'RC6 Class',
@@ -2377,14 +2377,14 @@ const translations = {
         'serramenti-char-4-title': 'Thermal-Acoustic Insulation',
         'serramenti-char-4-desc': 'Excellent thermal and acoustic insulation performance for optimal living comfort.',
         
-        // Additional serramenti characteristics and types
+        // Additional Grate e Inferriate Blindatecharacteristics and types
         'serramenti-char-5-title': 'Customizable Design',
         'serramenti-char-5-desc': 'Wide range of finishes, colors and styles to perfectly match your furniture.',
         'serramenti-char-6-title': 'Certifications',
         'serramenti-char-6-desc': 'All products are CE certified and comply with Italian and European safety regulations.',
         'serramenti-types-desc': 'We offer a wide range of armored doors and windows to meet every security and design need, from private residences to the most demanding commercial environments.',
-        'serramenti-type-7': 'Certified fire doors',
-        'serramenti-type-8': 'Access control systems',
+        'serramenti-type-7': 'Grilles for fire doors',
+        'serramenti-type-8': 'Access control grilles',
         'serramenti-types-cta1': 'Request Consultation',
         'serramenti-types-cta2': 'Other Services',
         'serramenti-installation-subtitle': 'Complete service from design to maintenance',
@@ -2817,7 +2817,7 @@ function updateMetaTags(lang) {
     // Update meta description (only for homepage)
     if (isHomepage) {
         const metaDescriptions = {
-            it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi Milano e provincia.',
+            it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, grate e inferriate blindate certificate, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi Milano e provincia.',
             en: 'Specialists in advanced security systems: fog systems, armored doors, video surveillance and alarms. Over 20 years of experience. Services in Milan and province.'
         };
         
@@ -2833,7 +2833,7 @@ function updateMetaTags(lang) {
     // Update meta keywords (only for homepage)
     if (isHomepage) {
         const metaKeywords = {
-            it: 'sistemi sicurezza, nebbiogeni, serramenti blindati, videosorveglianza, allarmi, Milano, sicurezza casa, antifurto',
+            it: 'sistemi sicurezza, nebbiogeni, grate e inferriate blindate certificate, videosorveglianza, allarmi, Milano, sicurezza casa, antifurto',
             en: 'security systems, fog systems, armored doors, video surveillance, alarms, Milan, home security, anti-theft'
         };
         
@@ -2854,7 +2854,7 @@ function updateMetaTags(lang) {
         };
         
         const metaDescriptions = {
-            it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi Milano e provincia.',
+            it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, grate e inferriate blindate e certificate, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi Milano e provincia.',
             en: 'Specialists in advanced security systems: fog systems, armored doors, video surveillance and alarms. Over 20 years of experience. Services in Milan and province.'
         };
         
@@ -2911,7 +2911,7 @@ function updateMetaTags(lang) {
         };
         
         const metaDescriptions = {
-            it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi Milano e provincia.',
+            it: 'Specialisti in sistemi di sicurezza avanzati: nebbiogeni, grate e inferriate blindate certificate, videosorveglianza e allarmi. Oltre 20 anni di esperienza. Servizi Milano e provincia.',
             en: 'Specialists in advanced security systems: fog systems, armored doors, video surveillance and alarms. Over 20 years of experience. Services in Milan and province.'
         };
         

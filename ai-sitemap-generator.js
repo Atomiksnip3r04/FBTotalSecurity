@@ -11,7 +11,7 @@ class AISitemapGenerator {
                 url: '/',
                 priority: 1.0,
                 changefreq: 'weekly',
-                aiTopics: ['sistemi sicurezza', 'nebbiogeni', 'videosorveglianza', 'serramenti blindati', 'allarmi'],
+                aiTopics: ['sistemi sicurezza', 'nebbiogeni', 'videosorveglianza', 'Grate e Inferriate blindate', 'allarmi'],
                 contentType: 'homepage',
                 expertise: 'security-systems-overview'
             },
@@ -27,7 +27,7 @@ class AISitemapGenerator {
                 url: '/serramenti.html',
                 priority: 0.9,
                 changefreq: 'monthly',
-                aiTopics: ['porte blindate', 'serramenti sicurezza', 'protezione antieffrazione'],
+                aiTopics: ['grate e inferriate blindate', 'sicurezza passiva', 'protezione antieffrazione'],
                 contentType: 'product-service',
                 expertise: 'armored-doors-windows'
             },
@@ -159,7 +159,7 @@ class AISitemapGenerator {
                 'semanticAnnotations': true
             })),
             'topicCategories': {
-                'security-systems': ['nebbiogeni', 'allarmi', 'videosorveglianza', 'serramenti'],
+                'security-systems': ['nebbiogeni', 'allarmi', 'videosorveglianza', 'grate e inferriate'],
                 'technologies': ['intelligenza artificiale', 'wireless', 'smart home', 'IoT'],
                 'services': ['consulenza', 'installazione', 'manutenzione', 'monitoraggio'],
                 'geographic': ['Italia', 'Milano', 'Lombardia']
@@ -174,7 +174,7 @@ class AISitemapGenerator {
         const titles = {
             '/': 'FB Total Security - Sistemi Sicurezza Avanzati',
             '/nebbiogeni.html': 'Sistemi Nebbiogeni Antifurto',
-            '/serramenti.html': 'Porte Blindate e Serramenti Sicurezza',
+            '/serramenti.html': 'Grate e Inferriate Blindate Sicurezza',
             '/sorveglianza.html': 'Videosorveglianza Intelligente AI',
             '/allarmi.html': 'Sistemi Allarme Wireless',
             '/chi-siamo.html': 'Chi Siamo - FB Total Security'
@@ -186,7 +186,7 @@ class AISitemapGenerator {
         const descriptions = {
             '/': 'Leader in sistemi sicurezza avanzati con tecnologie AI',
             '/nebbiogeni.html': 'Sistemi nebbiogeni per protezione istantanea antifurto',
-            '/serramenti.html': 'Porte blindate certificate e serramenti di sicurezza',
+            '/serramenti.html': 'Grate e inferriate blindate certificate per massima sicurezza',
             '/sorveglianza.html': 'Videosorveglianza con intelligenza artificiale',
             '/allarmi.html': 'Sistemi allarme wireless e sensori avanzati',
             '/chi-siamo.html': 'Azienda leader nel settore sicurezza dal 2000'

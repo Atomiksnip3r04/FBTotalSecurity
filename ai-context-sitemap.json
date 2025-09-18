@@ -91,30 +91,30 @@
       {
         "@type": "DefinedTermSet",
         "@id": "https://francosicurezza.it/#cluster-serramenti",
-        "name": "Cluster Serramenti Blindati",
-        "description": "Gruppo tematico per serramenti e porte blindate certificate",
+        "name": "Cluster Grate e Inferriate Blindate",
+        "description": "Gruppo tematico per porte e finestre per massima sicurezza passiva",
         "author": {
           "@type": "Person",
           "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
         },
         "pillarPage": "https://francosicurezza.it/serramenti.html",
         "primaryKeywords": [
-          "serramenti blindati",
-          "porte blindate",
+          "grate e inferriate blindate",
+          "grate e inferriate blindate",
           "classe RC",
           "certificazione antieffrazione"
         ],
         "spokePages": [
           {
             "@type": "WebPage",
-            "name": "Porte Blindate Classe RC2-RC3",
+            "name": "Grate Blindate Classe RC2-RC3",
             "url": "https://francosicurezza.it/serramenti.html#classi-rc",
             "topicFocus": "classificazione-tecnica",
             "about": "https://francosicurezza.it/#cluster-serramenti"
           },
           {
             "@type": "WebPage",
-            "name": "Serramenti XECUR Certificati",
+            "name": "Grate e Inferriate Blindate XECUR Certificati",
             "url": "https://francosicurezza.it/serramenti.html#xecur",
             "topicFocus": "prodotto-specifico",
             "isPartOf": "https://francosicurezza.it/#cluster-serramenti"
@@ -291,7 +291,7 @@
         "to": "cluster-nebbiogeni",
         "relationship": "enhancedBy",
         "strength": 0.7,
-        "description": "Serramenti blindati potenziati da sistemi nebbiogeni"
+        "description": "Grate e Inferriate blindate potenziate da sistemi nebbiogeni"
       }
     ]
   },
@@ -322,7 +322,7 @@
         "Franco Benedetto",
         "FB Total Security", 
         "Sistemi Nebbiogeni",
-        "Serramenti Blindati",
+        "Grate e Inferriate Blindate",
         "Videosorveglianza AI"
       ],
       "entityRelationships": "Definite tramite Schema.org e knowledge graph"

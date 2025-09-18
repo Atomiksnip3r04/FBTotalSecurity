@@ -14,12 +14,11 @@ class AIUnifiedEngine {
                 'sicurezza innovativa casa',
                 'protezione istantanea ladri'
             ],
-            'serramenti': [
-                'porte blindate certificate',
-                'serramenti sicurezza RC',
+            'grate-inferriate': [
+                'grate e inferriate blindate certificate',
+                'sicurezza passiva di livello RC',
                 'protezione antieffrazione',
                 'sicurezza perimetrale casa',
-                'porte resistenti scasso'
             ],
             'videosorveglianza': [
                 'telecamere intelligenza artificiale',
@@ -40,7 +39,7 @@ class AIUnifiedEngine {
         this.semanticMap = new Map();
         this.crossLinkPatterns = {
             'nebbiogeno': ['nebbia', 'deterrente', 'protezione istantanea', 'antifurto innovativo'],
-            'serramenti': ['porte blindate', 'RC2', 'RC3', 'antieffrazione', 'sicurezza perimetrale'],
+            'grate e inferriate': ['grate e inferriate blindate', 'RC2', 'RC3', 'antieffrazione', 'sicurezza perimetrale'],
             'videosorveglianza': ['telecamere', 'AI', 'riconoscimento', 'monitoraggio', 'analisi comportamentale'],
             'allarmi': ['wireless', 'sensori', 'centrale', 'antifurto', 'protezione casa']
         };
@@ -137,10 +136,10 @@ class AIUnifiedEngine {
                 'data-ai-topic': 'sistemi-nebbiogeni-antifurto',
                 'data-ai-category': 'security-innovation'
             },
-            'serramenti': {
+            'grate e inferriate': {
                 itemscope: true,
                 itemtype: 'https://schema.org/Service',
-                'data-ai-topic': 'serramenti-blindati-sicurezza',
+                'data-ai-topic': 'grate-inferriate-blindate-sicurezza',
                 'data-ai-category': 'perimeter-security'
             },
             'sorveglianza': {
@@ -239,7 +238,7 @@ class AIUnifiedEngine {
     getContextForTerm(term, category) {
         const contexts = {
             'nebbiogeno': 'Scopri i sistemi nebbiogeni più avanzati',
-            'serramenti': 'Esplora le nostre porte blindate certificate',
+            'grate e inferriate': 'Esplora le nostre grate e inferriate blindate certificate per porte e finestre',
             'videosorveglianza': 'Vedi le telecamere con intelligenza artificiale',
             'allarmi': 'Conosci i nostri sistemi di allarme wireless'
         };
@@ -249,9 +248,9 @@ class AIUnifiedEngine {
     createContextualRelations() {
         const relations = {
             'nebbiogeno': ['videosorveglianza', 'allarmi'],
-            'serramenti': ['allarmi', 'videosorveglianza'],
+            'Grate e Inferriate Blindate': ['allarmi', 'videosorveglianza'],
             'videosorveglianza': ['allarmi', 'nebbiogeno'],
-            'allarmi': ['videosorveglianza', 'serramenti']
+            'allarmi': ['videosorveglianza', 'grate e inferriate blindate']
         };
 
         Object.keys(relations).forEach(primary => {
@@ -273,7 +272,7 @@ class AIUnifiedEngine {
     getServiceDisplayName(service) {
         const displayNames = {
             'nebbiogeno': 'Sistemi Nebbiogeni',
-            'serramenti': 'Serramenti Blindati',
+            'Grate e Inferriate': 'Grate e Inferriate Blindate',
             'videosorveglianza': 'Videosorveglianza',
             'allarmi': 'Sistemi di Allarme'
         };
@@ -370,7 +369,7 @@ class AIUnifiedEngine {
             "@type": "LocalBusiness",
             "@id": "https://www.fbtotalsecurity.com/#organization",
             "name": "Franco Benedetto - Sistemi di Sicurezza",
-            "description": "Specialisti in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza AI e allarmi wireless",
+            "description": "Specialisti in sistemi di sicurezza avanzati: nebbiogeni, grate e inferriate blindate certificate, videosorveglianza AI e allarmi wireless",
             "url": window.location.origin,
             "telephone": "+393802647367",
             "address": {
@@ -417,7 +416,7 @@ class AIUnifiedEngine {
 
     // UTILITY METHODS
     detectCurrentSection() {
-        const sections = ['nebbiogeni', 'serramenti', 'videosorveglianza', 'allarmi'];
+        const sections = ['nebbiogeni', 'grate e inferriate blindate', 'videosorveglianza', 'allarmi'];
         const currentHash = window.location.hash.substring(1);
         return sections.find(section => currentHash.includes(section)) || sections[0];
     }

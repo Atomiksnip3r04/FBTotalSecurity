@@ -14,11 +14,10 @@ class AIMetaOptimizer {
                 'protezione istantanea ladri'
             ],
             'serramenti': [
-                'porte blindate certificate',
-                'serramenti sicurezza RC',
+                'grate e inferriate blindate certificate',
+                'grate e inferriate sicurezza RC',
                 'protezione antieffrazione',
-                'sicurezza perimetrale casa',
-                'porte resistenti scasso'
+                'sicurezza perimetrale casa'
             ],
             'videosorveglianza': [
                 'telecamere intelligenza artificiale',
@@ -78,9 +77,9 @@ class AIMetaOptimizer {
 
     getOptimizedDescriptions() {
         return {
-            'home': 'FB Total Security: leader sistemi sicurezza avanzati con AI. Nebbiogeni antifurto, serramenti blindati certificati, videosorveglianza intelligente e allarmi wireless. Consulenza gratuita in tutta Italia. Tecnologie innovative per protezione casa e azienda.',
+            'home': 'FB Total Security: leader sistemi sicurezza avanzati con AI. Nebbiogeni antifurto, Grate e Inferriate blindate certificate, videosorveglianza intelligente e allarmi wireless. Consulenza gratuita in tutta Italia. Tecnologie innovative per protezione casa e azienda.',
             'nebbiogeni': 'Sistemi nebbiogeni antifurto FB Total Security: protezione istantanea con nebbia densa atossica. Deterrente visivo immediato contro ladri. Installazione professionale, attivazione in 10 secondi. Consulenza gratuita per casa e azienda.',
-            'serramenti': 'Porte blindate e serramenti sicurezza FB Total Security: certificazioni RC2-RC6, protezione antieffrazione garantita. Serramenti blindati su misura con tecnologie avanzate. Installazione professionale in tutta Italia.',
+            'Grate e Inferriate': 'Grate e inferriate blindate di sicurezza FB Total Security: certificazioni RC2-RC6, protezione antieffrazione garantita. Grate e inferriate blindate su misura con tecnologie avanzate. Installazione professionale in tutta Italia.',
             'videosorveglianza': 'Videosorveglianza intelligente con AI FB Total Security: telecamere 4K, riconoscimento facciale, analisi comportamentale. Monitoraggio remoto h24, notifiche smart. Sistemi avanzati per casa e azienda.',
             'allarmi': 'Sistemi allarme wireless FB Total Security: sensori movimento avanzati, centrale smart, app mobile. Protezione antifurto senza fili con tecnologie innovative. Installazione rapida, monitoraggio professionale.'
         };
@@ -143,7 +142,7 @@ class AIMetaOptimizer {
         const ogEnhancements = {
             'home': {
                 title: 'FB Total Security - Sistemi Sicurezza Avanzati con AI | Nebbiogeni, Videosorveglianza, Allarmi',
-                description: 'Leader in sistemi sicurezza innovativi: nebbiogeni antifurto, videosorveglianza AI, serramenti blindati. Tecnologie avanzate per protezione casa e azienda in tutta Italia.'
+                description: 'Leader in sistemi sicurezza innovativi: nebbiogeni antifurto, videosorveglianza AI, grade e inferriate blindate certificate. Tecnologie avanzate per protezione casa e azienda in tutta Italia.'
             },
             'nebbiogeni': {
                 title: 'Sistemi Nebbiogeni Antifurto | Protezione Istantanea FB Total Security',

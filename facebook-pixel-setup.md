@@ -15,7 +15,7 @@ L'integrazione Facebook è stata completata con successo per FB Total Security:
    - `index.html` - Homepage con tracking generale
    - `allarmi.html` - Tracking specifico "Sistemi Allarme"
    - `nebbiogeni.html` - Tracking specifico "Sistemi Nebbiogeni"  
-   - `serramenti.html` - Tracking specifico "Serramenti di Sicurezza"
+   - `serramenti.html` - Tracking specifico "Grate e Inferriate di Sicurezza"
    - `sorveglianza.html` - Tracking specifico "Sistemi Videosorveglianza"
    - `chi-siamo.html` - Tracking specifico "Chi Siamo"
 

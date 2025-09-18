@@ -123,7 +123,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            contain: layout style;
+            /* contain: layout style; */ /* Rimossa: causava problemi di overflow nella navbar */
             /* PREVENZIONE LAYOUT SHIFT AGGIUNTIVA */
             will-change: auto;
             backface-visibility: hidden;
@@ -166,11 +166,11 @@
         }
         .partnership-carousel {
             min-height: 160px;
-            contain: layout style;
+            /* contain: layout style; */ /* Rimossa: causava problemi di overflow */
         }
         .allarmi-carousel .carousel-container {
             min-height: 400px;
-            contain: layout style;
+            /* contain: layout style; */ /* Rimossa: causava problemi di overflow */
         }
     </style>
     
@@ -290,7 +290,7 @@
                 <ul class="nav-menu">
 
                     <li><a href="nebbiogeni.html" class="nav-link" data-translate="nav-nebbiogeni" title="Sistemi nebbiogeni professionali per la sicurezza">Nebbiogeni</a></li>
-                        <li><a href="serramenti.html" class="nav-link" data-translate="nav-serramenti" title="Serramenti blindati e porte di sicurezza">Serramenti</a></li>
+                        <li><a href="serramenti.html" class="nav-link" data-translate="nav-serramenti" title="Grate e inferriate blindate per porte e finestre">Grate e Inferriate</a></li>
                         <li><a href="sorveglianza.html" class="nav-link" data-translate="nav-sorveglianza" title="Sistemi di videosorveglianza intelligente">Sorveglianza</a></li>
                         <li><a href="allarmi.html" class="nav-link" data-translate="nav-allarmi" title="Sistemi di allarme intelligenti">Allarmi</a></li>
                         <li><a href="lavora-con-noi.html" class="nav-link" data-translate="nav-lavora-con-noi" title="Opportunità di lavoro e carriera">Lavora con noi</a></li>
@@ -671,7 +671,7 @@
                             <select id="servizio" name="servizio">
                                 <option value="" data-translate="form-service-default">Seleziona il servizio di interesse</option>
                                 <option value="nebbiogeni" data-translate="form-service-nebbiogeni">Sistemi Nebbiogeni</option>
-                                <option value="serramenti" data-translate="form-service-serramenti">Serramenti Blindati</option>
+                                <option value="grate-inferriate" data-translate="form-service-serramenti">Grate e Inferriate Blindate</option>
                                 <option value="sorveglianza" data-translate="form-service-sorveglianza">Videosorveglianza</option>
                                 <option value="allarmi" data-translate="form-service-allarmi">Sistemi di Allarme</option>
                                 <option value="consulenza" data-translate="form-service-consulenza">Consulenza Generale</option>
@@ -723,7 +723,7 @@
                     <h3 data-translate="footer-services-title">Servizi</h3>
                     <ul>
                         <li><a href="nebbiogeni.html" data-translate="footer-service-nebbiogeni">Sistemi Nebbiogeni</a></li>
-                        <li><a href="serramenti.html" data-translate="footer-service-serramenti">Serramenti di Sicurezza</a></li>
+                        <li><a href="serramenti.html" data-translate="footer-service-serramenti">Grate e Inferriate Blindate Certificate</a></li>
                         <li><a href="sorveglianza.html" data-translate="footer-service-sorveglianza">Videosorveglianza</a></li>
                         <li><a href="allarmi.html" data-translate="footer-service-allarmi">Sistemi di Allarme</a></li>
                     </ul>

@@ -3,7 +3,7 @@
   "@type": "Dataset",
   "@id": "https://francosicurezza.it/ai-knowledge-base",
   "name": "Knowledge Base Sistemi di Sicurezza Avanzati",
-  "description": "Base di conoscenza specializzata in sistemi di sicurezza, nebbiogeni, serramenti blindati, videosorveglianza e allarmi",
+  "description": "Base di conoscenza specializzata in sistemi di sicurezza, nebbiogeni, grate e inferriate blindate certificate, videosorveglianza e allarmi",
   "author": {
     "@type": "Person",
     "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
@@ -42,9 +42,9 @@
     },
     {
       "@type": "DefinedTerm", 
-      "name": "Serramenti Blindati",
-      "description": "Porte, finestre e infissi di sicurezza progettati per resistere a tentativi di effrazione. Classificati secondo standard europei in classi di resistenza (RC1-RC6), offrono protezione graduata contro diversi livelli di minaccia. I serramenti blindati combinano materiali resistenti, sistemi di chiusura multipli e tecnologie antieffrazione.",
-      "termCode": "SERRAMENTI_BLINDATI",
+      "name": "Grate e Inferriate Blindate",
+      "description": "Grate e Inferriate blindate di sicurezza progettati per resistere a tentativi di effrazione. Classificati secondo standard europei in classi di resistenza (RC1-RC6), offrono protezione graduata contro diversi livelli di minaccia. Le grate e inferriate blindate combinano materiali resistenti, sistemi di chiusura multipli e tecnologie antieffrazione.",
+      "termCode": "GRATE_INFERRIATE_BLINDATE",
       "inDefinedTermSet": {
         "@type": "DefinedTermSet", 
         "name": "Terminologia Sistemi di Sicurezza"
@@ -73,7 +73,7 @@
     {
       "@type": "DefinedTerm",
       "name": "Classe di Resistenza RC",
-      "description": "Standard europeo (EN 1627-1630) che classifica la resistenza di porte e finestre contro tentativi di effrazione. RC1 offre protezione base, RC2-RC3 per uso residenziale, RC4-RC5 per applicazioni commerciali, RC6 per massima sicurezza. Ogni classe specifica tempi di resistenza e strumenti di attacco testati.",
+      "description": "Standard europeo (EN 1627-1630) che classifica la resistenza di grate e inferriate blindate contro tentativi di effrazione. RC1 offre protezione base, RC2-RC3 per uso residenziale, RC4-RC5 per applicazioni commerciali, RC6 per massima sicurezza. Ogni classe specifica tempi di resistenza e strumenti di attacco testati.",
       "termCode": "CLASSE_RC",
       "inDefinedTermSet": {
         "@type": "DefinedTermSet",
@@ -166,7 +166,7 @@
         },
         {
           "@type": "Question",
-          "name": "Come scegliere la classe di resistenza giusta per porte blindate?",
+          "name": "Come scegliere la classe di resistenza giusta per porte e finestre?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "La scelta dipende dal livello di rischio: RC2 per abitazioni standard, RC3 per case isolate o con beni di valore, RC4 per uffici e negozi, RC5-RC6 per banche e gioiellerie. Ogni classe offre tempi di resistenza crescenti (da 3 a 20 minuti) contro strumenti di effrazione sempre più sofisticati."

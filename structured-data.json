@@ -12,7 +12,7 @@
         "width": 300,
         "height": 100
       },
-      "description": "Agenzia plurimandataria specializzata in sistemi di sicurezza avanzati: nebbiogeni, serramenti blindati, videosorveglianza e allarmi. Oltre 20 anni di esperienza nel settore sicurezza.",
+      "description": "Agenzia plurimandataria specializzata in sistemi di sicurezza avanzati: nebbiogeni, grate e inferriate blindate, videosorveglianza e allarmi. Oltre 20 anni di esperienza nel settore sicurezza.",
       "founder": {
         "@type": "Person",
         "name": "FB Total Security",
@@ -51,7 +51,7 @@
       "@id": "https://www.fbtotalsecurity.com/#website",
       "url": "https://www.fbtotalsecurity.com",
         "name": "FB Total Security - Sistemi di Sicurezza Avanzati",
-        "description": "Sito ufficiale di FB Total Security, specialista in sistemi di sicurezza: nebbiogeni, serramenti blindati, videosorveglianza e allarmi.",
+        "description": "Sito ufficiale di FB Total Security, specialista in sistemi di sicurezza: nebbiogeni, grate e inferriate blindate, videosorveglianza e allarmi.",
       "publisher": {
         "@id": "https://www.fbtotalsecurity.com/#organization"
       },
@@ -71,14 +71,14 @@
       "@type": "WebPage",
       "@id": "https://www.fbtotalsecurity.com/#webpage",
       "url": "https://www.fbtotalsecurity.com",
-        "name": "FB Total Security - Sistemi di Sicurezza Avanzati | Nebbiogeni, Serramenti, Sorveglianza, Allarmi",
+        "name": "FB Total Security - Sistemi di Sicurezza Avanzati | Nebbiogeni, Grate e Inferriate, Sorveglianza, Allarmi",
       "isPartOf": {
         "@id": "https://www.fbtotalsecurity.com/#website"
       },
       "about": {
         "@id": "https://www.fbtotalsecurity.com/#organization"
       },
-      "description": "FB Total Security - Agenzia plurimandataria specializzata in sistemi di sicurezza avanzati, nebbiogeni, serramenti blindati, sorveglianza e allarmi. Soluzioni professionali per la tua sicurezza.",
+      "description": "FB Total Security - Agenzia plurimandataria specializzata in sistemi di sicurezza avanzati, nebbiogeni, grate e inferriate blindate, sorveglianza e allarmi. Soluzioni professionali per la tua sicurezza.",
       "breadcrumb": {
         "@id": "https://www.fbtotalsecurity.com/#breadcrumb"
       },
@@ -119,9 +119,9 @@
     },
     {
       "@type": "Service",
-      "@id": "https://www.fbtotalsecurity.com/#serramenti",
-      "name": "Serramenti di Sicurezza",
-      "description": "Installazione di porte blindate, serramenti antieffrazione e sistemi di chiusura ad alta sicurezza. Certificazioni classe 3, 4 e 5.",
+      "@id": "https://www.fbtotalsecurity.com/#grate-inferriate",
+      "name": "Grate e Inferriate di Sicurezza",
+      "description": "Installazione di grate e inferriate blindate antieffrazione con fissaggio senza opere murarie. Certificazioni classe RC2, RC3 e RC6.",
       "provider": {
         "@id": "https://www.fbtotalsecurity.com/#organization"
       },
@@ -130,7 +130,7 @@
         "name": "Tutta Italia"
       },
       "serviceType": "Security Door Installation",
-      "category": "Serramenti Blindati"
+      "category": "Grate e Inferriate Blindate"
     },
     {
       "@type": "Service",
@@ -167,7 +167,7 @@
       "@id": "https://www.fbtotalsecurity.com/#person",
       "name": "Franco Di Benedetto",
       "jobTitle": "Agente Plurimandatario Sistemi di Sicurezza",
-      "description": "Specialista in sistemi di sicurezza con oltre 20 anni di esperienza. Agente plurimandatario certificato per nebbiogeni, serramenti blindati, videosorveglianza e allarmi.",
+      "description": "Specialista in sistemi di sicurezza con oltre 20 anni di esperienza. Agente plurimandatario certificato per nebbiogeni, grate e inferriate blindate, videosorveglianza e allarmi.",
       "url": "https://www.fbtotalsecurity.com",
 
       "email": "postmaster@fbtotalsecurity.com",
@@ -177,7 +177,7 @@
       "knowsAbout": [
         "Sistemi di Sicurezza",
         "Nebbiogeni",
-        "Serramenti Blindati",
+        "Grate e Inferriate Blindate",
         "Videosorveglianza",
         "Sistemi di Allarme",
         "Protezione Antifurto",
@@ -221,10 +221,10 @@
         },
         {
           "@type": "Question",
-          "name": "Le porte blindate sono davvero efficaci?",
+          "name": "Le grate e inferriate blindate sono davvero efficaci?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Sì, le porte blindate certificate classe 3, 4 o 5 offrono un'eccellente protezione contro i tentativi di effrazione. Sono testate secondo standard europei rigorosi e rappresentano un deterrente molto efficace."
+            "text": "Sì, le grate e inferriate blindate certificate classe 3, 4 o 5 offrono un'eccellente protezione contro i tentativi di effrazione. Sono testate secondo standard europei rigorosi e rappresentano un deterrente molto efficace."
           }
         },
         {

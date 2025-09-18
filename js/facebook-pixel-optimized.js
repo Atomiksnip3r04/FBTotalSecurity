@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         } else if (currentPage.includes('serramenti.html')) {
             fbPixelOptimized.track('ViewContent', {
-                content_name: 'Serramenti di Sicurezza',
+                content_name: 'Grate e Inferriate Blindate Certificate',
                 content_category: 'security_services'
             });
         } else if (currentPage.includes('sorveglianza.html')) {

@@ -8,10 +8,19 @@
       "alternateName": [
         "FB Total Security",
         "FB Sicurezza",
+        "FB Security",
+        "Pacchetti Integrativi Sicurezza Milano",
+        "Pacchetti Integrativi Sicurezza Italia", 
+        "Agenzia Sicurezza Sempione Milano",
         "Franco Benedetto Total Security",
+        "Agenzia Sicurezza Multisettore Milano",
+        "Agenzia Sicurezza Multisettore Italia",
         "Sistemi Sicurezza Milano",
         "Nebbiogeni Italia",
-        "Serramenti Blindati Milano"
+        "Nebbiogeni Milano",
+        "Grate e Inferriate Blindate Milano",
+        "Sistemi antieffrazione sicurezza passiva Milano",
+        "Sistemi antieffrazione sicurezza passiva Italia"
       ],
       "url": "https://www.fbtotalsecurity.com",
       "logo": {
@@ -20,7 +29,7 @@
         "width": 300,
         "height": 100
       },
-      "description": "Agenzia plurimandataria leader in Italia specializzata in sistemi di sicurezza avanzati: nebbiogeni antifurto, serramenti blindati certificati, videosorveglianza intelligente con AI e sistemi di allarme wireless. Oltre 20 anni di esperienza nel settore sicurezza con servizi in tutta Italia.",
+      "description": "Agenzia plurimandataria leader in Italia specializzata in sistemi di sicurezza avanzati: nebbiogeni antifurto, grate e inferriate blindate certificate, videosorveglianza intelligente con AI e sistemi di allarme wireless. Oltre 20 anni di esperienza nel settore sicurezza con servizi in tutta Italia.",
       "slogan": "La tua sicurezza è la nostra missione",
       "foundingDate": "2000",
       "numberOfEmployees": "10-50",
@@ -85,8 +94,8 @@
         },
         {
           "@type": "DefinedTerm", 
-          "name": "Serramenti Blindati Certificati",
-          "description": "Porte e finestre con certificazione antieffrazione RC",
+          "name": "Grate e Inferriate Blindate Certificate",
+          "description": "Grate e Inferriate blindate con certificazione antieffrazione RC",
           "inDefinedTermSet": {
             "@type": "DefinedTermSet",
             "name": "Expertise Sicurezza Avanzata"
@@ -131,7 +140,7 @@
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service", 
-              "name": "Serramenti Blindati",
+              "name": "Grate e Inferriate Blindate",
               "category": "Sicurezza Perimetrale",
               "audience": {
                 "@type": "Audience",
@@ -224,7 +233,7 @@
       "@id": "https://www.fbtotalsecurity.com/#website",
       "url": "https://www.fbtotalsecurity.com",
       "name": "FB Total Security - Sistemi di Sicurezza Avanzati",
-      "description": "Sito ufficiale di FB Total Security, leader italiano in sistemi di sicurezza: nebbiogeni, serramenti blindati, videosorveglianza AI e allarmi. Consulenza gratuita e installazione professionale in tutta Italia.",
+      "description": "Sito ufficiale di FB Total Security, leader italiano in sistemi di sicurezza: nebbiogeni, grate e inferriate blindate, videosorveglianza AI e allarmi. Consulenza gratuita e installazione professionale in tutta Italia.",
       "publisher": {
         "@id": "https://www.fbtotalsecurity.com/#organization"
       },
