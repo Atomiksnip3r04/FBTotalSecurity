@@ -569,7 +569,7 @@
                 </div>
                 
                 <div class="contact-form">
-                    <form id="candidature-form" action="#" method="POST">
+                    <form id="candidature-form" action="#" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="nome" data-translate="form-name">Nome e Cognome *</label>
                             <input type="text" id="nome" name="nome" required>
@@ -838,14 +838,12 @@
                     emailBody += `CURRICULUM VITAE ALLEGATO:\n`;
                     emailBody += `Nome file: ${cvFileName}\n`;
                     emailBody += `Dimensione: ${(cvFileData.length * 0.75 / 1024).toFixed(1)}KB\n\n`;
-                    emailBody += `ISTRUZIONI PER L'ALLEGATO:\n`;
-                    emailBody += `1. Il CV è stato elaborato e convertito in formato base64\n`;
-                    emailBody += `2. Per visualizzare il file, copia il codice base64 sottostante\n`;
-                    emailBody += `3. Incolla il codice in un convertitore base64 online\n`;
-                    emailBody += `4. Oppure salva il codice in un file .txt per elaborazione successiva\n\n`;
-                    emailBody += `CODICE BASE64 DEL CV:\n`;
-                    emailBody += `${cvFileData}\n\n`;
-                    emailBody += `--- FINE CODICE BASE64 ---\n\n`;
+                    emailBody += `ATTENZIONE: Il CV è stato caricato ma non può essere allegato direttamente tramite mailto.\n`;
+                    emailBody += `Per inviare il CV, si prega di:\n`;
+                    emailBody += `1. Rispondere a questa email\n`;
+                    emailBody += `2. Allegare manualmente il file: ${cvFileName}\n`;
+                    emailBody += `3. Oppure contattare direttamente per l'invio del CV\n\n`;
+                    emailBody += `Il file è stato temporaneamente elaborato ma richiede invio manuale.\n\n`;
                 } else {
                     emailBody += `Nessun CV allegato.\n\n`;
                 }
@@ -859,6 +857,20 @@
                 
                 // Create mailto link
                 const mailtoLink = `mailto:postmaster@fbtotalsecurity.com?subject=${emailSubject}&body=${encodedBody}`;
+                
+                // Mostra un messaggio informativo se c'è un CV
+                if (cvFileData && cvFileName) {
+                    const confirmMessage = `IMPORTANTE: Il CV "${cvFileName}" è stato caricato ma non può essere allegato automaticamente tramite email.\n\n` +
+                                         `Dopo aver inviato questa email, dovrai:\n` +
+                                         `1. Rispondere all'email che si aprirà\n` +
+                                         `2. Allegare manualmente il file CV\n` +
+                                         `3. Inviare l'email completa\n\n` +
+                                         `Vuoi continuare?`;
+                    
+                    if (!confirm(confirmMessage)) {
+                        return;
+                    }
+                }
                 
                 // Check if mailto link is too long (some email clients have limits)
                 if (mailtoLink.length > 2000) {
