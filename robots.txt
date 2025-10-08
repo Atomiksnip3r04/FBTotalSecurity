@@ -1,6 +1,13 @@
 User-agent: *
 Allow: /
 
+# Blocca pagine di ricerca interna
+Disallow: /*?s=*
+Disallow: /search
+
+# Blocca parametri di lingua duplicati (già gestiti da canonical)
+Disallow: /*?lang=*
+
 # Sitemap
 Sitemap: https://www.fbtotalsecurity.com/sitemap.xml
 
