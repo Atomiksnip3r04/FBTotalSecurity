@@ -396,19 +396,15 @@
         }
     </style>
 
-    <!-- Resource Hints for Performance -->
-    <!-- <link rel="dns-prefetch" href="//www.google-analytics.com"> -->
-    <link rel="dns-prefetch" href="//www.googletagmanager.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Resource Hints for Performance - Ottimizzati per LCP -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Preconnect ottimizzati per performance -->
-    <link rel="preconnect" href="https://www.fbtotalsecurity.com" crossorigin>
-    <!-- Rimosso prefetch Cloudflare email-decode per evitare problemi SEO con link non scansionabili -->
-
-    <!-- Prefetch rimosso per evitare errori 503 con server di sviluppo -->
-
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://connect.facebook.net">
+    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <link rel="dns-prefetch" href="//www.facebook.com">
+    
     <!-- Preload Critical Images for LCP -->
-    <link rel="preload" href="icons/logo_sito_franco_small.webp" as="image" fetchpriority="high">
+    <link rel="preload" href="icons/logo_sito_franco_small.webp" as="image" type="image/webp" fetchpriority="high">
 
 
     <!-- Critical CSS inline per eliminare H1UserAgentFontSizeInSection warning -->

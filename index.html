@@ -14,9 +14,11 @@
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7SUc.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
     
+    <!-- PRELOAD LOGO ABOVE THE FOLD -->
+    <link rel="preload" href="icons/logo_sito_franco_small.webp" as="image" type="image/webp" fetchpriority="high">
+    
     <!-- PRELOAD CRITICO PER LCP: CSS principale -->
-    <link rel="preload" href="styles.css" as="style" fetchpriority="high">
-    <link rel="preload" href="script.js" as="script" fetchpriority="low">
+    <link rel="preload" href="styles.min.css?v=20250917" as="style" fetchpriority="high">
 
     <!-- 2. CSS CRITICO INLINE: Stili essenziali + FONT FALLBACK + STABILIZZAZIONE LAYOUT DEFINITIVA -->
     <style>
@@ -91,6 +93,10 @@
             line-height: 1.6;
             /* CLS FIX: Riserva lo spazio per circa 3-4 righe di testo del sottotitolo */
             min-height: calc(clamp(1.2rem, 2.5vw, 1.5rem) * 1.6 * 3);
+            /* LCP OPTIMIZATION: Forza rendering immediato */
+            will-change: auto;
+            contain: layout style paint;
+            transform: translateZ(0);
         }
         .hero-cta {
             display: flex;
@@ -115,8 +121,8 @@
         @media(max-width:768px){.nav-menu{display:none}.hamburger{display:flex;flex-direction:column;cursor:pointer;gap:4px;z-index:10001}.hamburger span{width:25px;height:3px;background:var(--white);border-radius:2px;transition:all .3s ease}}
     </style>
 
-    <!-- 3. OTTIMIZZAZIONE LCP: Preload del CSS critico per ridurre il ritardo di rendering -->
-    <link rel="preload" href="styles.min.css?v=20250917" as="style" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="high">
+    <!-- 3. OTTIMIZZAZIONE LCP: Caricamento CSS ottimizzato -->
+    <link rel="stylesheet" href="styles.min.css?v=20250917" media="print" onload="this.media='all';this.onload=null;">
     <noscript><link rel="stylesheet" href="styles.min.css?v=20250917"></noscript>
 
     <!-- Meta Tags, Canonical, OpenGraph, etc. -->
@@ -542,17 +548,12 @@
     
 
     
-    <!-- Resource Hints for Performance -->
-    <!-- <link rel="dns-prefetch" href="//www.google-analytics.com"> -->
-    <link rel="dns-prefetch" href="//www.googletagmanager.com">
-    <!-- Preconnect ottimizzati per performance -->
-    <link rel="preconnect" href="https://www.fbtotalsecurity.com" crossorigin>
-    <!-- Rimosso prefetch Cloudflare email-decode per evitare problemi SEO con link non scansionabili -->
-
-    <!-- Prefetch rimosso per evitare errori 503 con server di sviluppo -->
-    
-    <!-- Preload Critical Images for LCP -->
-    <link rel="preload" href="icons/logo_sito_franco_small.webp" as="image" fetchpriority="high">
+    <!-- Resource Hints for Performance - Ottimizzati per LCP -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://connect.facebook.net">
+    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <link rel="dns-prefetch" href="//www.facebook.com">
     
     <!-- Preload Critical Text Content for LCP - Removed: not used by JavaScript, content is static HTML -->
     
