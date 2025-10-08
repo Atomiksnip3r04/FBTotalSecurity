@@ -182,36 +182,13 @@
     <meta name="pragma" content="no-cache">
     <meta name="expires" content="0">
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3KTWNJ5CQ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      
-      gtag('config', 'G-K3KTWNJ5CQ', {
-        send_page_view: false,
-        transport_type: 'beacon',
-        allow_google_signals: false,
-        allow_ad_personalization_signals: false,
-        anonymize_ip: true,
-        cookie_flags: 'SameSite=None;Secure'
-      });
-      
-      // Send initial page view manually
-      gtag('event', 'page_view', {
-        page_title: document.title,
-        page_location: window.location.href
-      });
-    </script>
-    
-    <!-- Facebook Pixel Code - Performance Optimized -->
-    <script src="js/facebook-pixel-optimized.js" defer></script>
+    <!-- Third-Party Scripts Loader - Performance Optimized -->
+    <!-- Carica Google Analytics e Facebook Pixel in modo lazy per migliorare LCP -->
+    <script src="js/third-party-loader.js" defer></script>
     <noscript>
       <img height="1" width="1" style="display:none" alt="Facebook Pixel"
            src="https://www.facebook.com/tr?id=901001165949446&ev=PageView&noscript=1">
     </noscript>
-    <!-- End Facebook Pixel Code -->
     
     <!-- Enhanced Structured Data for AI Optimization -->
     <script type="application/ld+json" id="ai-enhanced-structured-data">
