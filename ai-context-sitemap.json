@@ -248,11 +248,6 @@
         "@id": "https://francosicurezza.it/ai-content-optimization.html",
         "name": "FAQ e Glossario Tecnico",
         "description": "Contenuti informativi per supporto SEO e user experience",
-        "additionalType": "FAQPage",
-        "mainEntity": {
-          "@type": "FAQPage",
-          "name": "Domande Frequenti Sistemi di Sicurezza"
-        },
         "about": [
           "https://francosicurezza.it/#cluster-nebbiogeni",
           "https://francosicurezza.it/#cluster-serramenti", 

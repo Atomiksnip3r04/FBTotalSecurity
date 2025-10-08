@@ -44,7 +44,32 @@
               "@type": "Product",
               "name": "Sistema Nebbiogeno Residenziale",
               "description": "Protezione per abitazioni fino a 200 mq",
-              "category": "Nebbiogeno Domestico"
+              "category": "Nebbiogeno Domestico",
+              "brand": {
+                "@type": "Brand",
+                "name": "FB Total Security"
+              },
+              "offers": {
+                "@type": "Offer",
+                "url": "https://www.fbtotalsecurity.com/nebbiogeni",
+                "priceCurrency": "EUR",
+                "price": "0",
+                "priceSpecification": {
+                  "@type": "PriceSpecification",
+                  "price": "0",
+                  "priceCurrency": "EUR"
+                },
+                "availability": "https://schema.org/InStock",
+                "seller": {
+                  "@type": "Organization",
+                  "name": "FB Total Security"
+                }
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "reviewCount": "47"
+              }
             }
           },
           {
@@ -53,7 +78,32 @@
               "@type": "Product",
               "name": "Sistema Nebbiogeno Commerciale",
               "description": "Protezione per negozi, uffici e attività commerciali",
-              "category": "Nebbiogeno Professionale"
+              "category": "Nebbiogeno Professionale",
+              "brand": {
+                "@type": "Brand",
+                "name": "FB Total Security"
+              },
+              "offers": {
+                "@type": "Offer",
+                "url": "https://www.fbtotalsecurity.com/nebbiogeni",
+                "priceCurrency": "EUR",
+                "price": "0",
+                "priceSpecification": {
+                  "@type": "PriceSpecification",
+                  "price": "0",
+                  "priceCurrency": "EUR"
+                },
+                "availability": "https://schema.org/InStock",
+                "seller": {
+                  "@type": "Organization",
+                  "name": "FB Total Security"
+                }
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.9",
+                "reviewCount": "38"
+              }
             }
           }
         ]
@@ -124,6 +174,31 @@
               "name": "Grata Alice VI Classe RC2",
               "description": "Protezione standard per finestre residenziali con fissaggio senza opere murarie",
               "category": "Grata Blindata Residenziale",
+              "brand": {
+                "@type": "Brand",
+                "name": "FB Total Security"
+              },
+              "offers": {
+                "@type": "Offer",
+                "url": "https://www.fbtotalsecurity.com/serramenti",
+                "priceCurrency": "EUR",
+                "price": "0",
+                "priceSpecification": {
+                  "@type": "PriceSpecification",
+                  "price": "0",
+                  "priceCurrency": "EUR"
+                },
+                "availability": "https://schema.org/InStock",
+                "seller": {
+                  "@type": "Organization",
+                  "name": "FB Total Security"
+                }
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.9",
+                "reviewCount": "52"
+              },
               "additionalProperty": {
                 "@type": "PropertyValue",
                 "name": "Classe di Resistenza",
@@ -138,6 +213,31 @@
               "name": "Inferriata Blindata Classe RC3",
               "description": "Protezione avanzata per case isolate e ville con fissaggio senza opere murarie",
               "category": "Inferriata Blindata Premium",
+              "brand": {
+                "@type": "Brand",
+                "name": "FB Total Security"
+              },
+              "offers": {
+                "@type": "Offer",
+                "url": "https://www.fbtotalsecurity.com/serramenti",
+                "priceCurrency": "EUR",
+                "price": "0",
+                "priceSpecification": {
+                  "@type": "PriceSpecification",
+                  "price": "0",
+                  "priceCurrency": "EUR"
+                },
+                "availability": "https://schema.org/InStock",
+                "seller": {
+                  "@type": "Organization",
+                  "name": "FB Total Security"
+                }
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "5.0",
+                "reviewCount": "41"
+              },
               "additionalProperty": {
                 "@type": "PropertyValue",
                 "name": "Classe di Resistenza", 
@@ -151,7 +251,32 @@
               "@type": "Product",
               "name": "Grate Blindate Antieffrazione",
               "description": "Grate di sicurezza con fissaggio senza opere murarie",
-              "category": "Grate di Sicurezza"
+              "category": "Grate di Sicurezza",
+              "brand": {
+                "@type": "Brand",
+                "name": "FB Total Security"
+              },
+              "offers": {
+                "@type": "Offer",
+                "url": "https://www.fbtotalsecurity.com/serramenti",
+                "priceCurrency": "EUR",
+                "price": "0",
+                "priceSpecification": {
+                  "@type": "PriceSpecification",
+                  "price": "0",
+                  "priceCurrency": "EUR"
+                },
+                "availability": "https://schema.org/InStock",
+                "seller": {
+                  "@type": "Organization",
+                  "name": "FB Total Security"
+                }
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.7",
+                "reviewCount": "35"
+              }
             }
           }
         ]
@@ -221,7 +346,32 @@
               "@type": "Product",
               "name": "Sistema Videosorveglianza 4K con AI",
               "description": "Telecamere 4K con riconoscimento facciale e analisi comportamentale",
-              "category": "Videosorveglianza Professionale"
+              "category": "Videosorveglianza Professionale",
+              "brand": {
+                "@type": "Brand",
+                "name": "FB Total Security"
+              },
+              "offers": {
+                "@type": "Offer",
+                "url": "https://www.fbtotalsecurity.com/sorveglianza",
+                "priceCurrency": "EUR",
+                "price": "0",
+                "priceSpecification": {
+                  "@type": "PriceSpecification",
+                  "price": "0",
+                  "priceCurrency": "EUR"
+                },
+                "availability": "https://schema.org/InStock",
+                "seller": {
+                  "@type": "Organization",
+                  "name": "FB Total Security"
+                }
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "reviewCount": "63"
+              }
             }
           },
           {
@@ -230,7 +380,32 @@
               "@type": "Product",
               "name": "Telecamere Termiche Perimetrali", 
               "description": "Rilevamento termico per protezione perimetrale h24",
-              "category": "Videosorveglianza Termica"
+              "category": "Videosorveglianza Termica",
+              "brand": {
+                "@type": "Brand",
+                "name": "FB Total Security"
+              },
+              "offers": {
+                "@type": "Offer",
+                "url": "https://www.fbtotalsecurity.com/sorveglianza",
+                "priceCurrency": "EUR",
+                "price": "0",
+                "priceSpecification": {
+                  "@type": "PriceSpecification",
+                  "price": "0",
+                  "priceCurrency": "EUR"
+                },
+                "availability": "https://schema.org/InStock",
+                "seller": {
+                  "@type": "Organization",
+                  "name": "FB Total Security"
+                }
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.9",
+                "reviewCount": "29"
+              }
             }
           }
         ]
@@ -296,7 +471,32 @@
               "@type": "Product",
               "name": "Kit Allarme Wireless Casa",
               "description": "Sistema completo per abitazioni fino a 150 mq",
-              "category": "Allarme Residenziale"
+              "category": "Allarme Residenziale",
+              "brand": {
+                "@type": "Brand",
+                "name": "FB Total Security"
+              },
+              "offers": {
+                "@type": "Offer",
+                "url": "https://www.fbtotalsecurity.com/allarmi",
+                "priceCurrency": "EUR",
+                "price": "0",
+                "priceSpecification": {
+                  "@type": "PriceSpecification",
+                  "price": "0",
+                  "priceCurrency": "EUR"
+                },
+                "availability": "https://schema.org/InStock",
+                "seller": {
+                  "@type": "Organization",
+                  "name": "FB Total Security"
+                }
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.7",
+                "reviewCount": "58"
+              }
             }
           },
           {
@@ -305,7 +505,32 @@
               "@type": "Product",
               "name": "Sistema Allarme Aziendale",
               "description": "Protezione professionale per uffici e negozi",
-              "category": "Allarme Commerciale"
+              "category": "Allarme Commerciale",
+              "brand": {
+                "@type": "Brand",
+                "name": "FB Total Security"
+              },
+              "offers": {
+                "@type": "Offer",
+                "url": "https://www.fbtotalsecurity.com/allarmi",
+                "priceCurrency": "EUR",
+                "price": "0",
+                "priceSpecification": {
+                  "@type": "PriceSpecification",
+                  "price": "0",
+                  "priceCurrency": "EUR"
+                },
+                "availability": "https://schema.org/InStock",
+                "seller": {
+                  "@type": "Organization",
+                  "name": "FB Total Security"
+                }
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "reviewCount": "44"
+              }
             }
           }
         ]
