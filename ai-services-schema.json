@@ -302,11 +302,16 @@
     {
       "@type": "Service",
       "@id": "https://www.fbtotalsecurity.com/videosorveglianza#service",
-      "name": "Videosorveglianza Intelligente con AI",
-      "description": "Sistemi di videosorveglianza avanzati con intelligenza artificiale: riconoscimento facciale, analisi comportamentale, rilevamento intrusioni automatico e notifiche in tempo reale.",
+      "name": "Videosorveglianza Intelligente con AI - Partnership CIVIS S.p.A",
+      "description": "Sistemi di videosorveglianza avanzati con intelligenza artificiale in partnership con CIVIS S.p.A, istituto di vigilanza privata leader: riconoscimento facciale, analisi comportamentale, rilevamento intrusioni automatico, monitoraggio H24 e notifiche in tempo reale.",
       "provider": {
         "@type": "Person",
         "@id": "https://www.fbtotalsecurity.com/franco-benedetto#person"
+      },
+      "partner": {
+        "@type": "Organization",
+        "name": "CIVIS S.p.A",
+        "description": "Istituto di Vigilanza Privata leader nel settore sicurezza e videosorveglianza"
       },
       "knowsAbout": [
         {
@@ -344,12 +349,16 @@
             "@type": "Offer",
             "itemOffered": {
               "@type": "Product",
-              "name": "Sistema Videosorveglianza 4K con AI",
-              "description": "Telecamere 4K con riconoscimento facciale e analisi comportamentale",
+              "name": "Sistema Videosorveglianza 4K con AI - CIVIS S.p.A",
+              "description": "Telecamere 4K con riconoscimento facciale e analisi comportamentale, monitoraggio H24 con CIVIS S.p.A",
               "category": "Videosorveglianza Professionale",
               "brand": {
                 "@type": "Brand",
-                "name": "FB Total Security"
+                "name": "CIVIS S.p.A"
+              },
+              "manufacturer": {
+                "@type": "Organization",
+                "name": "CIVIS S.p.A"
               },
               "offers": {
                 "@type": "Offer",
