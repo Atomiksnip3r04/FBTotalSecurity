@@ -229,7 +229,7 @@ Tutti i diritti riservati © 2025.
 ## Contatti Sviluppo
 
 Per supporto tecnico o modifiche al sito:
-- Email: postmaster@fbtotalsecurity.com
+- Email: fb.totalsicurezza@gmail.com
 - Telefono: +39 333 123 4567
 
 ---

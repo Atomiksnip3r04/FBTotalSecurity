@@ -295,7 +295,7 @@ Il sito è ora completamente conforme alle linee guida Google per i dati struttu
 ## 📞 Supporto
 
 Per domande o problemi:
-- Email: postmaster@fbtotalsecurity.com
+- Email: fb.totalsicurezza@gmail.com
 - Documentazione dettagliata:
   - RISOLUZIONE_PROBLEMA_PRODUCT_SNIPPET.md
   - RISOLUZIONE_PROBLEMA_FAQ.md

@@ -382,7 +382,7 @@ function initContactForm() {
             // Validate form
             if (validateForm(formObject)) {
                 // Create mailto link with form data (simplified to avoid length issues)
-                const emailTo = 'postmaster@fbtotalsecurity.com';
+                const emailTo = 'fb.totalsicurezza@gmail.com';
                 const subject = encodeURIComponent('Richiesta informazioni - FB Total Security');
                 
                 let body = `Nome: ${formObject.nome || 'Non specificato'}\n`;
@@ -1215,7 +1215,7 @@ const translations = {
         'form-submit': 'Invia Richiesta',
         'footer-name': 'FB Total Security',
 
-        'footer-email': '📧 postmaster@fbtotalsecurity.com',
+        'footer-email': '📧 fb.totalsicurezza@gmail.com',
         'footer-address': '📍 Corso Sempione, Milano (MI)',
 
         'footer-service-area-title': 'Area di Servizio',
@@ -1675,7 +1675,7 @@ const translations = {
         'footer-contacts-title': 'Contatti',
         'footer-location': '📍 Tutta Italia',
 
-        'footer-email': '✉️ postmaster@fbtotalsecurity.com',
+        'footer-email': '✉️ fb.totalsicurezza@gmail.com',
         'footer-copyright': '© 2025 FB Total Security. Tutti i diritti riservati.',
         'footer-created-by': 'Creato e Curato da Web Novis'
     },
@@ -2432,7 +2432,7 @@ const translations = {
         'form-submit': 'Send Request',
         'footer-name': 'FB Total Security',
 
-        'footer-email': '📧 postmaster@fbtotalsecurity.com',
+        'footer-email': '📧 fb.totalsicurezza@gmail.com',
         'footer-address': '📍 Corso Sempione, Milan (MI)',
 
         'footer-service-area-title': 'Service Area',
@@ -2799,7 +2799,7 @@ const translations = {
         'footer-contacts-title': 'Contacts',
         'footer-location': '📍 Milan and Province',
 
-        'footer-email': '✉️ postmaster@fbtotalsecurity.com',
+        'footer-email': '✉️ fb.totalsicurezza@gmail.com',
         'footer-copyright': '© 2025 FB Total Security. All rights reserved.',
         'footer-created-by': 'Created and Curated by Web Novis',
         'footer-webnovis-contact': 'For a tailor-made solution for you',
